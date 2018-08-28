@@ -1,5 +1,6 @@
 # t23 - team_name_here
-
+Here's a picture of us! (minus one):
+![Team Photo](https://github.com/csu18fa314/t23/blob/master/Resources/imgs/IMG_0256.jpg)
 # Member Information
 your name | CSU eName | GitHub username | email address | nickname/moniker
 ----------|-----------|-----------------|---------------|-----------------
