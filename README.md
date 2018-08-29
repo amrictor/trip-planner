@@ -15,7 +15,8 @@ Abby is a Computer Science major at CSU and a Colorado native. For most of her l
 Sam is Computer Science major in his last year at CSU. He works as an IT student for the Lory Student Center He likes to play videogames in his spare time and not much else goes on in his life.
 
 # Manifesto
-### Communication Abby
+### Communication
+It is important for this team to communicate effectively so that every member has a clear idea of what is expected of them and what they can expect from their teammates. We'd like to minimize conflict arising from unnecessary confusion and create an environment where all team members feel comfortable asking questions and giving or receiving help.
 ### Flexibility
 Our members value the ability to handle mishaps and failures as a team. As a teammate, it is important to handle unexpected events in a professional way and to communicate with each other. There will be hardships, but our team expects that each one of us will maintain a positive attitude and keep moving forward.
 ### Planning
@@ -24,7 +25,8 @@ Arguably one of the most important parts of a group project is the planning phas
 A team would get nowhere without mutual respect towards each of the team members. We value this as a part of the process and intend to let everyone's concerns, ideas, and work be heard and seen equally. To be certain that everyone is working hard to complete this project, we want to be sure that our team doesn't fall apart in the time we are together.
 
 # Expectations
-### Learning focus Abby
+### Learning focus
+In a sense, our team would like to emphasize learning over optimization. While all members are entering this project with certain skills and we do want to use that to our advantage, it is a goal of ours that no team member works exclusively on things they already know how to do. It’s important to us that we all emerge with new skills.
 ### Readability
 As a group, our team will be faced with several projects that require us to work together. We will work on code and projects together. To be succesful as an individual and as a teammate, we must be able to read each other's code. Everyone has a different coding style. That being said, we will strive to comment when appropriate and to write code that is easy enough to understand and not obscure.
 ### Clean code
