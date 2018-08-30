@@ -23,6 +23,7 @@ Our members value the ability to handle mishaps and failures as a team. As a tea
 Arguably one of the most important parts of a group project is the planning phase. Our team holds this as one of our values as it is the best way to work well together, minimize miscommunications, and to properly distribute work among the team. Having an effective plan lets every team member know what the other members are working on and towards, in order to best work cohesively towards a goal.
 ### Respect
 A team would get nowhere without mutual respect towards each of the team members. We value this as a part of the process and intend to let everyone's concerns, ideas, and work be heard and seen equally. To be certain that everyone is working hard to complete this project, we want to be sure that our team doesn't fall apart in the time we are together.
+Ideas should be equally asserted during brainstorming phase and everyone are expected have agreed on one single idea before this phase ends. After that, we would focus on contributing to that idea alone. Everyone's culture difference in the group will be respected and considered to maintain team efficiency.
 
 # Expectations
 ### Learning focus
