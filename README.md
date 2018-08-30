@@ -13,6 +13,8 @@ Josette is a third year student at CSU. She is studying Computer Science with a 
 Abby is a Computer Science major at CSU and a Colorado native. For most of her life she wanted to be a writer or an artist, but somehow she ended up here. Cool beans. She likes tropical fish, keeping tropical fish, and talking about the tropical fish that she keeps.
 ### Sam Westra
 Sam is Computer Science major in his last year at CSU. He works as an IT student for the Lory Student Center He likes to play videogames in his spare time and not much else goes on in his life.
+### Khanh Nguyen Le
+Le is Computer Science major in his last year at CSU. He is interested in Big Data incommerce and blockchain. He is working as part of Vision group led by Dr. Bruce to create a visual "Siri". Outside of school he works as a game analyst/caster/cameraman. Streamer & gamer.
 
 # Manifesto
 ### Communication
