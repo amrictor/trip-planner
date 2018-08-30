@@ -32,3 +32,4 @@ As a group, our team will be faced with several projects that require us to work
 ### Clean code
 In a lot of ways, our code can speak better for us than our voices can, if it's written well. We hope to write code in such a way that is effective and concise. Having effectively planned what sections of code can do, we should be able to avoid redundancy, errors, and issues that may arise later in the semester. Maximizing the dynamic aspect of different segments of code, we should be able to avoid restraints and rewrites as factors of the project change throughout the project.
 ### Check-ins (stand-ups)
+Currently we meet up after class. We already had each other's contact through group messaging, email and Slack. Everything to get everyone catch up and on track. Our available time are mainly based on the provided teamworkQuestionnaire.md. Any changes will be updated almost immidiately through group chat.
