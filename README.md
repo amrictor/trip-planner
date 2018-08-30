@@ -1,7 +1,7 @@
-# t23 - team_name_here
-Here's a picture of us! :
+# t23 - Team Dave
+Here's a picture of us!:
 ![Team Photo](https://github.com/csu18fa314/t23/blob/master/Resources/imgs/IMG_0256.jpg)
-![Team Photo](https://github.com/csu18fa314/t23/blob/master/Resources/imgs/image1.jpeg)
+![Le Photo](https://github.com/csu18fa314/t23/blob/master/Resources/imgs/image1.jpeg)
 
 # Member Information
 your name | CSU eName | GitHub username | email address | nickname/moniker
