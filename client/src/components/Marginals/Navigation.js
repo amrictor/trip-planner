@@ -80,7 +80,7 @@ class Navigation extends Component {
         {sidebar}
         <Navbar className="nav_bar">
             <NavbarBrand className="nav_title" href="/">
-              t23 TripCo
+              t23 Team Dave
             </NavbarBrand>
             <div>
               {navItems.reverse()}
