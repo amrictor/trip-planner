@@ -1,7 +1,6 @@
 # t23 - Team Dave
 Here's a picture of us!:
-![Team Photo](https://github.com/csu18fa314/t23/blob/master/Resources/imgs/IMG_0256.jpg)
-![Le Photo](https://github.com/csu18fa314/t23/blob/master/Resources/imgs/image1.jpeg)
+![Team Photo](https://github.com/csu18fa314/t23/blob/master/Resources/imgs/IMG_0365.jpg)
 
 # Member Information
 your name | CSU eName | GitHub username | email address | nickname/moniker
