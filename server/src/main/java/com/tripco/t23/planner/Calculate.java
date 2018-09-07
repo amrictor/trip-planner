@@ -27,7 +27,9 @@ public class Calculate {
         // calculate distance
         distance.calculate();
 
-
+        // log something
+        // probably dont want to log something
+        //System.out.println(distance.title);
 
     }
 
