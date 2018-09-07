@@ -43,7 +43,7 @@ Epics planned for this release.
 * *amrictor*: *I completed all tasks*
 
 #### What went well
-* *We completed all tasks presented to us, and deployed a functional product which met the requirements for this sprint. Our team members are now more familiar with the codebase and with the development process.
+* *We completed all tasks presented to us, and deployed a functional product which met the requirements for this sprint. Our team members are now more familiar with the codebase and with the development process, setting us up for a successful semester.
 
 #### Problems encountered and resolutions
 * *something*
