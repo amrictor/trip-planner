@@ -44,21 +44,21 @@ Epics planned for this release.
 
 #### What went well
 * *something*
-* *Our team was able to communicate well enough in slack that everyone was able to complete their tasks and have a
-   successful deployment.*
-* *The team members were really responsible and really invested their time on this class and this project that you can almost always find somebody talking about the project or working on their task on Slack.*   
+* 
+*    
 
 #### Problems encountered and resolutions
 * *something*
 * *We had difficultly understading what was expected of us to complete for this sprint. We were able to over come this
-   by working together and working through this new material. This was not surprising to us since this was our first
-   sprint and it takes time to understand brand new materials, languages and concepts.*
-* *To me, personally, I spent lots of time digging through the codes and not just the ones from my task but the entire tripco repo, as well as cloned and personalized repo, from server side to client side, and that was not rewarding. At the beginning of each file there is a small explaination but it was still hard to figured out which class does what sometimes. I also encountered lots of problem with really abstractive instructions, I have spent more time either figuring out what those instructions meant, or understood the instruction but does not know a way to follow it; than actually coding.*
+   by working together and working through this new material. As individual team members, we spent a lot of time digging through the code. We did not only look at the code from our tasks but the entire tripco repo. We got familar with cloning and personalizing repos, from server side to client side, which took up a good portion of our time. At the beginning of each file there was an explaination but it was still difficult at first to figure out the purpose of each class. We spent more time developing our understand than coding this sprint. However, this was not surprising to us since this was our first
+   sprint and it takes time to understand new materials, languages and concepts.*
    
 
 ## Retrospective
 
 #### What went well
+**Our team was able to communicate well enough in slack that everyone was able to complete their tasks and have a
+   successful deployment. The team members were really responsible and really invested their time on this class and this project that you can almost always find somebody talking about the project or working on their task on Slack.*
 
 #### Potential improvements
 
