@@ -61,5 +61,8 @@ Epics planned for this release.
    successful deployment. The team members were really responsible and really invested their time on this class and this project that you can almost always find somebody talking about the project or working on their task on Slack.*
 
 #### Potential improvements
- *One of the ways that we could improve is to ask questions sooner, there were a few times where we were at a loss with specifics, or direction. Until the TA or the Dave spoke up specifically, either in Slack or in person. We could work on reaching out to each other or the faculty more quickly.*
+*Communication could always be immproved no matter how succesful the team is. We should also meet more regularly to prevent last minute submissions and scrambling. Meeting more will create smoother collobration and communication.*
+*Additionally, one of the ways that we could improve is to ask questions sooner, there were a few times where we were at a loss with specifics, or direction. Until the TA or the Dave spoke up specifically, either in Slack or in person. We could work on reaching out to each other or the faculty more quickly.*
+
 #### What we will change next time
+* *Next sprint we will work together more and discuss each other's tasks. We will not only do our own tasks but also help each other out.*
