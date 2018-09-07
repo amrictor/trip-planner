@@ -36,18 +36,20 @@ Epics planned for this release.
              json. I also personalized the client for our team.*
 * *kle*: *I completed Supported Units to support additional units for kilometers and/or nautical miles on top of miles.*
 * *amrictor*: *I completed REST API framework which allowed additional requests to be posted, interpreted, and responded to by our webpage.*
+* *swestra*:  *I completed the Distance class, handling the implementation of the Vicenty formula and returning the distance*
 
 #### Incomplete epics in Sprint Backlog 
 * *jhgrins*: *For this sprint, I was able to complete all my tasks.*
 * *kle*: *All my tasks were completed this Sprint.*
 * *amrictor*: *I completed all tasks.*
+* *swestra*: *I completed all of my tasks.*
 
 #### What went well
-* *We completed all tasks presented to us, and deployed a functional product which met the requirements for this sprint. Our team members are now more familiar with the codebase and with the development process, setting us up for a successful semester.*
+ *We completed all tasks presented to us, and deployed a functional product which met the requirements for this sprint. Our team members are now more familiar with the codebase and with the development process, setting us up for a successful semester.*
 
 
 #### Problems encountered and resolutions
-* *We had difficultly understading what was expected of us to complete for this sprint. We were able to over come this
+ *We had difficultly understading what was expected of us to complete for this sprint. We were able to over come this
    by working together and working through this new material. As individual team members, we spent a lot of time digging through the code. We did not only look at the code from our tasks but the entire tripco repo. We got familar with cloning and personalizing repos, from server side to client side, which took up a good portion of our time. At the beginning of each file there was an explaination but it was still difficult at first to figure out the purpose of each class. We spent more time developing our understand than coding this sprint. However, this was not surprising to us since this was our first
    sprint and it takes time to understand new materials, languages and concepts.*
    
@@ -55,11 +57,12 @@ Epics planned for this release.
 ## Retrospective
 
 #### What went well
-* *Our team was able to communicate well enough in slack that everyone was able to complete their tasks and have a
+ *Our team was able to communicate well enough in slack that everyone was able to complete their tasks and have a
    successful deployment. The team members were really responsible and really invested their time on this class and this project that you can almost always find somebody talking about the project or working on their task on Slack.*
 
 #### Potential improvements
-* *Communication could always be immproved no matter how succesful the team is. We should also meet more regularly to prevent last minute submissions and scrambling. Meeting more will create smoother collobration and communication.*
+*Communication could always be immproved no matter how succesful the team is. We should also meet more regularly to prevent last minute submissions and scrambling. Meeting more will create smoother collobration and communication.*
+*Additionally, one of the ways that we could improve is to ask questions sooner, there were a few times where we were at a loss with specifics, or direction. Until the TA or the Dave spoke up specifically, either in Slack or in person. We could work on reaching out to each other or the faculty more quickly.*
 
 #### What we will change next time
 * *Next sprint we will work together more and discuss each other's tasks. We will not only do our own tasks but also help each other out.*
