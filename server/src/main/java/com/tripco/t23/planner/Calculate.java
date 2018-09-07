@@ -28,7 +28,8 @@ public class Calculate {
         distance.calculate();
 
         // log something
-        System.out.println(distance.title);
+        // probably dont want to log something
+        //System.out.println(distance.title);
 
     }
 
