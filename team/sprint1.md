@@ -32,20 +32,19 @@ Epics planned for this release.
 ## Review
 
 #### Completed epics in Sprint Backlog 
-* *user story*:  *comments*
 * *jhgrins*: *I completed the Calculate class that provided the necessary conversion between the Distance object and
              json. I also personalized the client for our team.*
 * *kle*: *I completed Supported Units to support additional units for kilometers and/or nautical miles on top of miles.*
+* *amrictor*: *I completed REST API framework which allowed additional requests to be posted, interpreted, and responded to by our webpage*
 
 #### Incomplete epics in Sprint Backlog 
-* *user story*: *explanation...*
 * *jhgrins*: *For this sprint, I was able to complete all my tasks.*
 * *kle*: *All my tasks were completed this Sprint*
+* *amrictor*: *I completed all tasks*
 
 #### What went well
-* *something*
-* 
-*    
+* *We completed all tasks presented to us, and deployed a functional product which met the requirements for this sprint. Our team members are now more familiar with the codebase and with the development process, setting us up for a successful semester.*
+
 
 #### Problems encountered and resolutions
 * *something*
