@@ -31,6 +31,16 @@ public class Distance {
         double numerator2 = Math.pow(Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(difLog),2);
         double denominator = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(difLog);
         double temp = Math.atan2(Math.sqrt(numerator1 + numerator2),denominator);
-        distance = (int) Math.round(temp * 3959);
+        if (units.equals("miles")){
+            distance = (int) Math.round(temp * 3959);
+        }
+        else if(units.equals("kilometers")) 
+        {
+            distance = (int) Math.round(temp * 6371);
+        }
+        else
+        {
+            distance = (int) Math.round(temp * 3440);
+        }
     }
 }
