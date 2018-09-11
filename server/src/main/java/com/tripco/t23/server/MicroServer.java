@@ -47,7 +47,7 @@ public class MicroServer {
     // client is sending data, so a HTTP POST is used instead of a GET
     get("/config", this::config);
     post("/plan", this::plan);
-    post("/calculate", this::calculate);
+    post("/distance", this::distance);
 
     System.out.println("\n\nServer running on port: " + this.port + "\n\n");
   }
@@ -122,7 +122,7 @@ public class MicroServer {
     return new Plan(request).getTrip();
   }
 
-  private String calculate(Request request, Response response) {
+  private String distance(Request request, Response response) {
 
     response.type("application/json");
     response.header("Access-Control-Allow-Origin", "*");
