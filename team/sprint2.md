@@ -59,9 +59,7 @@
 
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
-| *date* | *#task, ...* | *#task, ...* | *none* | 
-
-*Add a new row for each scrum session.*
+| 9/14 | 0 | 4 | n/a | 
 
 ## Review
 
