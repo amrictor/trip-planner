@@ -48,8 +48,8 @@
 
 | Statistic | # Planned | # Completed |
 | --- | ---: | ---: |
-| Epics | #75 User: I want a map and itinerary for my trip, #71 User: I want to supply my own units for the distances | *value* |
-| Tasks | #78 Backend: generate map from distances, #77 UI: display map svg on client side, #76 Planning tool backend, #73 Server end of using user's units, #72 Client end of supplying own units, #83 Add configuration option to change to server:port| *value* | 
+| Epics | 5 | *value* |
+| Tasks | 7 | *value* | 
 | Story Points | 13 | *value* | 
 
 *Enter the `# Planned` at the beginning of the sprint, `# Completed` at the end of the sprint.*
