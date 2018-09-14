@@ -37,9 +37,11 @@
 
 * #75 User: I want a map and itinerary for my trip: I plan trips in the state of Colorado in another tool. The tool produces a file that conforms to the TFFI trip object. The trip is always a round trip. Show me a map and itinerary for the trip in the file that I can view on my phone.
 * #71 User: I want to supply my own units for the distances: I should be able to define an arbitrary unit of measure to use in the itinerary.
+* #81 TripCo: All clients and servers must interoperate: Each client must include a configuration option to change to server:port used for RESTful services
+* #82 TripCo: The solution must be responsive for mobile devices: The solution should be designed/optimized for a mobile environment, but still work well in a desktop environment.
 * #79 All code shall be clean!: Review all teammates code to be clean and consistent.
 
-*Include a discussion of planning decisions.*
+* We decided to have Sam work on user-defined units because he's already familiar with the distance class. Abby will work on displaying the map because she spent time researching the task and seems to have the most clear understanding of the work needed.  Josette will work on the planning tool, which will need to interact with Abby's work. Because they will both be gone during deployment week, they will be working to finish earlier, so it's best that the collaborative elements are going at the same pace. Le will work to add a configuration option to allow interoperability between client and server. We want all of our members to practice clean code and will review each other. Likewise, all UI tasks will be done with consideration for mobile interface and reviewed by teammates.
 
 
 ## Metrics
@@ -47,8 +49,8 @@
 | Statistic | # Planned | # Completed |
 | --- | ---: | ---: |
 | Epics | #75 User: I want a map and itinerary for my trip, #71 User: I want to supply my own units for the distances | *value* |
-| Tasks | #78 Backend: generate map from distances, #77 UI: display map svg on client side, #76 Planning tool backend, #73 Server end of using user's units, #72 Client end of supplying own units | *value* | 
-| Story Points |  *value*  | *value* | 
+| Tasks | #78 Backend: generate map from distances, #77 UI: display map svg on client side, #76 Planning tool backend, #73 Server end of using user's units, #72 Client end of supplying own units, #83 Add configuration option to change to server:port| *value* | 
+| Story Points | 13 | *value* | 
 
 *Enter the `# Planned` at the beginning of the sprint, `# Completed` at the end of the sprint.*
 
