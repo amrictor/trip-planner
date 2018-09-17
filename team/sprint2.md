@@ -60,6 +60,7 @@
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
 | 9/14 | 0 | 4 | n/a | 
+| 9/17 | 0 | 4 | n/a |
 
 ## Review
 
