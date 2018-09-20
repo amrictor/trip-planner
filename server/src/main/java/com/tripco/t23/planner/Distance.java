@@ -6,17 +6,60 @@ import java.lang.Math;
 public class Distance {
     //TFFI variables
     //Initialized to distance
-    public String type;
-    public int version;
+    private String type;
+    private int version;
 
-    public Place origin;
-    public Place destination;
-    public String units;
-    public String unitName;
-    public int unitRadius;
+    private Place origin;
+    private Place destination;
+    private String units;
+    private String unitName;
+    private int unitRadius;
 
     //Result variable.
-    public int distance;
+    private int distance;
+
+    //Getters.
+    public Place getOrigin() {
+        return origin;
+    }
+    public Place getDestination(){
+        return destination;
+    }
+    public String getUnits(){
+        return units;
+    }
+    public String getUnitName(){
+        return unitName;
+    }
+    public int getUnitRadius() {
+        return unitRadius;
+    }
+    public int getDistance() {
+        return distance;
+    }
+    public int getVersion() {
+        return version;
+    }
+    public String getType() {
+        return type;
+    }
+
+    //Setters.
+    public void setDestination(Place destination) {
+        this.destination = destination;
+    }
+    public void setOrigin(Place origin) {
+        this.origin = origin;
+    }
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
+    }
+    public void setUnitRadius(int unitRadius) {
+        this.unitRadius = unitRadius;
+    }
+    public void setUnits(String units) {
+        this.units = units;
+    }
 
     //Function for the actual calculation
     public void calculate(){
