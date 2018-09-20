@@ -7,10 +7,10 @@ import java.util.List;
 
 public class Config {
 
-  private short version = 1;
+  private short version = 2;
   private String type = "config";
 
-  private List<String> units = Arrays.asList("miles", "nautical miles", "kilometers");
+  private List<String> units = Arrays.asList("miles", "nautical miles", "kilometers", "user defined");
 
   static String getConfig() {
     Config conf = new Config();
