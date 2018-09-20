@@ -12,9 +12,54 @@ public class Distance {
     private Place origin;
     private Place destination;
     private String units;
+    private String unitName;
+    private int unitRadius;
 
     //Result variable.
-    public int distance;
+    private int distance;
+
+    //Getters.
+    public Place getOrigin() {
+        return origin;
+    }
+    public Place getDestination(){
+        return destination;
+    }
+    public String getUnits(){
+        return units;
+    }
+    public String getUnitName(){
+        return unitName;
+    }
+    public int getUnitRadius() {
+        return unitRadius;
+    }
+    public int getDistance() {
+        return distance;
+    }
+    public int getVersion() {
+        return version;
+    }
+    public String getType() {
+        return type;
+    }
+
+    //Setters.
+    public void setDestination(Place destination) {
+        this.destination = destination;
+    }
+    public void setOrigin(Place origin) {
+        this.origin = origin;
+    }
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
+    }
+    public void setUnitRadius(int unitRadius) {
+        this.unitRadius = unitRadius;
+    }
+    public void setUnits(String units) {
+        this.units = units;
+    }
 
     //Function for the actual calculation
     public void calculate(){
@@ -38,9 +83,13 @@ public class Distance {
         {
             distance = (int) Math.round(temp * 6371);
         }
-        else
+        else if(units.equals("nautical miles"))
         {
             distance = (int) Math.round(temp * 3440);
+        }
+        else
+        {
+            distance = (int) Math.round(temp * unitRadius);
         }
     }
 }
