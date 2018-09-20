@@ -6,12 +6,14 @@ import java.lang.Math;
 public class Distance {
     //TFFI variables
     //Initialized to distance
-    private String type;
-    private int version;
+    public String type;
+    public int version;
 
-    private Place origin;
-    private Place destination;
-    private String units;
+    public Place origin;
+    public Place destination;
+    public String units;
+    public String unitName;
+    public int unitRadius;
 
     //Result variable.
     public int distance;
@@ -38,9 +40,13 @@ public class Distance {
         {
             distance = (int) Math.round(temp * 6371);
         }
-        else
+        else if(units.equals("nautical miles"))
         {
             distance = (int) Math.round(temp * 3440);
+        }
+        else
+        {
+            distance = (int) Math.round(temp * unitRadius);
         }
     }
 }
