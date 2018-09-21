@@ -54,7 +54,7 @@ public class Distance {
     public void setUnitName(String unitName) {
         this.unitName = unitName;
     }
-    public void setUnitRadius(int unitRadius) {
+    public void setUnitRadius(double unitRadius) {
         this.unitRadius = unitRadius;
     }
     public void setUnits(String units) {
