@@ -1,10 +1,12 @@
 package com.tripco.t23.planner;
-
+/*
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.tripco.t23.server.HTTP;
-import spark.Request;
+import groovy.ui.SystemOutputInterceptor;
+import org.codehaus.jettison.json.JSONObject;
+import spark.Request;*/
 import java.util.ArrayList;
 
 /**
@@ -28,7 +30,6 @@ public class Trip {
 
     this.map = svg();
     this.distances = legDistances();
-
   }
 
   /**
@@ -48,17 +49,36 @@ public class Trip {
    */
   private ArrayList<Integer> legDistances() {
 
-    ArrayList<Integer> dist = new ArrayList<Integer>();
+    ArrayList<Integer> distances = new ArrayList<Integer>();
 
-    // hardcoded example
-    dist.add(12);
-    dist.add(23);
-    dist.add(34);
-    dist.add(45);
-    dist.add(65);
-    dist.add(19);
+    for (int i = 0; i < places.size(); i++){
+      int distCalc = -1; // set default val so we know when no work
+      Place p1; // start place
+      Place p2; // end place
+      if (i == places.size() - 1){ // last new place so wrap around and go back to origin
+        p1 = places.get(i);
+        p2 = places.get(0); // where we started originally
 
-    return dist;
+      }
+      else { // not the last place we visit
+        p1 = places.get(i); // start place
+        p2 = places.get(i+1); // end place
+      }
+
+
+      LegDistances legdist; // this class communicates between Trip and Distance
+
+      if (options.equals("user defined")){
+        legdist = new LegDistances(p1, p2, options.units, options.unitRadius); // pass info to LegDistances.java then to Distance.java
+      } else { // miles, km or nautical miles
+        legdist = new LegDistances(p1, p2, options.units);
+      }
+
+      distCalc = legdist.distanceBetween(); // calculates distance between two places
+
+      distances.add(distCalc); // add to arraylist of distances
+    }
+    return distances;
   }
 
 }

@@ -8,5 +8,7 @@ public class Option {
 
   public String distance;
   public String optimization;
+  public String units; // pls add this to web side
+  public double unitRadius; // for user defined only
 
 }
