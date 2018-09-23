@@ -7,6 +7,9 @@ import com.tripco.t23.server.HTTP;
 import groovy.ui.SystemOutputInterceptor;
 import org.codehaus.jettison.json.JSONObject;
 import spark.Request;*/
+import com.sun.org.apache.bcel.internal.util.ClassLoader;
+
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
@@ -42,25 +45,32 @@ public class Trip {
      * @return
      */
     //../../../../../../../../Resources/
+
+
+
     private String svg() {
+
         String background = "";
+//        java.lang.ClassLoader cl = getClass().getClassLoader();
+//        System.out.println(cl.getResourceAsStream("colorado.svg)"));
         try {
-            background = new String(Files.readAllBytes(Paths.get(new File("Resources/colorado.svg").getAbsolutePath())));
+            background = new String(Files.readAllBytes(Paths.get(new File("../Resources/colorado.svg").getCanonicalPath())));
         } catch(Exception e){
             e.printStackTrace();
         }
         String s = "M ";
         for(Place p: places){
-            s+= getX(Double.parseDouble(p.longitude)) + " " + getY(Double.parseDouble(p.latitude)) + " L ";
+            s+= getX(p.longitude) + " " + getY(p.latitude) + " L ";
         }
-        s += getX(Double.parseDouble(places.get(0).longitude)) + " " + getY(Double.parseDouble(places.get(0).latitude));
-        String svg = background.substring(background.indexOf("<path")) + "\n<path\nd=\""+s+"\nstyle=\"fill:none;fill-rule:evenodd;stroke:#f4426b;stroke-width:1.27559996;stroke-linejoin:round;stroke-miterlimit:3.8636899\" id=\"tripLegs\" />\n\n" + background.substring(background.indexOf("<path"));
-        System.out.println(svg);
+        s += getX(places.get(0).longitude) + " " + getY(places.get(0).latitude);
+
+
+        String svg = new StringBuilder(background).insert(background.lastIndexOf("/>")+2,"\n\n\t\t\t<path\n\td=\""+s+"\"\n\tstyle=\"fill:none;fill-rule:evenodd;stroke:#f4426b;stroke-width:1.27559996;stroke-linejoin:round;stroke-miterlimit:3.8636899\" \n\tid=\"tripLegs\" />").toString();
         return svg;
     }
 
     private double getX(double longitude){
-        return Math.abs(109.3-longitude) * 142.2143;
+        return Math.abs(109.3-Math.abs(longitude)) * 142.2143;
     }
     private double getY(double latitude){
         return Math.abs(41.2-latitude) * 177.9733;
@@ -105,11 +115,6 @@ public class Trip {
             distances.add(distCalc); // add to arraylist of distances
         }
         return distances;
-    }
-
-    public static void main(String[] args){
-        com.tripco.t23.planner.Trip trip = new com.tripco.t23.planner.Trip();
-        trip.svg();
     }
 
 }
