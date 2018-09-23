@@ -9,10 +9,12 @@ import org.codehaus.jettison.json.JSONObject;
 import spark.Request;*/
 import com.sun.org.apache.bcel.internal.util.ClassLoader;
 
+import java.io.*;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.io.BufferedReader;
 import java.util.Scanner;
-import java.io.File;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -44,20 +46,23 @@ public class Trip {
      * Returns an SVG containing the background and the legs of the trip.
      * @return
      */
-    //../../../../../../../../Resources/
-
-
 
     private String svg() {
 
-        String background = "";
-//        java.lang.ClassLoader cl = getClass().getClassLoader();
-//        System.out.println(cl.getResourceAsStream("colorado.svg)"));
+        String line = null;
+        StringBuilder sB = new StringBuilder();
+
         try {
-            background = new String(Files.readAllBytes(Paths.get(new File("../Resources/colorado.svg").getCanonicalPath())));
-        } catch(Exception e){
-            e.printStackTrace();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("colorado.svg"), Charset.defaultCharset()));
+            while ((line = bufferedReader.readLine()) != null) {
+                sB.append(line+'\n');
+            }
+        } catch (Exception e) {
+            System.out.println(e.getStackTrace());
         }
+
+        String background = sB.toString();
+
         String s = "M ";
         for(Place p: places){
             s+= getX(p.longitude) + " " + getY(p.latitude) + " L ";
@@ -65,7 +70,7 @@ public class Trip {
         s += getX(places.get(0).longitude) + " " + getY(places.get(0).latitude);
 
 
-        String svg = new StringBuilder(background).insert(background.lastIndexOf("/>")+2,"\n\n\t\t\t<path\n\td=\""+s+"\"\n\tstyle=\"fill:none;fill-rule:evenodd;stroke:#f4426b;stroke-width:1.27559996;stroke-linejoin:round;stroke-miterlimit:3.8636899\" \n\tid=\"tripLegs\" />").toString();
+        String svg = sB.insert(background.lastIndexOf("/>")+2,"\n\n\t\t\t<path\n\td=\""+s+"\"\n\tstyle=\"fill:none;fill-rule:evenodd;stroke:#f4426b;stroke-width:1.27559996;stroke-linejoin:round;stroke-miterlimit:3.8636899\" \n\tid=\"tripLegs\" />").toString();
         return svg;
     }
 
