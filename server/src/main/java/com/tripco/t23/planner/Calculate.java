@@ -35,6 +35,6 @@ public class Calculate {
 
     public String getDistance(){
         Gson gson = new Gson();
-        return gson.toJson(distance.getDistance());
+        return gson.toJson(distance);
     }
 }
