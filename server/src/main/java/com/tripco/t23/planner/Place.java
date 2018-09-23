@@ -7,7 +7,17 @@ package com.tripco.t23.planner;
 public class Place {
   public String id;
   public String name;
-  public String latitude;
-  public String longitude;
+  public double latitude;
+  public double longitude;
+
+  Place() {}
+
+  Place (String id, String name, double latitude, double longitude) { //constructor for testing purposes
+    this.id = id;
+    this.name = name;
+    this.latitude = latitude;
+    this.longitude = longitude;
+  }
+
 
 }

@@ -64,10 +64,10 @@ public class Distance {
     //Function for the actual calculation
     public void calculate(){
         //Angles converted to radians
-        double lat1 = Math.toRadians(Double.parseDouble(origin.latitude));
-        double log1 = Math.toRadians(Double.parseDouble(origin.longitude));
-        double lat2 = Math.toRadians(Double.parseDouble(destination.latitude));
-        double log2 = Math.toRadians(Double.parseDouble(destination.longitude));
+        double lat1 = Math.toRadians(origin.latitude);
+        double log1 = Math.toRadians(origin.longitude);
+        double lat2 = Math.toRadians(destination.latitude);
+        double log2 = Math.toRadians(destination.longitude);
         //double difLat = Math.abs(lat1 - lat2);
         double difLog = Math.abs(log1 - log2);
 
