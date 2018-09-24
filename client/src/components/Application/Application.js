@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Container } from 'reactstrap';
 import Info from './Info'
 import Options from './Options';
-
+import Map from './Map';
 import { get_config } from '../../api/api';
 
 /* Renders the application.
@@ -61,6 +61,7 @@ class Application extends Component {
     return(
       <Container id="Application">
         <Info/>
+        <Map svg={this.state.trip.map}/>
         <Options options={this.state.trip.options} config={this.state.config} updateOptions={this.updateOptions}/>
       </Container>
     )
