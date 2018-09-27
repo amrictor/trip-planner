@@ -90,7 +90,7 @@ public class Trip {
     /**
      * Returns the distances between consecutive places,
      * including the return to the starting point to make a round trip.
-     * @return ArrayList<Integer> that will contain distances between each city
+     * @return ArrayListInteger that will contain distances between each city
      */
 
     private ArrayList<Integer> legDistances() {
