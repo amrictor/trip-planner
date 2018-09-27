@@ -7,18 +7,18 @@ import com.tripco.t23.server.HTTP;
 import groovy.ui.SystemOutputInterceptor;
 import org.codehaus.jettison.json.JSONObject;
 import spark.Request;*/
+
 import com.sun.org.apache.bcel.internal.util.ClassLoader;
 
 import java.io.*;
+import java.io.BufferedReader;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.io.BufferedReader;
-import java.util.Scanner;
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
+import java.util.Scanner;
 
 /**
  * The Trip class supports TFFI so it can easily be converted to/from Json by Gson.
@@ -44,24 +44,26 @@ public class Trip {
 
     /**
      * Returns an SVG containing the background and the legs of the trip.
-     * @return
+     * @return String that contains SVG
      */
 
     private String svg() {
 
         String line = null;
-        StringBuilder sB = new StringBuilder();
+        StringBuilder strBuild = new StringBuilder();
 
         try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("colorado.svg"), Charset.defaultCharset()));
+            BufferedReader bufferedReader = new BufferedReader(
+                    new InputStreamReader(getClass().getClassLoader().getResourceAsStream("colorado.svg"),
+                    Charset.defaultCharset()));
             while ((line = bufferedReader.readLine()) != null) {
-                sB.append(line+'\n');
+                strBuild.append(line+'\n');
             }
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }
 
-        String background = sB.toString();
+        String background = strBuild.toString();
 
         String s = "M ";
         for(Place p: places){
@@ -70,13 +72,17 @@ public class Trip {
         s += getX(places.get(0).longitude) + " " + getY(places.get(0).latitude);
 
 
-        String svg = sB.insert(background.lastIndexOf("/>")+2,"\n\n\t\t\t<path\n\td=\""+s+"\"\n\tstyle=\"fill:none;fill-rule:evenodd;stroke:#f4426b;stroke-width:1.27559996;stroke-linejoin:round;stroke-miterlimit:3.8636899\" \n\tid=\"tripLegs\" />").toString();
+        String svg = strBuild.insert(background.lastIndexOf("/>")+2,
+                "\n\n\t\t\t<path\n\td=\""+s+"\"\n\tstyle=\"fill:none;fill-rule:"
+                        + "evenodd;stroke:#f4426b;stroke-width:1.27559996;stroke-linejoin:"
+                        + "round;stroke-miterlimit:3.8636899\" \n\tid=\"tripLegs\" />").toString();
         return svg;
     }
 
     private double getX(double longitude){
         return Math.abs(109.3-Math.abs(longitude)) * 142.2143;
     }
+
     private double getY(double latitude){
         return Math.abs(41.2-latitude) * 177.9733;
     }
@@ -84,7 +90,7 @@ public class Trip {
     /**
      * Returns the distances between consecutive places,
      * including the return to the starting point to make a round trip.
-     * @return
+     * @return ArrayListInteger that will contain distances between each city
      */
 
     private ArrayList<Integer> legDistances() {
@@ -109,8 +115,8 @@ public class Trip {
             LegDistances legdist; // this class communicates between Trip and Distance
 
             if (options.units.equals("user defined")){
-
-                legdist = new LegDistances(p1, p2, options.units, options.unitRadius); // pass info to LegDistances.java then to Distance.java
+                // pass info to LegDistances.java then to Distance.java
+                legdist = new LegDistances(p1, p2, options.units, options.unitRadius);
             } else { // miles, km or nautical miles
                 legdist = new LegDistances(p1, p2, options.units);
             }

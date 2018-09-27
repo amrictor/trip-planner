@@ -21,7 +21,8 @@ public class LegDistances {
         rad = 0.0;
     }
 
-    LegDistances(Place place1, Place place2, String units, double radius){ // for when users want to give their own units
+    // for when users want to give their own units
+    LegDistances(Place place1, Place place2, String units, double radius){
         p1 = place1;
         p2 = place2;
         measure = units;

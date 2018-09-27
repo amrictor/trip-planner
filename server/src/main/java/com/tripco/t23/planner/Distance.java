@@ -22,24 +22,31 @@ public class Distance {
     public Place getOrigin() {
         return origin;
     }
+
     public Place getDestination(){
         return destination;
     }
+
     public String getUnits(){
         return units;
     }
+
     public String getUnitName(){
         return unitName;
     }
+
     public double getUnitRadius() {
         return unitRadius;
     }
+
     public int getDistance() {
         return distance;
     }
+
     public int getVersion() {
         return version;
     }
+
     public String getType() {
         return type;
     }
@@ -48,15 +55,19 @@ public class Distance {
     public void setDestination(Place destination) {
         this.destination = destination;
     }
+
     public void setOrigin(Place origin) {
         this.origin = origin;
     }
+
     public void setUnitName(String unitName) {
         this.unitName = unitName;
     }
+
     public void setUnitRadius(double unitRadius) {
         this.unitRadius = unitRadius;
     }
+
     public void setUnits(String units) {
         this.units = units;
     }
@@ -73,8 +84,10 @@ public class Distance {
 
         //Equation attempt
         double numerator1 = Math.pow(Math.cos(lat2) * Math.sin(difLog), 2);
-        double numerator2 = Math.pow(Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(difLog),2);
-        double denominator = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(difLog);
+        double numerator2 = Math.pow(Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1)
+                * Math.cos(lat2) * Math.cos(difLog),2);
+        double denominator = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1)
+                * Math.cos(lat2) * Math.cos(difLog);
         double temp = Math.atan2(Math.sqrt(numerator1 + numerator2),denominator);
         if (units.equals("miles")){
             distance = (int) Math.round(temp * 3959);
@@ -87,7 +100,7 @@ public class Distance {
         {
             distance = (int) Math.round(temp * 3440);
         }
-        else
+        else // User defined
         {
             distance = (int) Math.round(temp * unitRadius);
         }

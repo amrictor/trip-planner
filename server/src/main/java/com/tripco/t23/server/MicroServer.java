@@ -6,11 +6,10 @@ import com.tripco.t23.planner.Plan;
 
 import spark.Request;
 import spark.Response;
-import spark.Spark;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-
+import spark.Spark;
 import static spark.Spark.*;
 
 
@@ -36,7 +35,10 @@ public class MicroServer {
 
     // serve the static files: index.html and bundle.js
     Spark.staticFileLocation(this.path);
-    get("/", (req, res) -> {res.redirect("index.html"); return null;});
+    get("/", (req, res) -> {
+      res.redirect("index.html");
+      return null;
+    });
 
     // register all micro-services and the function that services them.
     // start with HTTP GET
@@ -54,9 +56,9 @@ public class MicroServer {
 
   /** A REST API that describes the server.
    *
-   * @param request
-   * @param response
-   * @return
+   * @param request input tffi
+   * @param response output tffi
+   * @return String that describes microserver
    */
   private String about(Request request, Response response) {
 
@@ -68,9 +70,9 @@ public class MicroServer {
 
   /** A REST API that returns the current server configuration
    *
-   * @param request
-   * @param response
-   * @return
+   * @param request input tffi
+   * @param response output tffi
+   * @return returns config()
    */
   private String config(Request request, Response response) {
     response.type("application/json");
@@ -81,9 +83,9 @@ public class MicroServer {
 
   /** A REST API that echos the client request.
    *
-   * @param request
-   * @param response
-   * @return
+   * @param request input tffi
+   * @param response output tffi
+   * @return returns an echo
    */
   private String echo(Request request, Response response) {
 
@@ -95,9 +97,9 @@ public class MicroServer {
 
   /** A REST API demonstrating the use of a parameter.
    *
-   * @param request
-   * @param response
-   * @return
+   * @param request input tffi
+   * @param response output tffi
+   * @return returns name printed to screen
    */
   private String hello(Request request, Response response) {
 
@@ -110,9 +112,9 @@ public class MicroServer {
 
   /** A REST API to support trip planning.
    *
-   * @param request
-   * @param response
-   * @return
+   * @param request input tffi
+   * @param response output tffi
+   * @return returns trip object
    */
   private String plan(Request request, Response response) {
 
@@ -131,9 +133,9 @@ public class MicroServer {
   }
   /** A REST API that returns the team information associated with the server.
    *
-   * @param request
-   * @param response
-   * @return
+   * @param request input tffi
+   * @param response out tffi
+   * @return returns the name
    */
   private String team(Request request, Response response) {
 
