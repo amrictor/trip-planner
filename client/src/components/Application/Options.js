@@ -13,15 +13,15 @@ class Options extends Component{
   }
 
   render() {
-    const buttons = this.props.config.units.map((units) =>
+    const buttons = this.props.config.units.map((unit) =>
       <Button
-        key={'distance_button_' + units}
+        key={'distance_button_' + unit}
         className='btn-outline-dark unit-button'
-        active={this.props.options.units === units}
-        value={units}
-        onClick={(event) => this.props.updateOptions('units', event.target.value)}
+        active={this.props.options.units === unit}
+        value={unit}
+        onClick={(event) => this.props.updateOptions('unit', event.target.value)}
       >
-        {units.charAt(0).toUpperCase() + units.slice(1)}
+        {unit.charAt(0).toUpperCase() + unit.slice(1)}
       </Button>
     );
 
