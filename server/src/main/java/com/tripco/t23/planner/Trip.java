@@ -54,8 +54,8 @@ public class Trip {
 
         try {
             BufferedReader bufferedReader = new BufferedReader(
-                    new InputStreamReader(getClass().getClassLoader().getResourceAsStream("colorado.svg")
-                    , Charset.defaultCharset()));
+                    new InputStreamReader(getClass().getClassLoader().getResourceAsStream("colorado.svg"),
+                    Charset.defaultCharset()));
             while ((line = bufferedReader.readLine()) != null) {
                 strBuild.append(line+'\n');
             }
@@ -72,8 +72,8 @@ public class Trip {
         s += getX(places.get(0).longitude) + " " + getY(places.get(0).latitude);
 
 
-        String svg = strBuild.insert(background.lastIndexOf("/>")+2
-                ,"\n\n\t\t\t<path\n\td=\""+s+"\"\n\tstyle=\"fill:none;fill-rule:"
+        String svg = strBuild.insert(background.lastIndexOf("/>")+2,
+                "\n\n\t\t\t<path\n\td=\""+s+"\"\n\tstyle=\"fill:none;fill-rule:"
                         + "evenodd;stroke:#f4426b;stroke-width:1.27559996;stroke-linejoin:"
                         + "round;stroke-miterlimit:3.8636899\" \n\tid=\"tripLegs\" />").toString();
         return svg;
