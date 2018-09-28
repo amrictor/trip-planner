@@ -128,7 +128,11 @@ This Sprint was rough, but we got through it together.
 *Articulate things you could improve at the end of the sprint.*
 Team Dave is pretty skewed right now in term of expertise. Sam has stepped up as a leader for this Sprint and successfully took on many fields outside of his comfort zone. Abby has been naturally good with presetup work (ZenHub, bot, repo admin). JoJo knows InteliJ better than the rest of the group. Le is naturally better at debugging codes and ReactJS (basically spending hours reading tutorials). We are pretty well-rounded together but each member should try to share their knowledge so each member can grow overall.
 
+Our team must learn how to work together more competently. Communication and cooperation needs to be improved as well as promptness when completing task. The team would benefit from working closer together.
+
 #### What we will change next sprint 
 
 *Articulate at the end of the sprint.  Focus on one of things you need to work on.*
 Team Dave should get everybody catch up on all the tools currently being presented in class, make sure everybody is comfortable with all of them.
+
+Our team will need to set expectations and make sure that they are understood by all.
