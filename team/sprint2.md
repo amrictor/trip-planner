@@ -48,9 +48,9 @@
 
 | Statistic | # Planned | # Completed |
 | --- | ---: | ---: |
-| Epics | 5 | *value* |
-| Tasks | 7 | *value* | 
-| Story Points | 13 | *value* | 
+| Epics | 5 | 2 |
+| Tasks | 7 | 7 | 
+| Story Points | 13 | 14 | 
 
 *Enter the `# Planned` at the beginning of the sprint, `# Completed` at the end of the sprint.*
 
@@ -73,46 +73,62 @@
 
 *Describe the solution based on the completed epics and list the epics below.*
 
-* *## epic title: comments*
-* 
+* All code shall be clean:
+The code is clean. Lots of time were spent to make sure the code works.
 
+* Error Handling:
+The code is error-free. Lots of time were spent to make sure the code works.
 #### Incomplete epics in Sprint Backlog 
 
 *Describe capabilities not included in the release and list the epics below with an explanation.*
 
-* *## epic title: explanation*
-*
+* User:I want a map and itinerary for my trip:
+5 of 6 Issues completed and 11 of 13 Epic Points completed. This Epic came very close to completed. Itinerary and map for uploaded file is the only task left to be done. While file has been successfully uploaded to the server, implementation on opening the file, reading it and return output has yet to complete.
+
+* User: I want to supply my own units for the distances:
+80% of this Epic is done (additional user input box, dedicated variables when user choose this unit, calculation part according to user measurements input). An additional window should pops up prompting user to enter measurements to complete this Epic.
+
+* TripCo: All clients and servers must interoperate:
+70% completed. Port can be taken in as user input; there is also decicated field for it implied in the program. It is still needed to intergrate this registered port to RESTful services. The description for this Epic is pretty vague so the representation was mostly decided internally (input taken as string? What about security? How about group-button toggle? Is there any limitation in number of ports?...)
+
+* TripCo: The solution must be responsive for mobile devices:
+The solution might or might not be responsive for mobile devices. It is not stated how black box could be accessed through mobile devices to test this.
+
 
 #### What went well
 
 *Describe what went well during the sprint in general terms followed by a more detailed list.*
 
-* *something*
-*
+* Half of our team's power was lost during the last week of this Sprint due to valid reasons previously explained with instructors. All of Team Dave members still worked very hard to get in what they possibly can given the time they had. The team members who were away did not have access to a computer, but still regularly checked in to help. It is clear that teamwork positivity played a major role getting the group through this difficult Sprint.
 
 #### Problems encountered and resolutions
 
 *Describe what problems occurred during the sprint in general terms followed by a more detailed list.*
 
-* *something*
-*
+* As the Sprints went on, it is clear that the group is struggling to adapt to new tools being introduced in class (JS, ReactJS, Travis, etc.). Dave noticed this and reached out for a group meeting, which we appreciate, but will be postponed until the rest of the group get back; In the future, team Dave will make more proactive steps to reach out for help from instructors to combat these problems. Team members also should not be shy away from saying "I don't know how to do [...]" and let others help filling in the gap. In case no member has acquired knowledge for such task, everybody can go to office hour/ set up an appointment together.
 
 ## Retrospective
 
 *An introductory paragraph for your retrospective.*
 
+* Team Dave has grown accustomed to each member of the group, teamworking and course work during last month. Team communication and cooperation has improved as members are becoming more willing to step out and speak up about what they can and cannot do. We have had problems with vague instructions in the past, but we found the solutions: discuss internally and ask questions.
+
 #### What we changed this sprint
 
 *Articulate specifically what you will do differently based on the retrospective from the previous sprint before the sprint starts.*
+We started a lot earlier this Sprint knowing that we would lose half of our power this week. Slack has become Team Dave's main method of communication, notification pops up every single day.
 
 #### What we did well
 
 *Articulate what went well at the end of the sprint.*
+This Sprint was rough, but we got through it together.
 
 #### What we need to work on
 
 *Articulate things you could improve at the end of the sprint.*
+Team Dave is pretty skewed right now in term of expertise. Sam has stepped up as a leader for this Sprint and successfully took on many fields outside of his comfort zone. Abby has been naturally good with presetup work (ZenHub, bot, repo admin). JoJo knows InteliJ better than the rest of the group. Le is naturally better at debugging codes and ReactJS (basically spending hours reading tutorials). We are pretty well-rounded together but each member should try to share their knowledge so each member can grow overall.
 
 #### What we will change next sprint 
 
 *Articulate at the end of the sprint.  Focus on one of things you need to work on.*
+Team Dave should get everybody catch up on all the tools currently being presented in class, make sure everybody is comfortable with all of them.
