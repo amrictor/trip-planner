@@ -44,8 +44,10 @@ class Options extends Component{
         <CardBody>
           <p>Choose your port</p>
           <ButtonGroup>
-            {<input type="text" name="inputbox" value="">
-             <input type="button" name="button" value="Enter" onclick="showData(this.form)">}
+            {<form name="myform" action="" method="get">
+              <input type="text" name="inputbox" value="">
+              <input type="button" name="button" value="Enter" onclick="showData(this.form)">
+           </form>}
           </ButtonGroup>
         </CardBody>
       </Card>
