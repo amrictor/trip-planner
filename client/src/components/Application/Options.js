@@ -34,6 +34,16 @@ class Options extends Component{
           </ButtonGroup>
         </CardBody>
       </Card>
+      <Card>
+        <CardBody>
+          <p>Upload your trip file</p>
+          <ButtonGroup>
+            {<form enctype="multipart/form-data" action="Resources/userupload" method="post">
+                <input id="image-file" type="file" />
+            </form>}
+          </ButtonGroup>
+        </CardBody>
+      </Card>
     )
   }
 }
