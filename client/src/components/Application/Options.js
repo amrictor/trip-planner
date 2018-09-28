@@ -33,8 +33,6 @@ class Options extends Component{
             {buttons}
           </ButtonGroup>
         </CardBody>
-      </Card>
-      <Card>
         <CardBody>
           <p>Upload your trip file</p>
           <ButtonGroup>
