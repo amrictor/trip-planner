@@ -1,9 +1,9 @@
-# Sprint 3 - *your team number* - *your team name*
+# Sprint 3 - *t23* - *Team Dave*
 
 ## Goal
 
-### Build shorter trips!
-### Sprint Leader: *firstname lastname*
+### Build shorter trips! Create an UI that can handle user creating their own trip from scratch.
+### Sprint Leader: *Khanh Nguyen Le*
 
 ## Definition of Done
 
@@ -12,6 +12,7 @@
 * Increment deployed for demo and testing as server-3.0.jar.
 * Increment release `v3.0` created on GitHub with appropriate version number and name.
 * Epics and Tasks updated in Zenhub.
+* Finish tasks from Sprint2 and create an interface on the client that succesfully lets the user build a trip from scratch. This should produce a visual representation of the trips with the option of making them shorter.
 
 
 ## Policies
@@ -36,27 +37,37 @@
 
 ## Plan
 
-*An introductory paragraph describing what you expect to accomplish this sprint that will achieve the goal.*
+Our last sprint was not succesful, so in this sprint our team plans to complete what was not completed in sprint 2. We also plan to complete most of the tasks in sprint 3 because we recognize that it is unrealistic to finish what needed to completed in sprint 2 and now sprint 3. We expect to easily implement the server portion of this sprint because that was completed in sprint 2. However, our team has a lot to catch up on on the client side. 
 
-*Include any design diagrams prepared during sprint planning (user interface, component diagram, component/state/hierarchy, etc.) with a short paragraph or each.
+Server diagram: team/sprint3/image1.jpeg
+Client diagram:
+UI sketch:
+
+
 
 Epics planned for this sprint.
 
 * *## epic title: description*
-*
+* #130 User: I want to make and save changes to the trip:  would like to add or remove destinations.
+I want to choose a different starting location.
+I want to revers the order of the trip.
+I want to find possible destinations so I can add them.
+I want to save the changes I make to the trip.
+* #129 User: I want my trips to be shorter: Use nearest neighbor to build a shorter trip.
+* #127 User: I want to design a trip from scratch so I can stop using the other tool: Create an empty itinerary.
+* #75 User: I want a map and itinerary for my trip: I plan trips in the state of Colorado in another tool. The tool produces a file that conforms to the TFFI trip object. The trip is always a round trip. Show me a map and itinerary for the trip in the file that I can view on my phone.
+* #71 User: I want to supply my own units for the distances: I should be able to define an arbitrary unit of measure to use in the itinerary.
+* #81 TripCo: All clients and servers must interoperate: Each client must include a configuration option to change to server:port used for RESTful services
+
 
 
 ## Metrics
 
 | Statistic | # Planned | # Completed |
 | --- | ---: | ---: |
-| Epics | *value* | *value* |
-| Tasks |  *value*   | *value* | 
-| Story Points |  *value*  | *value* | 
-
-*Enter the `# Planned` at the beginning of the sprint.  Include a discussion of planning decisions based on the planned number of story points versus how many were completed in previous sprints.*
-
-*Enter the `# Completed` at the end of the sprint.  Include a discussion about any difference in the number planned versus completed tasks and story points.*
+| Epics | 9 | 0 |
+| Tasks |  8   | 0 | 
+| Story Points |  18  | 0 | 
 
 
 ## Scrums
@@ -64,8 +75,7 @@ Epics planned for this sprint.
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
 | 10/1 | 0 | 0 | N/A | 
-
-*Add a new row for the scrum session after each lecture. *
+| 10/3 | 0 | 0 | N/A |
 
 ## Review
 
