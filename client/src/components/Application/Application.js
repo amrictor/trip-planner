@@ -3,6 +3,9 @@ import { Container } from 'reactstrap';
 import Info from './Info'
 import Options from './Options';
 import Map from './Map';
+import Plan from './Plan';
+import Itinerary from './Itinerary';
+import Calculator from './Calculator';
 import { get_config } from '../../api/api';
 
 /* Renders the application.
@@ -61,7 +64,10 @@ class Application extends Component {
     return(
       <Container id="Application">
         <Info/>
+        <Plan/>
+        <Itinerary/>
         <Map svg={this.state.trip.map}/>
+        <Calculator/>
         <Options options={this.state.trip.options} config={this.state.config} updateOptions={this.updateOptions}/>
       </Container>
     )
