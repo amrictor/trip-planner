@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Card, CardHeader, CardBody } from 'reactstrap'
+import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
 import { ButtonGroup, Button } from 'reactstrap'
 
 /* Options allows the user to change the parameters for planning
@@ -28,21 +28,15 @@ class Options extends Component{
     return(
       <Card>
         <CardBody>
-          <p>Select the options you wish to use.</p>
+            <CardTitle>Options</CardTitle>
+            <p><b>Select the units you wish to use:</b></p>
+
           <ButtonGroup>
             {buttons}
           </ButtonGroup>
         </CardBody>
         <CardBody>
-          <p>Upload your trip file</p>
-          <ButtonGroup>
-            {<form enctype="multipart/form-data" action="Resources/userupload" method="post">
-                <input id="image-file" type="file" />
-            </form>}
-          </ButtonGroup>
-        </CardBody>
-        <CardBody>
-          <p>Choose your port</p>
+            <p><b>Enter your server port:</b></p>
           <ButtonGroup>
             {<form name="myform" action="" method="get">
               <input type="text" name="inputbox" value=""/>
