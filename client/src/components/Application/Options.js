@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
-import { ButtonGroup, Button } from 'reactstrap'
+import { ButtonGroup, Button, Form, FormGroup, FormText, Label, Input } from 'reactstrap'
 
 /* Options allows the user to change the parameters for planning
  * and rendering the trip map and itinerary.
@@ -24,6 +24,28 @@ class Options extends Component{
         {units.charAt(0).toUpperCase() + units.slice(1)}
       </Button>
     );
+    const portForm =
+        <Form inline>
+            <FormGroup>
+                <Input
+                    type="text"
+                    name="host"
+                    id="exampleEmail"
+                    placeholder="black-bottle.cs.colostate.edu"
+                    disabled
+                />
+            </FormGroup>
+            <FormGroup>
+                <Label>{" : "}</Label>
+                <Input
+                    type="number"
+                    name="port"
+                    id="exampleNumber"
+                    placeholder="port"
+                    onChange={(event) => this.props.updatePort(event.target.value)}
+                />
+            </FormGroup>
+        </Form>
 
     return(
       <Card>
@@ -36,13 +58,16 @@ class Options extends Component{
           </ButtonGroup>
         </CardBody>
         <CardBody>
-            <p><b>Enter your server port:</b></p>
-          <ButtonGroup>
-            {<form name="myform" action="" method="get">
-              <input type="text" name="inputbox" value=""/>
-              <input type="button" name="button" value="Enter" onClick= {()=>"showData(this.form)"}/>
-           </form>}
-          </ButtonGroup>
+            <p><b>Enter your server host and port:</b></p>
+            {portForm}
+            <Button
+                key={'options_submit'}
+                className='btn-outline-dark unit-button'
+                onChange={(event) => this.props.updateOptions('port', event.target.value)}
+            >
+                Submit
+            </Button>
+
         </CardBody>
       </Card>
     )

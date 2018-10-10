@@ -25,7 +25,8 @@ class Application extends Component {
         places: [],
         distances: [],
         map: '<svg width="1920" height="20" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><g></g></svg>'
-      }
+      },
+      port: window.location.port
     };
     this.updateTrip = this.updateTrip.bind(this);
     this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
@@ -36,10 +37,14 @@ class Application extends Component {
     get_config().then(
       config => {
         this.setState({
-          'config':config
+          config:config
         })
       }
     );
+  }
+
+  updatePort(value){
+    this.setState({'port': value});
   }
 
   updateTrip(field, value){
@@ -60,6 +65,7 @@ class Application extends Component {
 
   render() {
     if(!this.state.config) { return <div/> }
+
     return(
       <Container id="Application">
         <Info/>
@@ -67,7 +73,7 @@ class Application extends Component {
         <Itinerary/>
         <Map svg={this.state.trip.map}/>
         <Calculator/>
-        <Options options={this.state.trip.options} config={this.state.config} updateOptions={this.updateOptions} state={this.state}/>
+        <Options options={this.state.trip.options} config={this.state.config} updateOptions={this.updateOptions} updatePort={this.updatePort}/>
       </Container>
     )
   }
