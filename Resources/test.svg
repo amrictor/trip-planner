@@ -463,9 +463,21 @@
    id="path181" />
 
 			<path
-	d="M 612.9009687099989 259.9833966400011 L 573.0454111349997 210.90014023300097 L 599.5754887999992 109.40766238859995 L 612.9009687099989 259.9833966400011"
+	d="M 612.9009687099989 259.9833966400011 L 573.0454111349997 210.90014023300097 L 599.5159010083 109.40766238859995 L 612.9009687099989 259.9833966400011"
 	style="fill:none;fill-rule:evenodd;stroke:#f4426b;stroke-width:1.27559996;stroke-linejoin:round;stroke-miterlimit:3.8636899" 
 	id="tripLegs" />
+
+			<circle cx="612.9009687099989" cy="259.9833966400011" r="2" stroke="black" stroke-width="3" fill="red" />
+
+			<text x="617.9009687099989" y="254.9833966400011" font-family="sans-serif" font-size="20px" fill="black">Denver</text>
+
+			<circle cx="573.0454111349997" cy="210.90014023300097" r="2" stroke="black" stroke-width="3" fill="red" />
+
+			<text x="578.0454111349997" y="205.90014023300097" font-family="sans-serif" font-size="20px" fill="black">Boulder</text>
+
+			<circle cx="599.5159010083" cy="109.40766238859995" r="2" stroke="black" stroke-width="3" fill="red" />
+
+			<text x="604.5159010083" y="104.40766238859995" font-family="sans-serif" font-size="20px" fill="black">Fort Collins</text>
 
 		</g>
 

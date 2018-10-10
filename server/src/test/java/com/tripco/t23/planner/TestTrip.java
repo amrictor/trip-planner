@@ -29,7 +29,7 @@ public class TestTrip {
     trip.places = new ArrayList<Place>();
     trip.places.add(new Place("dnvr", "Denver", 39.7392,-104.9903));
     trip.places.add(new Place("bldr", "Boulder", 40.01499, -105.27055));
-    trip.places.add(new Place("foco", "Fort Collins",40.585258, -105.084));
+    trip.places.add(new Place("foco", "Fort Collins",40.585258, -105.084419));
   }
 
   @Test
@@ -58,6 +58,7 @@ public class TestTrip {
     } catch(Exception e){
       e.printStackTrace();
     }
+
     assertEquals(trip.map, test);
   }
 }

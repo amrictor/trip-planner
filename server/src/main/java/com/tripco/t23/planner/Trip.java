@@ -64,18 +64,25 @@ public class Trip {
         }
 
         String background = strBuild.toString();
-
-        String s = "M ";
+        String locations ="";
         for(Place p: places){
-            s+= getX(p.longitude) + " " + getY(p.latitude) + " L ";
+            locations += "\n\n\t\t\t<circle cx=\""+ getX(p.longitude) + "\" cy=\"" + getY(p.latitude) + "\" r=\"2\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" />";
+            locations += "\n\n\t\t\t<text x=\"" + (getX(p.longitude) + 5) + "\" y=\"" + (getY(p.latitude) - 5) + "\" font-family=\"sans-serif\" font-size=\"20px\" fill=\"black\">" + p.name + "</text>";
         }
-        s += getX(places.get(0).longitude) + " " + getY(places.get(0).latitude);
+
+        String path = "M ";
+        for(Place p: places){
+            path+= getX(p.longitude) + " " + getY(p.latitude) + " L ";
+        }
+
+        path += getX(places.get(0).longitude) + " " + getY(places.get(0).latitude);
 
 
         String svg = strBuild.insert(background.lastIndexOf("/>")+2,
-                "\n\n\t\t\t<path\n\td=\""+s+"\"\n\tstyle=\"fill:none;fill-rule:"
+                "\n\n\t\t\t<path\n\td=\"" + path + "\"\n\tstyle=\"fill:none;fill-rule:"
                         + "evenodd;stroke:#f4426b;stroke-width:1.27559996;stroke-linejoin:"
-                        + "round;stroke-miterlimit:3.8636899\" \n\tid=\"tripLegs\" />").toString();
+                        + "round;stroke-miterlimit:3.8636899\" \n\tid=\"tripLegs\" />" + locations).toString();
+
         return svg;
     }
 
