@@ -26,6 +26,9 @@ public class Search {
         query.find();
     }
 
+    /** Handles the response for a Query object.
+     * Does the conversion from a Java class to a Json string.*
+     */
     public String getQuery() {
         Gson gson = new Gson();
         return gson.toJson(query);
