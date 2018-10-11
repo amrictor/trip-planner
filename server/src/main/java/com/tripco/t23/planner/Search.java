@@ -11,7 +11,7 @@ public class Search {
     private Query query;
 
     /**
-     * Handles the TFFI request and sends it to Query for real answers
+     * Handles the TFFI request and sends it to Query for real answers.
      *
      */
     public Search(Request request){

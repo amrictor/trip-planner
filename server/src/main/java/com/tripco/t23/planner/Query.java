@@ -23,15 +23,17 @@ public class Query {
     private static final String pass = "eiK5liet1uej";
 
     //Count the number of records and retrieve the data
-    private final static String count =  "";
-    private final static String search = "";
+    private static final String count =  "";
+    private static final String search = "";
 
-    //Sets the connection and queries the database.
+    /**
+     * Sets the connection and queries the database
+     */
     public void find(){
         String queryhead = "SELECT * FROM airports WHERE ";
         String counthead = "SELECT count(*) FROM airports WHERE ";
-        String question = "name LIKE '%" + match + "%'" + "or id LIKE '%" + match +
-                "%' or municipality LIKE '%" + match + "%' or type LIKE '%" + match + "%' ";
+        String question = "name LIKE '%" + match + "%'" + "or id LIKE '%" + match
+                 + "%' or municipality LIKE '%" + match + "%' or type LIKE '%" + match + "%' ";
         if(!limit.equals("0")){
             question  = question + "limit " + limit + ";";
         }
@@ -58,7 +60,9 @@ public class Query {
         }
     }
 
-    //Sets the results from sql() into places
+    /**
+     *Builds the responses from mySQL into places for returning.
+     */
     public void buildPlaces(ResultSet count, ResultSet query){
         places = new ArrayList<>();
 
