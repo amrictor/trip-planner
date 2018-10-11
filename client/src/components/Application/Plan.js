@@ -20,7 +20,6 @@ class Plan extends Component {
         reader.readAsText(event.target.files[0]);
     }
     planRequest(){
-        console.log(this.props.host+':'+this.props.port)
         request(this.props.trip, 'plan', this.props.port, this.props.host).then(response => this.props.updateBasedOnResponse(response));
     }
 

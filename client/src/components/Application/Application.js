@@ -73,11 +73,22 @@ class Application extends Component {
     return(
       <Container id="Application">
         <Info/>
-        <Plan updateBasedOnResponse={this.updateBasedOnResponse} trip={this.state.trip} port={this.port} host={this.host}/>
+        <Plan
+            updateBasedOnResponse={this.updateBasedOnResponse}
+            trip={this.state.trip} port={this.port}
+            host={this.host}
+        />
         <Itinerary/>
-        <Map svg={this.state.trip.map}/>
+        <Map
+            svg={this.state.trip.map}
+        />
         <Calculator/>
-        <Options options={this.state.trip.options} config={this.state.config} updateOptions={this.updateOptions} updateHostAndPort={this.updateHostAndPort}/>
+        <Options
+            options={this.state.trip.options}
+            config={this.state.config}
+            updateOptions={this.updateOptions}
+            updateHostAndPort={this.updateHostAndPort}
+        />
       </Container>
     )
   }
