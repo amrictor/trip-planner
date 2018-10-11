@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
-import { ButtonGroup, Button } from 'reactstrap'
+import { ButtonGroup, Button, Card, CardBody, CardHeader, CardTitle, Form, FormGroup, Input, Label } from 'reactstrap'
 
 /* Options allows the user to change the parameters for planning
  * and rendering the trip map and itinerary.
@@ -24,6 +23,35 @@ class Options extends Component{
         {units.charAt(0).toUpperCase() + units.slice(1)}
       </Button>
     );
+    const portForm =
+        <Form inline>
+            <FormGroup>
+                <Input
+                    type="text"
+                    name="host"
+                    id="host_field"
+                    placeholder="black-bottle.cs.colostate.edu"
+                    disabled
+                />
+            </FormGroup>
+            <FormGroup>
+                <Label>&nbsp;:&nbsp;</Label>
+                <Input
+                    type="number"
+                    name="port"
+                    id="port_field"
+                    placeholder="port"
+                />
+
+            </FormGroup> &nbsp;
+            <Button
+                key={'options_submit'}
+                className='btn-outline-dark unit-button'
+                onClick={() => this.props.updateHostAndPort(port_field.value)}
+            >
+                Submit
+            </Button>
+        </Form>
 
     return(
       <Card>
@@ -36,13 +64,10 @@ class Options extends Component{
           </ButtonGroup>
         </CardBody>
         <CardBody>
-            <p><b>Enter your server port:</b></p>
-          <ButtonGroup>
-            {<form name="myform" action="" method="get">
-              <input type="text" name="inputbox" value=""/>
-              <input type="button" name="button" value="Enter" onClick= {()=>"showData(this.form)"}/>
-           </form>}
-          </ButtonGroup>
+            <p><b>Enter your server host and port:</b></p>
+            {portForm}
+
+
         </CardBody>
       </Card>
     )
