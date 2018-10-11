@@ -50,16 +50,15 @@ public class Query {
 
     //Sets the results from sql() into places
     public void buildPlaces(ResultSet count, ResultSet query){
-        System.out.println("We got to build places");
         places = new ArrayList<>();
+
         try{
-            System.out.println("We got into the try");
+            System.out.println(count.getString("count"));
             while(query.next()){
-                System.out.println("We got into the while.");
                 String id = query.getString("id");
                 String name = query.getString("name");
-                double latitude = query.getDouble("latitude");
-                double longitude = query.getDouble("longitude");
+                Double latitude = query.getDouble("latitude");
+                Double longitude = query.getDouble("longitude");
                 System.out.println(id + " " + name + " " + latitude + " " + longitude);
                 Place place = new Place(id,name,latitude,longitude);
                 places.add(place);
