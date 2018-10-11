@@ -24,8 +24,8 @@ public class Query {
     private final static String pass = "eiK5liet1uej";
 
     //Count the number of records and retrieve the data
-    private final static String count = "";
-    private final static String search = "";
+    private final String count =  "SELECT count(*) FROM airports WHERE name = '" + match + "';";
+    private final String search = "SELECT * FROM airports WHERE name = '" + match + "';";
 
     //Sets the instance of places
     public void find(){
