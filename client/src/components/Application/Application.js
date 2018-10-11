@@ -75,7 +75,8 @@ class Application extends Component {
         <Info/>
         <Plan
             updateBasedOnResponse={this.updateBasedOnResponse}
-            trip={this.state.trip} port={this.port}
+            trip={this.state.trip} 
+            port={this.port}
             host={this.host}
         />
         <Itinerary/>
