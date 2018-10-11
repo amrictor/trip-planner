@@ -3,6 +3,7 @@ package com.tripco.t23.server;
 import com.tripco.t23.planner.Calculate;
 import com.tripco.t23.planner.Distance;
 import com.tripco.t23.planner.Plan;
+import com.tripco.t23.planner.Search;
 
 import spark.Request;
 import spark.Response;
@@ -131,6 +132,15 @@ public class MicroServer {
 
     return new Calculate(request).getDistance();
   }
+
+  private String search(Request request, Response response) {
+
+    response.type("application/json");
+    response.header("Access-Control-Allow-Origin", "*");
+
+    return new Search(request).getQuery();
+  }
+
   /** A REST API that returns the team information associated with the server.
    *
    * @param request input tffi

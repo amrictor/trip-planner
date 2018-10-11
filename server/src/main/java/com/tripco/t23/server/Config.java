@@ -3,6 +3,7 @@ package com.tripco.t23.server;
 import com.google.gson.Gson;
 
 import java.util.Arrays;
+import java.util.Dictionary;
 import java.util.List;
 
 public class Config {
@@ -11,7 +12,6 @@ public class Config {
   private String type = "config";
 
   private List<String> units = Arrays.asList("miles", "nautical miles", "kilometers", "user defined");
-  private List<String> optimization = Arrays.asList("none","short");
   private int port;
   private String unitName;
   private double unitRadius;
