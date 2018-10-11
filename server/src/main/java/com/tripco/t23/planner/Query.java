@@ -30,9 +30,12 @@ public class Query {
     public void find(){
         String queryhead = "SELECT * FROM airports WHERE ";
         String counthead = "SELECT count(*) FROM airports WHERE ";
-        String question = "name LIKE '%" + match + "%'" + "or id LIKE '%" + match + "%' or municipality LIKE '%" + match + "%' or type LIKE '%" + match + "%';";
+        String question = "name LIKE '%" + match + "%'" + "or id LIKE '%" + match + "%' or municipality LIKE '%" + match + "%' or type LIKE '%" + match + "%' ";
         if(!limit.equals("0")){
-            question  = question + "limit " + limit;
+            question  = question + "limit " + limit + ";";
+        }
+        else{
+            question = question + ";";
         }
         try{
             //Try to find the class for the driver variable
