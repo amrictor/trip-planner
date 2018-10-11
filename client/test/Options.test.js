@@ -30,13 +30,14 @@ const startProps = {
 };
 
 /* Test example using a pre-defined function */
+
 function testExample() {
   const options = mount((
       <Options config={startProps.config} options={startProps.options}/>
     ));
 
   let actual = [];
-  options.find('Button').map((element) => actual.push(element.prop('value')));
+  options.buttons.find('Button').map((element) => actual.push(element.prop('value')));
 
   expect(actual).toEqual(startProps.config.units);
 }
