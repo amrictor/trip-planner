@@ -29,7 +29,7 @@ public class Query {
 
     //Sets the connection and queries the database.
     public void find(){
-        System.out.println("We got to find.");
+        System.out.println("We got to find()");
         try{
             //Try to find the class for the driver variable
             Class.forName(myDriver);
@@ -41,6 +41,7 @@ public class Query {
                 ResultSet rsCount = stCount.executeQuery("SELECT count(*) FROM airports WHERE name LIKE '%" + match + "';");
                 ResultSet rsQuery = stQuery.executeQuery("SELECT * FROM airports WHERE name LIKE '%" + match + "';")
             ){
+                System.out.println("We got to the end of find()");
                 buildPlaces(rsCount,rsQuery);
             }
 
@@ -51,6 +52,7 @@ public class Query {
 
     //Sets the results from sql() into places
     public void buildPlaces(ResultSet count, ResultSet query){
+        System.out.println("We got to build places");
         places = new ArrayList<>();
         try{
             while(query.next()){
