@@ -57,6 +57,7 @@ public class Query {
                 String name = query.getString("name");
                 double latitude = query.getDouble("latitude");
                 double longitude = query.getDouble("longitude");
+                System.out.println(id + " " + name + " " + latitude + " " + longitude);
                 Place place = new Place(id,name,latitude,longitude);
                 places.add(place);
             }
