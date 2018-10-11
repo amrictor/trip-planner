@@ -24,8 +24,8 @@ public class Query {
     private final static String pass = "eiK5liet1uej";
 
     //Count the number of records and retrieve the data
-    private final String count =  "SELECT count(*) FROM airports WHERE name = '" + match + "';";
-    private final String search = "SELECT * FROM airports WHERE name = '" + match + "';";
+    private final static String count =  "";
+    private final static String search = "";
 
     //Sets the instance of places
     public void find(){
@@ -42,8 +42,8 @@ public class Query {
             try(Connection conn = DriverManager.getConnection(myUrl,user,pass);
                 Statement stCount = conn.createStatement();
                 Statement stQuery = conn.createStatement();
-                ResultSet rsCount = stCount.executeQuery(count);
-                ResultSet rsQuery = stQuery.executeQuery(search)
+                ResultSet rsCount = stCount.executeQuery("SELECT count(*) FROM airports WHERE name = '" + match + "';");
+                ResultSet rsQuery = stQuery.executeQuery("SELECT * FROM airports WHERE name = '" + match + "';")
             ){
                 return buildPlaces(rsCount,rsQuery);
             }
