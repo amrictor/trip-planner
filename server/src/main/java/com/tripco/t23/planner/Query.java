@@ -17,10 +17,10 @@ public class Query {
     private ArrayList<Place> places;
 
     //Database configuration info
-    private final static String myDriver = "com.mysql.jdbc.Driver";
-    private final static String myUrl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
-    private final static String user = "cs314-db";
-    private final static String pass = "eiK5liet1uej";
+    private static final String myDriver = "com.mysql.jdbc.Driver";
+    private static final String myUrl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
+    private static final String user = "cs314-db";
+    private static final String pass = "eiK5liet1uej";
 
     //Count the number of records and retrieve the data
     private final static String count =  "";
@@ -30,7 +30,8 @@ public class Query {
     public void find(){
         String queryhead = "SELECT * FROM airports WHERE ";
         String counthead = "SELECT count(*) FROM airports WHERE ";
-        String question = "name LIKE '%" + match + "%'" + "or id LIKE '%" + match + "%' or municipality LIKE '%" + match + "%' or type LIKE '%" + match + "%' ";
+        String question = "name LIKE '%" + match + "%'" + "or id LIKE '%" + match +
+                "%' or municipality LIKE '%" + match + "%' or type LIKE '%" + match + "%' ";
         if(!limit.equals("0")){
             question  = question + "limit " + limit + ";";
         }

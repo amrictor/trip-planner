@@ -10,7 +10,10 @@ public class Search {
 
     private Query query;
 
-    //Handles the incoming TFFI request and sends it to Query for the response.
+    /**
+     * Handles the TFFI request and sends it to Query for real answers
+     *
+     */
     public Search(Request request){
         // first print the request
         System.out.println(HTTP.echoRequest(request));
