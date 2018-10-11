@@ -36,7 +36,7 @@ class Application extends Component {
     get_config().then(
       config => {
         this.setState({
-          config:config
+          'config':config
         })
       }
     );
@@ -50,7 +50,6 @@ class Application extends Component {
 
   updateBasedOnResponse(value) {
     this.setState({'trip': value});
-    console.log(this.state);
   }
 
   updateOptions(option, value){
@@ -61,15 +60,14 @@ class Application extends Component {
 
   render() {
     if(!this.state.config) { return <div/> }
-
     return(
       <Container id="Application">
         <Info/>
-        <Plan updateBasedOnResponse={this.updateBasedOnResponse}/>
+        <Plan updateBasedOnResponse={this.updateBasedOnResponse} trip={this.state.trip}/>
         <Itinerary/>
         <Map svg={this.state.trip.map}/>
         <Calculator/>
-        <Options options={this.state.trip.options} config={this.state.config} updateOptions={this.updateOptions}/>
+        <Options options={this.state.trip.options} config={this.state.config} updateOptions={this.updateOptions} state={this.state}/>
       </Container>
     )
   }
