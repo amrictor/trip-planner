@@ -42,8 +42,8 @@ public class Query {
             try(Connection conn = DriverManager.getConnection(myUrl,user,pass);
                 Statement stCount = conn.createStatement();
                 Statement stQuery = conn.createStatement();
-                ResultSet rsCount = stCount.executeQuery("SELECT count(*) FROM airports WHERE name = '" + match + "';");
-                ResultSet rsQuery = stQuery.executeQuery("SELECT * FROM airports WHERE name = '" + match + "';")
+                ResultSet rsCount = stCount.executeQuery("SELECT count(*) FROM airports WHERE name LIKE '" + match + "';");
+                ResultSet rsQuery = stQuery.executeQuery("SELECT * FROM airports WHERE name LIKE '%" + match + "';")
             ){
                 return buildPlaces(rsCount,rsQuery);
             }
