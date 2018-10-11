@@ -53,7 +53,6 @@ public class Query {
         places = new ArrayList<>();
 
         try{
-            System.out.println(count.getString("count"));
             while(query.next()){
                 String id = query.getString("id");
                 String name = query.getString("name");
