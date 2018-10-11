@@ -1,5 +1,7 @@
 package com.tripco.t23.planner;
 
+import com.mysql.jdbc.Driver;
+
 import java.sql.DriverManager;
 import java.util.List;
 import java.sql.Connection;
@@ -16,8 +18,8 @@ public class Query {
     private ArrayList<Place> places;
 
     //Database configuration info
-    private final static String myDriver = "com.mysql.jbdc.Driver";
-    private final static String myUrl = "jbdc:mysql://faure.cs.colostate.edu/cs314";
+    private final static String myDriver = "com.mysql.jdbc.Driver";
+    private final static String myUrl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
     private final static String user = "cs314-db";
     private final static String pass = "eiK5lietluej";
 
@@ -34,7 +36,7 @@ public class Query {
     public ArrayList<Place> sql(){
         try{
             //Try to find the class for the driver variable
-            //Class.forName(myDriver);
+            Class.forName(myDriver);
 
             //Try to connect to database and query
             try(Connection conn = DriverManager.getConnection(myUrl,user,pass);
