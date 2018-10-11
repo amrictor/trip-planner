@@ -27,13 +27,8 @@ public class Query {
     private final static String count =  "";
     private final static String search = "";
 
-    //Sets the instance of places
-    public void find(){
-        this.places = sql();
-    }
-
     //Sets the connection and queries the database.
-    public ArrayList<Place> sql(){
+    public void find(){
         try{
             //Try to find the class for the driver variable
             Class.forName(myDriver);
@@ -42,21 +37,20 @@ public class Query {
             try(Connection conn = DriverManager.getConnection(myUrl,user,pass);
                 Statement stCount = conn.createStatement();
                 Statement stQuery = conn.createStatement();
-                ResultSet rsCount = stCount.executeQuery("SELECT count(*) FROM airports WHERE name LIKE '" + match + "';");
+                ResultSet rsCount = stCount.executeQuery("SELECT count(*) FROM airports WHERE name LIKE '%" + match + "';");
                 ResultSet rsQuery = stQuery.executeQuery("SELECT * FROM airports WHERE name LIKE '%" + match + "';")
             ){
-                return buildPlaces(rsCount,rsQuery);
+                buildPlaces(rsCount,rsQuery);
             }
 
-        }catch(Exception e){
-            System.err.println("Exception: "+e.getMessage());
+        }catch(Exception e) {
+            System.err.println("Exception: " + e.getMessage());
         }
-        return null;
     }
 
     //Sets the results from sql() into places
-    public ArrayList<Place> buildPlaces(ResultSet count, ResultSet query){
-        ArrayList<Place> places = new ArrayList<>();
+    public void buildPlaces(ResultSet count, ResultSet query){
+        places = new ArrayList<>();
         try{
             while(query.next()){
                 String id = query.getString("id");
@@ -66,9 +60,8 @@ public class Query {
                 Place place = new Place(id,name,latitude,longitude);
                 places.add(place);
             }
-        }catch(Exception e){
-            System.err.println("Exception:"+e.getMessage());
+        }catch(Exception e) {
+            System.err.println("Exception:" + e.getMessage());
         }
-        return places;
     }
 }
