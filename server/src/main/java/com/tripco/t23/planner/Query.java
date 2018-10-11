@@ -29,7 +29,6 @@ public class Query {
 
     //Sets the connection and queries the database.
     public void find(){
-        System.out.println("We got to find()");
         try{
             //Try to find the class for the driver variable
             Class.forName(myDriver);
@@ -41,7 +40,6 @@ public class Query {
                 ResultSet rsCount = stCount.executeQuery("SELECT count(*) FROM airports WHERE name LIKE '%" + match + "';");
                 ResultSet rsQuery = stQuery.executeQuery("SELECT * FROM airports WHERE name LIKE '%" + match + "';")
             ){
-                System.out.println("We got to the end of find()");
                 buildPlaces(rsCount,rsQuery);
             }
 
@@ -55,7 +53,9 @@ public class Query {
         System.out.println("We got to build places");
         places = new ArrayList<>();
         try{
+            System.out.println("We got into the try");
             while(query.next()){
+                System.out.println("We got into the while.");
                 String id = query.getString("id");
                 String name = query.getString("name");
                 double latitude = query.getDouble("latitude");
