@@ -33,10 +33,9 @@ public class Query {
     //Sets the connection and queries the database.
     public ArrayList<Place> sql(){
         try{
-            //Try to find the class for the driver variable.
-            System.out.println("1");
-            Class.forName(myDriver);
-            System.out.println("2");
+            //Try to find the class for the driver variable
+            //Class.forName(myDriver);
+
             //Try to connect to database and query
             try(Connection conn = DriverManager.getConnection(myUrl,user,pass);
                 Statement stCount = conn.createStatement();
