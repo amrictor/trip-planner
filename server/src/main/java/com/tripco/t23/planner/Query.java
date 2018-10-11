@@ -29,6 +29,7 @@ public class Query {
 
     //Sets the connection and queries the database.
     public void find(){
+        System.out.println("We got to find.");
         try{
             //Try to find the class for the driver variable
             Class.forName(myDriver);
