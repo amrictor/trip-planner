@@ -21,7 +21,7 @@ public class Query {
     private final static String myDriver = "com.mysql.jdbc.Driver";
     private final static String myUrl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
     private final static String user = "cs314-db";
-    private final static String pass = "eiK5lietluej";
+    private final static String pass = "eiK5liet1uej";
 
     //Count the number of records and retrieve the data
     private final static String count = "";
