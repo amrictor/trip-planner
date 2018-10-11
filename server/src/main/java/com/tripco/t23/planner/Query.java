@@ -2,11 +2,10 @@ package com.tripco.t23.planner;
 
 import com.mysql.jdbc.Driver;
 
-import java.sql.DriverManager;
-import java.util.List;
 import java.sql.Connection;
-import java.sql.Statement;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Query {
@@ -29,6 +28,12 @@ public class Query {
 
     //Sets the connection and queries the database.
     public void find(){
+        String queryhead = "SELECT * FROM airports WHERE ";
+        String counthead = "SELECT count(*) FROM airports WHERE ";
+        String question = "name LIKE '%" + match + "%'" + "or id LIKE '%" + match + "%' or municipality LIKE '%" + match + "%' or type LIKE '%" + match + "%';";
+        if(!limit.equals("0")){
+            question  = question + "limit " + limit;
+        }
         try{
             //Try to find the class for the driver variable
             Class.forName(myDriver);
@@ -37,10 +42,9 @@ public class Query {
             try(Connection conn = DriverManager.getConnection(myUrl,user,pass);
                 Statement stCount = conn.createStatement();
                 Statement stQuery = conn.createStatement();
-                ResultSet rsCount = stCount.executeQuery("SELECT count(*) FROM airports WHERE name LIKE '%" + match + "%'" +
-                        "or id LIKE '%" + match + "%' or municipality LIKE '%" + match + "%' or type LIKE '%" + match + "%';");
-                ResultSet rsQuery = stQuery.executeQuery("SELECT * FROM airports WHERE name LIKE '%" + match + "%'" +
-                        "or id LIKE '%" + match + "%' or municipality LIKE '%" + match + "%' or type LIKE '%" + match + "%';")
+                //This will be implemented later.
+                ResultSet rsCount = stCount.executeQuery(counthead + question);
+                ResultSet rsQuery = stQuery.executeQuery(queryhead + question)
             ){
                 buildPlaces(rsCount,rsQuery);
             }
