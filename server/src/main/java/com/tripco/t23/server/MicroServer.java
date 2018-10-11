@@ -51,6 +51,7 @@ public class MicroServer {
     get("/config", this::config);
     post("/plan", this::plan);
     post("/distance", this::distance);
+    post("/search",this::search);
 
     System.out.println("\n\nServer running on port: " + this.port + "\n\n");
   }
