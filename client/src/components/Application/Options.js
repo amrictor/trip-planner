@@ -30,21 +30,28 @@ class Options extends Component{
                 <Input
                     type="text"
                     name="host"
-                    id="exampleEmail"
+                    id="host_field"
                     placeholder="black-bottle.cs.colostate.edu"
                     disabled
                 />
             </FormGroup>
             <FormGroup>
-                <Label>{" : "}</Label>
+                <Label>&nbsp;:&nbsp;</Label>
                 <Input
                     type="number"
                     name="port"
-                    id="exampleNumber"
+                    id="port_field"
                     placeholder="port"
-                    onChange={(event) => this.props.updatePort(event.target.value)}
                 />
-            </FormGroup>
+
+            </FormGroup> &nbsp;
+            <Button
+                key={'options_submit'}
+                className='btn-outline-dark unit-button'
+                onClick={() => this.props.updateHostAndPort(port_field.value)}
+            >
+                Submit
+            </Button>
         </Form>
 
     return(
@@ -60,13 +67,7 @@ class Options extends Component{
         <CardBody>
             <p><b>Enter your server host and port:</b></p>
             {portForm}
-            <Button
-                key={'options_submit'}
-                className='btn-outline-dark unit-button'
-                onChange={(event) => this.props.updateOptions('port', event.target.value)}
-            >
-                Submit
-            </Button>
+
 
         </CardBody>
       </Card>
