@@ -40,7 +40,7 @@ class Options extends Component{
           <ButtonGroup>
             {<form name="myform" action="" method="get">
               <input type="text" name="inputbox" value=""/>
-              <input type="button" name="button" value="Enter" onclick="showData(this.form)"/>
+              <input type="button" name="button" value="Enter" onClick= {()=>"showData(this.form)"}/>
            </form>}
           </ButtonGroup>
         </CardBody>
