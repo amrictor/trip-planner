@@ -13,9 +13,9 @@ public class Config {
   private ArrayList<Optimization> optimization = new ArrayList<>(Arrays.asList(new Optimization("none","The trip is not optimized"),
           new Optimization("short","Nearest neighbor"),
           new Optimization("shorter","2-opt")));
-  private int port;
+  private Integer port;
   private String unitName;
-  private double unitRadius;
+  private Double unitRadius;
 
   static String getConfig() {
     Config conf = new Config();
