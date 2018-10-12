@@ -4,8 +4,9 @@ import com.google.gson.Gson;
 import com.tripco.t23.planner.Optimization;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
+
 
 public class Config {
 
