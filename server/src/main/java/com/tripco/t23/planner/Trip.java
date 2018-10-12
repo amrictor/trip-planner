@@ -31,6 +31,7 @@ public class Trip {
     public Option options;
     public ArrayList<Place> places;
     public ArrayList<Integer> distances;
+    public Optimization optimization;
     public String map;
 
     /** The top level method that does planning.
