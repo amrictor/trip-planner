@@ -5,12 +5,42 @@ import { Button } from 'reactstrap'
 class Itinerary extends Component {
     constructor(props) {
         super(props);
+        this.putData = this.putData.bind(this);
+        this.createTable = this.createTable.bind(this);
+    }
+
+    putData(){
+        let data = [];
+        let size = this.props.trip.places.length;
+        for (let i = 0; i < size; i++){
+            data.push(<tr key={this.props.trip.places[i].name}>
+                        <td>{this.props.trip.places[i].name}</td>
+                        <td>{this.props.trip.places[(i + 1) % size].name}</td>
+                        <td>{this.props.trip.distances[i]}</td>
+                    </tr>);
+        }
+        return data;
+    }
+
+
+    createTable(){
+        return (
+            <table className={"table"}>
+                <thead>
+                    <tr>
+                        <th>Origin</th><th>Destination</th><th>Distance</th>
+                    </tr>
+                    {this.putData()}
+                </thead>
+            </table>
+        );
     }
     render() {
         return (
             <Card>
                 <CardBody>
-                    <CardTitle>Itinerary</CardTitle>
+                    <CardTitle>Itinerary : {this.props.trip.title}</CardTitle>
+                    {this.createTable()}
                 </CardBody>
             </Card>
         )
