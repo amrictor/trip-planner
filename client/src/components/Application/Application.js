@@ -25,11 +25,15 @@ class Application extends Component {
         places: [],
         distances: [],
         map: '<svg width="1920" height="20" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><g></g></svg>'
-      }
+      },
+      port: window.location.port,
+      host: window.location.host
     };
     this.updateTrip = this.updateTrip.bind(this);
     this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
     this.updateOptions = this.updateOptions.bind(this);
+    this.updateHostAndPort = this.updateHostAndPort.bind(this);
+
   }
 
   componentWillMount() {
@@ -42,6 +46,11 @@ class Application extends Component {
     );
   }
 
+  updateHostAndPort(value){
+      this.port = value;
+      this.host = "black-bottle.cs.colostate.edu";
+  }
+
   updateTrip(field, value){
     let trip = this.state.trip;
     trip[field] = value;
@@ -50,7 +59,6 @@ class Application extends Component {
 
   updateBasedOnResponse(value) {
     this.setState({'trip': value});
-    console.log(this.state);
   }
 
   updateOptions(option, value){
@@ -65,11 +73,23 @@ class Application extends Component {
     return(
       <Container id="Application">
         <Info/>
-        <Plan updateBasedOnResponse={this.updateBasedOnResponse}/>
+        <Plan
+            updateBasedOnResponse={this.updateBasedOnResponse}
+            trip={this.state.trip} 
+            port={this.port}
+            host={this.host}
+        />
         <Itinerary/>
-        <Map svg={this.state.trip.map}/>
+        <Map
+            svg={this.state.trip.map}
+        />
         <Calculator/>
-        <Options options={this.state.trip.options} config={this.state.config} updateOptions={this.updateOptions}/>
+        <Options
+            options={this.state.trip.options}
+            config={this.state.config}
+            updateOptions={this.updateOptions}
+            updateHostAndPort={this.updateHostAndPort}
+        />
       </Container>
     )
   }
