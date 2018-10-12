@@ -27,7 +27,7 @@ public class Query {
     private static final String search = "";
 
     /**
-     * Sets the connection and queries the database
+     * Sets the connection and queries the database.
      */
     public void find(){
         String queryhead = "SELECT * FROM airports WHERE ";
