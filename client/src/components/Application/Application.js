@@ -79,7 +79,9 @@ class Application extends Component {
             port={this.port}
             host={this.host}
         />
-        <Itinerary/>
+        <Itinerary
+            trip={this.state.trip}
+        />
         <Map
             svg={this.state.trip.map}
         />
