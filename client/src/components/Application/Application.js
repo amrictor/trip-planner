@@ -4,7 +4,7 @@ import Info from './Info'
 import Options from './Options';
 import Map from './Map';
 import Plan from './Plan';
-import Itinerary from './Itinerary';
+
 import Calculator from './Calculator';
 import { get_config } from '../../api/api';
 
@@ -78,9 +78,6 @@ class Application extends Component {
             trip={this.state.trip} 
             port={this.port}
             host={this.host}
-        />
-        <Itinerary
-            trip={this.state.trip}
         />
         <Map
             svg={this.state.trip.map}

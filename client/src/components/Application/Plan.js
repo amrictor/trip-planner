@@ -2,12 +2,16 @@ import React, {Component} from 'react'
 import { Card, CardBody, CardTitle, CardSubtitle, CardImg } from 'reactstrap'
 import { ButtonGroup, Button } from 'reactstrap'
 import { request, get_config } from '../../api/api';
+import Itinerary from './Itinerary';
 
 class Plan extends Component {
     constructor(props) {
         super(props);
         this.getFile = this.getFile.bind(this);
         this.planRequest = this.planRequest.bind(this);
+        this.state = {
+            showComponent: false,
+        };
     }
 
     getFile(event){
@@ -21,8 +25,10 @@ class Plan extends Component {
     }
     planRequest(){
         request(this.props.trip, 'plan', this.props.port, this.props.host).then(response => this.props.updateBasedOnResponse(response));
+        this.setState({
+            showComponent: true,
+        });
     }
-
 
     render() {
         return (
@@ -41,6 +47,10 @@ class Plan extends Component {
                     >
                         Plan
                     </Button>
+                    {this.state.showComponent ?
+                        <Itinerary trip={this.props.trip}/> :
+                        null
+                    }
                 </CardBody>
             </Card>
         )
