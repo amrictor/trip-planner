@@ -43,25 +43,20 @@ class Options extends Component{
         );
         const portForm =
             <Form inline>
-                <FormGroup>
-                    <Input
-                        type="text"
-                        name="host"
-                        id="host_field"
-                        placeholder="black-bottle.cs.colostate.edu"
-                        disabled
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <Label>&nbsp;:&nbsp;</Label>
-                    <Input
-                        type="number"
-                        name="port"
-                        id="port_field"
-                        placeholder="port"
-                    />
-
-                </FormGroup> &nbsp;
+                <Input
+                    type="text"
+                    name="host"
+                    id="host_field"
+                    placeholder="black-bottle.cs.colostate.edu"
+                    disabled
+                />
+                <Label>&nbsp;:&nbsp;</Label>
+                <Input
+                    type="number"
+                    name="port"
+                    id="port_field"
+                    placeholder="port"
+                />
                 <Button
                     key={'options_submit'}
                     className='btn-outline-dark unit-button'
