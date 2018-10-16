@@ -47,8 +47,7 @@ class Options extends Component{
                     type="text"
                     name="host"
                     id="host_field"
-                    placeholder="black-bottle.cs.colostate.edu"
-                    disabled
+                    placeholder="(Optional) black-bottle.cs.colostate.edu"
                 />
                 <Label>&nbsp;:&nbsp;</Label>
                 <Input
@@ -60,7 +59,7 @@ class Options extends Component{
                 <Button
                     key={'options_submit'}
                     className='btn-outline-dark unit-button'
-                    onClick={() => this.props.updateHostAndPort(port_field.value)}
+                    onClick={() => this.props.updateHostAndPort(host_field.value, port_field.value)}
                 >
                     Submit
                 </Button>
