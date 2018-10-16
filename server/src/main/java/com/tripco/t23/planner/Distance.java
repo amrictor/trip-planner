@@ -13,7 +13,7 @@ public class Distance {
     private Place destination;
     private String units;
     private String unitName;
-    private double unitRadius;
+    private Double unitRadius;
 
     //Result variable.
     private int distance;

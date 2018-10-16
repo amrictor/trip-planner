@@ -10,16 +10,18 @@ import java.util.List;
 
 public class Config {
 
-  private short version = 3;
   private String type = "config";
+  private short version = 3;
   private List<String> units = Arrays.asList("miles", "nautical miles", "kilometers", "user defined");
+  private String unitName;
+  private Double unitRadius;
   private ArrayList<Optimization> optimization = new ArrayList<>(
           Arrays.asList(new Optimization("none","The trip is not optimized"),
           new Optimization("short","Nearest neighbor"),
           new Optimization("shorter","2-opt")));
+  private List<String> attributes = Arrays.asList("name","id","latitude","longitude");
   private Integer port;
-  private String unitName;
-  private Double unitRadius;
+
 
   static String getConfig() {
     Config conf = new Config();

@@ -26,12 +26,12 @@ import java.util.Scanner;
  */
 public class Trip {
     // The variables in this class should reflect TFFI.
+    public Short version;
     public String type;
     public String title;
-    public Option options;
     public ArrayList<Place> places;
+    public Option options;
     public ArrayList<Integer> distances;
-    public Optimization optimization;
     public String map;
 
     /** The top level method that does planning.
