@@ -126,16 +126,17 @@ public class Trip {
             }
 
 
-            LegDistances legdist; // this class communicates between Trip and Distance
+            Distance dist; // this class communicates between Trip and Distance
 
             if (options.units.equals("user defined")){
                 // pass info to LegDistances.java then to Distance.java
-                legdist = new LegDistances(p1, p2, options.units, options.unitRadius);
+                dist = new Distance(p1, p2, options.units, options.unitRadius);
             } else { // miles, km or nautical miles
-                legdist = new LegDistances(p1, p2, options.units);
+                dist = new Distance(p1, p2, options.units);
             }
 
-            distCalc = legdist.distanceBetween(); // calculates distance between two places
+            dist.calculate(); //Calculates distance
+            distCalc = dist.getDistance(); // Retrieves calculated distance from Distance
 
             distances.add(distCalc); // add to arraylist of distances
         }

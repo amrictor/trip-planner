@@ -18,6 +18,20 @@ public class Distance {
     //Result variable.
     private int distance;
 
+    //Constructors
+    Distance(Place p1, Place p2, String unit,Double radius){
+        setOrigin(p1);
+        setDestination(p2);
+        setUnits(unit);
+        setUnitRadius(radius);
+    }
+
+    Distance(Place p1, Place p2, String unit){
+        setOrigin(p1);
+        setDestination(p2);
+        setUnits(unit);
+    }
+
     //Getters.
     public Place getOrigin() {
         return origin;
@@ -39,9 +53,7 @@ public class Distance {
         return unitRadius;
     }
 
-    public int getDistance() {
-        return distance;
-    }
+    public int getDistance() { return distance; }
 
     public int getVersion() {
         return version;
