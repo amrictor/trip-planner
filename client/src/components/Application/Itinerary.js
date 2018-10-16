@@ -22,7 +22,6 @@ class Itinerary extends Component {
         return data;
     }
 
-
     createTable(){
         return (
             <table className={"table"}>
@@ -35,6 +34,7 @@ class Itinerary extends Component {
             </table>
         );
     }
+
     render() {
         return (
             <Card>
