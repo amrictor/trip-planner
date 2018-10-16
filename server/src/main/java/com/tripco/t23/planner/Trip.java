@@ -126,7 +126,7 @@ public class Trip {
             }
 
 
-            Distance dist; // this class communicates between Trip and Distance
+            Distance dist; //
             if (options.units.equals("user defined")){
                 // pass info to Distance.java
                 dist = new Distance(p1, p2, options.units, options.unitRadius);
@@ -141,5 +141,4 @@ public class Trip {
         }
         return distances;
     }
-
 }
