@@ -127,9 +127,8 @@ public class Trip {
 
 
             Distance dist; // this class communicates between Trip and Distance
-
             if (options.units.equals("user defined")){
-                // pass info to LegDistances.java then to Distance.java
+                // pass info to Distance.java
                 dist = new Distance(p1, p2, options.units, options.unitRadius);
             } else { // miles, km or nautical miles
                 dist = new Distance(p1, p2, options.units);
