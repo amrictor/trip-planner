@@ -48,9 +48,11 @@ class Application extends Component {
         );
     }
 
-    updateHostAndPort(value){
-        this.port = value;
-        this.host = "black-bottle.cs.colostate.edu";
+    updateHostAndPort(host, port){
+        this.port = port;
+        if(host != "") {
+            this.host = host;
+        } else this.host = "black-bottle.cs.colostate.edu";
     }
 
     updateTrip(field, value){
