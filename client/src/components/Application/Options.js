@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { ButtonGroup, Button, Card, CardBody, CardHeader, CardTitle, Form, FormGroup, Input, Label } from 'reactstrap'
+import {Collapse} from 'reactstrap'
 
 /* Options allows the user to change the parameters for planning
  * and rendering the trip map and itinerary.
@@ -14,13 +15,12 @@ class Options extends Component{
 
     checkButton(event){
         const unit = event.target.value;
+        this.props.updateOptions('units', event.target.value)
         if(unit == 'user defined'){
             this.setState({isuserdef: true});
-            this.props.updateOptions('units', event.target.value)
         }
         else {
             this.setState({isuserdef: false});
-            this.props.updateOptions('units', event.target.value)
         }
     }
 
@@ -64,10 +64,8 @@ class Options extends Component{
                     Submit
                 </Button>
             </Form>
-        const isuserdef = this.state.isuserdef;
-        let userdeffield;
-        if(isuserdef){
-            userdeffield =
+        const userdeffield =
+            <Collapse isOpen={this.state.isuserdef}>
                 <Form inline>
                     <Input
                         type="text"
@@ -90,7 +88,8 @@ class Options extends Component{
                         Submit
                     </Button>
                 </Form>
-        }
+            </Collapse>
+
 
         return(
             <Card>
