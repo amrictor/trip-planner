@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { ButtonGroup, Button, Card, CardBody, CardHeader, CardTitle, Form, FormGroup, Input, Label } from 'reactstrap'
+
 /* Options allows the user to change the parameters for planning
  * and rendering the trip map and itinerary.
  * The options reside in the parent object so they may be shared with the Trip object.
@@ -23,6 +24,11 @@ class Options extends Component{
         }
     }
 
+    userDefValues(name,radius){
+        this.props.updateOptions('unitName',name)
+        this.props.updateOptions('unitRadius',radius)
+    }
+
     render() {
         const buttons = this.props.config.units.map((units) =>
             <Button
@@ -37,25 +43,20 @@ class Options extends Component{
         );
         const portForm =
             <Form inline>
-                <FormGroup>
-                    <Input
-                        type="text"
-                        name="host"
-                        id="host_field"
-                        placeholder="black-bottle.cs.colostate.edu"
-                        disabled
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <Label>&nbsp;:&nbsp;</Label>
-                    <Input
-                        type="number"
-                        name="port"
-                        id="port_field"
-                        placeholder="port"
-                    />
-
-                </FormGroup> &nbsp;
+                <Input
+                    type="text"
+                    name="host"
+                    id="host_field"
+                    placeholder="black-bottle.cs.colostate.edu"
+                    disabled
+                />
+                <Label>&nbsp;:&nbsp;</Label>
+                <Input
+                    type="number"
+                    name="port"
+                    id="port_field"
+                    placeholder="port"
+                />
                 <Button
                     key={'options_submit'}
                     className='btn-outline-dark unit-button'
@@ -68,8 +69,28 @@ class Options extends Component{
         let userdeffield;
         if(isuserdef){
             userdeffield =
-                <div>Hello
-                </div>
+                <Form inline>
+                    <Input
+                        type="text"
+                        name="unitname"
+                        id="unit_name_field"
+                        placeholder="Unit name"
+                    />
+                    <Input
+                        type="number"
+                        name="unitradius"
+                        id="unit_radius_field"
+                        placeholder="Earth radius"
+                    />
+                    <Button
+                        key={'options_submit'}
+                        className='btn-outline-dark unit-button'
+                        onClick={() => this.userDefValues(unit_name_field.value,unit_radius_field.value)
+                        }
+                    >
+                        Submit
+                    </Button>
+                </Form>
         }
 
         return(
@@ -81,7 +102,7 @@ class Options extends Component{
                     <ButtonGroup>
                         {buttons}
                     </ButtonGroup>
-                    <div>{userdeffield}</div>
+                    {userdeffield}
                 </CardBody>
                 <CardBody>
                     <p><b>Enter your server host and port:</b></p>
