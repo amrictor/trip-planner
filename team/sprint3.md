@@ -76,6 +76,10 @@ I want to save the changes I make to the trip.
 | :--- | :--- | :--- | :--- |
 | 10/1 | 0 | 0 | N/A | 
 | 10/3 | 0 | 0 | N/A |
+| 10/5 | 0 | 2 | N/A |
+| 10/10 | 0 | 6 | N/A |
+| 10/12 | 6 | 3 | N/A |
+| 10/15 | 7 | 3 | N/A |
 
 ## Review
 
