@@ -76,7 +76,13 @@ public class TripOpt {
     }
 
     private int measure(Place p1, Place p2){
-        Distance temp = new Distance(p1,p2,units,unitRadius);
+        Distance temp;
+        if(units.equals("user defined")){
+            temp = new Distance(p1,p2,units,unitRadius);
+        }
+        else{
+            temp = new Distance(p1,p2,units);
+        }
         temp.calculate();
         return temp.getDistance();
     }
