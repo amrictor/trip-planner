@@ -92,7 +92,7 @@ class Options extends Component {
         const optimiOpt =
             <ButtonGroup>
                 <Button
-                    key={'distance_button_'}
+                    key={'none'}
                     className='btn-outline-dark unit-button'
                     onClick={(event) => this.props.updateOptions('optimization', 'none')}
                     active={this.props.options.optimization === 'none'}
@@ -100,7 +100,7 @@ class Options extends Component {
                     None
                 </Button>
                 <Button
-                    key={'distance_button_'}
+                    key={'short'}
                     className='btn-outline-dark unit-button'
                     onClick={(event) => this.props.updateOptions('optimization', 'short')}
                     active={this.props.options.optimization === 'short'}

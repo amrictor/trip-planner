@@ -50,6 +50,21 @@ class Plan extends Component {
 
     }
 
+    clearFileUploader(){
+        const defaultState = {
+            type: "trip",
+            title: "",
+            options : {
+                units: "miles",
+                unitName: "",
+                unitRadius: 0,
+                optimization: "none"
+            }
+        };
+        this.props.updateBasedOnResponse(defaultState);
+        this.state.isloaded = false;
+    }
+
     toggleLoad() {
         this.setState({ isload: !this.state.isload });
     }
@@ -145,6 +160,7 @@ class Plan extends Component {
                         key={'clear'}
                         color= "primary" style={{ marginBottom: '1rem' }}
                         className='btn-outline-dark unit-button'
+                        onClick={()=> this.clearFileUploader()}
                         disabled={this.state.isloaded === false}
                     >
                         Clear
