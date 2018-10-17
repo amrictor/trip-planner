@@ -39,7 +39,7 @@ public class Trip {
      * It might need to reorder the places in the future.
      */
     public void plan() {
-        this.distances = legDistances();
+        legDistances();
         this.map = svg();
     }
 
@@ -107,9 +107,9 @@ public class Trip {
      * @return ArrayListInteger that will contain distances between each city
      */
 
-    private ArrayList<Integer> legDistances() {
+    private void legDistances() {
 
-        ArrayList<Integer> distances = new ArrayList<Integer>();
+        ArrayList<Integer> distances = new ArrayList<>();
 
         for (int i = 0; i < places.size(); i++){
             int distCalc = -1; // set default val so we know when no work
@@ -139,6 +139,11 @@ public class Trip {
 
             distances.add(distCalc); // add to arraylist of distances
         }
-        return distances;
+        this.distances = distances;
+    }
+
+    private void shortDistances(){
+        ArrayList<Integer> distances = new ArrayList<>();
+        ArrayList<Place> places = new ArrayList<>();
     }
 }
