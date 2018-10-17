@@ -3,6 +3,7 @@ import { Card, CardBody, CardTitle, CardSubtitle, CardImg } from 'reactstrap'
 import { ButtonGroup, Button } from 'reactstrap'
 import { request, get_config } from '../../api/api';
 import Itinerary from './Itinerary';
+import {Collapse} from 'reactstrap'
 
 class Plan extends Component {
     constructor(props) {
@@ -11,6 +12,7 @@ class Plan extends Component {
         this.planRequest = this.planRequest.bind(this);
         this.state = {
             showComponent: false,
+            isload: false
         };
     }
 
@@ -41,7 +43,24 @@ class Plan extends Component {
                     </form>
 
                     <Button
+                        key={'load'}
+                        color= "primary" style={{ marginBottom: '1rem' }}
+                        className='btn-outline-dark unit-button'
+                    >
+                        Load
+                    </Button>
+
+                    <Button
+                        key={'clear'}
+                        color= "primary" style={{ marginBottom: '1rem' }}
+                        className='btn-outline-dark unit-button'
+                    >
+                        Clear
+                    </Button>
+
+                    <Button
                         key={'plan'}
+                        color= "primary" style={{ marginBottom: '1rem' }}
                         className='btn-outline-dark unit-button'
                         onClick={() => this.planRequest()}
                     >
@@ -51,6 +70,16 @@ class Plan extends Component {
                         <Itinerary trip={this.props.trip}/> :
                         null
                     }
+
+                    <Button
+                        key={'save'}
+                        color= "primary" style={{ marginBottom: '1rem' }}
+                        className='btn-outline-dark unit-button'
+                    >
+                        Save
+                    </Button>
+
+
                 </CardBody>
             </Card>
         )

@@ -22,7 +22,8 @@ class Application extends Component {
                 options : {
                     units: "miles",
                     unitName: "",
-                    unitRadius: 0
+                    unitRadius: 0,
+                    optimization: "none"
                 },
                 places: [],
                 distances: [],
@@ -35,6 +36,7 @@ class Application extends Component {
         this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
         this.updateOptions = this.updateOptions.bind(this);
         this.updateHostAndPort = this.updateHostAndPort.bind(this);
+        this.updatePlaces = this.updatePlaces.bind(this);
 
     }
 
@@ -71,27 +73,40 @@ class Application extends Component {
         this.setState(trip);
     }
 
+    updatePlaces(value){
+        if (typeof this.state.places=== 'undefined') {
+            this.state.places = [value];
+        }
+        else {
+            this.state.places.push(value);
+        }
+
+        console.log(this.state.places);
+    }
+
     render() {
         if(!this.state.config) { return <div/> }
         return(
             <Container id="Application">
-              <Info/>
-              <Plan
-                  updateBasedOnResponse={this.updateBasedOnResponse}
-                  trip={this.state.trip}
-                  port={this.port}
-                  host={this.host}
-              />
-              <Map
-                  svg={this.state.trip.map}
-              />
-              <Calculator/>
-              <Options
-                  options={this.state.trip.options}
-                  config={this.state.config}
-                  updateOptions={this.updateOptions}
-                  updateHostAndPort={this.updateHostAndPort}
-              />
+                <Info/>
+                <Plan
+                    updateBasedOnResponse={this.updateBasedOnResponse}
+                    updatePlaces={this.updatePlaces}
+                    trip={this.state.trip}
+                    places={this.state.places}
+                    port={this.port}
+                    host={this.host}
+                />
+                <Map
+                    svg={this.state.trip.map}
+                />
+                <Calculator/>
+                <Options
+                    options={this.state.trip.options}
+                    config={this.state.config}
+                    updateOptions={this.updateOptions}
+                    updateHostAndPort={this.updateHostAndPort}
+                />
             </Container>
         )
     }
