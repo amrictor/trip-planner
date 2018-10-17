@@ -15,6 +15,7 @@ class Plan extends Component {
         this.state = {
             showComponent: false,
             isload: false,
+            isloaded: false,
             issearch: false,
             isadd: false
         };
@@ -43,7 +44,7 @@ class Plan extends Component {
 
     addPlace(id, name, lat, long){
         //WRITE FUNCTION TO UPDATE PLACE
-        var place = {id: id, name: name, latitude: lat, longitude: long};
+        const place = {id: id, name: name, latitude: lat, longitude: long};
         //console.log(place);
         this.props.updatePlaces(place);
 
@@ -64,9 +65,9 @@ class Plan extends Component {
             <Collapse isOpen={this.state.isload}>
                 <p><b>Upload your trip file: </b></p>
                 <form>
-                    <input type="file" name="myFile" id="example" onChange={(event) => this.getFile(event)}/>
+                    <input type="file" name="myFile" id="example" onChange={(event) => {this.getFile(event);this.setState({isloaded: true})}}/>
                 </form>
-            </Collapse>
+            </Collapse>;
 
         const searchquery =
             <Collapse isOpen={this.state.issearch}>
@@ -85,7 +86,7 @@ class Plan extends Component {
                         Search
                     </Button>
                 </Form>
-            </Collapse>
+            </Collapse>;
 
         const addbody =
             <Collapse isOpen={this.state.isadd}>
@@ -120,7 +121,7 @@ class Plan extends Component {
                 >
                     Add
                 </Button>
-            </Collapse>
+            </Collapse>;
 
         return (
             <Card>
@@ -133,6 +134,7 @@ class Plan extends Component {
                         color= "primary" style={{ marginBottom: '1rem' }}
                         className='btn-outline-dark unit-button'
                         onClick={()=> this.toggleLoad()}
+                        active={this.state.isload === true}
                     >
                         Load
                     </Button>
@@ -143,6 +145,7 @@ class Plan extends Component {
                         key={'clear'}
                         color= "primary" style={{ marginBottom: '1rem' }}
                         className='btn-outline-dark unit-button'
+                        disabled={this.state.isloaded === false}
                     >
                         Clear
                     </Button>
@@ -152,6 +155,7 @@ class Plan extends Component {
                         color= "primary" style={{ marginBottom: '1rem' }}
                         className='btn-outline-dark unit-button'
                         onClick={() => this.planRequest()}
+                        disabled={this.state.isloaded === false}
                     >
                         Plan
                     </Button>
@@ -164,6 +168,7 @@ class Plan extends Component {
                         key={'save'}
                         color= "primary" style={{ marginBottom: '1rem' }}
                         className='btn-outline-dark unit-button'
+                        disabled={this.state.isloaded === false}
                     >
                         Save
                     </Button>
