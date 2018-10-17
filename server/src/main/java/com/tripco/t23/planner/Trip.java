@@ -148,6 +148,17 @@ public class Trip {
     }
 
     private void shortDistances(){
-
+        if(options.units.equals("user defined")){
+            TripOpt temp = new TripOpt(places, options.units,options.unitRadius);
+            temp.shortOptimization();
+            this.distances = temp.getDistances();
+            this.places = temp.getPlaces();
+        }
+        else{
+            TripOpt temp = new TripOpt(places, options.units);
+            temp.shortOptimization();
+            this.distances = temp.getDistances();
+            this.places = temp.getPlaces();
+        }
     }
 }
