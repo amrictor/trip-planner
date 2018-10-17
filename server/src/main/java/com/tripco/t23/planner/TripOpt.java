@@ -37,6 +37,8 @@ public class TripOpt {
         for(int i = 0; i < places.size(); i++){
             nearestNeighbor(places.get(i), currentShortest);
         }
+        places = tempPlaces;
+        distances = tempDistances;
     }
 
     private void nearestNeighbor(Place base, int currentShortest){
