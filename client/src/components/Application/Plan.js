@@ -65,6 +65,23 @@ class Plan extends Component {
         this.state.isloaded = false;
     }
 
+    saveToFile(){
+        let filename = "export.json";
+        let contentType = "application/json;charset=utf-8;";
+        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+            let blob = new Blob([decodeURIComponent(encodeURI(JSON.stringify(this.props.trip)))], { type: contentType });
+            navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+            let a = document.createElement('a');
+            a.download = filename;
+            a.href = 'data:' + contentType + ',' + encodeURIComponent(JSON.stringify(this.props.trip));
+            a.target = '_blank';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    }
+
     toggleLoad() {
         this.setState({ isload: !this.state.isload });
     }
@@ -184,6 +201,7 @@ class Plan extends Component {
                         key={'save'}
                         color= "primary" style={{ marginBottom: '1rem' }}
                         className='btn-outline-dark unit-button'
+                        onClick={() => this.saveToFile()}
                         disabled={this.state.isloaded === false}
                     >
                         Save
