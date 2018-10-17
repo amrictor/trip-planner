@@ -39,13 +39,12 @@ class Plan extends Component {
     }
 
     showSearchResult(){
-        //WRITE FUNCTION TO SHOW RESULT WITH ADD OPTION
+        request(this.props.search, 'search', this.props.port, this.props.host).then(response => this.props.updateSearchBasedOnResponse(response));
+        //NOW SEARCH STATE IS UPDATED. JUST SHOW THE RESULT, ADD BUTTON IS ALREADY IMPLEMENTED, WE ARE SETTING LIMIT TO 10 FOR NOW
     }
 
     addPlace(id, name, lat, long){
-        //WRITE FUNCTION TO UPDATE PLACE
         const place = {id: id, name: name, latitude: lat, longitude: long};
-        //console.log(place);
         this.props.updatePlaces(place);
 
     }
