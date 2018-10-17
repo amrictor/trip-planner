@@ -157,8 +157,9 @@ public class Trip {
         else{
             TripOpt temp = new TripOpt(places, options.units);
             temp.shortOptimization();
-            this.distances = temp.getDistances();
+            //this.distances = temp.getDistances();
             this.places = temp.getPlaces();
+            noneDistances();
         }
     }
 }
