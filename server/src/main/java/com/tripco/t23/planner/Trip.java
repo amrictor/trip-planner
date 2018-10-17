@@ -39,8 +39,14 @@ public class Trip {
      * It might need to reorder the places in the future.
      */
     public void plan() {
-        this.distances = legDistances();
-        this.map = svg();
+        if(options.optimization.equals("none")){
+            noneDistances();
+            this.map = svg();
+        }
+        else{
+            shortDistances();
+            this.map = svg();
+        }
     }
 
     /**
@@ -104,12 +110,11 @@ public class Trip {
     /**
      * Returns the distances between consecutive places,
      * including the return to the starting point to make a round trip.
-     * @return ArrayListInteger that will contain distances between each city
      */
 
-    private ArrayList<Integer> legDistances() {
+    private void noneDistances() {
 
-        ArrayList<Integer> distances = new ArrayList<Integer>();
+        ArrayList<Integer> distances = new ArrayList<>();
 
         for (int i = 0; i < places.size(); i++){
             int distCalc = -1; // set default val so we know when no work
@@ -139,6 +144,12 @@ public class Trip {
 
             distances.add(distCalc); // add to arraylist of distances
         }
-        return distances;
+        this.distances = distances;
+    }
+
+    private void shortDistances(){
+        for(int i = 0; i < places.size(); i++){
+
+        }
     }
 }
