@@ -126,25 +126,25 @@ class Plan extends Component {
                     type="text"
                     name="id"
                     id="id_field"
-                    placeholder="id"
+                    placeholder="ID"
                 />
                 <Input
                     type="text"
                     name="name"
                     id="name_field"
-                    placeholder="name"
+                    placeholder="Name"
                 />
                 <Input
                     type="number"
                     name="latitude"
                     id="latitude_field"
-                    placeholder="latitude"
+                    placeholder="Latitude"
                 />
                 <Input
                     type="number"
                     name="longitude"
                     id="longitude_field"
-                    placeholder="longitude"
+                    placeholder="Longitude"
                 />
                 <Button
                     key={'options_submit'}
