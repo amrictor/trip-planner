@@ -148,8 +148,6 @@ public class Trip {
     }
 
     private void shortDistances(){
-        for(int i = 0; i < places.size(); i++){
 
-        }
     }
 }
