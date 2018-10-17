@@ -45,7 +45,7 @@ public class Trip {
         }
         else{
             shortDistances();
-            this.map = svg();
+            //this.map = svg();
         }
     }
 
