@@ -36,7 +36,6 @@ public class TripOpt {
      * Sends each town to retrieve it's nearest neighbor
      */
     public void shortOptimization(){
-        System.out.println(places.size());
         for(int i = 0; i < places.size(); i++){
             nearestNeighbor(places.get(i));
         }
