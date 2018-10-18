@@ -38,8 +38,9 @@ class Itinerary extends Component {
     render() {
         return (
             <Card>
+                <CardImg top width="100%" src={"data:image/svg+xml;utf8," + this.props.trip.map} alt={"Visual Itinerary Not Available"}/>
                 <CardBody>
-                    <CardTitle>Itinerary : {this.props.trip.title}</CardTitle>
+                    <CardTitle> Itinerary : {this.props.trip.title}</CardTitle>
                     {this.createTable()}
                 </CardBody>
             </Card>
