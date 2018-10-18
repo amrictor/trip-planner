@@ -37,7 +37,6 @@ public class TripOpt {
      */
     public void shortOptimization(){
         for(int i = 0; i < places.size(); i++){
-            System.out.println(places.size());
             System.out.println(i);
             nearestNeighbor(places.get(i));
         }
@@ -59,6 +58,7 @@ public class TripOpt {
             //int distance = measure(used.get(used.size()-1),place);
             cumulativeDist = cumulativeDist + shortestdist;
         }
+        System.out.println(unused.size());
         if(cumulativeDist < currentShortest){
             tempPlaces = used;
             currentShortest = cumulativeDist;
