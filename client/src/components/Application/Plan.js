@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import { Card, CardBody, CardTitle, CardSubtitle, CardImg, Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
+import { Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
+import { Card, CardBody, CardTitle, CardSubtitle, CardImg } from 'reactstrap';
+import { Col, Container, Row, Table } from 'reactstrap';
 import { ButtonGroup, Button } from 'reactstrap';
 import { request, get_config } from '../../api/api';
 import Itinerary from './Itinerary';
 import {Collapse} from 'reactstrap'
 import {Form} from 'reactstrap'
-import {Input} from 'reactstrap'
+import {Input, InputGroup, InputGroupAddon} from 'reactstrap'
 
 class Plan extends Component {
     constructor(props) {
@@ -34,7 +36,6 @@ class Plan extends Component {
         let search = this.state.search;
         search['match'] = query_field.value;
         this.setState(search)
-        console.log(this.state.search)
     }
     updateBasedOnResponse(value) {
         this.setState({'search': value});
@@ -58,10 +59,8 @@ class Plan extends Component {
     }
 
     showSearchResult(){
-        this.updateSearch()
         request(this.state.search, 'search', this.props.port, this.props.host).then(response => {
             this.updateBasedOnResponse(response)
-            console.log(this.state.search)
         });
         this.toggleSearch();
         //request(this.props.search, 'search', this.props.port, this.props.host).then(response => this.props.updateSearchBasedOnResponse(response));
@@ -117,30 +116,40 @@ class Plan extends Component {
     }
     putData(){
         let data = [];
-        for (let i = 0; i < 10; i++){
-            data.push(<tr key={this.props.search.places[i].name}>
-                <td>{this.props.search.places[i].id}</td>
-                <td>{this.props.search.places[i].name}</td>
-                <td>{this.props.search.places[i].latitude}</td>
-                <td>{this.props.search.places[i].longitude}</td>
+        for (let i = 0; i < this.state.search.places.length; i++){
+            data.push(<tr key={this.state.search.places[i].name}>
+                <td>{this.state.search.places[i].id}</td>
+                <td>{this.state.search.places[i].name}</td>
+                <td>{Math.round((this.state.search.places[i].latitude+ 0.00001) * 100)/100}</td>
+                <td>{Math.round((this.state.search.places[i].longitude+ 0.00001) * 100)/100}</td>
             </tr>);
+            if(i==10) break;
         }
+        console.log(data)
         return data;
     }
-    searchPopUp(){
-        if(this.state.search.places.size>0){
-            return(
-                        <table className={"table"}>
-                            <thead>
-                            <tr>
-                                <th>ID</th><th>Name</th><th>Lat</th><th>Long</th>
-                            </tr>
-                            {this.putData()}
-                            </thead>
-                        </table>
-            )
+    searchPopUp() {
+        console.log(this.state.search)
+        if (typeof this.state.search !== "undefined" && this.state.search.places.length > 0) {
+
+            return (
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Lat</th>
+                            <th>Long</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {this.putData()}
+                    </tbody>
+                </Table>
+        );
+
         }
-        return "No search"
+        return "No results available."
     }
 
     render() {
@@ -154,12 +163,15 @@ class Plan extends Component {
 
         const searchquery=
                 <Form inline>
+                    <InputGroup>
                         <Input
                             type="text"
                             name="query"
                             id="query_field"
                             placeholder="Query"
+                            onChange={()=>this.updateSearch()}
                         />&nbsp;
+                        <InputGroupAddon addonType="append">
                         <Button
                             key={'options_submit'}
                             className='btn-outline-dark unit-button'
@@ -167,19 +179,14 @@ class Plan extends Component {
                         >
                             Search
                         </Button>
+                        </InputGroupAddon>
+                    </InputGroup>
                 </Form>;
 
-        var searchPopUp=
-
-            <Modal isOpen={this.state.isSearch} toggle={this.toggleSearch} className={this.props.className}>
-                <ModalHeader toggle={this.toggleSearch}>Search Results</ModalHeader>
-                    <ModalBody>
-                        {this.searchPopUp()}
-                    </ModalBody>
-            </Modal>;
-
         const addbody =
-            <Collapse isOpen={this.state.isadd}>
+
+            <Form inline>
+                <InputGroup>
                 <Input
                     type="text"
                     name="id"
@@ -203,22 +210,28 @@ class Plan extends Component {
                     name="longitude"
                     id="longitude_field"
                     placeholder="Longitude"
-                />
-                <Button
+                /> &nbsp;
+                <InputGroupAddon addonType="append"><Button
                     key={'options_submit'}
                     className='btn-outline-dark unit-button'
                     onClick={()=> this.addPlace(id_field.value, name_field.value, latitude_field.value, longitude_field.value)}
                 >
                     Add
-                </Button>
-            </Collapse>;
+                </Button></InputGroupAddon>
+                </InputGroup>
+            </Form>;
 
         return (
-            <plan>
+            <React.Fragment>
             <Card>
-                {searchPopUp}
+                {/*<Modal isOpen={this.state.isSearch} toggle={this.toggleSearch} className={this.props.className}>*/}
+                    {/*<ModalHeader toggle={this.toggleSearch}>Search Results</ModalHeader>*/}
+                    {/*<ModalBody>*/}
+                        {/*{this.searchPopUp()}*/}
+                    {/*</ModalBody>*/}
+                {/*</Modal>*/}
                 <CardBody id="Plan">
-                    <CardTitle>Plan</CardTitle>
+                    <CardTitle><b>Trip Planning</b></CardTitle>
                         <ButtonGroup>
                             <Button
                                 key={'load'}
@@ -229,8 +242,6 @@ class Plan extends Component {
                             >
                                 Load
                             </Button>
-
-
                             <Button
                                 key={'clear'}
                                 color= "primary" style={{ marginBottom: '1rem' }}
@@ -240,7 +251,6 @@ class Plan extends Component {
                             >
                                 Clear
                             </Button>
-
                             <Button
                                 key={'plan'}
                                 color= "primary" style={{ marginBottom: '1rem' }}
@@ -250,7 +260,6 @@ class Plan extends Component {
                             >
                                 Plan
                             </Button>
-
                             <Button
                                 key={'save'}
                                 color= "primary" style={{ marginBottom: '1rem' }}
@@ -264,20 +273,12 @@ class Plan extends Component {
                     {fileuploader}
 
                     </CardBody>
-
-                    <CardBody id="search">
-                        {searchquery}
-                    </CardBody>
-
                     <CardBody id="add">
-                        <Button
-                            key={'add'}
-                            color= "primary" style={{ marginBottom: '1rem' }}
-                            className='btn-outline-dark unit-button'
-                            onClick={()=> this.toggleAdd()}
-                        >
-                            Add
-                        </Button>
+                        <CardTitle>Add a stop to your trip!</CardTitle>
+                        {searchquery}
+                        <Collapse isOpen={this.state.isSearch}>
+                            {this.searchPopUp()}
+                        </Collapse>
                         {addbody}
                 </CardBody>
 
@@ -290,7 +291,7 @@ class Plan extends Component {
                         null
                     }
                 </Collapse>
-            </plan>
+            </React.Fragment>
 
         )
     }
