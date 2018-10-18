@@ -10,6 +10,10 @@ class Calculator extends Component {
     }
 
     calc(lat_f, long_f, lat_t, long_t) {
+        lat_f = lat_f ? lat_f : 0;
+        long_f = long_f ? long_f : 0;
+        lat_t = lat_t ? lat_t : 0;
+        long_t = long_t ? long_t : 0;
         this.props.updateOriginAndDestination(lat_f, long_f, lat_t, long_t);
         this.setState({iscalculated: true});
         request(this.props.distance, 'distance', this.props.port, this.props.host).then(response => {
