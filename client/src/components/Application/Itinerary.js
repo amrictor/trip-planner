@@ -12,12 +12,14 @@ class Itinerary extends Component {
     putData(){
         let data = [];
         let size = this.props.trip.places.length;
-        for (let i = 0; i < size; i++){
-            data.push(<tr key={this.props.trip.places[i].name}>
-                        <td>{this.props.trip.places[i].name}</td>
-                        <td>{this.props.trip.places[(i + 1) % size].name}</td>
-                        <td>{this.props.trip.distances[i]}</td>
-                    </tr>);
+        if (typeof this.props.trip.distances !== "undefined") {
+            for (let i = 0; i < size; i++) {
+                data.push(<tr key={this.props.trip.places[i].name}>
+                    <td>{this.props.trip.places[i].name}</td>
+                    <td>{this.props.trip.places[(i + 1) % size].name}</td>
+                    <td>{this.props.trip.distances[i]}</td>
+                </tr>);
+            }
         }
         return data;
     }
