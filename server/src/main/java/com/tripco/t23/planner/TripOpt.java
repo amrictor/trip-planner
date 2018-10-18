@@ -29,8 +29,13 @@ public class TripOpt {
     }
 
     //Getters
-    public ArrayList<Place> getPlaces() { return places; }
-    public ArrayList<Integer> getDistances() { return distances; }
+    public ArrayList<Place> getPlaces() {
+        return places;
+    }
+
+    public ArrayList<Integer> getDistances() {
+        return distances;
+    }
 
     /**
      * Sends each town to retrieve it's nearest neighbor
