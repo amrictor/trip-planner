@@ -61,6 +61,7 @@ public class TripOpt {
             tempPlaces = used;
             currentShortest = cumulativeDist;
         }
+        System.out.println(cumulativeDist);
     }
 
     private Place getNextCity(Place base, ArrayList<Place> set){
