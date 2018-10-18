@@ -55,15 +55,12 @@ public class TripOpt {
             place = getNextCity(used.get(used.size()-1),unused);
             used.add(place);
             unused.remove(place);
-            //int distance = measure(used.get(used.size()-1),place);
             cumulativeDist = cumulativeDist + shortestdist;
         }
-        System.out.println(unused.size());
         if(cumulativeDist < currentShortest){
             tempPlaces = used;
             currentShortest = cumulativeDist;
         }
-        System.out.println(cumulativeDist);
     }
 
     private Place getNextCity(Place base, ArrayList<Place> set){
