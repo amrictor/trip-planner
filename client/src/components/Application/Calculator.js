@@ -26,13 +26,13 @@ class Calculator extends Component {
         const fromto_field =
             <FormGroup>
                 <Form inline id="From">
-                    <Label>&nbsp;From&nbsp;</Label>
+                    <Label>&nbsp;&nbsp;From&nbsp;</Label>
                     <Input
                         type="number"
                         name="latitude_f"
                         id="latitude_f_field"
                         placeholder="Latitude"
-                    />
+                    />&nbsp;
                     <Input
                         type="number"
                         name="longitude_f"
@@ -41,13 +41,13 @@ class Calculator extends Component {
                     />
                 </Form>
                 <Form inline id="To">
-                    <Label>&nbsp;To&nbsp;</Label>
+                    <Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To&nbsp;</Label>
                     <Input
                         type="number"
                         name="latitude_t"
                         id="latitude_t_field"
                         placeholder="Latitude"
-                    />
+                    />&nbsp;
                     <Input
                         type="number"
                         name="longitude_t"

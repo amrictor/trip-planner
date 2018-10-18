@@ -55,7 +55,7 @@ class Options extends Component {
                     name="port"
                     id="port_field"
                     placeholder="port"
-                />
+                />&nbsp;
                 <Button
                     key={'options_submit'}
                     className='btn-outline-dark unit-button'
