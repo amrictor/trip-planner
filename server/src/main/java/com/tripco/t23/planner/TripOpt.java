@@ -36,16 +36,18 @@ public class TripOpt {
      * AHHHHHHHHH. AHHHHHHHHH.
      */
     public void shortOptimization(){
+        System.out.println(places.size());
         for(int i = 0; i < places.size(); i++){
             System.out.println(i);
             nearestNeighbor(places.get(i));
+            System.out.println(places.size());
         }
         places = tempPlaces;
     }
 
     private void nearestNeighbor(Place base){
         ArrayList<Place> used = new ArrayList<>();
-        ArrayList<Place> unused = places;
+        ArrayList<Place> unused = new ArrayList<>(places);
         Place place;
         int cumulativeDist = 0;
 
@@ -66,7 +68,7 @@ public class TripOpt {
     private Place getNextCity(Place base, ArrayList<Place> set){
         Place result = set.get(0);
         shortestdist = measure(base, set.get(0));
-        for(int i = 0; i < set.size();i++){
+        for(int i = 0; i < set.size(); i++){
             int temp = measure(base,set.get(i));
             if(temp < shortestdist){
                 shortestdist = temp;
