@@ -11,18 +11,20 @@ public class TripOpt {
     private String units;
     private Double unitRadius;
     private ArrayList<Place> tempPlaces = new ArrayList<>();
-    private ArrayList<Integer> tempDistances = new ArrayList<>();
+    private int currentShortest;
 
     //Constructor
     TripOpt(ArrayList<Place> places, String units){
         this.places = places;
         this.units = units;
+        currentShortest = Integer.MAX_VALUE;
     }
 
     TripOpt(ArrayList<Place> places, String units, Double unitRadius){
         this.places = places;
         this.units = units;
         this.unitRadius = unitRadius;
+        currentShortest = Integer.MAX_VALUE;
     }
 
     //Getters
@@ -33,14 +35,13 @@ public class TripOpt {
      * AHHHHHHHHH. AHHHHHHHHH.
      */
     public void shortOptimization(){
-        int currentShortest = Integer.MAX_VALUE;
         for(int i = 0; i < places.size(); i++){
-            nearestNeighbor(places.get(i), currentShortest);
+            nearestNeighbor(places.get(i));
         }
         places = tempPlaces;
     }
 
-    private void nearestNeighbor(Place base, int currentShortest){
+    private void nearestNeighbor(Place base){
         ArrayList<Place> used = new ArrayList<>();
         ArrayList<Place> unused = places;
         ArrayList<Integer> plan = new ArrayList<>();
@@ -58,6 +59,7 @@ public class TripOpt {
         }
         if(cumulativeDist < currentShortest){
             tempPlaces = used;
+            currentShortest = cumulativeDist;
         }
     }
 
