@@ -54,7 +54,6 @@ public class TripOpt {
             used.add(place);
             unused.remove(place);
             int distance = measure(used.get(used.size()-1),place);
-            System.out.println(distance);
             cumulativeDist = cumulativeDist + distance;
         }
         if(cumulativeDist < currentShortest){
@@ -68,6 +67,7 @@ public class TripOpt {
         int shortestdist = measure(base, set.get(0));
         for(int i = 0; i < set.size();i++){
             int temp = measure(base,set.get(i));
+            System.out.println(temp);
             if(temp < shortestdist){
                 shortestdist = temp;
                 result = set.get(i);
