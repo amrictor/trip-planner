@@ -37,6 +37,8 @@ public class TripOpt {
      */
     public void shortOptimization(){
         for(int i = 0; i < places.size(); i++){
+            System.out.println(places.size());
+            System.out.println(i);
             nearestNeighbor(places.get(i));
         }
         places = tempPlaces;
