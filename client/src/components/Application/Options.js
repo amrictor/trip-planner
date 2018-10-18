@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import {ButtonGroup, Button, Card, CardBody, CardHeader, CardTitle, Form, FormGroup, Input, Label} from 'reactstrap'
+import {ButtonGroup, Button, Card, CardBody, CardHeader, CardTitle, Form, FormGroup, Label} from 'reactstrap'
+import { Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap'
 import {Collapse} from 'reactstrap'
 
 /* Options allows the user to change the parameters for planning
@@ -43,26 +44,33 @@ class Options extends Component {
         );
         const portForm =
             <Form inline>
-                <Input
-                    type="text"
-                    name="host"
-                    id="host_field"
-                    placeholder="(Optional) black-bottle.cs.colostate.edu"
-                />
-                <Label>&nbsp;:&nbsp;</Label>
-                <Input
-                    type="number"
-                    name="port"
-                    id="port_field"
-                    placeholder="port"
-                />&nbsp;
-                <Button
-                    key={'options_submit'}
-                    className='btn-outline-dark unit-button'
-                    onClick={() => this.props.updateHostAndPort(host_field.value, port_field.value)}
-                >
-                    Submit
-                </Button>
+                <InputGroup>
+                    <Input
+                        type="text"
+                        name="host"
+                        id="host_field"
+                        placeholder="(Optional) black-bottle.cs.colostate.edu"
+                    />
+                    <InputGroupAddon addonType="prepend">
+                        <InputGroupText>:</InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                        type="number"
+                        name="port"
+                        id="port_field"
+                        placeholder="port"
+                    />
+                    <InputGroupAddon addonType="append">
+                        &nbsp;
+                    <Button
+                        key={'options_submit'}
+                        className='btn-outline-dark unit-button'
+                        onClick={() => this.props.updateHostAndPort(host_field.value, port_field.value)}
+                    >
+                        Submit
+                    </Button>
+                    </InputGroupAddon>
+                </InputGroup>
             </Form>;
         const userdeffield =
             <Collapse isOpen={this.state.isuserdef}>
