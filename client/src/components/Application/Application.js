@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Container} from 'reactstrap';
 import Info from './Info'
 import Options from './Options';
-import Map from './Map';
 import Plan from './Plan';
 
 import Calculator from './Calculator';
@@ -126,9 +125,6 @@ class Application extends Component {
                     places={this.state.places}
                     port={this.port}
                     host={this.host}
-                />
-                <Map
-                    svg={this.state.trip.map}
                 />
                 <Calculator
                     updateDistanceBasedOnResponse={this.updateDistanceBasedOnResponse}

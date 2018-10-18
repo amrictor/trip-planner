@@ -29,6 +29,7 @@ class Plan extends Component {
             this.props.updateBasedOnResponse(contents);
         }.bind(this);
         reader.readAsText(event.target.files[0]);
+        console.log(this.props.state)
     }
 
     planRequest(){
@@ -155,84 +156,92 @@ class Plan extends Component {
             </Collapse>;
 
         return (
-            <Card>
-                <CardBody id="Plan">
-                    <CardTitle>Plan</CardTitle>
+            <plan>
+                <Card>
+                    <CardBody id="Plan">
+                        <CardTitle>Plan</CardTitle>
 
 
-                    <Button
-                        key={'load'}
-                        color= "primary" style={{ marginBottom: '1rem' }}
-                        className='btn-outline-dark unit-button'
-                        onClick={()=> this.toggleLoad()}
-                        active={this.state.isload === true}
-                    >
-                        Load
-                    </Button>
-                    {fileuploader}
+                        <Button
+                            key={'load'}
+                            color= "primary" style={{ marginBottom: '1rem' }}
+                            className='btn-outline-dark unit-button'
+                            onClick={()=> this.toggleLoad()}
+                            active={this.state.isload === true}
+                        >
+                            Load
+                        </Button>
+                        {fileuploader}
 
 
-                    <Button
-                        key={'clear'}
-                        color= "primary" style={{ marginBottom: '1rem' }}
-                        className='btn-outline-dark unit-button'
-                        onClick={()=> this.clearFileUploader()}
-                        disabled={this.state.isloaded === false}
-                    >
-                        Clear
-                    </Button>
+                        <Button
+                            key={'clear'}
+                            color= "primary" style={{ marginBottom: '1rem' }}
+                            className='btn-outline-dark unit-button'
+                            onClick={()=> this.clearFileUploader()}
+                            disabled={this.state.isloaded === false}
+                        >
+                            Clear
+                        </Button>
 
-                    <Button
-                        key={'plan'}
-                        color= "primary" style={{ marginBottom: '1rem' }}
-                        className='btn-outline-dark unit-button'
-                        onClick={() => this.planRequest()}
-                        disabled={this.state.isloaded === false}
-                    >
-                        Plan
-                    </Button>
+                        <Button
+                            key={'plan'}
+                            color= "primary" style={{ marginBottom: '1rem' }}
+                            className='btn-outline-dark unit-button'
+                            onClick={() => this.planRequest()}
+                            disabled={this.state.isloaded === false}
+                        >
+                            Plan
+                        </Button>
+
+                        <Button
+                            key={'save'}
+                            color= "primary" style={{ marginBottom: '1rem' }}
+                            className='btn-outline-dark unit-button'
+                            onClick={() => this.saveToFile()}
+                            disabled={this.state.isloaded === false}
+                        >
+                            Save
+                        </Button>
+
+
+                    </CardBody>
+
+                    <CardBody id="search">
+                        <Button
+                            key={'search'}
+                            color= "primary" style={{ marginBottom: '1rem' }}
+                            className='btn-outline-dark unit-button'
+                            onClick={()=> this.toggleSearch()}
+                        >
+                            Search
+                        </Button>
+                        {searchquery}
+                    </CardBody>
+
+                    <CardBody id="add">
+                        <Button
+                            key={'add'}
+                            color= "primary" style={{ marginBottom: '1rem' }}
+                            className='btn-outline-dark unit-button'
+                            onClick={()=> this.toggleAdd()}
+                        >
+                            Add
+                        </Button>
+                        {addbody}
+                    </CardBody>
+
+                </Card>
+                <Collapse isOpen={this.state.showComponent}>
                     {this.state.showComponent ?
-                        <Itinerary trip={this.props.trip}/> :
+                        <Itinerary
+                            trip={this.props.trip}
+                        /> :
                         null
                     }
+                </Collapse>
+            </plan>
 
-                    <Button
-                        key={'save'}
-                        color= "primary" style={{ marginBottom: '1rem' }}
-                        className='btn-outline-dark unit-button'
-                        onClick={() => this.saveToFile()}
-                        disabled={this.state.isloaded === false}
-                    >
-                        Save
-                    </Button>
-
-
-                </CardBody>
-
-                <CardBody id="search">
-                    <Button
-                        key={'search'}
-                        color= "primary" style={{ marginBottom: '1rem' }}
-                        className='btn-outline-dark unit-button'
-                        onClick={()=> this.toggleSearch()}
-                    >
-                        Search
-                    </Button>
-                    {searchquery}
-                </CardBody>
-
-                <CardBody id="add">
-                    <Button
-                        key={'add'}
-                        color= "primary" style={{ marginBottom: '1rem' }}
-                        className='btn-outline-dark unit-button'
-                        onClick={()=> this.toggleAdd()}
-                    >
-                        Add
-                    </Button>
-                    {addbody}
-                </CardBody>
-            </Card>
         )
     }
 }
