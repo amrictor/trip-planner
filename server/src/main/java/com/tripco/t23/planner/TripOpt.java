@@ -54,9 +54,9 @@ public class TripOpt {
             used.add(place);
             unused.remove(place);
             int distance = measure(used.get(used.size()-1),place);
+            System.out.println(distance);
             cumulativeDist = cumulativeDist + distance;
         }
-        System.out.println(cumulativeDist);
         if(cumulativeDist < currentShortest){
             tempPlaces = used;
             currentShortest = cumulativeDist;
