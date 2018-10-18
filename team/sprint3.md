@@ -80,6 +80,7 @@ I want to save the changes I make to the trip.
 | 10/10 | 0 | 6 | N/A |
 | 10/12 | 6 | 3 | N/A |
 | 10/15 | 7 | 3 | N/A |
+| 10/17 | 7 | 5 | N/A |
 
 ## Review
 
