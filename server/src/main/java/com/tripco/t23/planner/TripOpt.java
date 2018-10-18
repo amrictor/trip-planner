@@ -12,6 +12,7 @@ public class TripOpt {
     private Double unitRadius;
     private ArrayList<Place> tempPlaces = new ArrayList<>();
     private int currentShortest;
+    private int shortestdist;
 
     //Constructor
     TripOpt(ArrayList<Place> places, String units){
@@ -53,8 +54,8 @@ public class TripOpt {
             place = getNextCity(used.get(used.size()-1),unused);
             used.add(place);
             unused.remove(place);
-            int distance = measure(used.get(used.size()-1),place);
-            cumulativeDist = cumulativeDist + distance;
+            //int distance = measure(used.get(used.size()-1),place);
+            cumulativeDist = cumulativeDist + shortestdist;
         }
         if(cumulativeDist < currentShortest){
             tempPlaces = used;
@@ -64,10 +65,9 @@ public class TripOpt {
 
     private Place getNextCity(Place base, ArrayList<Place> set){
         Place result = set.get(0);
-        int shortestdist = measure(base, set.get(0));
+        shortestdist = measure(base, set.get(0));
         for(int i = 0; i < set.size();i++){
             int temp = measure(base,set.get(i));
-            System.out.println(temp);
             if(temp < shortestdist){
                 shortestdist = temp;
                 result = set.get(i);
