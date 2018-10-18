@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Card, CardBody, CardTitle, CardSubtitle, CardImg } from 'reactstrap';
+import { Card, CardBody, CardTitle, CardSubtitle, CardImg, Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
 import { ButtonGroup, Button } from 'reactstrap';
 import { request, get_config } from '../../api/api';
 import Itinerary from './Itinerary';
@@ -13,12 +13,31 @@ class Plan extends Component {
         this.getFile = this.getFile.bind(this);
         this.planRequest = this.planRequest.bind(this);
         this.state = {
+            search: {
+                version: 3,
+                type: "search",
+                match: "",
+                limit: 0,
+                places: []
+            },
             showComponent: false,
             isload: false,
             isloaded: false,
-            issearch: false,
+            isSearch: false,
             isadd: false
         };
+        this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
+        this.toggleSearch = this.toggleSearch.bind(this);
+        this.showSearchResult = this.showSearchResult.bind(this);
+    }
+    updateSearch() {
+        let search = this.state.search;
+        search['match'] = query_field.value;
+        this.setState(search)
+        console.log(this.state.search)
+    }
+    updateBasedOnResponse(value) {
+        this.setState({'search': value});
     }
 
     getFile(event){
@@ -29,7 +48,6 @@ class Plan extends Component {
             this.props.updateBasedOnResponse(contents);
         }.bind(this);
         reader.readAsText(event.target.files[0]);
-        console.log(this.props.state)
     }
 
     planRequest(){
@@ -40,7 +58,13 @@ class Plan extends Component {
     }
 
     showSearchResult(){
-        request(this.props.search, 'search', this.props.port, this.props.host).then(response => this.props.updateSearchBasedOnResponse(response));
+        this.updateSearch()
+        request(this.state.search, 'search', this.props.port, this.props.host).then(response => {
+            this.updateBasedOnResponse(response)
+            console.log(this.state.search)
+        });
+        this.toggleSearch();
+        //request(this.props.search, 'search', this.props.port, this.props.host).then(response => this.props.updateSearchBasedOnResponse(response));
         //NOW SEARCH STATE IS UPDATED. JUST SHOW THE RESULT, ADD BUTTON IS ALREADY IMPLEMENTED, WE ARE SETTING LIMIT TO 10 FOR NOW
     }
 
@@ -86,10 +110,37 @@ class Plan extends Component {
         this.setState({ isload: !this.state.isload });
     }
     toggleSearch() {
-        this.setState({ issearch: !this.state.issearch });
+        this.setState({ isSearch: !this.state.isSearch });
     }
     toggleAdd() {
         this.setState({ isadd: !this.state.isadd });
+    }
+    putData(){
+        let data = [];
+        for (let i = 0; i < 10; i++){
+            data.push(<tr key={this.props.search.places[i].name}>
+                <td>{this.props.search.places[i].id}</td>
+                <td>{this.props.search.places[i].name}</td>
+                <td>{this.props.search.places[i].latitude}</td>
+                <td>{this.props.search.places[i].longitude}</td>
+            </tr>);
+        }
+        return data;
+    }
+    searchPopUp(){
+        if(this.state.search.places.size>0){
+            return(
+                        <table className={"table"}>
+                            <thead>
+                            <tr>
+                                <th>ID</th><th>Name</th><th>Lat</th><th>Long</th>
+                            </tr>
+                            {this.putData()}
+                            </thead>
+                        </table>
+            )
+        }
+        return "No search"
     }
 
     render() {
@@ -101,24 +152,31 @@ class Plan extends Component {
                 </form>
             </Collapse>;
 
-        const searchquery =
-            <Collapse isOpen={this.state.issearch}>
+        const searchquery=
                 <Form inline>
-                    <Input
-                        type="text"
-                        name="query"
-                        id="query_field"
-                        placeholder="Query"
-                    />
-                    <Button
-                        key={'options_submit'}
-                        className='btn-outline-dark unit-button'
-                        onClick={()=> this.showSearchResult()}
-                    >
-                        Search
-                    </Button>
-                </Form>
-            </Collapse>;
+                        <Input
+                            type="text"
+                            name="query"
+                            id="query_field"
+                            placeholder="Query"
+                        />&nbsp;
+                        <Button
+                            key={'options_submit'}
+                            className='btn-outline-dark unit-button'
+                            onClick={()=> this.showSearchResult()}
+                        >
+                            Search
+                        </Button>
+                </Form>;
+
+        var searchPopUp=
+
+            <Modal isOpen={this.state.isSearch} toggle={this.toggleSearch} className={this.props.className}>
+                <ModalHeader toggle={this.toggleSearch}>Search Results</ModalHeader>
+                    <ModalBody>
+                        {this.searchPopUp()}
+                    </ModalBody>
+            </Modal>;
 
         const addbody =
             <Collapse isOpen={this.state.isadd}>
@@ -157,65 +215,57 @@ class Plan extends Component {
 
         return (
             <plan>
-                <Card>
-                    <CardBody id="Plan">
-                        <CardTitle>Plan</CardTitle>
+            <Card>
+                {searchPopUp}
+                <CardBody id="Plan">
+                    <CardTitle>Plan</CardTitle>
+                        <ButtonGroup>
+                            <Button
+                                key={'load'}
+                                color= "primary" style={{ marginBottom: '1rem' }}
+                                className='btn-outline-dark unit-button'
+                                onClick={()=> this.toggleLoad()}
+                                active={this.state.isload === true}
+                            >
+                                Load
+                            </Button>
 
 
-                        <Button
-                            key={'load'}
-                            color= "primary" style={{ marginBottom: '1rem' }}
-                            className='btn-outline-dark unit-button'
-                            onClick={()=> this.toggleLoad()}
-                            active={this.state.isload === true}
-                        >
-                            Load
-                        </Button>
-                        {fileuploader}
+                            <Button
+                                key={'clear'}
+                                color= "primary" style={{ marginBottom: '1rem' }}
+                                className='btn-outline-dark unit-button'
+                                onClick={()=> this.clearFileUploader()}
+                                disabled={this.state.isloaded === false}
+                            >
+                                Clear
+                            </Button>
 
+                            <Button
+                                key={'plan'}
+                                color= "primary" style={{ marginBottom: '1rem' }}
+                                className='btn-outline-dark unit-button'
+                                onClick={() => this.planRequest()}
+                                disabled={this.state.isloaded === false}
+                            >
+                                Plan
+                            </Button>
 
-                        <Button
-                            key={'clear'}
-                            color= "primary" style={{ marginBottom: '1rem' }}
-                            className='btn-outline-dark unit-button'
-                            onClick={()=> this.clearFileUploader()}
-                            disabled={this.state.isloaded === false}
-                        >
-                            Clear
-                        </Button>
-
-                        <Button
-                            key={'plan'}
-                            color= "primary" style={{ marginBottom: '1rem' }}
-                            className='btn-outline-dark unit-button'
-                            onClick={() => this.planRequest()}
-                            disabled={this.state.isloaded === false}
-                        >
-                            Plan
-                        </Button>
-
-                        <Button
-                            key={'save'}
-                            color= "primary" style={{ marginBottom: '1rem' }}
-                            className='btn-outline-dark unit-button'
-                            onClick={() => this.saveToFile()}
-                            disabled={this.state.isloaded === false}
-                        >
-                            Save
-                        </Button>
-
+                            <Button
+                                key={'save'}
+                                color= "primary" style={{ marginBottom: '1rem' }}
+                                className='btn-outline-dark unit-button'
+                                onClick={() => this.saveToFile()}
+                                disabled={this.state.isloaded === false}
+                            >
+                                Save
+                            </Button>
+                        </ButtonGroup>
+                    {fileuploader}
 
                     </CardBody>
 
                     <CardBody id="search">
-                        <Button
-                            key={'search'}
-                            color= "primary" style={{ marginBottom: '1rem' }}
-                            className='btn-outline-dark unit-button'
-                            onClick={()=> this.toggleSearch()}
-                        >
-                            Search
-                        </Button>
                         {searchquery}
                     </CardBody>
 
@@ -229,7 +279,7 @@ class Plan extends Component {
                             Add
                         </Button>
                         {addbody}
-                    </CardBody>
+                </CardBody>
 
                 </Card>
                 <Collapse isOpen={this.state.showComponent}>
