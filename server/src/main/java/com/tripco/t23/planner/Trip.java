@@ -39,8 +39,14 @@ public class Trip {
      * It might need to reorder the places in the future.
      */
     public void plan() {
-        this.distances = legDistances();
-        this.map = svg();
+        if(options.optimization.equals("none")){
+            noneDistances();
+            this.map = svg();
+        }
+        else{
+            shortDistances();
+            this.map = svg();
+        }
     }
 
     /**
@@ -104,12 +110,11 @@ public class Trip {
     /**
      * Returns the distances between consecutive places,
      * including the return to the starting point to make a round trip.
-     * @return ArrayListInteger that will contain distances between each city
      */
 
-    private ArrayList<Integer> legDistances() {
+    private void noneDistances() {
 
-        ArrayList<Integer> distances = new ArrayList<Integer>();
+        ArrayList<Integer> distances = new ArrayList<>();
 
         for (int i = 0; i < places.size(); i++){
             int distCalc = -1; // set default val so we know when no work
@@ -126,20 +131,34 @@ public class Trip {
             }
 
 
-            LegDistances legdist; // this class communicates between Trip and Distance
-
+            Distance dist; //
             if (options.units.equals("user defined")){
-                // pass info to LegDistances.java then to Distance.java
-                legdist = new LegDistances(p1, p2, options.units, options.unitRadius);
+                // pass info to Distance.java
+                dist = new Distance(p1, p2, options.units, options.unitRadius);
             } else { // miles, km or nautical miles
-                legdist = new LegDistances(p1, p2, options.units);
+                dist = new Distance(p1, p2, options.units);
             }
 
-            distCalc = legdist.distanceBetween(); // calculates distance between two places
+            dist.calculate(); //Calculates distance
+            distCalc = dist.getDistance(); // Retrieves calculated distance from Distance
 
             distances.add(distCalc); // add to arraylist of distances
         }
-        return distances;
+        this.distances = distances;
     }
 
+    private void shortDistances(){
+        if(options.units.equals("user defined")){
+            TripOpt temp = new TripOpt(places, options.units,options.unitRadius);
+            temp.shortOptimization();
+            this.distances = temp.getDistances();
+            this.places = temp.getPlaces();
+        }
+        else{
+            TripOpt temp = new TripOpt(places, options.units);
+            temp.shortOptimization();
+            this.places = temp.getPlaces();
+            noneDistances();
+        }
+    }
 }

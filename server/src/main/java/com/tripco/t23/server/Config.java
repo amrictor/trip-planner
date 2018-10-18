@@ -17,8 +17,7 @@ public class Config {
   private Double unitRadius;
   private ArrayList<Optimization> optimization = new ArrayList<>(
           Arrays.asList(new Optimization("none","The trip is not optimized"),
-          new Optimization("short","Nearest neighbor"),
-          new Optimization("shorter","2-opt")));
+          new Optimization("short","Nearest neighbor")));
   private List<String> attributes = Arrays.asList("name","id","latitude","longitude");
   private Integer port;
 

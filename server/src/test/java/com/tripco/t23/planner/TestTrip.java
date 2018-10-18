@@ -26,6 +26,7 @@ public class TestTrip {
     trip = new Trip();
     trip.options = new Option();
     trip.options.units = "miles";
+    trip.options.optimization = "none";
     trip.places = new ArrayList<Place>();
     trip.places.add(new Place("dnvr", "Denver", 39.7392,-104.9903));
     trip.places.add(new Place("bldr", "Boulder", 40.01499, -105.27055));
@@ -43,7 +44,7 @@ public class TestTrip {
 
 
     trip.plan();
-    ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
+    ArrayList<Integer> expectedDistances = new ArrayList<>();
     Collections.addAll(expectedDistances, 24, 41, 59);
     // Call the equals() method of the first object on the second object.
     assertEquals(expectedDistances, trip.distances);
