@@ -53,7 +53,9 @@ public class Distance {
         return unitRadius;
     }
 
-    public int getDistance() { return distance; }
+    public int getDistance() {
+        return distance;
+    }
 
     public int getVersion() {
         return version;

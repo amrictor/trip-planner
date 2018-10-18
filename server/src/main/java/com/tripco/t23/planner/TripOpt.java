@@ -38,7 +38,7 @@ public class TripOpt {
     }
 
     /**
-     * Sends each town to retrieve it's nearest neighbor
+     * Sends each town to retrieve it's nearest neighbor.
      */
     public void shortOptimization(){
         for(int i = 0; i < places.size(); i++){
@@ -48,7 +48,7 @@ public class TripOpt {
     }
 
     /**
-     * Makes the nearest neighbor for the base town its sent
+     * Makes the nearest neighbor for the base town its sent.
      */
     private void nearestNeighbor(Place base){
         ArrayList<Place> used = new ArrayList<>();
@@ -71,7 +71,7 @@ public class TripOpt {
     }
 
     /**
-     * Finds the next city in the set for the current base town
+     * Finds the next city in the set for the current base town.
      */
     private Place getNextCity(Place base, ArrayList<Place> set){
         Place result = set.get(0);
@@ -87,7 +87,7 @@ public class TripOpt {
     }
 
     /**
-     * Actually measures the distances
+     * Actually measures the distances.
      */
     private int measure(Place p1, Place p2){
         Distance temp;
