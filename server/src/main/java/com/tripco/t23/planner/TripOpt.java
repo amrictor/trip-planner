@@ -44,7 +44,6 @@ public class TripOpt {
     private void nearestNeighbor(Place base){
         ArrayList<Place> used = new ArrayList<>();
         ArrayList<Place> unused = places;
-        ArrayList<Integer> plan = new ArrayList<>();
         Place place;
         int cumulativeDist = 0;
 
@@ -57,6 +56,7 @@ public class TripOpt {
             int distance = measure(used.get(used.size()-1),place);
             cumulativeDist = cumulativeDist + distance;
         }
+        System.out.println(cumulativeDist);
         if(cumulativeDist < currentShortest){
             tempPlaces = used;
             currentShortest = cumulativeDist;
