@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import {ButtonGroup, Button, Card, CardBody, CardHeader, CardTitle, Form, FormGroup, Input, Label} from 'reactstrap'
+import {ButtonGroup, Button, Card, CardBody, CardHeader, CardTitle, Form, FormGroup, Label} from 'reactstrap'
+import { Input, InputGroup, InputGroupAddon } from 'reactstrap'
 import {Collapse} from 'reactstrap'
 import {request, get_config} from '../../api/api';
 
@@ -26,46 +27,57 @@ class Calculator extends Component {
         const fromto_field =
             <FormGroup>
                 <Form inline id="From">
-                    <Label>&nbsp;From&nbsp;</Label>
-                    <Input
-                        type="number"
-                        name="latitude_f"
-                        id="latitude_f_field"
-                        placeholder="Latitude"
-                    />
-                    <Input
-                        type="number"
-                        name="longitude_f"
-                        id="longitude_f_field"
-                        placeholder="Longitude"
-                    />
+                    <InputGroup>
+                        <InputGroupAddon addonType="prepend"> From
+                        </InputGroupAddon>
+                        <Input
+                            type="number"
+                            name="latitude_f"
+                            id="latitude_f_field"
+                            placeholder="Latitude"
+                        />
+                        <Input
+                            type="number"
+                            name="longitude_f"
+                            id="longitude_f_field"
+                            placeholder="Longitude"
+                        />
+                    </InputGroup>
                 </Form>
                 <Form inline id="To">
-                    <Label>&nbsp;To&nbsp;</Label>
-                    <Input
-                        type="number"
-                        name="latitude_t"
-                        id="latitude_t_field"
-                        placeholder="Latitude"
-                    />
-                    <Input
-                        type="number"
-                        name="longitude_t"
-                        id="longitude_t_field"
-                        placeholder="Longitude"
-                    />
+                    <InputGroup>
+                        <InputGroupAddon addonType="prepend"> &nbsp;&nbsp;&nbsp;&nbsp;To&nbsp;
+                        </InputGroupAddon>
+                        <Input
+                            type="number"
+                            name="latitude_t"
+                            id="latitude_t_field"
+                            placeholder="Latitude"
+                        />
+                        <Input
+                            type="number"
+                            name="longitude_t"
+                            id="longitude_t_field"
+                            placeholder="Longitude"
+                        />
+                        &nbsp;
+                        <InputGroupAddon addonType="append">
+                            <Button
+                                key={'options_submit'}
+                                className='btn-outline-dark unit-button'
+                                onClick={() => this.calc(latitude_f_field.value, longitude_f_field.value, latitude_t_field.value, longitude_t_field.value)
+                                }
+                            >
+                                Calculate
+                            </Button>
+                        </InputGroupAddon>
+                    </InputGroup>
                 </Form>
-                <Button
-                    key={'options_submit'}
-                    className='btn-outline-dark unit-button'
-                    onClick={() => this.calc(latitude_f_field.value, longitude_f_field.value, latitude_t_field.value, longitude_t_field.value)
-                    }
-                >
-                    Calculate
-                </Button>
+
+
                 <Collapse isOpen={this.state.iscalculated}>
                     <Label>&nbsp;Calculated distance
-                        is {this.props.distance.distance} {this.props.distance.units}&nbsp;</Label>
+                        is {this.props.distance.distance} {this.props.distance.units}.</Label>
                 </Collapse>
             </FormGroup>;
 
@@ -73,7 +85,7 @@ class Calculator extends Component {
         return (
             <Card>
                 <CardBody>
-                    <CardTitle>Calculator</CardTitle>
+                    <CardTitle>Calculate the distance between two places:</CardTitle>
                     {fromto_field}
 
                 </CardBody>
