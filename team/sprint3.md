@@ -39,10 +39,14 @@
 
 Our last sprint was not succesful, so in this sprint our team plans to complete what was not completed in sprint 2. We also plan to complete most of the tasks in sprint 3 because we recognize that it is unrealistic to finish what needed to completed in sprint 2 and now sprint 3. We expect to easily implement the server portion of this sprint because that was completed in sprint 2. However, our team has a lot to catch up on on the client side. 
 
-Server diagram: team/sprint3/image1.jpeg
-Client diagram:
-UI sketch:
+Server diagram:
+![server](https://github.com/csu18fa314/t23/blob/master/team/sprint3/image1.jpeg)
 
+Client diagram:
+![client](https://github.com/csu18fa314/t23/blob/master/team/sprint3/IMG_6505.jpg)
+
+UI sketch:
+![UI](https://github.com/csu18fa314/t23/blob/master/team/sprint3/image1%20(1).jpeg)
 
 
 Epics planned for this sprint.
@@ -85,34 +89,38 @@ I want to save the changes I make to the trip.
 ## Review
 
 *An introductory paragraph describing the overall results of the sprint.*
+For what our team had planned for this sprint, we succesfully completed the sprint with minimal failures.
+We completed what was unfinished from the second sprint and completed the tasks that we put in the back log for this sprint.
+However, because we had more work for this sprint that intended, we were not able to complete our desired code coverage
 
 #### Completed Epics in Sprint Backlog 
 
 *Describe the solution based on the completed epics and list the epics below.*
 
-* *## epic title: comments*
-* 
+* #130 User: I want to make and save changes to the trip.
+* #129 User: I want my trips to be shorter : Use nearest neighbor to build a shorter trip.
+* #127 User: I want to design a trip from scratch so I can stop using the other tool.
+* #75 User : I want a map and itinerary for my trip.
 
 #### Incomplete Epics in Sprint Backlog 
 
 *Describe capabilities not included in the release and list the epics below with an explanation.*
 
-* *## epic title: explanation*
-*
+* #165 tests for back end - same reason as below
+* #128 TripCo: All code must be tested - our team was more focused on functionally and catching up this string than coverage
 
 #### What Went Well
 
 *Describe what went well during the sprint in general terms followed by a more detailed list.*
 
-* *something*
-*
+* Improved UI: The client side improved a lot from last sprint. The UI is cleaner and has more functionality.
+* Funtional server: The server side has remain reliable and consistant.
 
 #### Problems Encountered and Resolutions
 
 *Describe what problems occurred during the sprint in general terms followed by a more detailed list.*
 
-* *something*
-*
+* Sprint 2 make-up: since we did not finish element on the front end from last sprint, we spent most of this sprint catching up. But with all teammates participating, we were able to catch up and complete most of the epics for sprint 3.
 
 ## Retrospective
 
