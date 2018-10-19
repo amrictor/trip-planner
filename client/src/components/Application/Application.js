@@ -53,7 +53,6 @@ class Application extends Component {
         this.updatePlaces = this.updatePlaces.bind(this);
         this.updateOriginAndDestination = this.updateOriginAndDestination.bind(this);
         this.updateDistanceBasedOnResponse = this.updateDistanceBasedOnResponse.bind(this);
-
     }
 
     componentWillMount() {
@@ -101,14 +100,14 @@ class Application extends Component {
     }
 
     updatePlaces(value) {
-        if (typeof this.state.places === 'undefined') {
-            this.state.places = [value];
+        if (typeof this.state.trip.places === 'undefined') {
+            this.state.trip.places = [value];
         }
         else {
-            this.state.places.push(value);
+            this.state.trip.places.push(value);
         }
 
-        console.log(this.state.places);
+        console.log(this.state);
     }
 
     render() {
