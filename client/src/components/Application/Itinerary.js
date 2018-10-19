@@ -14,6 +14,7 @@ class Itinerary extends Component {
         let data = [];
         if (typeof this.props.trip.places !== "undefined") {
             let size = this.props.trip.places.length;
+            let total = 0;
             if (typeof this.props.trip.distances !== "undefined") {
                 for (let i = 0; i < size; i++) {
                     data.push(<tr key={this.props.trip.places[i].name}>
@@ -21,23 +22,36 @@ class Itinerary extends Component {
                         <td>{this.props.trip.places[(i + 1) % size].name}</td>
                         <td>{this.props.trip.distances[i]}</td>
                     </tr>);
+                    total += this.props.trip.distances[i];
                 }
+                data.push(<tr key="Total">
+                            <td>Total Distance: {total}</td>
+                        </tr>);
             }
         }
         return data;
     }
 
     createTable(){
-        return (
-            <table className={"table"}>
-                <thead>
+        if(typeof this.props.trip.options.units !== "undefined") {
+            let units = this.props.trip.options.units;
+            /*if (units === "user defined"){
+                console.log(this.props.trip.options.unitName)
+                units = this.props.trip.options.unitName;
+            }*/
+            return (
+                <table className={"table"}>
+                    <thead>
                     <tr>
-                        <th>Origin</th><th>Destination</th><th>Distance</th>
+                        <th>Origin</th>
+                        <th>Destination</th>
+                        <th>Distance ({units})</th>
                     </tr>
                     {this.putData()}
-                </thead>
-            </table>
-        );
+                    </thead>
+                </table>
+            );
+        }
     }
 
     generateMap(){
