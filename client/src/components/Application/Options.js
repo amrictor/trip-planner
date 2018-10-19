@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import { ButtonGroup, Button, Card, CardBody, CardHeader, CardTitle, Form, FormGroup, Input, Label } from 'reactstrap'
+import {ButtonGroup, Button, Card, CardBody, CardHeader, CardTitle, Form, FormGroup, Label} from 'reactstrap'
+import { Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap'
 import {Collapse} from 'reactstrap'
 
 /* Options allows the user to change the parameters for planning
@@ -7,16 +8,16 @@ import {Collapse} from 'reactstrap'
  * The options reside in the parent object so they may be shared with the Trip object.
  * Allows the user to set the options used by the application via a set of buttons.
  */
-class Options extends Component{
+class Options extends Component {
     constructor(props) {
         super(props);
         this.state = {isuserdef: false};
     }
 
-    checkButton(event){
+    checkButton(event) {
         const unit = event.target.value;
-        this.props.updateOptions('units', event.target.value)
-        if(unit == 'user defined'){
+        this.props.updateOptions('units', event.target.value);
+        if (unit === 'user defined') {
             this.setState({isuserdef: true});
         }
         else {
@@ -24,9 +25,9 @@ class Options extends Component{
         }
     }
 
-    userDefValues(name,radius){
-        this.props.updateOptions('unitName',name)
-        this.props.updateOptions('unitRadius',radius)
+    userDefValues(name, radius) {
+        this.props.updateOptions('unitName', name);
+        this.props.updateOptions('unitRadius', radius);
     }
 
     render() {
@@ -43,27 +44,34 @@ class Options extends Component{
         );
         const portForm =
             <Form inline>
-                <Input
-                    type="text"
-                    name="host"
-                    id="host_field"
-                    placeholder="(Optional) black-bottle.cs.colostate.edu"
-                />
-                <Label>&nbsp;:&nbsp;</Label>
-                <Input
-                    type="number"
-                    name="port"
-                    id="port_field"
-                    placeholder="port"
-                />
-                <Button
-                    key={'options_submit'}
-                    className='btn-outline-dark unit-button'
-                    onClick={() => this.props.updateHostAndPort(host_field.value, port_field.value)}
-                >
-                    Submit
-                </Button>
-            </Form>
+                <InputGroup>
+                    <Input
+                        type="text"
+                        name="host"
+                        id="host_field"
+                        placeholder="(Optional) black-bottle.cs.colostate.edu"
+                    />
+                    <InputGroupAddon addonType="prepend">
+                        <InputGroupText>:</InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                        type="number"
+                        name="port"
+                        id="port_field"
+                        placeholder="port"
+                    />
+                    <InputGroupAddon addonType="append">
+                        &nbsp;
+                    <Button
+                        key={'options_submit'}
+                        className='btn-outline-dark unit-button'
+                        onClick={() => this.props.updateHostAndPort(host_field.value, port_field.value)}
+                    >
+                        Submit
+                    </Button>
+                    </InputGroupAddon>
+                </InputGroup>
+            </Form>;
         const userdeffield =
             <Collapse isOpen={this.state.isuserdef}>
                 <Form inline>
@@ -82,16 +90,36 @@ class Options extends Component{
                     <Button
                         key={'options_submit'}
                         className='btn-outline-dark unit-button'
-                        onClick={() => this.userDefValues(unit_name_field.value,unit_radius_field.value)
+                        onClick={() => this.userDefValues(unit_name_field.value, unit_radius_field.value)
                         }
                     >
                         Submit
                     </Button>
                 </Form>
-            </Collapse>
+            </Collapse>;
+        const optimiOpt =
+            <ButtonGroup>
+                <Button
+                    key={'none'}
+                    className='btn-outline-dark unit-button'
+                    onClick={(event) => this.props.updateOptions('optimization', 'none')}
+                    active={this.props.options.optimization === 'none'}
+                >
+                    None
+                </Button>
+                <Button
+                    key={'short'}
+                    className='btn-outline-dark unit-button'
+                    onClick={(event) => this.props.updateOptions('optimization', 'short')}
+                    active={this.props.options.optimization === 'short'}
+                >
+                    Short
+                </Button>
+            </ButtonGroup>;
 
 
-        return(
+        return (
+
             <Card>
                 <CardBody>
                     <CardTitle>Options</CardTitle>
@@ -102,11 +130,15 @@ class Options extends Component{
                     </ButtonGroup>
                     {userdeffield}
                 </CardBody>
+
+                <CardBody>
+                    <p><b>Select your preferred optimization:</b></p>
+                    {optimiOpt}
+                </CardBody>
+
                 <CardBody>
                     <p><b>Enter your server host and port:</b></p>
                     {portForm}
-
-
                 </CardBody>
             </Card>
         )

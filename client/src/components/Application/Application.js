@@ -1,25 +1,39 @@
 import React, {Component} from 'react';
-import { Container } from 'reactstrap';
+import {Container} from 'reactstrap';
 import Info from './Info'
 import Options from './Options';
-import Map from './Map';
 import Plan from './Plan';
 
 import Calculator from './Calculator';
-import { get_config } from '../../api/api';
+import {get_config} from '../../api/api';
 
 /* Renders the application.
  * Holds the destinations and options state shared with the trip.
  */
 class Application extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             config: null,
+            distance: {
+                type: "distance",
+                version: 3,
+                origin: {
+                    latitude: 0,
+                    longitude: 0
+                },
+                destination: {
+                    latitude: 0,
+                    longitude: 0
+                },
+                units: "miles",
+                distance: 0
+            },
             trip: {
                 type: "trip",
+                version: 3,
                 title: "",
-                options : {
+                options: {
                     units: "miles",
                     unitName: "",
                     unitRadius: 0,
@@ -37,6 +51,8 @@ class Application extends Component {
         this.updateOptions = this.updateOptions.bind(this);
         this.updateHostAndPort = this.updateHostAndPort.bind(this);
         this.updatePlaces = this.updatePlaces.bind(this);
+        this.updateOriginAndDestination = this.updateOriginAndDestination.bind(this);
+        this.updateDistanceBasedOnResponse = this.updateDistanceBasedOnResponse.bind(this);
 
     }
 
@@ -44,20 +60,31 @@ class Application extends Component {
         get_config().then(
             config => {
                 this.setState({
-                    config:config
+                    config: config
                 })
             }
         );
     }
 
-    updateHostAndPort(host, port){
+    updateHostAndPort(host, port) {
         this.port = port;
-        if(host != "") {
+        if (host !== "") {
             this.host = host;
         } else this.host = "black-bottle.cs.colostate.edu";
     }
 
-    updateTrip(field, value){
+    updateDistanceBasedOnResponse(value) {
+        this.setState({'distance': value});
+    }
+
+    updateOriginAndDestination(lat_f, long_f, lat_t, long_t) {
+        let distance = this.state.distance;
+        distance.origin = {latitude: lat_f, longtitude: long_f};
+        distance.destination = {latitude: lat_t, longtitude: long_t};
+        this.setState(distance);
+    }
+
+    updateTrip(field, value) {
         let trip = this.state.trip;
         trip[field] = value;
         this.setState(trip);
@@ -67,14 +94,14 @@ class Application extends Component {
         this.setState({'trip': value});
     }
 
-    updateOptions(option, value){
+    updateOptions(option, value) {
         let trip = this.state.trip;
         trip.options[option] = value;
         this.setState(trip);
     }
 
-    updatePlaces(value){
-        if (typeof this.state.places=== 'undefined') {
+    updatePlaces(value) {
+        if (typeof this.state.places === 'undefined') {
             this.state.places = [value];
         }
         else {
@@ -85,8 +112,10 @@ class Application extends Component {
     }
 
     render() {
-        if(!this.state.config) { return <div/> }
-        return(
+        if (!this.state.config) {
+            return <div/>
+        }
+        return (
             <Container id="Application">
                 <Info/>
                 <Plan
@@ -97,10 +126,11 @@ class Application extends Component {
                     port={this.port}
                     host={this.host}
                 />
-                <Map
-                    svg={this.state.trip.map}
+                <Calculator
+                    updateDistanceBasedOnResponse={this.updateDistanceBasedOnResponse}
+                    updateOriginAndDestination={this.updateOriginAndDestination}
+                    distance={this.state.distance}
                 />
-                <Calculator/>
                 <Options
                     options={this.state.trip.options}
                     config={this.state.config}
