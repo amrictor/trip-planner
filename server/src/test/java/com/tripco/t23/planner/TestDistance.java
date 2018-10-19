@@ -15,6 +15,7 @@ public class TestDistance {
     Distance miles;
     Distance nautical;
     Distance kilometers;
+    Distance defined;
 
     //Setup to be done before every test in TestDistance
     @Before
@@ -24,6 +25,7 @@ public class TestDistance {
         miles = new Distance(denver,boulder,"miles");
         nautical = new Distance(denver,boulder,"nautical miles");
         kilometers = new Distance(denver,boulder,"kilometers");
+        defined = new Distance(denver,boulder,"user defined", 12345.0);
     }
 
     @Test
@@ -47,6 +49,14 @@ public class TestDistance {
         kilometers.calculate();
         int expected = 39;
         int result = kilometers.getDistance();
+        assertEquals(expected,result);
+    }
+
+    @Test
+    public void testDefined(){
+        defined.calculate();
+        int expected = 75;
+        int result = defined.getDistance();
         assertEquals(expected,result);
     }
 }
