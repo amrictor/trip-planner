@@ -27,9 +27,8 @@ public class TestQuery {
     @Test
     public void testFind(){
         query.find();
-        ArrayList<Place> expectedPlaces = new ArrayList<>();
         Place place = new Place("OCD4", "Kaufmann Heliport", 40.1463012695,-104.887001038);
-        expectedPlaces.add(place);
-        assertEquals(expectedPlaces,query.places);
+        assertEquals(place.id,query.places.get(0).id);
+        assertEquals(place.name,query.places.get(0).name);
     }
 }
