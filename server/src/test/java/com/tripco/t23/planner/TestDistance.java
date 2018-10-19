@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 @RunWith(JUnit4.class)
 public class TestDistance {
     Distance miles;
+    Distance nautical;
 
     //Setup to be done before every test in TestDistance
     @Before
@@ -20,6 +21,7 @@ public class TestDistance {
         Place denver = new Place("dnvr","Denver",39.7392,-104.9903);
         Place boulder = new Place("bldr","Boulder",40.01499,-105.27055);
         miles = new Distance(denver,boulder,"miles");
+        nautical = new Distance(denver,boulder,"nautical miles");
     }
 
     @Test
@@ -27,6 +29,14 @@ public class TestDistance {
         miles.calculate();
         int expected = 24;
         int result = miles.getDistance();
+        assertEquals(expected,result);
+    }
+
+    @Test
+    public void testNautical(){
+        nautical.calculate();
+        int expected = 21;
+        int result = nautical.getDistance();
         assertEquals(expected,result);
     }
 }
