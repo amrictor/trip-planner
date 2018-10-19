@@ -151,8 +151,8 @@ public class Trip {
         if(options.units.equals("user defined")){
             TripOpt temp = new TripOpt(places, options.units,options.unitRadius);
             temp.shortOptimization();
-            this.distances = temp.getDistances();
             this.places = temp.getPlaces();
+            noneDistances();
         }
         else{
             TripOpt temp = new TripOpt(places, options.units);
