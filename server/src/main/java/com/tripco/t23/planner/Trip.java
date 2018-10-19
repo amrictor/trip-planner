@@ -43,6 +43,10 @@ public class Trip {
             shortDistances();
             this.map = svg();
         }
+        else if (options.optimization == null) {
+            noneDistances();
+            this.map = svg();
+        }
         else{
             noneDistances();
             this.map = svg();
