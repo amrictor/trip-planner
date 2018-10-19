@@ -76,7 +76,7 @@ class Calculator extends Component {
 
 
                 <Collapse isOpen={this.state.iscalculated}>
-                    <Label>&nbsp;Calculated distance
+                    <Label>Calculated distance
                         is {this.props.distance.distance} {this.props.distance.units}.</Label>
                 </Collapse>
             </FormGroup>;

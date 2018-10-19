@@ -128,11 +128,11 @@ However, because we had more work for this sprint that intended, we were not abl
 
 #### What we changed this sprint
 
-We made a deal of staying in communication with one another, as well as working to handle our objectives in a more timely manner, rather than waiting till the end. Everyone was aware of what needed to be done by the time the sprint was done.
+We made a deal of staying in communication with one another, as well as working to handle our objectives in a more timely manner, rather than waiting till the end. Our improved communication helped us sharing our unique knowledge around so each team member can work more effectively. We worried less about "who-do-what-task" this Sprint and focused more on "do whatever you can with your given knowledge to help complete this Sprint". We stopped assigning tasks randomly but rather talked about the task and the person comfortable with said task would step up and take over it. We asked for help when we needed it and got our Sprint done together. Everyone was aware of what needed to be done by the time the sprint was done.
 
 #### What we did well
 
-We communicated a great deal more this sprint. Everyone understood what their goals were and what the team was headed towards. The team was aware that Sprint 2 shortcomings were a priority this time through and were handled accordingly. Teammates did a good job of helping teammates who were stuck during their pieces, making debugging a breeze.
+We communicated a great deal more this sprint. Everyone understood what their goals were and what the team was headed towards. The team was aware that Sprint 2 shortcomings were a priority this time through and were handled accordingly. Teammates did a good job of helping teammates who were stuck during their pieces, making debugging a breeze. Communication played a major role in our success this Sprint, it helped us choosing the right person to work on the right task and finish it on time.
 
 #### What we need to work on
 
