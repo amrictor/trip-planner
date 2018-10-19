@@ -10,11 +10,11 @@ import java.util.ArrayList;
 
 public class Query {
     //Variables to match the search TFFI.
-    private double version;
-    private String type;
-    private String match;
-    private String limit;
-    private ArrayList<Place> places;
+    public double version;
+    public String type;
+    public String match;
+    public String limit;
+    public ArrayList<Place> places;
 
     //Database configuration info
     private static final String myDriver = "com.mysql.jdbc.Driver";

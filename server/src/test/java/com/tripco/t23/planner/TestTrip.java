@@ -26,7 +26,7 @@ public class TestTrip {
     trip = new Trip();
     trip.options = new Option();
     trip.options.units = "miles";
-    trip.options.optimization = "none";
+    trip.options.optimization = "short";
     trip.places = new ArrayList<Place>();
     trip.places.add(new Place("dnvr", "Denver", 39.7392,-104.9903));
     trip.places.add(new Place("bldr", "Boulder", 40.01499, -105.27055));
@@ -36,7 +36,7 @@ public class TestTrip {
   @Test
   public void testTrue() {
     // assertTrue checks if a statement is true
-    assertTrue(true == true);
+    assertTrue( true);
   }
 
   @Test
