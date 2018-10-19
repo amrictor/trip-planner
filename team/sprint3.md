@@ -128,16 +128,16 @@ However, because we had more work for this sprint that intended, we were not abl
 
 #### What we changed this sprint
 
-*Articulate specifically what you will do differently based on the retrospective from the previous sprint before the sprint starts.*
+We made a deal of staying in communication with one another, as well as working to handle our objectives in a more timely manner, rather than waiting till the end. Everyone was aware of what needed to be done by the time the sprint was done.
 
 #### What we did well
 
-*Articulate what went well at the end of the sprint.*
+We communicated a great deal more this sprint. Everyone understood what their goals were and what the team was headed towards. The team was aware that Sprint 2 shortcomings were a priority this time through and were handled accordingly. Teammates did a good job of helping teammates who were stuck during their pieces, making debugging a breeze.
 
 #### What we need to work on
 
-*Articulate things you could improve at the end of the sprint.*
+We've still got to work on a good deal of code coverage next sprint, during our rush to recover from the last sprint, testing and writing tests was something that hung on the back burner while we ensured our setup was ready for the demo.
 
 #### What we will change next sprint 
 
-*Articulate the one thing you will change for the next sprint and how you will accomplish that.*
+Next time, we hope to get a head start on what we're working on, considering we're not nearly as far behind as we were during last Sprint. This will give us time to more fully complete our objectives.
