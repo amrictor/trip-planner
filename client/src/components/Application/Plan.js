@@ -54,10 +54,12 @@ class Plan extends Component {
     }
 
     planRequest(){
-        request(this.props.trip, 'plan', this.props.port, this.props.host).then(response => this.props.updateBasedOnResponse(response));
-        this.setState({
-            showComponent: true,
-        });
+        if (typeof this.props.trip !== "undefined") {
+            request(this.props.trip, 'plan', this.props.port, this.props.host).then(response => this.props.updateBasedOnResponse(response));
+            this.setState({
+                showComponent: true,
+            });
+        }
     }
 
     showSearchResult(){
