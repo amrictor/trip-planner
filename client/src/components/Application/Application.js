@@ -66,10 +66,10 @@ class Application extends Component {
     }
 
     updateHostAndPort(host, port) {
+        port = port ? port : 0;
         this.port = port;
-        if (host !== "") {
-            this.host = host;
-        } else this.host = "black-bottle.cs.colostate.edu";
+        host = host ? host : "black-bottle.cs.colostate.edu";
+        this.host = host;
     }
 
     updateDistanceBasedOnResponse(value) {
