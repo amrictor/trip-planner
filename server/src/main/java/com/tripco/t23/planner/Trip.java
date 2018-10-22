@@ -43,14 +43,7 @@ public class Trip {
             shortDistances();
             this.map = svg();
         }
-        else if (options.optimization == null) {
-            noneDistances();
-            this.map = svg();
-        }
-        else{
-            noneDistances();
-            this.map = svg();
-        }
+       noneDistances();
     }
 
     /**
@@ -156,13 +149,11 @@ public class Trip {
             TripOpt temp = new TripOpt(places, options.units,options.unitRadius);
             temp.shortOptimization();
             this.places = temp.getPlaces();
-            noneDistances();
         }
         else{
             TripOpt temp = new TripOpt(places, options.units);
             temp.shortOptimization();
             this.places = temp.getPlaces();
-            noneDistances();
         }
     }
 }
