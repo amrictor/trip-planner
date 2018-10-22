@@ -39,11 +39,14 @@ public class Trip {
      * It might need to reorder the places in the future.
      */
     public void plan() {
-        if(options.optimization.equals("short")){
-            shortDistances();
-            this.map = svg();
+        if(version == 3){
+            if(options.optimization.equals("short")){
+                shortDistances();
+
+            }
         }
-       noneDistances();
+        this.map = svg();
+        noneDistances();
     }
 
     /**
