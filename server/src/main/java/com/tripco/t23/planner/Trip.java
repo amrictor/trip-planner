@@ -39,14 +39,13 @@ public class Trip {
      * It might need to reorder the places in the future.
      */
     public void plan() {
-        if(options.optimization.equals("none")){
-            noneDistances();
-            this.map = svg();
+        if(options.optimization != null){
+            if(options.optimization.equals("short")){
+                shortDistances();
+            }
         }
-        else{
-            shortDistances();
-            this.map = svg();
-        }
+        this.map = svg();
+        noneDistances();
     }
 
     /**
@@ -152,13 +151,11 @@ public class Trip {
             TripOpt temp = new TripOpt(places, options.units,options.unitRadius);
             temp.shortOptimization();
             this.places = temp.getPlaces();
-            noneDistances();
         }
         else{
             TripOpt temp = new TripOpt(places, options.units);
             temp.shortOptimization();
             this.places = temp.getPlaces();
-            noneDistances();
         }
     }
 }

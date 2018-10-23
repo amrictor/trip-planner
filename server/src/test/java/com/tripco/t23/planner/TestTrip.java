@@ -24,6 +24,7 @@ public class TestTrip {
   @Before
   public void initialize() {
     trip = new Trip();
+    trip.version = 3;
     trip.options = new Option();
     trip.options.units = "miles";
     trip.options.optimization = "short";
