@@ -72,14 +72,16 @@ public class Trip {
 
         String background = strBuild.toString();
         String locations ="";
+        int i = 1;
         for(Place p: places){
             locations += "\n\n\t\t\t<circle cx=\"" + getX(p.longitude)
                     + "\" cy=\"" + getY(p.latitude)
-                    + "\" r=\"2\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" />";
+                    + "\" r=\"6\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" />";
 
             locations += "\n\n\t\t\t<text x=\"" + (getX(p.longitude) + 5)
                     + "\" y=\"" + (getY(p.latitude) - 5)
-                    + "\" font-family=\"sans-serif\" font-size=\"20px\" fill=\"black\">" + p.name + "</text>";
+                    + "\" font-family=\"sans-serif\" font-size=\"40px\" fill=\"black\">" + i + "</text>";
+            i++;
         }
 
         String path = "M ";
@@ -92,7 +94,7 @@ public class Trip {
 
         String svg = strBuild.insert(background.lastIndexOf("/>")+2,
                 "\n\n\t\t\t<path\n\td=\"" + path + "\"\n\tstyle=\"fill:none;fill-rule:"
-                        + "evenodd;stroke:#f4426b;stroke-width:1.27559996;stroke-linejoin:"
+                        + "evenodd;stroke:#f4426b;stroke-width:4;stroke-linejoin:"
                         + "round;stroke-miterlimit:3.8636899\" \n\tid=\"tripLegs\" />"
                         + locations).toString();
 

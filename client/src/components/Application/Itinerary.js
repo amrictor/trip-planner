@@ -18,8 +18,8 @@ class Itinerary extends Component {
             if (typeof this.props.trip.distances !== "undefined") {
                 for (let i = 0; i < size; i++) {
                     data.push(<tr key={this.props.trip.places[i].name}>
-                        <td>{this.props.trip.places[i].name}</td>
-                        <td>{this.props.trip.places[(i + 1) % size].name}</td>
+                        <td>{this.props.trip.places[i].name +" ("+ (i+1) +")"}</td>
+                        <td>{this.props.trip.places[(i + 1) % size].name + " ("+ (((i+1) % size) + 1) + ")"}</td>
                         <td>{this.props.trip.distances[i]}</td>
                     </tr>);
                     total += this.props.trip.distances[i];
