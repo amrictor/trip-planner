@@ -48,6 +48,11 @@ class Search extends Component {
         this.props.updatePlaces(place);
         this.props.planRequest();
     }
+    removePlace(id, name, lat, long){
+        const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
+        this.props.updatePlaces(place);
+        this.props.planRequest();
+    }
     putData(){
         let data = [];
         for (let i = 0; i < this.state.search.places.length; i++){
@@ -59,22 +64,20 @@ class Search extends Component {
                     <Col xs="2" key='lat'>{String(Math.round((this.state.search.places[i].latitude+ 0.00001) * 100)/100)}</Col>
                     <Col xs="2" key='lon'>{String(Math.round((this.state.search.places[i].longitude+ 0.00001) * 100)/100)}</Col>
                     <Col xs="2">
-                        <Row>
-                            <Button
-                                key={'options_submit'}
-                                className='btn-outline-dark unit-button'
-                                onClick={() => this.addPlace(this.state.search.places[i].id, this.state.search.places[i].name, this.state.search.places[i].latitude, this.state.search.places[i].longitude)}
-                            >
-                                &#x2795;
-                            </Button>
-                            <Button
-                                key={'options_submit'}
-                                className='btn-outline-dark unit-button'
-                                onClick={() => this.addPlace(this.state.search.places[i].id, this.state.search.places[i].name, this.state.search.places[i].latitude, this.state.search.places[i].longitude)}
-                            >
-                                &#x2796;
-                            </Button>
-                        </Row>
+                        <Button
+                            key={'options_submit'}
+                            className='btn-outline-dark unit-button'
+                            onClick={() => this.addPlace(this.state.search.places[i].id, this.state.search.places[i].name, this.state.search.places[i].latitude, this.state.search.places[i].longitude)}
+                        >
+                            &#x2795;
+                        </Button>
+                        <Button
+                            key={'options_submit'}
+                            className='btn-outline-dark unit-button'
+                            onClick={() => this.removePlace(this.state.search.places[i].id, this.state.search.places[i].name, this.state.search.places[i].latitude, this.state.search.places[i].longitude)}
+                        >
+                            &#x2796;
+                        </Button>
                     </Col>
                 </Row>
                 <hr/>
