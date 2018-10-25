@@ -43,6 +43,14 @@ This would include 2 opt, reversing a trip, removing items from a trip, choosing
 For the server, we plan to write tests and update the tffi to include KML, filter for the search results, attributes and other API updates.
 For the client, we plan to write tests, to implement filter buttons for search query and what is shown for plan, and to implement the KML map. 
 
+Server diagram:
+![Server](https://github.com/csu18fa314/t23/blob/master/Resources/SP4/serverdiagram.jpg)
+
+Client Diagram:
+![Client](https://github.com/csu18fa314/t23/blob/master/Resources/SP4/client%20diagram.jpg)
+
+UI Sketch:
+![UI](https://github.com/csu18fa314/t23/blob/master/Resources/SP4/UI%20SP4.jpg)
 
 
 
