@@ -50,6 +50,12 @@ class Search extends Component {
     }
     removePlace(id, name, lat, long){
         const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
+        let places = this.props.places;
+        for( var i = 0; i < places.length-1; i++){
+            if ( places[i] === place) {
+                places.splice(i, 1);
+            }
+        }
         this.props.updatePlaces(place);
         this.props.planRequest();
     }
@@ -65,14 +71,14 @@ class Search extends Component {
                     <Col xs="2" key='lon'>{String(Math.round((this.state.search.places[i].longitude+ 0.00001) * 100)/100)}</Col>
                     <Col xs="2">
                         <Button
-                            key={'options_submit'}
+                            key={'add_submit'}
                             className='btn-outline-dark unit-button'
                             onClick={() => this.addPlace(this.state.search.places[i].id, this.state.search.places[i].name, this.state.search.places[i].latitude, this.state.search.places[i].longitude)}
                         >
                             &#x2795;
                         </Button>
                         <Button
-                            key={'options_submit'}
+                            key={'remove_submit'}
                             className='btn-outline-dark unit-button'
                             onClick={() => this.removePlace(this.state.search.places[i].id, this.state.search.places[i].name, this.state.search.places[i].latitude, this.state.search.places[i].longitude)}
                         >
