@@ -58,21 +58,23 @@ class Search extends Component {
                     <Col xs="4" key='name'>{this.state.search.places[i].name}</Col>
                     <Col xs="2" key='lat'>{String(Math.round((this.state.search.places[i].latitude+ 0.00001) * 100)/100)}</Col>
                     <Col xs="2" key='lon'>{String(Math.round((this.state.search.places[i].longitude+ 0.00001) * 100)/100)}</Col>
-                    <Col xs="1">
-                        <Button
-                            key={'options_submit'}
-                            className='btn-outline-dark unit-button'
-                            onClick={()=> this.addPlace(this.state.search.places[i].id, this.state.search.places[i].name, this.state.search.places[i].latitude, this.state.search.places[i].longitude)}
-                        >
-                            &#x2795;
-                        </Button>
-                        <Button
-                            key={'options_submit'}
-                            className='btn-outline-dark unit-button'
-                            onClick={()=> this.addPlace(this.state.search.places[i].id, this.state.search.places[i].name, this.state.search.places[i].latitude, this.state.search.places[i].longitude)}
-                        >
-                            &#x2796;
-                        </Button>
+                    <Col xs="2">
+                        <Row>
+                            <Button
+                                key={'options_submit'}
+                                className='btn-outline-dark unit-button'
+                                onClick={() => this.addPlace(this.state.search.places[i].id, this.state.search.places[i].name, this.state.search.places[i].latitude, this.state.search.places[i].longitude)}
+                            >
+                                &#x2795;
+                            </Button>
+                            <Button
+                                key={'options_submit'}
+                                className='btn-outline-dark unit-button'
+                                onClick={() => this.addPlace(this.state.search.places[i].id, this.state.search.places[i].name, this.state.search.places[i].latitude, this.state.search.places[i].longitude)}
+                            >
+                                &#x2796;
+                            </Button>
+                        </Row>
                     </Col>
                 </Row>
                 <hr/>
