@@ -235,48 +235,48 @@ class Plan extends Component {
 
         return (
             <React.Fragment>
-            <Card>
-                <CardBody id="Plan">
-                    <CardTitle>Plan a trip around Colorado!</CardTitle>
-                    <ButtonGroup>
-                        <Button
-                            key={'load'}
-                            color= "primary" style={{ marginBottom: '1rem' }}
-                            className='btn-outline-dark unit-button'
-                            onClick={()=> this.toggleLoad()}
-                            active={this.state.isload === true}
-                        >
-                            Load
-                        </Button>
-                        <Button
-                            key={'clear'}
-                            color= "primary" style={{ marginBottom: '1rem' }}
-                            className='btn-outline-dark unit-button'
-                            onClick={()=> this.clearFileUploader()}
-                            disabled={this.state.isloaded === false}
-                        >
-                            Clear
-                        </Button>
-                        <Button
-                            key={'plan'}
-                            color= "primary" style={{ marginBottom: '1rem' }}
-                            className='btn-outline-dark unit-button'
-                            onClick={() => this.planRequest()}
-                            disabled={this.state.isloaded === false}
-                        >
-                            Plan
-                        </Button>
-                        <Button
-                            key={'save'}
-                            color= "primary" style={{ marginBottom: '1rem' }}
-                            className='btn-outline-dark unit-button'
-                            onClick={() => this.saveToFile()}
-                            disabled={this.state.isloaded === false}
-                        >
-                            Save
-                        </Button>
-                    </ButtonGroup>
-                    {fileuploader}
+                <Card>
+                    <CardBody id="Plan">
+                        <CardTitle>Plan a trip around Colorado!</CardTitle>
+                        <ButtonGroup>
+                            <Button
+                                key={'load'}
+                                color= "primary" style={{ marginBottom: '1rem' }}
+                                className='btn-outline-dark unit-button'
+                                onClick={()=> this.toggleLoad()}
+                                active={this.state.isload === true}
+                            >
+                                Load
+                            </Button>
+                            <Button
+                                key={'clear'}
+                                color= "primary" style={{ marginBottom: '1rem' }}
+                                className='btn-outline-dark unit-button'
+                                onClick={()=> this.clearFileUploader()}
+                                disabled={this.state.isloaded === false}
+                            >
+                                Clear
+                            </Button>
+                            <Button
+                                key={'plan'}
+                                color= "primary" style={{ marginBottom: '1rem' }}
+                                className='btn-outline-dark unit-button'
+                                onClick={() => this.planRequest()}
+                                disabled={this.state.isloaded === false}
+                            >
+                                Plan
+                            </Button>
+                            <Button
+                                key={'save'}
+                                color= "primary" style={{ marginBottom: '1rem' }}
+                                className='btn-outline-dark unit-button'
+                                onClick={() => this.saveToFile()}
+                                disabled={this.state.isloaded === false}
+                            >
+                                Save
+                            </Button>
+                        </ButtonGroup>
+                        {fileuploader}
                     </CardBody>
                     <CardBody id="add">
                         <CardTitle>Add stops to your trip and click plan to update your itinerary.</CardTitle>
@@ -285,19 +285,12 @@ class Plan extends Component {
                             {this.searchPopUp()}
                         </Collapse>
                         {addBody}
-                </CardBody>
-
+                    </CardBody>
                 </Card>
-                <Collapse isOpen={this.state.showComponent}>
-                    {this.state.showComponent ?
-                        <Itinerary
-                            trip={this.props.trip}
-                        /> :
-                        null
-                    }
-                </Collapse>
+                <Itinerary
+                    trip={this.props.trip}
+                />
             </React.Fragment>
-
         )
     }
 }

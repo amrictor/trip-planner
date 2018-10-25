@@ -5,7 +5,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -51,16 +54,23 @@ public class TestTrip {
     assertEquals(expectedDistances, trip.distances);
   }
 
-  @Test 
+  @Test
   public void testMap() {
     trip.plan();
-    String test = "";
-    try {
-      test = new String(Files.readAllBytes(Paths.get(new File("../Resources/test.svg").getAbsolutePath())));
-    } catch(Exception e){
-      e.printStackTrace();
-    }
 
+    String line = null;
+    StringBuilder strBuild = new StringBuilder();
+    try {
+      BufferedReader bufferedReader = new BufferedReader(
+              new InputStreamReader(getClass().getClassLoader().getResourceAsStream("test.svg"),
+                      Charset.defaultCharset()));
+      while ((line = bufferedReader.readLine()) != null) {
+        strBuild.append(line+'\n');
+      }
+    } catch (Exception e) {
+      System.out.println(e.getStackTrace());
+    }
+    String test = strBuild.toString();
     assertEquals(trip.map, test);
   }
 }

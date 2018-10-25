@@ -18,8 +18,8 @@ class Itinerary extends Component {
             if (typeof this.props.trip.distances !== "undefined") {
                 for (let i = 0; i < size; i++) {
                     data.push(<tr key={this.props.trip.places[i].name}>
-                        <td>{this.props.trip.places[i].name}</td>
-                        <td>{this.props.trip.places[(i + 1) % size].name}</td>
+                        <td>{this.props.trip.places[i].name +" ("+ (i+1) +")"}</td>
+                        <td>{this.props.trip.places[(i + 1) % size].name + " ("+ (((i+1) % size) + 1) + ")"}</td>
                         <td>{this.props.trip.distances[i]}</td>
                     </tr>);
                     total += this.props.trip.distances[i];
@@ -55,12 +55,16 @@ class Itinerary extends Component {
     }
 
     generateMap(){
-        if (typeof this.props.trip.places !== "undefined"){
-            return (
-            <CardImg top width="100%" src={"data:image/svg+xml;utf8," + this.props.trip.map} alt={"Visual Itinerary Not Available"}/>
-            );
-        }
-        return;
+        let source = (this.props.trip.map == null)
+            ? "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/USA_Colorado_location_map.svg/800px-USA_Colorado_location_map.svg.png"
+            : "data:image/svg+xml;utf8," + this.props.trip.map
+        return (
+          <CardImg
+              top width="100%"
+              src={source}
+              alt={"Visual Itinerary Not Available"}
+          />
+        );
     }
 
     render() {
