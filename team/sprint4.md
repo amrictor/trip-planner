@@ -1,4 +1,4 @@
-# Sprint 4 - *your team number* - *your team name*
+# Sprint 4 - T23 - Team Dave
 
 ## Goal
 
@@ -48,8 +48,13 @@ For the client, we plan to write tests, to implement filter buttons for search q
 
 Epics planned for this sprint.
 
-* *## epic title: description*
-*
+* *128 TripCo: All code must be tested: minimum 50% coverage, preferred 70% coverage*
+* *129 User: I want my trips to be shorter: Use nearest neighbor to build a shorter trip.*
+* *130 User: I want to make and save changes to the trip: I would like to add or remove destinations,I want to choose a different starting location, I want to reverse the order of the trip, I want to find possible destinations so I can add them, I want to save the changes I make to the trip.*
+* *227 User: I want to choose what information is displayed in the itinerary and map: allow additional attribut/evalue pairs to be captured for destinations whether they are entered manually or obtained from a database; allow the user to select attributes to display in the itinerary, including the latitude and longitude.*
+* *228 User: I want to view my trip in other tools: Use a mapping tool to draw the map and allow the user to zoom and pan; Let me save the map (svg or kml) to a file so I can view it in other tools.*
+* *229 User: I want to plan trips worldwide: Use a new database that contains a list of destinations worldwide; Allow the user to filter search requests.*
+* *230 User: I'd like even shorter trips: Use 2-opt to improve the nearest neighbor tours.*
 
 
 ## Metrics
