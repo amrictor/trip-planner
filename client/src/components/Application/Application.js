@@ -111,10 +111,10 @@ class Application extends Component {
         else if (key === "remove") {
             const place = JSON.stringify(value);
             let trip = this.state.trip;
-            console.log(trip);
             if (typeof this.state.trip.places !== 'undefined') {
-
-                console.log("you're in");
+                 trip["places"] = trip["places"].filter(function(ele){
+                    return JSON.stringify(ele) !== place;
+                });
             }
             this.setState(trip)
         }
