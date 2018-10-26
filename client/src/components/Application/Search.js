@@ -50,13 +50,9 @@ class Search extends Component {
     }
     removePlace(id, name, lat, long){
         const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
-        let places = this.props.trip.places;
+        let places = this.props.trip;
         console.log(places);
-        for( var i = 0; i < places.length-1; i++){
-            if ( places[i] === place) {
-                places.splice(i, 1);
-            }
-        }
+
         this.props.updatePlaces(place);
         this.props.planRequest();
     }
