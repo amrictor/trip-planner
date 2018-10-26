@@ -45,22 +45,12 @@ class Search extends Component {
     }
     addPlace(id, name, lat, long){
         const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
-        this.props.updatePlaces(place);
+        this.props.updatePlaces(place,"add");
         this.props.planRequest();
     }
     removePlace(id, name, lat, long){
         const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
-        let places = this.props.places;
-        console.log(places);
-        for( let i = 0; i < places.length-1; i++){
-            if ( places[i] === place) {
-                places.splice(i, 1);
-            }
-        }
-
-
-
-        this.props.updatePlaces(place);
+        this.props.updatePlaces(place,"remove");
         this.props.planRequest();
     }
     putData(){
