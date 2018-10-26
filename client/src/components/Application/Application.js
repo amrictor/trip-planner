@@ -109,9 +109,10 @@ class Application extends Component {
             }
         }
         else if (key === "remove") {
-            if (typeof this.state.trip.places === 'undefined') {
-                this.state.trip.places = [value];
+            if (typeof this.state.trip.places !== 'undefined') {
+
             }
+            return;
         }
         else return;
 

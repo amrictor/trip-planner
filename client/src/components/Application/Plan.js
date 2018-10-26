@@ -57,7 +57,7 @@ class Plan extends Component {
     addPlace(id, name, lat, long){
         if(id.length==0 || name.length==0 || lat ==0 || long ==0) return;
         const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
-        this.props.updatePlaces(place);
+        this.props.updatePlaces(place,"add");
         this.planRequest();
     }
 
