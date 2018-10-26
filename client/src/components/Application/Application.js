@@ -99,13 +99,22 @@ class Application extends Component {
         this.setState(trip);
     }
 
-    updatePlaces(value) {
-        if (typeof this.state.trip.places === 'undefined') {
-            this.state.trip.places = [value];
+    updatePlaces(value, key) {
+        if (key === "add") {
+            if (typeof this.state.trip.places === 'undefined') {
+                this.state.trip.places = [value];
+            }
+            else {
+                this.state.trip.places.push(value);
+            }
         }
-        else {
-            this.state.trip.places.push(value);
+        else if (key === "remove") {
+            if (typeof this.state.trip.places === 'undefined') {
+                this.state.trip.places = [value];
+            }
         }
+        else return;
+
 
         console.log(this.state);
     }
