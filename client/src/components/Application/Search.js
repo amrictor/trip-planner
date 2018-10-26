@@ -50,7 +50,7 @@ class Search extends Component {
     }
     removePlace(id, name, lat, long){
         const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
-        let places = this.props.trip;
+        let places = this.props.trip.places;
         console.log(places);
 
         this.props.updatePlaces(place);
@@ -127,7 +127,7 @@ class Search extends Component {
                     />
                     <InputGroupAddon addonType="append">
                         <Button
-                            key={'options_submit'}
+                            key={'show_search_submit'}
                             className='btn-outline-dark unit-button'
                             onClick={()=> this.showSearchResult()}
                         >
@@ -136,7 +136,7 @@ class Search extends Component {
                     </InputGroupAddon>
                     <InputGroupAddon addonType="append">
                         <Button
-                            key={'options_submit'}
+                            key={'close_search_submit'}
                             className='btn-outline-dark unit-button'
                             onClick={()=> this.closeSearch()}
                         >
