@@ -6,7 +6,7 @@ import { ButtonGroup, Button } from 'reactstrap';
 import {Collapse} from 'reactstrap';
 import {Form} from 'reactstrap';
 import {Input, InputGroup, InputGroupAddon} from 'reactstrap'
-import { request, get_config } from '../../api/api';
+import { request } from '../../api/api';
 
 class Search extends Component {
     constructor(props) {
