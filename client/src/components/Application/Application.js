@@ -110,14 +110,13 @@ class Application extends Component {
         }
         else if (key === "remove") {
             const place = JSON.stringify(value);
+            let trip = this.state.trip;
+            console.log(trip);
             if (typeof this.state.trip.places !== 'undefined') {
-                for( let i = 0; i < this.state.trip.places.length; i++){
-                    console.log(this.state.trip.places[i]);
-                    if ( JSON.stringify(this.state.trip.places[i]) === place) {
-                        console.log("reached correctly");
-                    }
-                }
+
+                console.log("you're in");
             }
+            this.setState(trip)
         }
     }
 
