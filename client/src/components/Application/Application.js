@@ -109,15 +109,18 @@ class Application extends Component {
             }
         }
         else if (key === "remove") {
+            console.log(value);
+            console.log(this.state.trip.places);
             if (typeof this.state.trip.places !== 'undefined') {
-
+                for( let i = 0; i < this.state.trip.places.length-1; i++){
+                    if ( this.state.trip.places[i] === value) {
+                        console.log("reached correctly");
+                        this.state.trip.places.splice(i, 1);
+                        console.log(this.state.trip.places);
+                    }
+                }
             }
-            return;
         }
-        else return;
-
-
-        console.log(this.state);
     }
 
     render() {
