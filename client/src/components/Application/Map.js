@@ -8,13 +8,10 @@ class Map extends Component {
         super(props);
     }
     generateMap(){
-        let source = (this.props.trip.map == null)
-            ? "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/USA_Colorado_location_map.svg/800px-USA_Colorado_location_map.svg.png"
-            : "data:image/svg+xml;utf8," + this.props.trip.map
         return (
           <CardImg
               top width="100%"
-              src={source}
+              src={this.props.trip.map}
               alt={"Visual Itinerary Not Available"}
           />
         );
