@@ -99,12 +99,18 @@ class Application extends Component {
         this.setState(trip);
     }
 
+    //key can only be {"add", "remove"}, perform accordingly
     updatePlaces(value, key) {
         if (key === "add") {
             if (typeof this.state.trip.places === 'undefined') {
                 this.state.trip.places = [value];
             }
             else {
+                const place = JSON.stringify(value);
+                let found = -1;
+                found = this.state.trip.places.findIndex(function(ele){
+                    return JSON.stringify(ele) !== place;
+                });
                 this.state.trip.places.push(value);
             }
         }
@@ -112,7 +118,7 @@ class Application extends Component {
             const place = JSON.stringify(value);
             let trip = this.state.trip;
             if (typeof this.state.trip.places !== 'undefined') {
-                 trip["places"] = trip["places"].filter(function(ele){
+                trip["places"] = trip["places"].filter(function(ele){
                     return JSON.stringify(ele) !== place;
                 });
             }
