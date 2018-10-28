@@ -102,7 +102,6 @@ class Application extends Component {
     //key can only be {"add", "remove"}, perform accordingly
     updatePlaces(value, key) {
         if (key === "add") {
-            console.log("to ./run or not to ./run");
             if (typeof this.state.trip.places === 'undefined') {
                 this.state.trip.places = [value];
             }
