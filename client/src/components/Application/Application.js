@@ -107,11 +107,12 @@ class Application extends Component {
             }
             else {
                 const place = JSON.stringify(value);
-                let found = -1;
-                found = this.state.trip.places.findIndex(function(ele){
+                let found = this.state.trip.places.findIndex(function(ele){
                     return JSON.stringify(ele) !== place;
                 });
-                this.state.trip.places.push(value);
+                if (found === -1)  {
+                    this.state.trip.places.push(value);
+                }
             }
         }
         else if (key === "remove") {
