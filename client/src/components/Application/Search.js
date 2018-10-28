@@ -6,7 +6,7 @@ import { ButtonGroup, Button } from 'reactstrap';
 import {Collapse} from 'reactstrap';
 import {Form} from 'reactstrap';
 import {Input, InputGroup, InputGroupAddon} from 'reactstrap'
-import { request, get_config } from '../../api/api';
+import { request } from '../../api/api';
 
 class Search extends Component {
     constructor(props) {
@@ -45,7 +45,12 @@ class Search extends Component {
     }
     addPlace(id, name, lat, long){
         const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
-        this.props.updatePlaces(place);
+        this.props.updatePlaces(place,"add");
+        this.props.planRequest();
+    }
+    removePlace(id, name, lat, long){
+        const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
+        this.props.updatePlaces(place,"remove");
         this.props.planRequest();
     }
     putData(){
@@ -58,20 +63,27 @@ class Search extends Component {
                     <Col xs="4" key='name'>{this.state.search.places[i].name}</Col>
                     <Col xs="2" key='lat'>{String(Math.round((this.state.search.places[i].latitude+ 0.00001) * 100)/100)}</Col>
                     <Col xs="2" key='lon'>{String(Math.round((this.state.search.places[i].longitude+ 0.00001) * 100)/100)}</Col>
-                    <Col xs="1">
+                    <Col xs="2">
                         <Button
-                            key={'options_submit'}
+                            key={'add_submit'}
                             className='btn-outline-dark unit-button'
-                            onClick={()=> this.addPlace(this.state.search.places[i].id, this.state.search.places[i].name, this.state.search.places[i].latitude, this.state.search.places[i].longitude)}
+                            onClick={() => this.addPlace(this.state.search.places[i].id, this.state.search.places[i].name, this.state.search.places[i].latitude, this.state.search.places[i].longitude)}
                         >
                             &#x2795;
+                        </Button>
+                        <Button
+                            key={'remove_submit'}
+                            className='btn-outline-dark unit-button'
+                            onClick={() => this.removePlace(this.state.search.places[i].id, this.state.search.places[i].name, this.state.search.places[i].latitude, this.state.search.places[i].longitude)}
+                        >
+                            &#x2796;
                         </Button>
                     </Col>
                 </Row>
                 <hr/>
                 </React.Fragment>
             );
-            if(i==this.state.search.limit) break;
+            if(i===this.state.search.limit) break;
         }
         return data;
     }
@@ -112,7 +124,7 @@ class Search extends Component {
                     />
                     <InputGroupAddon addonType="append">
                         <Button
-                            key={'options_submit'}
+                            key={'show_search_submit'}
                             className='btn-outline-dark unit-button'
                             onClick={()=> this.showSearchResult()}
                         >
@@ -121,7 +133,7 @@ class Search extends Component {
                     </InputGroupAddon>
                     <InputGroupAddon addonType="append">
                         <Button
-                            key={'options_submit'}
+                            key={'close_search_submit'}
                             className='btn-outline-dark unit-button'
                             onClick={()=> this.closeSearch()}
                         >
