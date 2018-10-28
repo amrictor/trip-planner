@@ -97,7 +97,7 @@ public class Trip {
                         + "round;stroke-miterlimit:3.8636899\" \n\tid=\"tripLegs\" />"
                         + locations).toString();
 
-        return svg;
+        return "data:image/svg+xml;utf8," + svg;
     }
 
     private double getX(double longitude){
