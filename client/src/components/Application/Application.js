@@ -108,7 +108,7 @@ class Application extends Component {
             else {
                 const place = JSON.stringify(value);
                 let found = this.state.trip.places.findIndex(function(ele){
-                    return JSON.stringify(ele) !== place;
+                    return JSON.stringify(ele) === place;
                 });
                 if (found === -1)  {
                     this.state.trip.places.push(value);
