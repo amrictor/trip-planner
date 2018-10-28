@@ -225,6 +225,8 @@ class Plan extends Component {
                                 host={this.host}/>
                             <Itinerary
                                 trip={this.props.trip}
+                                updatePlaces={this.props.updatePlaces}
+                                planRequest={this.planRequest}
                             />
                         </Container>
                     </CardBody>
