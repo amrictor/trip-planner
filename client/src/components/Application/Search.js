@@ -48,11 +48,6 @@ class Search extends Component {
         this.props.updatePlaces(place,"add");
         this.props.planRequest();
     }
-    removePlace(id, name, lat, long){
-        const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
-        this.props.updatePlaces(place,"remove");
-        this.props.planRequest();
-    }
     putData(){
         let data = [];
         for (let i = 0; i < this.state.search.places.length; i++){
@@ -70,13 +65,6 @@ class Search extends Component {
                             onClick={() => this.addPlace(this.state.search.places[i].id, this.state.search.places[i].name, this.state.search.places[i].latitude, this.state.search.places[i].longitude)}
                         >
                             &#x2795;
-                        </Button>
-                        <Button
-                            key={'remove_submit'}
-                            className='btn-outline-dark unit-button'
-                            onClick={() => this.removePlace(this.state.search.places[i].id, this.state.search.places[i].name, this.state.search.places[i].latitude, this.state.search.places[i].longitude)}
-                        >
-                            &#x2796;
                         </Button>
                     </Col>
                 </Row>
