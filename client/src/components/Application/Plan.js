@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
 import { Card, CardBody, CardTitle, CardSubtitle, CardImg } from 'reactstrap';
 import { Col, Container, Row, Table } from 'reactstrap';
 import { ButtonGroup, Button } from 'reactstrap';
-import { request, get_config } from '../../api/api';
+import { request } from '../../api/api';
 import Itinerary from './Itinerary';
 import Map from './Map';
 import Search from './Search';
@@ -55,7 +55,11 @@ class Plan extends Component {
     }
 
     addPlace(id, name, lat, long){
-        if(id.length==0 || name.length==0 || lat ==0 || long ==0) return;
+        id = id ? id : "";
+        name = name ? name : "";
+        lat = lat ? lat : 0;
+        long = long ? long : 0;
+        if(id.length===0 || name.length===0 || lat ===0 || long ===0) return;
         const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
         this.props.updatePlaces(place,"add");
         this.planRequest();
