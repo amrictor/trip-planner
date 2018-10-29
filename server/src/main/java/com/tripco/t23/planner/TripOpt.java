@@ -1,6 +1,7 @@
 package com.tripco.t23.planner;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * This class handles the optimization requests, changing both places and distances.
@@ -51,21 +52,21 @@ public class TripOpt {
      * Makes the nearest neighbor for the base town its sent.
      */
     private void nearestNeighbor(Place base){
-        ArrayList<Place> used = new ArrayList<>();
-        ArrayList<Place> unused = new ArrayList<>(places);
-        Place place;
+        LinkedList<Place> used = new LinkedList<>();
+        boolean[] unused = new boolean[places.size()];
+        int place;
         int cumulativeDist = 0;
 
-        unused.remove(base);
+        unused[places.indexOf(base)] = true;
         used.add(base);
-        while(unused.size() > 0){
+        while(used.size() != places.size()){
             place = getNextCity(used.get(used.size()-1),unused);
-            used.add(place);
-            unused.remove(place);
+            used.add(places.get(place));
+            unused[place] = true;
             cumulativeDist = cumulativeDist + shortestdist;
         }
         if(cumulativeDist < currentShortest){
-            tempPlaces = used;
+            tempPlaces.addAll(used);
             currentShortest = cumulativeDist;
         }
     }
@@ -73,14 +74,20 @@ public class TripOpt {
     /**
      * Finds the next city in the set for the current base town.
      */
-    private Place getNextCity(Place base, ArrayList<Place> set){
-        Place result = set.get(0);
-        shortestdist = measure(base, set.get(0));
-        for(int i = 0; i < set.size(); i++){
-            int temp = measure(base,set.get(i));
+    private int getNextCity(Place base, boolean[] set){
+        shortestdist = Integer.MAX_VALUE;
+        int temp;
+        int result = 0;
+        for(int i = 0; i < places.size(); i++){
+            if(set[i] == false) {
+                temp = measure(base, places.get(i));
+            }
+            else{
+                continue;
+            }
             if(temp < shortestdist){
                 shortestdist = temp;
-                result = set.get(i);
+                result = i;
             }
         }
         return result;
