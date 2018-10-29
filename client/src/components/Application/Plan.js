@@ -173,12 +173,14 @@ class Plan extends Component {
                             name="latitude"
                             id="latitude_field"
                             placeholder="Latitude"
+                            step="0.00000001"
                         />
                         <Input
                             type="number"
                             name="longitude"
                             id="longitude_field"
                             placeholder="Longitude"
+                            step="0.00000001"
                         />
                     </InputGroup>
                 </Form>
