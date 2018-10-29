@@ -41,7 +41,8 @@ public class TripOpt {
         for(int i = 0; i < places.size(); i++){
             nearestNeighbor(i);
         }
-        places = tempPlaces;
+        places.clear();
+        places.addAll(tempPlaces);
     }
 
     /**
