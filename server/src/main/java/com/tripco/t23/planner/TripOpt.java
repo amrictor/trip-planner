@@ -1,7 +1,6 @@
 package com.tripco.t23.planner;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
@@ -40,7 +39,7 @@ public class TripOpt {
      */
     public void shortOptimization(){
         for(int i = 0; i < places.size(); i++){
-            nearestNeighbor(places.get(i));
+            nearestNeighbor(i);
         }
         places = tempPlaces;
     }
@@ -48,14 +47,14 @@ public class TripOpt {
     /**
      * Makes the nearest neighbor for the base town its sent.
      */
-    private void nearestNeighbor(Place base){
+    private void nearestNeighbor(int base){
         LinkedList<Place> used = new LinkedList<>();
         boolean[] unused = new boolean[places.size()];
         int place;
         int cumulativeDist = 0;
 
-        unused[places.indexOf(base)] = true;
-        used.add(base);
+        unused[base] = true;
+        used.add(places.get(base));
         while(used.size() != places.size()){
             place = getNextCity(used.get(used.size()-1),unused);
             used.add(places.get(place));
@@ -66,7 +65,6 @@ public class TripOpt {
             tempPlaces.addAll(used);
             currentShortest = cumulativeDist;
         }
-        System.out.println(Arrays.toString(used.toArray()));
     }
 
     /**
