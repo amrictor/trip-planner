@@ -36,6 +36,7 @@ class Calculator extends Component {
                             name="latitude_f"
                             id="latitude_f_field"
                             placeholder="Latitude"
+                            step="0.00000001"
                         />
                         <Input
                             type="number"
