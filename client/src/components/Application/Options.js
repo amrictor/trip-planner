@@ -30,8 +30,8 @@ class Options extends Component {
         this.props.updateOptions('unitRadius', radius);
     }
 
-    handleKeyPress(event) {
-        if(event.key == '.'){
+    handleKeyDotPress(event) {
+        if(event.key === '.'){
             event.preventDefault();
             alert('Please enter an integer.');
         }
@@ -66,7 +66,7 @@ class Options extends Component {
                         name="port"
                         id="port_field"
                         placeholder="port"
-                        onKeyPress={this.handleKeyPress}
+                        onKeyPress={this.handleKeyDotPress}
                     />
                     <InputGroupAddon addonType="append">
                         &nbsp;
@@ -122,6 +122,22 @@ class Options extends Component {
                     active={this.props.options.optimization === 'short'}
                 >
                     Short
+                </Button>
+                <Button
+                    key={'shorter'}
+                    className='btn-outline-dark unit-button'
+                    onClick={(event) => this.props.updateOptions('optimization', 'shorter')}
+                    active={this.props.options.optimization === 'shorter'}
+                >
+                    Shorter
+                </Button>
+                <Button
+                    key={'shortest'}
+                    className='btn-outline-dark unit-button'
+                    onClick={(event) => this.props.updateOptions('optimization', 'shortest')}
+                    active={this.props.options.optimization === 'shortest'}
+                >
+                    Shortest
                 </Button>
             </ButtonGroup>;
 
