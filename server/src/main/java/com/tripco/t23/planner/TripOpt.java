@@ -56,7 +56,6 @@ public class TripOpt {
 
         unused[places.indexOf(base)] = true;
         used.add(base);
-        System.out.println(Arrays.toString(unused));
         while(used.size() != places.size()){
             place = getNextCity(used.get(used.size()-1),unused);
             used.add(places.get(place));
@@ -67,6 +66,7 @@ public class TripOpt {
             tempPlaces.addAll(used);
             currentShortest = cumulativeDist;
         }
+        System.out.println(Arrays.toString(unused));
     }
 
     /**
