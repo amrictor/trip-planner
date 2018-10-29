@@ -115,6 +115,22 @@ class Options extends Component {
                 >
                     Short
                 </Button>
+                <Button
+                    key={'shorter'}
+                    className='btn-outline-dark unit-button'
+                    onClick={(event) => this.props.updateOptions('optimization', 'shorter')}
+                    active={this.props.options.optimization === 'shorter'}
+                >
+                    Shorter
+                </Button>
+                <Button
+                    key={'shortest'}
+                    className='btn-outline-dark unit-button'
+                    onClick={(event) => this.props.updateOptions('optimization', 'shortest')}
+                    active={this.props.options.optimization === 'shortest'}
+                >
+                    Shortest
+                </Button>
             </ButtonGroup>;
 
 
