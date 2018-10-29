@@ -32,6 +32,7 @@ class Options extends Component {
 
     handleKeyPress(event) {
         if(event.key == '.'){
+            event.preventDefault();
             alert('Please enter an integer.');
         }
     }
