@@ -34,16 +34,13 @@ public class TripOpt {
         return places;
     }
 
-    public ArrayList<Integer> getDistances() {
-        return distances;
-    }
-
     /**
      * Sends each town to retrieve it's nearest neighbor.
      */
     public void shortOptimization(){
         for(int i = 0; i < places.size(); i++){
             nearestNeighbor(places.get(i));
+            System.out.println("This happens.");
         }
         places = tempPlaces;
     }
@@ -79,7 +76,7 @@ public class TripOpt {
         int temp;
         int result = 0;
         for(int i = 0; i < places.size(); i++){
-            if(set[i] == false) {
+            if(!set[i]) {
                 temp = measure(base, places.get(i));
             }
             else{
