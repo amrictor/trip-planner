@@ -39,6 +39,7 @@ public class TripOpt {
      */
     public void shortOptimization(){
         for(int i = 0; i < places.size(); i++){
+            System.out.print(i);
             nearestNeighbor(places.get(i));
         }
         places = tempPlaces;
@@ -55,7 +56,6 @@ public class TripOpt {
 
         unused[places.indexOf(base)] = true;
         used.add(base);
-        System.out.println("This happens.");
         while(used.size() != places.size()){
             place = getNextCity(used.get(used.size()-1),unused);
             used.add(places.get(place));
