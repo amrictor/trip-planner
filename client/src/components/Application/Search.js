@@ -16,7 +16,9 @@ class Search extends Component {
                 version: 3,
                 type: "search",
                 match: "",
-                limit: 5,
+                filters: [],
+                limit: 15,
+                found: 0,
                 places: []
             },
             isSearch: false,
