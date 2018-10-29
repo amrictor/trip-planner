@@ -11,7 +11,6 @@ class Calculator extends Component {
     }
 
     calc(lat_f, long_f, lat_t, long_t) {
-        console.log(lat_f);
         lat_f = lat_f ? lat_f : 0;
         long_f = long_f ? long_f : 0;
         lat_t = lat_t ? lat_t : 0;
