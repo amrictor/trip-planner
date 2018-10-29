@@ -66,7 +66,7 @@ public class TripOpt {
             tempPlaces.addAll(used);
             currentShortest = cumulativeDist;
         }
-        System.out.println(used.toString());
+        System.out.println(Arrays.toString(used.toArray()));
     }
 
     /**
