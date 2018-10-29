@@ -11,7 +11,7 @@ public class TripOpt {
     private ArrayList<Integer> distances = new ArrayList<>();
     private String units;
     private Double unitRadius;
-    private ArrayList<Place> tempPlaces = new ArrayList<>();
+    private LinkedList<Place> tempPlaces = new LinkedList<>();
     private int currentShortest;
     private int shortestdist;
 
@@ -62,8 +62,7 @@ public class TripOpt {
             cumulativeDist = cumulativeDist + shortestdist;
         }
         if(cumulativeDist < currentShortest){
-            tempPlaces.clear();
-            tempPlaces.addAll(used);
+            tempPlaces = used;
             currentShortest = cumulativeDist;
         }
     }
