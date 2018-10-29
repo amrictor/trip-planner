@@ -61,7 +61,6 @@ public class TripOpt {
             unused[place] = true;
             cumulativeDist = cumulativeDist + shortestdist;
         }
-        System.out.println();
         if(cumulativeDist < currentShortest){
             tempPlaces.clear();
             tempPlaces.addAll(used);
