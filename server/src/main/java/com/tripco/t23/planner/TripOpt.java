@@ -65,6 +65,7 @@ public class TripOpt {
         System.out.println("Current Shortest: " + currentShortest);
         System.out.println();
         if(cumulativeDist < currentShortest){
+            tempPlaces.clear();
             tempPlaces.addAll(used);
             currentShortest = cumulativeDist;
         }
