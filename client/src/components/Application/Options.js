@@ -59,6 +59,12 @@ class Options extends Component {
                         name="port"
                         id="port_field"
                         placeholder="port"
+                        onKeyPress={() =>
+                            const keyCode = event.keyCode || event.which;
+                            const keyValue = String.fromCharCode(keyCode);
+                            if (/./.test(keyValue))
+                            event.preventDefault();
+                        }
                     />
                     <InputGroupAddon addonType="append">
                         &nbsp;
