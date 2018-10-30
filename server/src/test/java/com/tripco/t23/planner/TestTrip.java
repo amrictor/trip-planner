@@ -30,7 +30,7 @@ public class TestTrip {
     trip.version = 3;
     trip.options = new Option();
     trip.options.units = "miles";
-    trip.options.optimization = "short";
+    trip.options.optimization = "none";
     trip.places = new ArrayList<Place>();
     trip.places.add(new Place("dnvr", "Denver", 39.7392,-104.9903));
     trip.places.add(new Place("bldr", "Boulder", 40.01499, -105.27055));
