@@ -37,7 +37,8 @@ class Application extends Component {
                     units: "miles",
                     unitName: "",
                     unitRadius: 0,
-                    optimization: "none"
+                    optimization: "none",
+                    map: "svg"
                 },
                 places: [],
                 distances: [],
