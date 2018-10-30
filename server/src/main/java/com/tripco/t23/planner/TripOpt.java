@@ -100,6 +100,7 @@ public class TripOpt {
                 result = i;
             }
         }
+        System.out.println(result);
         return result;
     }
 
@@ -116,10 +117,6 @@ public class TripOpt {
         }
         temp.calculate();
         return temp.getDistance();
-    }
-
-    public static void main(String[] args){
-
     }
 }
 
