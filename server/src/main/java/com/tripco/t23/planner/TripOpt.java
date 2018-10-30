@@ -21,8 +21,8 @@ public class TripOpt {
         this.places = places;
         this.units = units;
         currentShortest = Integer.MAX_VALUE;
-        for(int i = 0; i < places.size();i++){
-            for(int j = 0; j < places.size();i++){
+        for(int i = 0; i < places.size()-1;i++){
+            for(int j = 0; j < places.size()-1;i++){
                 allDistances[i][j] = measure(places.get(i),places.get(j));
             }
         }
