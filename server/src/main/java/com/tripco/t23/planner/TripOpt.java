@@ -1,6 +1,7 @@
 package com.tripco.t23.planner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
@@ -62,21 +63,21 @@ public class TripOpt {
      * Makes the nearest neighbor for the base town its sent.
      */
     private void nearestNeighbor(int base){
-        LinkedList<Place> used = new LinkedList<>();
-        boolean[] unused = new boolean[places.size()];
+        LinkedList<Place> placed = new LinkedList<>();
+        boolean[] used = new boolean[places.size()];
         int place;
         int cumulativeDist = 0;
 
-        unused[base] = true;
-        used.add(places.get(base));
-        while(used.size() != places.size()){
-            place = getNextCity(used.size()-1,unused);
-            used.add(places.get(place));
-            unused[place] = true;
+        used[base] = true;
+        placed.add(places.get(base));
+        while(placed.size() != places.size()){
+            place = getNextCity(placed.size()-1,used);
+            placed.add(places.get(place));
+            used[place] = true;
             cumulativeDist = cumulativeDist + shortestdist;
         }
         if(cumulativeDist < currentShortest){
-            tempPlaces = used;
+            tempPlaces = placed;
             currentShortest = cumulativeDist;
         }
     }
@@ -91,7 +92,6 @@ public class TripOpt {
         for(int i = 0; i < places.size(); i++){
             if(!set[i]) {
                 temp = allDistances[base][i];
-                System.out.println(temp);
                 if(temp == 0){
                     continue;
                 }
@@ -101,6 +101,7 @@ public class TripOpt {
             }
             if(temp < shortestdist){
                 shortestdist = temp;
+                System.out.println(shortestdist);
                 result = i;
             }
         }
