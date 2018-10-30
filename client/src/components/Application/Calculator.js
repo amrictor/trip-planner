@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {ButtonGroup, Button, Card, CardBody, CardHeader, CardTitle, Form, FormGroup, Label} from 'reactstrap'
 import { Input, InputGroup, InputGroupAddon } from 'reactstrap'
 import {Collapse} from 'reactstrap'
-import {request, get_config} from '../../api/api';
+import {request} from '../../api/api';
 
 class Calculator extends Component {
     constructor(props) {
@@ -35,12 +35,14 @@ class Calculator extends Component {
                             name="latitude_f"
                             id="latitude_f_field"
                             placeholder="Latitude"
+                            step="0.00000001"
                         />
                         <Input
                             type="number"
                             name="longitude_f"
                             id="longitude_f_field"
                             placeholder="Longitude"
+                            step="0.00000001"
                         />
                     </InputGroup>
                 </Form>
@@ -53,12 +55,14 @@ class Calculator extends Component {
                             name="latitude_t"
                             id="latitude_t_field"
                             placeholder="Latitude"
+                            step="0.00000001"
                         />
                         <Input
                             type="number"
                             name="longitude_t"
                             id="longitude_t_field"
                             placeholder="Longitude"
+                            step="0.00000001"
                         />
                         &nbsp;
                         <InputGroupAddon addonType="append">

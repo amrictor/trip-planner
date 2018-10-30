@@ -30,6 +30,13 @@ class Options extends Component {
         this.props.updateOptions('unitRadius', radius);
     }
 
+    handleKeyDotPress(event) {
+        if(event.key === '.'){
+            event.preventDefault();
+            alert('Please enter an integer.');
+        }
+    }
+
     render() {
         const buttons = this.props.config.units.map((units) =>
             <Button
@@ -59,6 +66,7 @@ class Options extends Component {
                         name="port"
                         id="port_field"
                         placeholder="port"
+                        onKeyPress={this.handleKeyDotPress}
                     />
                     <InputGroupAddon addonType="append">
                         &nbsp;
