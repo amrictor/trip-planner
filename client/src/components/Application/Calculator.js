@@ -36,6 +36,7 @@ class Calculator extends Component {
                             id="latitude_f_field"
                             placeholder="Latitude"
                             step="0.00000001"
+                            required
                         />
                         <Input
                             type="number"
@@ -43,6 +44,7 @@ class Calculator extends Component {
                             id="longitude_f_field"
                             placeholder="Longitude"
                             step="0.00000001"
+                            required
                         />
                     </InputGroup>
                 </Form>
@@ -56,6 +58,7 @@ class Calculator extends Component {
                             id="latitude_t_field"
                             placeholder="Latitude"
                             step="0.00000001"
+                            required
                         />
                         <Input
                             type="number"
@@ -63,6 +66,7 @@ class Calculator extends Component {
                             id="longitude_t_field"
                             placeholder="Longitude"
                             step="0.00000001"
+                            required
                         />
                         &nbsp;
                         <InputGroupAddon addonType="append">

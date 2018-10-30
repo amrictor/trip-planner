@@ -175,12 +175,14 @@ class Plan extends Component {
                             name="id"
                             id="id_field"
                             placeholder="ID"
+                            required
                         />
                         <Input
                             type="text"
                             name="name"
                             id="name_field"
                             placeholder="Name"
+                            required
                         />
                     </InputGroup>
                 </Form>
@@ -192,6 +194,7 @@ class Plan extends Component {
                             id="latitude_field"
                             placeholder="Latitude"
                             step="0.00000001"
+                            required
                         />
                         <Input
                             type="number"
@@ -199,6 +202,7 @@ class Plan extends Component {
                             id="longitude_field"
                             placeholder="Longitude"
                             step="0.00000001"
+                            required
                         />
                     </InputGroup>
                 </Form>
