@@ -37,7 +37,8 @@ class Application extends Component {
                     units: "miles",
                     unitName: "",
                     unitRadius: 0,
-                    optimization: "none"
+                    optimization: "none",
+                    map: "svg"
                 },
                 places: [],
                 distances: [],
@@ -99,20 +100,27 @@ class Application extends Component {
         this.setState(trip);
     }
 
+    //key can only be {"add", "remove"}, perform accordingly
     updatePlaces(value, key) {
         if (key === "add") {
             if (typeof this.state.trip.places === 'undefined') {
                 this.state.trip.places = [value];
             }
             else {
-                this.state.trip.places.push(value);
+                const place = JSON.stringify(value);
+                let found = this.state.trip.places.findIndex(function(ele){
+                    return JSON.stringify(ele) === place;
+                });
+                if (found === -1)  {
+                    this.state.trip.places.push(value);
+                }
             }
         }
         else if (key === "remove") {
             const place = JSON.stringify(value);
             let trip = this.state.trip;
             if (typeof this.state.trip.places !== 'undefined') {
-                 trip["places"] = trip["places"].filter(function(ele){
+                trip["places"] = trip["places"].filter(function(ele){
                     return JSON.stringify(ele) !== place;
                 });
             }

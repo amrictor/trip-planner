@@ -68,13 +68,17 @@ class Plan extends Component {
     clearFileUploader(){
         const defaultState = {
             type: "trip",
+            version: 3,
             title: "",
-            options : {
+            options: {
                 units: "miles",
                 unitName: "",
                 unitRadius: 0,
                 optimization: "none"
-            }
+            },
+            places: [],
+            distances: [],
+            map: null
         };
         this.props.updateBasedOnResponse(defaultState);
     }
@@ -173,12 +177,14 @@ class Plan extends Component {
                             name="latitude"
                             id="latitude_field"
                             placeholder="Latitude"
+                            step="0.00000001"
                         />
                         <Input
                             type="number"
                             name="longitude"
                             id="longitude_field"
                             placeholder="Longitude"
+                            step="0.00000001"
                         />
                     </InputGroup>
                 </Form>
@@ -225,6 +231,8 @@ class Plan extends Component {
                                 host={this.host}/>
                             <Itinerary
                                 trip={this.props.trip}
+                                updatePlaces={this.props.updatePlaces}
+                                planRequest={this.planRequest}
                             />
                         </Container>
                     </CardBody>
