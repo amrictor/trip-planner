@@ -24,7 +24,7 @@ public class TripOpt {
         allDistances = new int[places.size()][places.size()];
         for(int i = 0; i < places.size();i++){
             for(int j = 0; j < places.size();i++){
-                System.out.println(places.size());
+                System.out.println( i + " and " + j);
                 allDistances[i][j] = measure(places.get(i),places.get(j));
             }
         }
