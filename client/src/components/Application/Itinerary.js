@@ -25,7 +25,7 @@ class Itinerary extends Component {
         const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
         this.props.updatePlaces(place,"remove");
         if(this.props.trip.places.length>0) this.props.planRequest();
-        else this.props.trip.map="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/USA_Colorado_location_map.svg/800px-USA_Colorado_location_map.svg.png";
+        else this.props.trip.map=null;
     }
 
     putData(){
