@@ -12,7 +12,7 @@ public class TripOpt {
     private String units;
     private Double unitRadius;
     private LinkedList<Place> tempPlaces = new LinkedList<>();
-    private int[][] allDistances = new int[places.size()][places.size()];
+    private int[][] allDistances;
     private int currentShortest;
     private int shortestdist;
 
@@ -21,6 +21,7 @@ public class TripOpt {
         this.places = places;
         this.units = units;
         currentShortest = Integer.MAX_VALUE;
+        allDistances = new int[places.size()][places.size()];
         for(int i = 0; i < places.size();i++){
             for(int j = 0; j < places.size();i++){
                 System.out.println(places.size());
@@ -34,6 +35,7 @@ public class TripOpt {
         this.units = units;
         this.unitRadius = unitRadius;
         currentShortest = Integer.MAX_VALUE;
+        allDistances = new int[places.size()][places.size()];
         for(int i = 0; i < places.size();i++){
             for(int j = 0; j < places.size();i++){
                 allDistances[i][j] = measure(places.get(i),places.get(j));
@@ -115,6 +117,10 @@ public class TripOpt {
         }
         temp.calculate();
         return temp.getDistance();
+    }
+
+    public static void main(String[] args){
+
     }
 }
 
