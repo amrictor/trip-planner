@@ -87,21 +87,15 @@ public class TripOpt {
      */
     private int getNextCity(int base, boolean[] set){
         shortestdist = Integer.MAX_VALUE;
-        int temp;
         int result = -1;
+        int temp;
         for(int i = 0; i < places.size(); i++){
-            if(!set[i]) {
-                temp = allDistances[base][i];
-                if(temp == 0){
-                    continue;
-                }
-            }
-            else{
+            temp = allDistances[base][i];
+            if(set[i]){
                 continue;
             }
             if(temp < shortestdist){
                 shortestdist = temp;
-                System.out.println(shortestdist);
                 result = i;
             }
         }
@@ -121,6 +115,24 @@ public class TripOpt {
         }
         temp.calculate();
         return temp.getDistance();
+    }
+
+    public static void main(String[] args){
+        ArrayList<Place> list = new ArrayList<>();
+        Place first = new Place("1", "Springfield", 37.3, -102.54);
+        Place second = new Place("2", "Littleton", 39.64, -104.33);
+        Place third = new Place("3", "San Luis", 37.28, -105.43);
+        list.add(first);
+        list.add(second);
+        list.add(third);
+        TripOpt test = new TripOpt(list,"miles");
+        for(int i = 0; i < test.places.size();i++){
+            System.out.println(Arrays.toString(test.allDistances[i]));
+        }
+        test.shortOptimization();
+        for(int i = 0; i < test.places.size();i++){
+            System.out.print(test.places.get(i).id);
+        }
     }
 }
 
