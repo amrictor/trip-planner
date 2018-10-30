@@ -87,11 +87,14 @@ public class TripOpt {
     private int getNextCity(int base, boolean[] set){
         shortestdist = Integer.MAX_VALUE;
         int temp;
-        int result = 0;
+        int result = -1;
         for(int i = 0; i < places.size(); i++){
             if(!set[i]) {
                 temp = allDistances[base][i];
                 System.out.println(temp);
+                if(temp == 0){
+                    continue;
+                }
             }
             else{
                 continue;
