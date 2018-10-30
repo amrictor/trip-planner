@@ -91,6 +91,7 @@ public class TripOpt {
         for(int i = 0; i < places.size(); i++){
             if(!set[i]) {
                 temp = allDistances[base][i];
+                System.out.println(temp);
             }
             else{
                 continue;
@@ -100,7 +101,6 @@ public class TripOpt {
                 result = i;
             }
         }
-        System.out.println(result);
         return result;
     }
 
