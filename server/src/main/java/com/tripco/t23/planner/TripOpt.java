@@ -12,6 +12,7 @@ public class TripOpt {
     private String units;
     private Double unitRadius;
     private LinkedList<Place> tempPlaces = new LinkedList<>();
+    private int[][] allDistances = new int[places.size()][places.size()];
     private int currentShortest;
     private int shortestdist;
 
@@ -20,6 +21,11 @@ public class TripOpt {
         this.places = places;
         this.units = units;
         currentShortest = Integer.MAX_VALUE;
+        for(int i = 0; i < places.size();i++){
+            for(int j = 0; j < places.size();i++){
+                allDistances[i][j] = measure(places.get(i),places.get(j));
+            }
+        }
     }
 
     TripOpt(ArrayList<Place> places, String units, Double unitRadius){
@@ -27,6 +33,11 @@ public class TripOpt {
         this.units = units;
         this.unitRadius = unitRadius;
         currentShortest = Integer.MAX_VALUE;
+        for(int i = 0; i < places.size();i++){
+            for(int j = 0; j < places.size();i++){
+                allDistances[i][j] = measure(places.get(i),places.get(j));
+            }
+        }
     }
 
     //Getters
@@ -57,7 +68,7 @@ public class TripOpt {
         unused[base] = true;
         used.add(places.get(base));
         while(used.size() != places.size()){
-            place = getNextCity(used.get(used.size()-1),unused);
+            place = getNextCity(used.size()-1,unused);
             used.add(places.get(place));
             unused[place] = true;
             cumulativeDist = cumulativeDist + shortestdist;
@@ -71,13 +82,13 @@ public class TripOpt {
     /**
      * Finds the next city in the set for the current base town.
      */
-    private int getNextCity(Place base, boolean[] set){
+    private int getNextCity(int base, boolean[] set){
         shortestdist = Integer.MAX_VALUE;
         int temp;
         int result = 0;
         for(int i = 0; i < places.size(); i++){
             if(!set[i]) {
-                temp = measure(base, places.get(i));
+                temp = allDistances[base][i];
             }
             else{
                 continue;
