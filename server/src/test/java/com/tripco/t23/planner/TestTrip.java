@@ -71,6 +71,6 @@ public class TestTrip {
       System.out.println(e.getStackTrace());
     }
     String test = strBuild.toString();
-    assertEquals(trip.map, "data:image/svg+xml;utf8," + test);
+    assertEquals(trip.map, test);
   }
 }

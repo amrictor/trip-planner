@@ -42,7 +42,7 @@ class Application extends Component {
                 },
                 places: [],
                 distances: [],
-                map: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/USA_Colorado_location_map.svg/800px-USA_Colorado_location_map.svg.png"
+                map: null
             },
             port: window.location.port,
             host: window.location.host
