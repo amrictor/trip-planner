@@ -94,9 +94,10 @@ public class TripOpt {
             if(set[i]){
                 continue;
             }
-            if(temp < shortestdist){
+            if(temp < shortestdist && temp != 0){
                 shortestdist = temp;
                 result = i;
+                System.out.println(shortestdist);
             }
         }
         return result;
@@ -129,10 +130,12 @@ public class TripOpt {
         for(int i = 0; i < test.places.size();i++){
             System.out.println(Arrays.toString(test.allDistances[i]));
         }
-        test.shortOptimization();
-        for(int i = 0; i < test.places.size();i++){
-            System.out.print(test.places.get(i).id);
-        }
+        //test.shortOptimization();
+        //for(int i = 0; i < test.places.size();i++){
+        //    System.out.print(test.places.get(i).id);
+        //}
+        boolean[] set = {false,false,false};
+        test.getNextCity(0,set);
     }
 }
 
