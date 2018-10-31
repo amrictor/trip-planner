@@ -28,6 +28,9 @@ public class TripOpt {
                 allDistances[i][j] = measure(places.get(i),places.get(j));
             }
         }
+        for(int i = 0; i < places.size(); i++){
+            System.out.println(Arrays.toString(allDistances[i]));
+        }
     }
 
     TripOpt(ArrayList<Place> places, String units, Double unitRadius){
