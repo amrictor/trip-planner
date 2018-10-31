@@ -28,9 +28,6 @@ public class TripOpt {
                 allDistances[i][j] = measure(places.get(i),places.get(j));
             }
         }
-        for(int i = 0; i < places.size(); i++){
-            System.out.println(Arrays.toString(allDistances[i]));
-        }
     }
 
     TripOpt(ArrayList<Place> places, String units, Double unitRadius){
@@ -71,7 +68,7 @@ public class TripOpt {
         placed[0] = places.get(base);
         used[base] = true;
         for(int i =1; i < places.size(); i++){
-            int temp = getNextCity(base,used);
+            int temp = getNextCity(i-1,used);
             placed[i] = places.get(temp);
             used[temp] = true;
             cumulativeDist = cumulativeDist + shortestdist;
@@ -133,8 +130,11 @@ public class TripOpt {
         for(int i = 0; i < test.places.size();i++){
             System.out.println(Arrays.toString(test.allDistances[i]));
         }
-        boolean[] set = {true,true,true,true};
-        System.out.println(test.getNextCity(0,set));
+        test.shortOptimization();
+        System.out.println(test.currentShortest);
+        for(int i = 0; i < test.places.size(); i++){
+            System.out.print(test.places.get(i).id);
+        }
         //for(int i = 0; i < test.places.size();i++){
         //    System.out.print(test.places.get(i).id);
         //}
