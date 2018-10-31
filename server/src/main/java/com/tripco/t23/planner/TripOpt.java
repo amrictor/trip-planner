@@ -12,7 +12,7 @@ public class TripOpt {
     private ArrayList<Integer> distances = new ArrayList<>();
     private String units;
     private Double unitRadius;
-    private LinkedList<Place> tempPlaces = new LinkedList<>();
+    private Place[] tempPlaces;
     private int[][] allDistances;
     private int currentShortest;
     private int shortestdist;
@@ -55,30 +55,28 @@ public class TripOpt {
         for(int i = 0; i < places.size(); i++){
             nearestNeighbor(i);
         }
-        places.clear();
-        places.addAll(tempPlaces);
+       places = new ArrayList<Place>(Arrays.asList(tempPlaces));
     }
 
     /**
      * Makes the nearest neighbor for the base town its sent.
      */
     private void nearestNeighbor(int base){
-        LinkedList<Place> placed = new LinkedList<>();
+        Place[] placed = new Place[places.size()];
         boolean[] used = new boolean[places.size()];
-        int place;
         int cumulativeDist = 0;
 
+        placed[0] = places.get(base);
         used[base] = true;
-        placed.add(places.get(base));
-        while(placed.size() != places.size()){
-            place = getNextCity(placed.size()-1,used);
-            placed.add(places.get(place));
-            used[place] = true;
+        for(int i =1; i < placed.length; i++){
+            int temp = getNextCity(base,used);
+            placed[i] = places.get(temp);
+            used[temp] = true;
             cumulativeDist = cumulativeDist + shortestdist;
         }
         if(cumulativeDist < currentShortest){
-            tempPlaces = placed;
             currentShortest = cumulativeDist;
+            tempPlaces = placed;
         }
     }
 
@@ -97,7 +95,6 @@ public class TripOpt {
             if(temp < shortestdist && temp != 0){
                 shortestdist = temp;
                 result = i;
-                System.out.println(shortestdist);
             }
         }
         return result;
@@ -123,19 +120,23 @@ public class TripOpt {
         Place first = new Place("1", "Springfield", 37.3, -102.54);
         Place second = new Place("2", "Littleton", 39.64, -104.33);
         Place third = new Place("3", "San Luis", 37.28, -105.43);
+        Place fourth = new Place("4", "Craig", 40.57,-108.2);
         list.add(first);
         list.add(second);
         list.add(third);
+        list.add(fourth);
         TripOpt test = new TripOpt(list,"miles");
         for(int i = 0; i < test.places.size();i++){
             System.out.println(Arrays.toString(test.allDistances[i]));
         }
-        //test.shortOptimization();
+        test.shortOptimization();
+        System.out.println(test.currentShortest);
+        for(int i = 0; i < test.tempPlaces.length;i++){
+            System.out.print(test.tempPlaces[i].id);
+        }
         //for(int i = 0; i < test.places.size();i++){
         //    System.out.print(test.places.get(i).id);
         //}
-        boolean[] set = {false,false,false};
-        test.getNextCity(0,set);
     }
 }
 
