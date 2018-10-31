@@ -89,7 +89,7 @@ public class TripOpt {
         int result = -1;
         int temp;
         for(int i = 0; i < places.size(); i++){
-            if(!used[i]) {
+            if(used[i]) {
                 continue;
             }
             temp = allDistances[base][i];
