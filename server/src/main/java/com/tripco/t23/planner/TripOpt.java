@@ -90,11 +90,9 @@ public class TripOpt {
         int temp;
         for(int i = 0; i < places.size(); i++){
             if(!used[i]) {
-                temp = allDistances[base][i];
-            }
-            else{
                 continue;
             }
+            temp = allDistances[base][i];
             if(temp < shortestdist){
                 shortestdist = temp;
                 result = i;
