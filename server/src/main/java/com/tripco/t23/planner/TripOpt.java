@@ -2,7 +2,7 @@ package com.tripco.t23.planner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
+
 
 /**
  * This class handles the optimization requests, changing both places and distances.
