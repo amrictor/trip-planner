@@ -117,29 +117,5 @@ public class TripOpt {
         temp.calculate();
         return temp.getDistance();
     }
-
-    public static void main(String[] args){
-        ArrayList<Place> list = new ArrayList<>();
-        Place first = new Place("0", "Springfield", 37.3, -102.54);
-        Place second = new Place("1", "Littleton", 39.64, -104.33);
-        Place third = new Place("2", "San Luis", 37.28, -105.43);
-        Place fourth = new Place("3", "Craig", 40.57,-108.2);
-        list.add(first);
-        list.add(second);
-        list.add(third);
-        list.add(fourth);
-        TripOpt test = new TripOpt(list,"miles");
-        for(int i = 0; i < test.places.size();i++){
-            System.out.println(Arrays.toString(test.allDistances[i]));
-        }
-        test.shortOptimization();
-        System.out.println(test.currentShortest);
-        for(int i = 0; i < test.places.size(); i++){
-            System.out.print(test.places.get(i).id);
-        }
-        //for(int i = 0; i < test.places.size();i++){
-        //    System.out.print(test.places.get(i).id);
-        //}
-    }
 }
 
