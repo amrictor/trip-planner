@@ -54,8 +54,9 @@ public class TripOpt {
     public void shortOptimization(){
         for(int i = 0; i < places.size(); i++){
             nearestNeighbor(i);
+            System.out.println(currentShortest);
         }
-       places = new ArrayList<Place>(Arrays.asList(tempPlaces));
+       places = new ArrayList<>(Arrays.asList(tempPlaces));
     }
 
     /**
@@ -82,12 +83,12 @@ public class TripOpt {
     /**
      * Finds the next city in the set for the current base town.
      */
-    private int getNextCity(int base, boolean[] set){
+    private int getNextCity(int base, boolean[] used){
         shortestdist = Integer.MAX_VALUE;
         int result = 0;
         int temp;
         for(int i = 0; i < places.size(); i++){
-            if(!set[i]) {
+            if(!used[i]) {
                 temp = allDistances[base][i];
             }
             else{
