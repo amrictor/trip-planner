@@ -65,10 +65,9 @@ public class TripOpt {
         Place[] placed = new Place[places.size()];
         boolean[] used = new boolean[places.size()];
         int cumulativeDist = 0;
-
         placed[0] = places.get(base);
         used[base] = true;
-        for(int i =1; i < placed.length; i++){
+        for(int i =1; i < places.size(); i++){
             int temp = getNextCity(base,used);
             placed[i] = places.get(temp);
             used[temp] = true;
@@ -85,14 +84,16 @@ public class TripOpt {
      */
     private int getNextCity(int base, boolean[] set){
         shortestdist = Integer.MAX_VALUE;
-        int result = -1;
+        int result = 0;
         int temp;
         for(int i = 0; i < places.size(); i++){
-            temp = allDistances[base][i];
-            if(set[i]){
+            if(!set[i]) {
+                temp = allDistances[base][i];
+            }
+            else{
                 continue;
             }
-            if(temp < shortestdist && temp != 0){
+            if(temp < shortestdist){
                 shortestdist = temp;
                 result = i;
             }
@@ -117,10 +118,10 @@ public class TripOpt {
 
     public static void main(String[] args){
         ArrayList<Place> list = new ArrayList<>();
-        Place first = new Place("1", "Springfield", 37.3, -102.54);
-        Place second = new Place("2", "Littleton", 39.64, -104.33);
-        Place third = new Place("3", "San Luis", 37.28, -105.43);
-        Place fourth = new Place("4", "Craig", 40.57,-108.2);
+        Place first = new Place("0", "Springfield", 37.3, -102.54);
+        Place second = new Place("1", "Littleton", 39.64, -104.33);
+        Place third = new Place("2", "San Luis", 37.28, -105.43);
+        Place fourth = new Place("3", "Craig", 40.57,-108.2);
         list.add(first);
         list.add(second);
         list.add(third);
