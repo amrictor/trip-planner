@@ -65,10 +65,12 @@ public class TripOpt {
         Place[] placed = new Place[places.size()];
         boolean[] used = new boolean[places.size()];
         int cumulativeDist = 0;
+
         placed[0] = places.get(base);
         used[base] = true;
         for(int i =1; i < places.size(); i++){
-            int temp = getNextCity(placed[i-1],used);
+            int temp = getNextCity(base,used);
+            base = temp;
             placed[i] = places.get(temp);
             used[temp] = true;
             cumulativeDist = cumulativeDist + shortestdist;
@@ -82,13 +84,13 @@ public class TripOpt {
     /**
      * Finds the next city in the set for the current base town.
      */
-    private int getNextCity(Place base, boolean[] used){
+    private int getNextCity(int base, boolean[] used){
         shortestdist = Integer.MAX_VALUE;
         int result = -1;
         int temp;
         for(int i = 0; i < places.size(); i++){
             if(!used[i]) {
-                temp = allDistances[places.indexOf(base)][i];
+                temp = allDistances[base][i];
             }
             else{
                 continue;
