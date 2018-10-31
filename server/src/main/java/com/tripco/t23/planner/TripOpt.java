@@ -54,7 +54,6 @@ public class TripOpt {
     public void shortOptimization(){
         for(int i = 0; i < places.size(); i++){
             nearestNeighbor(i);
-            System.out.println(currentShortest);
         }
        places = new ArrayList<>(Arrays.asList(tempPlaces));
     }
@@ -85,7 +84,7 @@ public class TripOpt {
      */
     private int getNextCity(int base, boolean[] used){
         shortestdist = Integer.MAX_VALUE;
-        int result = 0;
+        int result = -1;
         int temp;
         for(int i = 0; i < places.size(); i++){
             if(!used[i]) {
@@ -131,11 +130,8 @@ public class TripOpt {
         for(int i = 0; i < test.places.size();i++){
             System.out.println(Arrays.toString(test.allDistances[i]));
         }
-        test.shortOptimization();
-        System.out.println(test.currentShortest);
-        for(int i = 0; i < test.tempPlaces.length;i++){
-            System.out.print(test.tempPlaces[i].id);
-        }
+        boolean[] set = {true,true,true,true};
+        System.out.println(test.getNextCity(0,set));
         //for(int i = 0; i < test.places.size();i++){
         //    System.out.print(test.places.get(i).id);
         //}
