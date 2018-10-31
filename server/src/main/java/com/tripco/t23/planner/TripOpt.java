@@ -93,7 +93,7 @@ public class TripOpt {
             else{
                 continue;
             }
-            if(temp < shortestdist){
+            if(temp < shortestdist && temp != 0){
                 shortestdist = temp;
                 result = i;
             }
