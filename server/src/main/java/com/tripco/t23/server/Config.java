@@ -1,8 +1,9 @@
 package com.tripco.t23.server;
 
 import com.google.gson.Gson;
-import com.tripco.t23.planner.Filter;
 import com.tripco.t23.planner.Optimization;
+import com.tripco.t23.planner.Filter;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
