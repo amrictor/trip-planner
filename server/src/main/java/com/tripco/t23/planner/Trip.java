@@ -29,8 +29,8 @@ public class Trip {
     public Short version;
     public String type;
     public String title;
-    public ArrayList<Place> places;
     public Option options;
+    public ArrayList<Place> places;
     public ArrayList<Integer> distances;
     public String map;
 
@@ -41,7 +41,10 @@ public class Trip {
     public void plan() {
         if(options.optimization != null){
             if(options.optimization.equals("short")){
-                shortDistances();
+                shortDistances(0);
+            }
+            if(options.optimization.equals("shorter")){
+                shortDistances(2);
             }
         }
         this.map = svg();
@@ -148,14 +151,14 @@ public class Trip {
         this.distances = distances;
     }
 
-    private void shortDistances(){
+    private void shortDistances(int opt){
         if(options.units.equals("user defined")){
-            TripOpt temp = new TripOpt(places, options.units,options.unitRadius);
+            TripOpt temp = new TripOpt(places, options.units,options.unitRadius, opt);
             temp.shortOptimization();
             this.places = temp.getPlaces();
         }
         else{
-            TripOpt temp = new TripOpt(places, options.units);
+            TripOpt temp = new TripOpt(places, options.units, opt);
             temp.shortOptimization();
             this.places = temp.getPlaces();
         }
