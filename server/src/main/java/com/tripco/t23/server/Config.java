@@ -22,8 +22,8 @@ public class Config {
           new Optimization("shorter","2-opt")));
   private List<String> attributes = Arrays.asList("name","id","latitude","longitude");
   private ArrayList<Filter> filters = new ArrayList<>(
-          Arrays.asList(new Filter("type", new ArrayList<>(Arrays.asList("balloonport", "heliport", "airport", "seaplane base"))))
-          );
+          Arrays.asList(new Filter("type", new ArrayList<>(
+          Arrays.asList("balloonport", "heliport", "airport", "seaplane base")))));
   private Integer port;
 
 
