@@ -131,6 +131,9 @@ public class TripOpt {
         return temp.getDistance();
     }
 
+    /**
+     * Implements improvements after NearestNeighbor via 2opt
+     */
     private void twoOpt(){
         boolean improvement = true;
         while(improvement){
@@ -169,35 +172,6 @@ public class TripOpt {
             tempLookup[k] = temp2;
             i1++; k--;
         }
-    }
-
-    public static void main(String[] args){
-        Place first = new Place("0","Cass Field",40.62,-104.34);
-        Place second = new Place("1","McCullough Airport",37.64,-106.04);
-        Place third = new Place("2","Kugel-Strong Airport",40.21,-104.74);
-        Place fourth = new Place("3", "Adams County", 39.87, -104.33);
-        Place fifth = new Place("4", "Alamosa County", 37.57, -105.79);
-        ArrayList<Place> yeet = new ArrayList<>();
-        yeet.add(first);
-        yeet.add(second);
-        yeet.add(third);
-        yeet.add(fourth);
-        yeet.add(fifth);
-        TripOpt test = new TripOpt(yeet,"miles",0);
-        test.shortOptimization();
-        System.out.println("current shortest: " + test.currentShortest);
-        for(int i = 0; i < test.places.size(); i++){
-            System.out.print(test.places.get(i).id);
-        }
-        System.out.println();
-
-        test = new TripOpt(yeet,"miles",2);
-        test.shortOptimization();
-        System.out.println("current shortest: " + test.currentShortest);
-        for(int i = 0; i < test.places.size(); i++){
-            System.out.print(test.places.get(i).id);
-        }
-        System.out.println();
     }
 }
 
