@@ -68,17 +68,18 @@ class Plan extends Component {
     clearFileUploader(){
         const defaultState = {
             type: "trip",
-            version: 3,
-            title: "",
-            options: {
-                units: "miles",
-                unitName: "",
-                unitRadius: 0,
-                optimization: "none"
-            },
-            places: [],
-            distances: [],
-            map: null
+                version: 4,
+                title: "",
+                options: {
+                    units: "miles",
+                    unitName: "",
+                    unitRadius: 0,
+                    optimization: "none",
+                    map: "svg"
+                },
+                places: [],
+                distances: [],
+                map: null
         };
         this.props.updateBasedOnResponse(defaultState);
     }

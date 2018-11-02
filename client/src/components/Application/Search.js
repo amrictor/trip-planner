@@ -13,7 +13,7 @@ class Search extends Component {
         super(props);
         this.state = {
             search: {
-                version: 3,
+                version: 4,
                 type: "search",
                 match: "",
                 filters: [],
