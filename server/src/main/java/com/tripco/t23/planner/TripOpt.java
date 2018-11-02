@@ -19,21 +19,21 @@ public class TripOpt {
     private int shortestdist;
 
     //Constructor
-    TripOpt(ArrayList<Place> places, String units, int opt){
+    TripOpt(ArrayList<Place> places, String units, int opt) {
         this.places = places;
         this.units = units;
-        this.tempLookup = new int[places.size()+1];
+        this.tempLookup = new int[places.size() + 1];
         this.opt = opt;
         currentShortest = Integer.MAX_VALUE;
         allDistances = new int[places.size()][places.size()];
-        for(int i = 0; i < places.size();i++){
-            for(int j = 0; j < places.size();j++){
-                allDistances[i][j] = measure(places.get(i),places.get(j));
+        for (int i = 0; i < places.size(); i++) {
+            for (int j = 0; j < places.size(); j++) {
+                allDistances[i][j] = measure(places.get(i), places.get(j));
             }
         }
     }
 
-    TripOpt(ArrayList<Place> places, String units, Double unitRadius, int opt){
+    TripOpt(ArrayList<Place> places, String units, Double unitRadius, int opt) {
         this.places = places;
         this.units = units;
         this.unitRadius = unitRadius;
@@ -41,9 +41,9 @@ public class TripOpt {
         this.opt = opt;
         currentShortest = Integer.MAX_VALUE;
         allDistances = new int[places.size()][places.size()];
-        for(int i = 0; i < places.size()-1;i++){
-            for(int j = 0; j < places.size()-1;i++){
-                allDistances[i][j] = measure(places.get(i),places.get(j));
+        for (int i = 0; i < places.size() - 1; i++) {
+            for (int j = 0; j < places.size() - 1; i++) {
+                allDistances[i][j] = measure(places.get(i), places.get(j));
             }
         }
     }
@@ -56,20 +56,20 @@ public class TripOpt {
     /**
      * Sends each town to retrieve it's nearest neighbor.
      */
-    public void shortOptimization(){
-        for(int i = 0; i < places.size(); i++){
+    public void shortOptimization() {
+        for (int i = 0; i < places.size(); i++) {
             nearestNeighbor(i);
         }
         places = new ArrayList<>(Arrays.asList(tempPlaces));
-        places.remove(places.size()-1);
+        places.remove(places.size() - 1);
     }
 
     /**
      * Makes the nearest neighbor for the base town its sent.
      */
-    private void nearestNeighbor(int base){
-        Place[] placed = new Place[places.size()+1];
-        boolean[] used = new boolean[places.size()+1];
+    private void nearestNeighbor(int base) {
+        Place[] placed = new Place[places.size() + 1];
+        boolean[] used = new boolean[places.size() + 1];
         int cumulativeDist = 0;
 
         placed[0] = places.get(base);
@@ -78,22 +78,22 @@ public class TripOpt {
         tempLookup[places.size()] = base;
         used[base] = true;
         used[places.size()] = true;
-        for(int i =1; i < places.size(); i++){
-            int temp = getNextCity(base,used);
+        for (int i = 1; i < places.size(); i++) {
+            int temp = getNextCity(base, used);
             base = temp;
             placed[i] = places.get(temp);
             tempLookup[i] = temp;
             used[temp] = true;
             cumulativeDist = cumulativeDist + shortestdist;
         }
-        cumulativeDist += allDistances[tempLookup[0]][tempLookup[tempLookup.length-2]];
-        if(cumulativeDist < currentShortest){
+        cumulativeDist += allDistances[tempLookup[0]][tempLookup[tempLookup.length - 2]];
+        if (cumulativeDist < currentShortest) {
             currentShortest = cumulativeDist;
             tempPlaces = placed;
         }
-        if(opt == 2){
+        if (opt == 2) {
             twoOpt();
-            for(int i= 0; i < tempLookup.length; i++){
+            for (int i = 0; i < tempLookup.length; i++) {
                 tempPlaces[i] = places.get(tempLookup[i]);
             }
         }
@@ -102,16 +102,16 @@ public class TripOpt {
     /**
      * Finds the next city in the set for the current base town.
      */
-    private int getNextCity(int base, boolean[] used){
+    private int getNextCity(int base, boolean[] used) {
         shortestdist = Integer.MAX_VALUE;
         int result = -1;
         int temp;
-        for(int i = 0; i < places.size(); i++){
-            if(used[i]) {
+        for (int i = 0; i < places.size(); i++) {
+            if (used[i]) {
                 continue;
             }
             temp = allDistances[base][i];
-            if(temp < shortestdist){
+            if (temp < shortestdist) {
                 shortestdist = temp;
                 result = i;
             }
@@ -122,13 +122,12 @@ public class TripOpt {
     /**
      * Actually measures the distances.
      */
-    private int measure(Place p1, Place p2){
+    private int measure(Place p1, Place p2) {
         Distance temp;
-        if(units.equals("user defined")){
-            temp = new Distance(p1,p2,units,unitRadius);
-        }
-        else{
-            temp = new Distance(p1,p2,units);
+        if (units.equals("user defined")) {
+            temp = new Distance(p1, p2, units, unitRadius);
+        } else {
+            temp = new Distance(p1, p2, units);
         }
         temp.calculate();
         return temp.getDistance();
@@ -137,19 +136,19 @@ public class TripOpt {
     /**
      * Implements improvements after NearestNeighbor via 2opt
      */
-    private void twoOpt(){
+    private void twoOpt() {
         boolean improvement = true;
-        while(improvement){
+        while (improvement) {
             improvement = false;
             int n = tempLookup.length - 1;
-            for(int i = 0; i <= n-3; i++){
-                for(int k = i + 2; k <= n-1; k++){
-                    int delta = -allDistances[tempLookup[i]][tempLookup[i+1]] -
-                            allDistances[tempLookup[k]][tempLookup[k+1]] +
+            for (int i = 0; i <= n - 3; i++) {
+                for (int k = i + 2; k <= n - 1; k++) {
+                    int delta = -allDistances[tempLookup[i]][tempLookup[i + 1]] -
+                            allDistances[tempLookup[k]][tempLookup[k + 1]] +
                             allDistances[tempLookup[i]][tempLookup[k]] +
-                            allDistances[tempLookup[i+1]][tempLookup[k+1]];
-                    if(delta < 0){
-                        twoOptReverse(i+1,k);
+                            allDistances[tempLookup[i + 1]][tempLookup[k + 1]];
+                    if (delta < 0) {
+                        twoOptReverse(i + 1, k);
                         improvement = true;
                     }
                 }
@@ -161,57 +160,26 @@ public class TripOpt {
     /**
      * Handles the swapping of both the lookup array and the places array
      */
-    private void twoOptReverse(int i1, int k){
-        while(i1<k){
+    private void twoOptReverse(int i1, int k) {
+        while (i1 < k) {
             int temp2 = tempLookup[i1];
             tempLookup[i1] = tempLookup[k];
             tempLookup[k] = temp2;
-            i1++; k--;
+            i1++;
+            k--;
         }
     }
 
     /**
      * Recalculates the entire route length
      */
-    private int routeLength(){
-        int temp= 0;
-        for(int i = 0; i < tempLookup.length - 1;i++){
-            temp += allDistances[tempLookup[i]][tempLookup[i+1]];
+    private int routeLength() {
+        int temp = 0;
+        for (int i = 0; i < tempLookup.length - 1; i++) {
+            temp += allDistances[tempLookup[i]][tempLookup[i + 1]];
         }
         return temp;
     }
 
-    public static void main(String[] args){
-        Place first = new Place("0", "St Vincent", 39.24, -106.24);
-        Place second = new Place("1", "Delta County", 38.74,-108.05);
-        Place third = new Place("2", "Colorado Plains", 40.26,-103.79);
-        Place fourth = new Place("3", "Branch's", 40.34,-104.52);
-        Place fifth = new Place("4", "Kauffman", 40.14, -104.88);
-
-        ArrayList<Place> yeah = new ArrayList<>();
-        yeah.add(first);
-        yeah.add(second);
-        yeah.add(third);
-        yeah.add(fourth);
-        yeah.add(fifth);
-
-        TripOpt test = new TripOpt(yeah,"nautical miles",0);
-        test.shortOptimization();
-        for(int i = 0; i < test.places.size(); i++){
-            System.out.print(test.places.get(i).id);
-        }
-        System.out.println();
-        System.out.println("Current shortest: " + test.currentShortest);
-        System.out.println(Arrays.toString(test.tempLookup));
-
-        test = new TripOpt(yeah, "nautical miles", 2);
-        test.shortOptimization();
-        for(int i = 0; i < test.places.size(); i++){
-            System.out.print(test.places.get(i).id);
-        }
-        System.out.println();
-        System.out.println("Current shortest: " + test.currentShortest);
-        System.out.println(Arrays.toString(test.tempLookup));
-    }
 }
 
