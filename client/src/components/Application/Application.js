@@ -17,7 +17,7 @@ class Application extends Component {
             config: null,
             distance: {
                 type: "distance",
-                version: 3,
+                version: 4,
                 origin: {
                     latitude: 0,
                     longitude: 0
@@ -31,7 +31,7 @@ class Application extends Component {
             },
             trip: {
                 type: "trip",
-                version: 3,
+                version: 4,
                 title: "",
                 options: {
                     units: "miles",
