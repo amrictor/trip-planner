@@ -26,8 +26,15 @@ public class Search {
         Gson gson = new Gson();
         query = gson.fromJson(requestBody, Query.class);
 
-        //Actually query the database.
-        query.find();
+
+        try {
+            //Actually query the database.
+            query.find();
+        } catch(Exception e) {
+            System.out.println("Query failure!");
+            e.printStackTrace();
+            query = gson.fromJson(requestBody, Query.class);
+        }
     }
 
     /** Handles the response for a Query object.
