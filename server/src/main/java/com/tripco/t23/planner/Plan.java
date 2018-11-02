@@ -44,7 +44,7 @@ public class Plan {
     } catch(Exception e) {
       System.out.println("Plan failure!");
       e.printStackTrace();
-      trip = gson.fromJson(requestBody, Trip.class);
+      trip = null;
     }
 
 
@@ -55,6 +55,6 @@ public class Plan {
    */
   public String getTrip () {
     Gson gson = new Gson();
-    return gson.toJson(trip);
+    return (trip==null) ? "{}" : gson.toJson(trip);
   }
 }
