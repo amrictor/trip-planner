@@ -93,6 +93,9 @@ public class TripOpt {
         }
         if(opt == 2){
             twoOpt();
+            for(int i= 0; i < tempLookup.length; i++){
+                tempPlaces[i] = places.get(tempLookup[i]);
+            }
         }
     }
 
@@ -138,7 +141,7 @@ public class TripOpt {
         boolean improvement = true;
         while(improvement){
             improvement = false;
-            int n = tempPlaces.length - 1;
+            int n = tempLookup.length - 1;
             for(int i = 0; i <= n-3; i++){
                 for(int k = i + 2; k <= n-1; k++){
                     int delta = -allDistances[tempLookup[i]][tempLookup[i+1]] -
@@ -152,11 +155,7 @@ public class TripOpt {
                 }
             }
         }
-        int temp = 0;
-        for(int i = 0; i < tempPlaces.length-1; i++){
-            temp += allDistances[tempLookup[i]][tempLookup[i+1]];
-        }
-        currentShortest = temp;
+
     }
 
     /**
@@ -164,14 +163,55 @@ public class TripOpt {
      */
     private void twoOptReverse(int i1, int k){
         while(i1<k){
-            Place temp1 = tempPlaces[i1];
             int temp2 = tempLookup[i1];
-            tempPlaces[i1] = tempPlaces[k];
             tempLookup[i1] = tempLookup[k];
-            tempPlaces[k] = temp1;
             tempLookup[k] = temp2;
             i1++; k--;
         }
+    }
+
+    /**
+     * Recalculates the entire route length
+     */
+    private int routeLength(){
+        int temp= 0;
+        for(int i = 0; i < tempLookup.length - 1;i++){
+            temp += allDistances[tempLookup[i]][tempLookup[i+1]];
+        }
+        return temp;
+    }
+
+    public static void main(String[] args){
+        Place first = new Place("0", "St Vincent", 39.24, -106.24);
+        Place second = new Place("1", "Delta County", 38.74,-108.05);
+        Place third = new Place("2", "Colorado Plains", 40.26,-103.79);
+        Place fourth = new Place("3", "Branch's", 40.34,-104.52);
+        Place fifth = new Place("4", "Kauffman", 40.14, -104.88);
+
+        ArrayList<Place> yeah = new ArrayList<>();
+        yeah.add(first);
+        yeah.add(second);
+        yeah.add(third);
+        yeah.add(fourth);
+        yeah.add(fifth);
+
+        TripOpt test = new TripOpt(yeah,"nautical miles",0);
+        test.shortOptimization();
+        for(int i = 0; i < test.places.size(); i++){
+            System.out.print(test.places.get(i).id);
+        }
+        System.out.println();
+        System.out.println("Current shortest: " + test.currentShortest);
+        System.out.println(Arrays.toString(test.tempLookup));
+
+        test = new TripOpt(yeah, "nautical miles", 2);
+        test.shortOptimization();
+        for(int i = 0; i < test.places.size(); i++){
+            System.out.print(test.places.get(i).id);
+        }
+        System.out.println();
+        System.out.println("Current shortest: " + test.currentShortest);
+        System.out.println(Arrays.toString(test.tempLookup));
     }
 }
 
