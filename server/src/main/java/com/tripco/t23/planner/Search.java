@@ -33,7 +33,7 @@ public class Search {
         } catch(Exception e) {
             System.out.println("Query failure!");
             e.printStackTrace();
-            query = gson.fromJson(requestBody, Query.class);
+            query = null;
         }
     }
 
@@ -42,6 +42,6 @@ public class Search {
      */
     public String getQuery() {
         Gson gson = new Gson();
-        return gson.toJson(query);
+        return (query==null) ? "{}" : gson.toJson(query);
     }
 }

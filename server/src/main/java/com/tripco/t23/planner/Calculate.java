@@ -33,12 +33,12 @@ public class Calculate {
         } catch(Exception e) {
             System.out.println("Calculate failure!");
             e.printStackTrace();
-            distance = gson.fromJson(requestBody, Distance.class);
+            distance = null;
         }
     }
 
     public String getDistance(){
         Gson gson = new Gson();
-        return gson.toJson(distance);
+        return (distance==null) ? "{}" : gson.toJson(distance);
     }
 }
