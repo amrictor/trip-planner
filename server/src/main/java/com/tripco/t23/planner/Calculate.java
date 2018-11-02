@@ -27,10 +27,14 @@ public class Calculate {
         // calculate distance
         distance.calculate();
 
-        // log something
-        // probably dont want to log something
-        //System.out.println(distance.title);
-
+        try {
+            // calculate distance
+            distance.calculate();
+        } catch(Exception e) {
+            System.out.println("Calculate failure!");
+            e.printStackTrace();
+            distance = gson.fromJson(requestBody, Distance.class);
+        }
     }
 
     public String getDistance(){

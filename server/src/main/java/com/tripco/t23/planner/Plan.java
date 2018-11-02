@@ -35,11 +35,19 @@ public class Plan {
     Gson gson = new Gson();
     trip = gson.fromJson(requestBody, Trip.class);
 
-    // plan the trip.
-    trip.plan();
 
-    // log something.
-    System.out.println(trip.title);
+    try {
+      // plan the trip.
+      trip.plan();
+      // log something.
+      System.out.println(trip.title);
+    } catch(Exception e) {
+      System.out.println("Plan failure!");
+      e.printStackTrace();
+      trip = gson.fromJson(requestBody, Trip.class);
+    }
+
+
   }
 
   /** Handles the response for a Trip object.
