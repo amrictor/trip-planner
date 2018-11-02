@@ -91,7 +91,8 @@ class Application extends Component {
     }
 
     updateBasedOnResponse(value) {
-        this.setState({'trip': value});
+        if(JSON.stringify(value)!=='{}') this.setState({'trip': value});
+        else console.log("Error on server")
     }
 
     updateOptions(option, value) {
