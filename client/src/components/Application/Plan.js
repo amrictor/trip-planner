@@ -207,7 +207,7 @@ class Plan extends Component {
                         <hr/>
                         <Container>
                             <Row>
-                                <Col  xs="5">
+                                <Col md="5">
                                     {functions}
                                     {fileuploader}
                                     <CardTitle>Add stops to your trip!</CardTitle>
@@ -215,7 +215,7 @@ class Plan extends Component {
                                     <hr/>
                                 </Col>
 
-                                <Col>
+                                <Col md="7">
                                     <Map
                                         trip={this.props.trip}
                                     />
@@ -229,12 +229,12 @@ class Plan extends Component {
                                 places={this.state.places}
                                 port={this.port}
                                 host={this.host}/>
-                            <Itinerary
-                                trip={this.props.trip}
-                                updatePlaces={this.props.updatePlaces}
-                                planRequest={this.planRequest}
-                            />
                         </Container>
+                        <Itinerary
+                            trip={this.props.trip}
+                            updatePlaces={this.props.updatePlaces}
+                            planRequest={this.planRequest}
+                        />
                     </CardBody>
                 </Card>
             </React.Fragment>
