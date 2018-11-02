@@ -104,6 +104,7 @@ class Application extends Component {
         if (key === "add") {
             if (typeof this.state.trip.places === 'undefined') {
                 this.state.trip.places = [value];
+                console.log(this.state.trip)
             }
             else {
                 const place = JSON.stringify(value);
