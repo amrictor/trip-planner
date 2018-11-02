@@ -2,10 +2,7 @@ package com.tripco.t23.planner;
 
 import com.mysql.jdbc.Driver;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Query {
@@ -13,8 +10,10 @@ public class Query {
     public double version;
     public String type;
     public String match;
-    public String limit;
+    public ArrayList<Filter> filters;
+    public int limit;
     public ArrayList<Place> places;
+    public int found;
 
     //Database configuration info
     private static final String myDriver = "com.mysql.jdbc.Driver";
@@ -34,7 +33,14 @@ public class Query {
         String counthead = "SELECT count(*) FROM airports WHERE ";
         String question = "name LIKE '%" + match + "%'" + "or id LIKE '%" + match
                  + "%' or municipality LIKE '%" + match + "%' or type LIKE '%" + match + "%' ";
-        if(!limit.equals("0")){
+        //if (!filters.isEmpty()) {
+            question += " and (%" + filters.get(0).name + "% in (";
+            for (int i = 0; i < filters.get(0).values.size(); i++) {
+                question += "%" + filters.get(0).values.get(i) + "%";
+            }
+            question += ")";
+        //}
+        if(limit != 0){
             question  = question + "limit " + limit + ";";
         }
         else{
@@ -63,9 +69,15 @@ public class Query {
     /**
      *Builds the responses from mySQL into places for returning.
      */
-    public void buildPlaces(ResultSet count, ResultSet query){
+    public void buildPlaces(ResultSet count, ResultSet query) throws SQLException{
         places = new ArrayList<>();
-
+        //found = count.toString();
+        try {
+            count.next();
+        } catch (SQLException sql){
+            System.out.println("Execption:" + sql.getMessage());
+        }
+        found = count.getInt(1);
         try{
             while(query.next()){
                 String id = query.getString("id");
@@ -75,6 +87,7 @@ public class Query {
                 Place place = new Place(id,name,latitude,longitude);
                 places.add(place);
             }
+            System.out.println(found);
         }catch(Exception e) {
             System.err.println("Exception:" + e.getMessage());
         }
