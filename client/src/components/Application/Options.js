@@ -136,23 +136,49 @@ class Options extends Component {
                     className='btn-outline-dark unit-button'
                     onClick={(event) => this.props.updateOptions('optimization', 'shortest')}
                     active={this.props.options.optimization === 'shortest'}
+                    disabled
                 >
                     Shortest
                 </Button>
             </ButtonGroup>;
 
+        const mapChoices =
+            <ButtonGroup>
+                <Button
+                    key={'svg'}
+                    className='btn-outline-dark unit-button'
+                    onClick={(event) => this.props.updateOptions('map', 'svg')}
+                    active={this.props.options.map === 'svg'}
+                >
+                    Static
+                </Button>
+                <Button
+                    key={'kml'}
+                    className='btn-outline-dark unit-button'
+                    onClick={(event) => this.props.updateOptions('map', 'kml')}
+                    active={this.props.options.map === 'kml'}
+                    disabled
+                >
+                    Interactive
+                </Button>
+            </ButtonGroup>;
 
         return (
 
             <Card>
                 <CardBody>
                     <CardTitle>Options</CardTitle>
+
                     <p><b>Select the units you wish to use:</b></p>
 
                     <ButtonGroup>
                         {buttons}
                     </ButtonGroup>
                     {userdeffield}
+                </CardBody>
+                <CardBody>
+                    <p><b>Select your desired map output:</b></p>
+                    {mapChoices}
                 </CardBody>
 
                 <CardBody>
@@ -164,6 +190,7 @@ class Options extends Component {
                     <p><b>Enter your server host and port:</b></p>
                     {portForm}
                 </CardBody>
+
             </Card>
         )
     }

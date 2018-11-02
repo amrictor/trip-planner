@@ -25,6 +25,7 @@ public class Config {
   private ArrayList<Filter> filters = new ArrayList<>(
           Arrays.asList(new Filter("type", new ArrayList<>(
           Arrays.asList("balloonport", "heliport", "airport", "seaplane base")))));
+  private List<String> maps = Arrays.asList("svg", "kml");
   private Integer port;
 
 
