@@ -102,13 +102,12 @@ public class Trip {
     }
 
     private double getX(double longitude){
-        return Math.abs(109.3-Math.abs(longitude)) * 142.2143;
+        return 800 * (longitude+180.0) / 360.0;
     }
 
     private double getY(double latitude){
-        return Math.abs(41.2-latitude) * 177.9733;
+        return 400 * (180.0-(latitude + 90.0)) / 180.0;
     }
-
     /**
      * Returns the distances between consecutive places,
      * including the return to the starting point to make a round trip.
