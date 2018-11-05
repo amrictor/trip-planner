@@ -8,7 +8,7 @@ class Map extends Component {
         super(props);
     }
     generateMap(){
-        let source = (this.props.trip.map === null)
+        let source = (this.props.trip.map == null)
             ? "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/World_map_with_nations.svg/1600px-World_map_with_nations.svg.png"
             : "data:image/svg+xml;utf8," + this.props.trip.map;
         return (
