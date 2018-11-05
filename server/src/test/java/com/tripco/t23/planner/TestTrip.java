@@ -27,14 +27,18 @@ public class TestTrip {
   @Before
   public void initialize() {
     trip = new Trip();
-    trip.version = 3;
+    trip.version = 4;
     trip.options = new Option();
     trip.options.units = "miles";
-    trip.options.optimization = "none";
+    trip.options.optimization = "short";
     trip.places = new ArrayList<Place>();
-    trip.places.add(new Place("dnvr", "Denver", 39.7392,-104.9903));
-    trip.places.add(new Place("bldr", "Boulder", 40.01499, -105.27055));
+    trip.places.add(new Place("mons", "Mons", 50.4545,3.9584));
+    trip.places.add(new Place("prs", "Paris", 48.8557, 2.3498));
     trip.places.add(new Place("foco", "Fort Collins",40.585258, -105.084419));
+    trip.places.add(new Place("anc", "Anchorage", 61.2178, -149.9235));
+    trip.places.add(new Place("cro", "Cairo", 30.0460, 31.2360));
+    trip.places.add(new Place("sjds", "San Juan Del Sur", 11.2641, -85.8654));
+    trip.places.add(new Place("lndn", "London", 51.508424, -0.1271));
   }
 
   @Test
@@ -62,7 +66,7 @@ public class TestTrip {
     StringBuilder strBuild = new StringBuilder();
     try {
       BufferedReader bufferedReader = new BufferedReader(
-              new InputStreamReader(getClass().getClassLoader().getResourceAsStream("test.svg"),
+              new InputStreamReader(getClass().getClassLoader().getResourceAsStream("worldmaptest.svg"),
                       Charset.defaultCharset()));
       while ((line = bufferedReader.readLine()) != null) {
         strBuild.append(line+'\n');
