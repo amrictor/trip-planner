@@ -53,15 +53,15 @@ public class TestTrip {
 
     trip.plan();
     ArrayList<Integer> expectedDistances = new ArrayList<>();
-    Collections.addAll(expectedDistances, 24, 41, 59);
+    Collections.addAll(expectedDistances, 2346, 2340, 5429, 192, 132, 1995, 6131);
     // Call the equals() method of the first object on the second object.
     assertEquals(expectedDistances, trip.distances);
   }
 
   @Test
   public void testMap() {
-    trip.plan();
 
+    trip.plan();
     String line = null;
     StringBuilder strBuild = new StringBuilder();
     try {
