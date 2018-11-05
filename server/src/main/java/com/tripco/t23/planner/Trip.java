@@ -58,13 +58,13 @@ public class Trip {
 
     private String svg() {
 
-        String line = null;
+        String line;
         StringBuilder strBuild = new StringBuilder();
 
         try {
             BufferedReader bufferedReader = new BufferedReader(
-                    new InputStreamReader(getClass().getClassLoader().getResourceAsStream("colorado.svg"),
-                    Charset.defaultCharset()));
+                    new InputStreamReader(getClass().getClassLoader().getResourceAsStream("worldmap.svg"),
+                            Charset.defaultCharset()));
             while ((line = bufferedReader.readLine()) != null) {
                 strBuild.append(line+'\n');
             }
@@ -80,9 +80,9 @@ public class Trip {
                     + "\" cy=\"" + getY(p.latitude)
                     + "\" r=\"6\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" />";
 
-            locations += "\n\n\t\t\t<text x=\"" + (getX(p.longitude) + 5)
-                    + "\" y=\"" + (getY(p.latitude) - 5)
-                    + "\" font-family=\"sans-serif\" font-size=\"40px\" fill=\"black\">" + i + "</text>";
+//            locations += "\n\n\t\t\t<text x=\"" + (getX(p.longitude) + 5)
+//                    + "\" y=\"" + (getY(p.latitude) - 5)
+//                    + "\" font-family=\"sans-serif\" font-size=\"40px\" fill=\"black\">" + i + "</text>";
             i++;
         }
 
@@ -94,13 +94,11 @@ public class Trip {
         path += getX(places.get(0).longitude) + " " + getY(places.get(0).latitude);
 
 
-        String svg = strBuild.insert(background.lastIndexOf("/>")+2,
+        return strBuild.insert(background.lastIndexOf("/>")+2,
                 "\n\n\t\t\t<path\n\td=\"" + path + "\"\n\tstyle=\"fill:none;fill-rule:"
                         + "evenodd;stroke:#f4426b;stroke-width:4;stroke-linejoin:"
                         + "round;stroke-miterlimit:3.8636899\" \n\tid=\"tripLegs\" />"
                         + locations).toString();
-
-        return svg;
     }
 
     private double getX(double longitude){
