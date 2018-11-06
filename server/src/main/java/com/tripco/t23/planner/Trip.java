@@ -58,13 +58,14 @@ public class Trip {
 
     private String svg() {
 
-        String line = null;
+        String line;
         StringBuilder strBuild = new StringBuilder();
 
         try {
             BufferedReader bufferedReader = new BufferedReader(
-                    new InputStreamReader(getClass().getClassLoader().getResourceAsStream("colorado.svg"),
-                    Charset.defaultCharset()));
+                    new InputStreamReader(
+                            getClass().getClassLoader().getResourceAsStream("worldmap.svg"),
+                            Charset.defaultCharset()));
             while ((line = bufferedReader.readLine()) != null) {
                 strBuild.append(line+'\n');
             }
@@ -79,10 +80,6 @@ public class Trip {
             locations += "\n\n\t\t\t<circle cx=\"" + getX(p.longitude)
                     + "\" cy=\"" + getY(p.latitude)
                     + "\" r=\"6\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" />";
-
-            locations += "\n\n\t\t\t<text x=\"" + (getX(p.longitude) + 5)
-                    + "\" y=\"" + (getY(p.latitude) - 5)
-                    + "\" font-family=\"sans-serif\" font-size=\"40px\" fill=\"black\">" + i + "</text>";
             i++;
         }
 
@@ -94,23 +91,20 @@ public class Trip {
         path += getX(places.get(0).longitude) + " " + getY(places.get(0).latitude);
 
 
-        String svg = strBuild.insert(background.lastIndexOf("/>")+2,
+        return strBuild.insert(background.lastIndexOf("/>")+2,
                 "\n\n\t\t\t<path\n\td=\"" + path + "\"\n\tstyle=\"fill:none;fill-rule:"
                         + "evenodd;stroke:#f4426b;stroke-width:4;stroke-linejoin:"
                         + "round;stroke-miterlimit:3.8636899\" \n\tid=\"tripLegs\" />"
                         + locations).toString();
-
-        return svg;
     }
 
     private double getX(double longitude){
-        return Math.abs(109.3-Math.abs(longitude)) * 142.2143;
+        return 800 * (longitude+180.0) / 360.0;
     }
 
     private double getY(double latitude){
-        return Math.abs(41.2-latitude) * 177.9733;
+        return 400 * (180.0-(latitude + 90.0)) / 180.0;
     }
-
     /**
      * Returns the distances between consecutive places,
      * including the return to the starting point to make a round trip.

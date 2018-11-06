@@ -9,8 +9,8 @@ class Map extends Component {
     }
     generateMap(){
         let source = (this.props.trip.map == null)
-            ? "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/USA_Colorado_location_map.svg/800px-USA_Colorado_location_map.svg.png"
-            : "data:image/svg+xml;utf8," + this.props.trip.map
+            ? "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/World_map_with_nations.svg/1600px-World_map_with_nations.svg.png"
+            : "data:image/svg+xml;utf8," + this.props.trip.map;
         return (
           <CardImg
               top width="100%"
