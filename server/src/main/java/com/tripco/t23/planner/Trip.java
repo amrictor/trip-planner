@@ -63,7 +63,8 @@ public class Trip {
 
         try {
             BufferedReader bufferedReader = new BufferedReader(
-                    new InputStreamReader(getClass().getClassLoader().getResourceAsStream("worldmap.svg"),
+                    new InputStreamReader(
+                            getClass().getClassLoader().getResourceAsStream("worldmap.svg"),
                             Charset.defaultCharset()));
             while ((line = bufferedReader.readLine()) != null) {
                 strBuild.append(line+'\n');
