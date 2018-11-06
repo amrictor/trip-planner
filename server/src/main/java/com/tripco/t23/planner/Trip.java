@@ -80,10 +80,6 @@ public class Trip {
             locations += "\n\n\t\t\t<circle cx=\"" + getX(p.longitude)
                     + "\" cy=\"" + getY(p.latitude)
                     + "\" r=\"6\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" />";
-
-//            locations += "\n\n\t\t\t<text x=\"" + (getX(p.longitude) + 5)
-//                    + "\" y=\"" + (getY(p.latitude) - 5)
-//                    + "\" font-family=\"sans-serif\" font-size=\"40px\" fill=\"black\">" + i + "</text>";
             i++;
         }
 
