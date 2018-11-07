@@ -88,6 +88,7 @@ public class Trip {
                 + "\t</Placemark>\n";
 
     }
+    
     private String kml() {
         StringBuilder strBuild = readFile("mapbase.kml");
 
@@ -100,8 +101,9 @@ public class Trip {
         }
         for(int i = 0 ; i<places.size(); i++){
             String coordinates =
-                    "\t\t\t\t" + places.get(i).longitude + "," + places.get(i).latitude + ",0\n" +
-                    "\t\t\t\t" + places.get(((i+1)%places.size())).longitude + "," + places.get((i+1)%places.size()).latitude + ",0\n";
+                    "\t\t\t\t" + places.get(i).longitude + "," + places.get(i).latitude + ",0\n" 
+                    + "\t\t\t\t" + places.get(((i+1)%places.size())).longitude + "," 
+                    + places.get((i+1)%places.size()).latitude + ",0\n";
             String lineName = places.get(i).name + " to " + places.get((i+1)%places.size()).name;
             locations.append(placemarkBlock(lineName, "LineString", coordinates));
         }
