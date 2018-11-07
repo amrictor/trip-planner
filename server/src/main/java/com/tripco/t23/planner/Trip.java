@@ -47,7 +47,7 @@ public class Trip {
                 shortDistances(2);
             }
         }
-        this.map = (options.map=="svg") ? svg() : kml();
+        this.map = options.map.equals("svg") ? svg() : kml();
         noneDistances();
     }
 
@@ -71,7 +71,6 @@ public class Trip {
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }
-        System.out.println(strBuild.toString());
 
         String background = strBuild.toString();
         String name = "<name>" + title + "</name>";
@@ -90,18 +89,21 @@ public class Trip {
                     "\t</Placemark>\n";
         }
         for(int i = 0 ; i<places.size(); i++){
+            System.out.println(i);
+            System.out.println((i+1)%places.size());
+            System.out.println();
             locations +=
                     "\t<Placemark>\n" +
-                    "\t\t<name>Line 8</name>\n" +
+                    "\t\t<name>"+places.get(i).name+" to "+places.get((i+1)%places.size()).name+"</name>\n" +
                     "\t\t<styleUrl>#line-000000-1200-nodesc</styleUrl>\n" +
                     "\t\t<LineString>\n" +
                     "\t\t\t<tessellate>1</tessellate>\n" +
                     "\t\t\t<coordinates>\n" +
-                    "\t\t\t\t" + places[i].longitude + "," + places[i].latitude + ",0\n" +
-                    "\t\t\t\t" + places[(i+1)%places.size()-1].longitude + "," + places[(i+2)%places.size()-1].latitude + ",0\n" +" +
+                    "\t\t\t\t" + places.get(i).longitude + "," + places.get(i).latitude + ",0\n" +
+                    "\t\t\t\t" + places.get(((i+1)%places.size())).longitude + "," + places.get((i+1)%places.size()).latitude + ",0\n" +
                     "\t\t\t</coordinates>\n" +
                     "\t\t</LineString>\n" +
-                    "\t</Placemark>"
+                    "\t</Placemark>";
         }
 
         strBuild.insert(background.indexOf("<Document>")+10, '\n'+name);
