@@ -47,7 +47,7 @@ public class Trip {
                 shortDistances(2);
             }
         }
-        this.map = svg();
+        this.map = (options.map=="svg") ? svg() : kml();
         noneDistances();
     }
 
@@ -55,6 +55,58 @@ public class Trip {
      * Returns an SVG containing the background and the legs of the trip.
      * @return String that contains SVG
      */
+    private String kml() {
+
+        String line;
+        StringBuilder strBuild = new StringBuilder();
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(
+                    new InputStreamReader(
+                            getClass().getClassLoader().getResourceAsStream("mapbase.kml"),
+                            Charset.defaultCharset()));
+            while ((line = bufferedReader.readLine()) != null) {
+                strBuild.append(line+'\n');
+            }
+        } catch (Exception e) {
+            System.out.println(e.getStackTrace());
+        }
+        System.out.println(strBuild.toString());
+
+        String background = strBuild.toString();
+        String name = "<name>" + title + "</name>";
+        String locations = name;
+
+        for(Place p: places){
+            locations +=
+                    "\t<Placemark>\n" +
+                    "\t\t<name>"+p.name+"</name>\n" +
+                    "\t\t<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>\n" +
+                    "\t\t<Point>\n" +
+                    "\t\t\t<coordinates>\n" +
+                    "\t\t\t\t" + p.longitude+"," + p.latitude +
+                    ",0\n\t\t\t</coordinates>\n" +
+                    "\t\t</Point>\n" +
+                    "\t</Placemark>\n";
+        }
+        for(int i = 0 ; i<places.size(); i++){
+            locations +=
+                    "\t<Placemark>\n" +
+                    "\t\t<name>Line 8</name>\n" +
+                    "\t\t<styleUrl>#line-000000-1200-nodesc</styleUrl>\n" +
+                    "\t\t<LineString>\n" +
+                    "\t\t\t<tessellate>1</tessellate>\n" +
+                    "\t\t\t<coordinates>\n" +
+                    "\t\t\t\t" + places[i].longitude + "," + places[i].latitude + ",0\n" +
+                    "\t\t\t\t" + places[(i+1)%places.size()-1].longitude + "," + places[(i+2)%places.size()-1].latitude + ",0\n" +" +
+                    "\t\t\t</coordinates>\n" +
+                    "\t\t</LineString>\n" +
+                    "\t</Placemark>"
+        }
+
+        strBuild.insert(background.indexOf("<Document>")+10, '\n'+name);
+        return strBuild.insert(strBuild.toString().indexOf("<Folder>")+8, locations).toString();
+    }
 
     private String svg() {
 

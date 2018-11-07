@@ -9,5 +9,6 @@ public class Option {
   public String units; // pls add this to web side
   public Double unitRadius; // for user defined only
   public String optimization;
+  public String map;
 
 }
