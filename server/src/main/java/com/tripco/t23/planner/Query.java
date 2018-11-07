@@ -37,7 +37,6 @@ public class Query {
                 question += " and (";
                 for (int i = 0; i < filters.get(j).values.size() - 1; i++) {
                     question += filters.get(j).name + " like " + "'%" + filters.get(j).values.get(i) + "%' or ";
-                    System.out.println(question);
                 }
                 question += filters.get(j).name + " like " + "'%" + filters.get(j).values.get(filters.get(j).values.size()-1) + "%') ";
             }
@@ -71,7 +70,7 @@ public class Query {
     /**
      *Builds the responses from mySQL into places for returning.
      */
-    public void buildPlaces(ResultSet count, ResultSet query) throws SQLException{
+    public void buildPlaces(ResultSet count, ResultSet query) {
         places = new ArrayList<>();
         try{
             count.next();
@@ -85,7 +84,7 @@ public class Query {
                 Place place = new Place(id,name,latitude,longitude);
                 places.add(place);
             }
-            System.out.println(found);
+
         }catch(Exception e) {
             System.err.println("Exception:" + e.getMessage());
         }
