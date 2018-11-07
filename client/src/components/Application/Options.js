@@ -157,7 +157,6 @@ class Options extends Component {
                     className='btn-outline-dark unit-button'
                     onClick={(event) => this.props.updateOptions('map', 'kml')}
                     active={this.props.options.map === 'kml'}
-                    disabled
                 >
                     Interactive
                 </Button>
