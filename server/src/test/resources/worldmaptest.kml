@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+	<name>null</name>
+    <description/>
+    <Style id="icon-1899-0288D1-nodesc-normal">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1899-0288D1-nodesc-highlight">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1899-0288D1-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-0288D1-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-0288D1-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Folder><name>null</name>	<Placemark>
+		<name>Anchorage</name>
+		<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+		<Point>
+			<coordinates>
+				-149.9235,61.2178,0
+			</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Fort Collins</name>
+		<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+		<Point>
+			<coordinates>
+				-105.084419,40.585258,0
+			</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>San Juan Del Sur</name>
+		<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+		<Point>
+			<coordinates>
+				-85.8654,11.2641,0
+			</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>London</name>
+		<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+		<Point>
+			<coordinates>
+				-0.1271,51.508424,0
+			</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mons</name>
+		<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+		<Point>
+			<coordinates>
+				3.9584,50.4545,0
+			</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Paris</name>
+		<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+		<Point>
+			<coordinates>
+				2.3498,48.8557,0
+			</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Cairo</name>
+		<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+		<Point>
+			<coordinates>
+				31.236,30.046,0
+			</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Anchorage to Fort Collins</name>
+		<styleUrl>#line-000000-1200-nodesc</styleUrl>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				-149.9235,61.2178,0
+				-105.084419,40.585258,0
+			</coordinates>
+		</LineString>
+	</Placemark>
+	<Placemark>
+		<name>Fort Collins to San Juan Del Sur</name>
+		<styleUrl>#line-000000-1200-nodesc</styleUrl>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				-105.084419,40.585258,0
+				-85.8654,11.2641,0
+			</coordinates>
+		</LineString>
+	</Placemark>
+	<Placemark>
+		<name>San Juan Del Sur to London</name>
+		<styleUrl>#line-000000-1200-nodesc</styleUrl>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				-85.8654,11.2641,0
+				-0.1271,51.508424,0
+			</coordinates>
+		</LineString>
+	</Placemark>
+	<Placemark>
+		<name>London to Mons</name>
+		<styleUrl>#line-000000-1200-nodesc</styleUrl>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				-0.1271,51.508424,0
+				3.9584,50.4545,0
+			</coordinates>
+		</LineString>
+	</Placemark>
+	<Placemark>
+		<name>Mons to Paris</name>
+		<styleUrl>#line-000000-1200-nodesc</styleUrl>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				3.9584,50.4545,0
+				2.3498,48.8557,0
+			</coordinates>
+		</LineString>
+	</Placemark>
+	<Placemark>
+		<name>Paris to Cairo</name>
+		<styleUrl>#line-000000-1200-nodesc</styleUrl>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				2.3498,48.8557,0
+				31.236,30.046,0
+			</coordinates>
+		</LineString>
+	</Placemark>
+	<Placemark>
+		<name>Cairo to Anchorage</name>
+		<styleUrl>#line-000000-1200-nodesc</styleUrl>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				31.236,30.046,0
+				-149.9235,61.2178,0
+			</coordinates>
+		</LineString>
+	</Placemark>
+
+    </Folder>
+  </Document>
+</kml>
