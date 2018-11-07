@@ -1,7 +1,5 @@
 package com.tripco.t23.planner;
 
-import com.mysql.jdbc.Driver;
-
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -12,8 +10,9 @@ public class Query {
     public String match;
     public ArrayList<Filter> filters;
     public int limit;
-    public ArrayList<Place> places;
     public int found;
+    public ArrayList<Place> places;
+
 
     //Database configuration info
     private static final String myDriver = "com.mysql.jdbc.Driver";
@@ -31,21 +30,24 @@ public class Query {
     public void find(){
         String queryhead = "SELECT * FROM airports WHERE ";
         String counthead = "SELECT count(*) FROM airports WHERE ";
-        String question = "name LIKE '%" + match + "%'" + "or id LIKE '%" + match
-                 + "%' or municipality LIKE '%" + match + "%' or type LIKE '%" + match + "%' ";
-        //if (!filters.isEmpty()) {
-            question += " and (%" + filters.get(0).name + "% in (";
-            for (int i = 0; i < filters.get(0).values.size(); i++) {
-                question += "%" + filters.get(0).values.get(i) + "%";
+        String question = "(name LIKE '%" + match + "%'" + "or id LIKE '%" + match
+                 + "%' or municipality LIKE '%" + match + "%' or type LIKE '%" + match + "%') ";
+        if (!filters.isEmpty()) {
+            for(int j = 0; j < filters.size(); j++) {
+                question += " and (";
+                for (int i = 0; i < filters.get(j).values.size() - 1; i++) {
+                    question += filters.get(j).name + " like " + "'%" + filters.get(j).values.get(i) + "%' or ";
+                    System.out.println(question);
+                }
+                question += filters.get(j).name + " like " + "'%" + filters.get(j).values.get(filters.get(j).values.size()-1) + "%') ";
             }
-            question += ")";
-        //}
+        }
         if(limit != 0){
-            question  = question + "limit " + limit + ";";
+            question  += "limit " + limit;
         }
-        else{
-            question = question + ";";
-        }
+
+        question += ";";
+
         try{
             //Try to find the class for the driver variable
             Class.forName(myDriver);
@@ -71,14 +73,10 @@ public class Query {
      */
     public void buildPlaces(ResultSet count, ResultSet query) throws SQLException{
         places = new ArrayList<>();
-        //found = count.toString();
-        try {
-            count.next();
-        } catch (SQLException sql){
-            System.out.println("Execption:" + sql.getMessage());
-        }
-        found = count.getInt(1);
         try{
+            count.next();
+            found = count.getInt(1);
+            System.out.println(found);
             while(query.next()){
                 String id = query.getString("id");
                 String name = query.getString("name");
