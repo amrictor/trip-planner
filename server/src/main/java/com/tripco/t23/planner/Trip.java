@@ -112,8 +112,7 @@ public class Trip {
     }
 
     private String svg() {
-        StringBuilder strBuild = readFile("worldmap.svg");
-
+        
         StringBuilder locations = new StringBuilder();
         for(Place p: places){
             locations.append("\n\n\t\t\t<circle cx=\"")
@@ -135,7 +134,8 @@ public class Trip {
             .append(" ")
             .append(getY(places.get(0).latitude));
 
-
+        StringBuilder strBuild = readFile("worldmap.svg");
+        
         return strBuild.insert(strBuild.lastIndexOf("/>")+2,
                 "\n\n\t\t\t<path\n\td=\"" + path.toString() + "\"\n\tstyle=\"fill:none;fill-rule:"
                         + "evenodd;stroke:#f4426b;stroke-width:4;stroke-linejoin:"
