@@ -1,6 +1,10 @@
 package com.tripco.t23.planner;
 
-import java.sql.*;
+import com.mysql.jdbc.Driver;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Query {
@@ -36,9 +40,11 @@ public class Query {
             for(int j = 0; j < filters.size(); j++) {
                 question += " and (";
                 for (int i = 0; i < filters.get(j).values.size() - 1; i++) {
-                    question += filters.get(j).name + " like " + "'%" + filters.get(j).values.get(i) + "%' or ";
+                    question += filters.get(j).name + " like " + "'%"
+                            + filters.get(j).values.get(i) + "%' or ";
                 }
-                question += filters.get(j).name + " like " + "'%" + filters.get(j).values.get(filters.get(j).values.size()-1) + "%') ";
+                question += filters.get(j).name + " like " + "'%"
+                        + filters.get(j).values.get(filters.get(j).values.size()-1) + "%') ";
             }
         }
         if(limit != 0){
