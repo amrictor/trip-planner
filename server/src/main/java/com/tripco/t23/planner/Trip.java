@@ -47,55 +47,100 @@ public class Trip {
                 shortDistances(2);
             }
         }
-        this.map = svg();
+        this.map = options.map.equals("svg") ? svg() : kml();
         noneDistances();
+    }
+
+    private StringBuilder readFile(String filename) {
+        String line;
+        StringBuilder strBuild = new StringBuilder();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(
+                    new InputStreamReader(getClass().getClassLoader().getResourceAsStream(filename),
+                            Charset.defaultCharset()));
+            while ((line = bufferedReader.readLine()) != null) {
+                strBuild.append(line).append('\n');
+            }
+        } catch (Exception e) {
+            System.out.println(e.getStackTrace());
+        }
+        return strBuild;
     }
 
     /**
      * Returns an SVG containing the background and the legs of the trip.
      * @return String that contains SVG
      */
+    private String placemarkBlock(String name, String type, String coordinates){
+        return "\t<Placemark>\n"
+                + "\t\t<name>"
+                + name
+                + "</name>\n"
+                + (type.equals("Point")
+                        ? "\t\t<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>\n"
+                        : "\t\t<styleUrl>#line-000000-1200-nodesc</styleUrl>\n")
+                + "\t\t<" + type + ">\n"
+                + (type.equals("LineString")
+                        ? "\t\t\t<tessellate>1</tessellate>\n"
+                        : "")
+                + "\t\t\t<coordinates>\n" + coordinates +"\t\t\t</coordinates>\n"
+                + "\t\t</" + type + ">\n"
+                + "\t</Placemark>\n";
+
+    }
+    
+    private String kml() {
+        StringBuilder strBuild = readFile("mapbase.kml");
+
+        String name = "<name>" + title + "</name>";
+        StringBuilder locations = new StringBuilder(name);
+
+        for(Place p: places){
+            String coordinates = "\t\t\t\t" + p.longitude + "," + p.latitude +",0\n";
+            locations.append(placemarkBlock(p.name, "Point", coordinates));
+        }
+        for(int i = 0 ; i<places.size(); i++){
+            String coordinates =
+                    "\t\t\t\t" + places.get(i).longitude + "," + places.get(i).latitude + ",0\n" 
+                    + "\t\t\t\t" + places.get(((i+1)%places.size())).longitude + "," 
+                    + places.get((i+1)%places.size()).latitude + ",0\n";
+            String lineName = places.get(i).name + " to " + places.get((i+1)%places.size()).name;
+            locations.append(placemarkBlock(lineName, "LineString", coordinates));
+        }
+        strBuild.insert(strBuild.indexOf("<Document>")+10, "\n\t"+name);
+        return strBuild.insert(strBuild.indexOf("<Folder>")+8, locations).toString();
+    }
 
     private String svg() {
-
-        String line;
-        StringBuilder strBuild = new StringBuilder();
-
-        try {
-            BufferedReader bufferedReader = new BufferedReader(
-                    new InputStreamReader(
-                            getClass().getClassLoader().getResourceAsStream("worldmap.svg"),
-                            Charset.defaultCharset()));
-            while ((line = bufferedReader.readLine()) != null) {
-                strBuild.append(line+'\n');
-            }
-        } catch (Exception e) {
-            System.out.println(e.getStackTrace());
-        }
-
-        String background = strBuild.toString();
-        String locations ="";
-        int i = 1;
+        
+        StringBuilder locations = new StringBuilder();
         for(Place p: places){
-            locations += "\n\n\t\t\t<circle cx=\"" + getX(p.longitude)
-                    + "\" cy=\"" + getY(p.latitude)
-                    + "\" r=\"6\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" />";
-            i++;
+            locations.append("\n\n\t\t\t<circle cx=\"")
+                    .append(getX(p.longitude))
+                    .append("\" cy=\"")
+                    .append(getY(p.latitude))
+                    .append("\" r=\"6\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" />");
         }
 
-        String path = "M ";
+        StringBuilder path = new StringBuilder("M ");
         for(Place p: places){
-            path+= getX(p.longitude) + " " + getY(p.latitude) + " L ";
+            path.append(getX(p.longitude))
+                .append(" ")
+                .append(getY(p.latitude))
+                .append(" L ");
         }
 
-        path += getX(places.get(0).longitude) + " " + getY(places.get(0).latitude);
+        path.append(getX(places.get(0).longitude))
+            .append(" ")
+            .append(getY(places.get(0).latitude));
 
-
-        return strBuild.insert(background.lastIndexOf("/>")+2,
-                "\n\n\t\t\t<path\n\td=\"" + path + "\"\n\tstyle=\"fill:none;fill-rule:"
+        StringBuilder strBuild = readFile("worldmap.svg");
+        
+        return strBuild.insert(strBuild.lastIndexOf("/>")+2,
+                "\n\n\t\t\t<path\n\td=\"" + path.toString() + "\"\n\tstyle=\"fill:none;fill-rule:"
                         + "evenodd;stroke:#f4426b;stroke-width:4;stroke-linejoin:"
                         + "round;stroke-miterlimit:3.8636899\" \n\tid=\"tripLegs\" />"
-                        + locations).toString();
+                        + locations.toString()).toString();
     }
 
     private double getX(double longitude){

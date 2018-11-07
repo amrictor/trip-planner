@@ -29,9 +29,10 @@ public class TestTrip {
     trip = new Trip();
     trip.version = 4;
     trip.options = new Option();
+    trip.options.map = "svg";
     trip.options.units = "miles";
     trip.options.optimization = "short";
-    trip.places = new ArrayList<Place>();
+    trip.places = new ArrayList<>();
     trip.places.add(new Place("mons", "Mons", 50.4545,3.9584));
     trip.places.add(new Place("prs", "Paris", 48.8557, 2.3498));
     trip.places.add(new Place("foco", "Fort Collins",40.585258, -105.084419));
@@ -49,8 +50,6 @@ public class TestTrip {
 
   @Test
   public void testDistances() {
-
-
     trip.plan();
     ArrayList<Integer> expectedDistances = new ArrayList<>();
     Collections.addAll(expectedDistances, 2346, 2340, 5429, 192, 132, 1995, 6131);
@@ -59,22 +58,34 @@ public class TestTrip {
   }
 
   @Test
-  public void testMap() {
-
+  public void testSVG() {
+    trip.options.map = "svg";
     trip.plan();
-    String line = null;
+    assertEquals(trip.map, readFile("worldmaptest.svg"));
+  }
+
+  @Test
+  public void testKML() {
+    trip.options.map = "kml";
+    trip.plan();
+    assertEquals(trip.map, readFile("worldmaptest.kml"));
+  }
+
+  private String readFile(String filename) {
+    String line;
     StringBuilder strBuild = new StringBuilder();
     try {
       BufferedReader bufferedReader = new BufferedReader(
-              new InputStreamReader(getClass().getClassLoader().getResourceAsStream("worldmaptest.svg"),
+              new InputStreamReader(getClass().getClassLoader().getResourceAsStream(filename),
                       Charset.defaultCharset()));
       while ((line = bufferedReader.readLine()) != null) {
-        strBuild.append(line+'\n');
+        strBuild.append(line).append('\n');
       }
     } catch (Exception e) {
       System.out.println(e.getStackTrace());
     }
-    String test = strBuild.toString();
-    assertEquals(trip.map, test);
+    return strBuild.toString();
   }
 }
+
+
