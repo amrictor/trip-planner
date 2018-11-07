@@ -1,7 +1,6 @@
 package com.tripco.t23.planner;
 
 import com.mysql.jdbc.Driver;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,8 +12,11 @@ public class Query {
     public double version;
     public String type;
     public String match;
-    public String limit;
+    public ArrayList<Filter> filters;
+    public int limit;
+    public int found;
     public ArrayList<Place> places;
+
 
     //Database configuration info
     private static final String myDriver = "com.mysql.jdbc.Driver";
@@ -32,14 +34,25 @@ public class Query {
     public void find(){
         String queryhead = "SELECT * FROM airports WHERE ";
         String counthead = "SELECT count(*) FROM airports WHERE ";
-        String question = "name LIKE '%" + match + "%'" + "or id LIKE '%" + match
-                 + "%' or municipality LIKE '%" + match + "%' or type LIKE '%" + match + "%' ";
-        if(!limit.equals("0")){
-            question  = question + "limit " + limit + ";";
+        String question = "(name LIKE '%" + match + "%'" + "or id LIKE '%" + match
+                 + "%' or municipality LIKE '%" + match + "%' or type LIKE '%" + match + "%') ";
+        if (!filters.isEmpty()) {
+            for(int j = 0; j < filters.size(); j++) {
+                question += " and (";
+                for (int i = 0; i < filters.get(j).values.size() - 1; i++) {
+                    question += filters.get(j).name + " like " + "'%"
+                            + filters.get(j).values.get(i) + "%' or ";
+                }
+                question += filters.get(j).name + " like " + "'%"
+                        + filters.get(j).values.get(filters.get(j).values.size()-1) + "%') ";
+            }
         }
-        else{
-            question = question + ";";
+        if(limit != 0){
+            question  += "limit " + limit;
         }
+
+        question += ";";
+
         try{
             //Try to find the class for the driver variable
             Class.forName(myDriver);
@@ -63,10 +76,12 @@ public class Query {
     /**
      *Builds the responses from mySQL into places for returning.
      */
-    public void buildPlaces(ResultSet count, ResultSet query){
+    public void buildPlaces(ResultSet count, ResultSet query) {
         places = new ArrayList<>();
-
         try{
+            count.next();
+            found = count.getInt(1);
+            System.out.println(found);
             while(query.next()){
                 String id = query.getString("id");
                 String name = query.getString("name");
@@ -75,6 +90,7 @@ public class Query {
                 Place place = new Place(id,name,latitude,longitude);
                 places.add(place);
             }
+
         }catch(Exception e) {
             System.err.println("Exception:" + e.getMessage());
         }
