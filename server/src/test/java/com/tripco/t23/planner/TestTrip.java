@@ -59,8 +59,8 @@ public class TestTrip {
   }
 
   @Test
-  public void testMap() {
-
+  public void testSVG() {
+    trip.options.map = "svg";
     trip.plan();
     String line = null;
     StringBuilder strBuild = new StringBuilder();
@@ -76,5 +76,26 @@ public class TestTrip {
     }
     String test = strBuild.toString();
     assertEquals(trip.map, test);
+  }
+
+  @Test
+  public void testKML() {
+    trip.options.map = "kml";
+    trip.plan();
+    System.out.println(trip.map);
+//    String line = null;
+//    StringBuilder strBuild = new StringBuilder();
+//    try {
+//      BufferedReader bufferedReader = new BufferedReader(
+//              new InputStreamReader(getClass().getClassLoader().getResourceAsStream("worldmaptest.svg"),
+//                      Charset.defaultCharset()));
+//      while ((line = bufferedReader.readLine()) != null) {
+//        strBuild.append(line+'\n');
+//      }
+//    } catch (Exception e) {
+//      System.out.println(e.getStackTrace());
+//    }
+//    String test = strBuild.toString();
+//    assertEquals(trip.map, test);
   }
 }
