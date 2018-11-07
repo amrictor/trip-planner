@@ -84,16 +84,18 @@ class Plan extends Component {
         this.props.updateBasedOnResponse(defaultState);
     }
 
-    saveToFile(){
-        let filename = "export.json";
-        let contentType = "application/json;charset=utf-8;";
+    saveToFile(fileType){
+        let source = (fileType ==='json') ? JSON.stringify(this.props.trip) : this.props.trip.map;
+        let filename = this.props.trip.title.replace(' ', '_') + '.' + fileType;
+        let contentType = "application/" + fileType + ";charset=utf-8;";
+
         if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-            let blob = new Blob([decodeURIComponent(encodeURI(JSON.stringify(this.props.trip)))], { type: contentType });
+            let blob = new Blob([decodeURIComponent(encodeURI(source))], { type: contentType });
             navigator.msSaveOrOpenBlob(blob, filename);
         } else {
             let a = document.createElement('a');
             a.download = filename;
-            a.href = 'data:' + contentType + ',' + encodeURIComponent(JSON.stringify(this.props.trip));
+            a.href = 'data:' + contentType + ',' + encodeURIComponent(source);
             a.target = '_blank';
             document.body.appendChild(a);
             a.click();
@@ -114,6 +116,7 @@ class Plan extends Component {
             </Collapse>;
 
         const functions =
+            <React.Fragment>
             <ButtonGroup>
                 <Button
                     key={'load'}
@@ -140,16 +143,27 @@ class Plan extends Component {
                 >
                     Plan
                 </Button>
+            </ButtonGroup>
+                &nbsp;&nbsp;
+            <ButtonGroup>
                 <Button
-                    key={'save'}
+                    key={'save_trip'}
                     color= "primary" style={{ marginBottom: '1rem' }}
                     className='btn-outline-dark unit-button'
-                    onClick={() => this.saveToFile()}
+                    onClick={() => this.saveToFile('json')}
                 >
-                    Save
+                    Export Trip
                 </Button>
-
+                <Button
+                    key={'save_map'}
+                    color= "primary" style={{ marginBottom: '1rem' }}
+                    className='btn-outline-dark unit-button'
+                    onClick={() => this.saveToFile(this.props.trip.options.map)}
+                >
+                    Export Map
+                </Button>
             </ButtonGroup>
+            </React.Fragment>
             ;
 
         const addBody =

@@ -32,7 +32,7 @@ class Application extends Component {
             trip: {
                 type: "trip",
                 version: 4,
-                title: "",
+                title: "My Trip",
                 options: {
                     units: "miles",
                     unitName: "",
