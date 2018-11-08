@@ -35,8 +35,7 @@ public class Trip {
     public String map;
 
     /** The top level method that does planning.
-     * At this point it just adds the map and distances for the places in order.
-     * It might need to reorder the places in the future.
+     * Adds the map and distances for the places and optimizes trip as indicated by user.
      */
     public void plan() {
         if(options.optimization != null){
@@ -47,19 +46,14 @@ public class Trip {
                 shortDistances(2);
             }
         }
-        if(options.map != null){
-            if(options.map.equals("svg")){
-                this.map = svg();
-            }
-            if(options.map.equals("kml")){
-                this.map = kml();
-            }
-        }
-        else{
-            this.map = svg();
-        }
+        this.map = options.map.equals("svg") ? svg() : kml();
         noneDistances();
     }
+
+    /**
+     * Returns a StringBuilder containing the contents of a passed in file
+     * @return StringBuilder that contains file contents
+     */
 
     private StringBuilder readFile(String filename) {
         String line;
@@ -78,27 +72,12 @@ public class Trip {
     }
 
     /**
-     * Returns an SVG containing the background and the legs of the trip.
-     * @return String that contains SVG
+     * Returns a KML containing the legs of the trip.
+     * @return String that contains KML
      */
-    private String placemarkBlock(String name, String type, String coordinates){
-        return "\t<Placemark>\n"
-                + "\t\t<name>"
-                + name
-                + "</name>\n"
-                + (type.equals("Point")
-                        ? "\t\t<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>\n"
-                        : "\t\t<styleUrl>#line-000000-1200-nodesc</styleUrl>\n")
-                + "\t\t<" + type + ">\n"
-                + (type.equals("LineString")
-                        ? "\t\t\t<tessellate>1</tessellate>\n"
-                        : "")
-                + "\t\t\t<coordinates>\n" + coordinates +"\t\t\t</coordinates>\n"
-                + "\t\t</" + type + ">\n"
-                + "\t</Placemark>\n";
 
-    }
-    
+    //GENERATE KML AND RELATED FUNCTIONS
+
     private String kml() {
         StringBuilder strBuild = readFile("mapbase.kml");
 
@@ -121,45 +100,103 @@ public class Trip {
         return strBuild.insert(strBuild.indexOf("<Folder>")+8, locations).toString();
     }
 
+    /**
+     * Returns a KML placemark component
+     * @return String that contains placemark component
+     */
+    private String placemarkBlock(String name, String type, String coordinates){
+        return "\t<Placemark>\n"
+                + "\t\t<name>"
+                + name
+                + "</name>\n"
+                + (type.equals("Point")
+                ? "\t\t<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>\n"
+                : "\t\t<styleUrl>#line-000000-1200-nodesc</styleUrl>\n")
+                + "\t\t<" + type + ">\n"
+                + (type.equals("LineString")
+                ? "\t\t\t<tessellate>1</tessellate>\n"
+                : "")
+                + "\t\t\t<coordinates>\n" + coordinates +"\t\t\t</coordinates>\n"
+                + "\t\t</" + type + ">\n"
+                + "\t</Placemark>\n";
+
+    }
+
+
+    //GENERATE SVG AND RELATED FUNCTIONS
+
+    /**
+     * Returns an SVG containing the background and the legs of the trip.
+     * @return String that contains SVG
+     */
+
     private String svg() {
-        
-        StringBuilder locations = new StringBuilder();
-        for(Place p: places){
-            locations.append("\n\n\t\t\t<circle cx=\"")
-                    .append(getX(p.longitude))
-                    .append("\" cy=\"")
-                    .append(getY(p.latitude))
-                    .append("\" r=\"6\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" />");
-        }
+        StringBuilder path = new StringBuilder();
 
-        StringBuilder path = new StringBuilder("M ");
-        for(Place p: places){
-            path.append(getX(p.longitude))
-                .append(" ")
-                .append(getY(p.latitude))
-                .append(" L ");
-        }
+        for(int i = 0; i<=places.size(); i++){
+            Place a = new Place(places.get(((i-1) % places.size() + places.size()) % places.size()));
+            Place b = new Place(places.get(i%places.size()));
 
-        path.append(getX(places.get(0).longitude))
-            .append(" ")
-            .append(getY(places.get(0).latitude));
+            if((a.longitude-b.longitude)>180.0)  //wrap around at right side
+                path.append("\n\n\t\t\t").append(line(a, b, -1)).append("\n\n\t\t\t").append(line(a, b, 1));
+            else if((a.longitude-b.longitude)<-180.0)  //wrap around at left side
+                path.append("\n\n\t\t\t").append(line(b, a, -1)).append("\n\n\t\t\t").append(line(b, a, 1));
+            else path.append("\n\n\t\t\t").append(line(a, b, 0)); //no wrap
+
+            path.append(point(a));
+        }
 
         StringBuilder strBuild = readFile("worldmap.svg");
         
         return strBuild.insert(strBuild.lastIndexOf("/>")+2,
-                "\n\n\t\t\t<path\n\td=\"" + path.toString() + "\"\n\tstyle=\"fill:none;fill-rule:"
-                        + "evenodd;stroke:#f4426b;stroke-width:4;stroke-linejoin:"
-                        + "round;stroke-miterlimit:3.8636899\" \n\tid=\"tripLegs\" />"
-                        + locations.toString()).toString();
+                "\n\n\t\t\t" + path.toString() + "\n").toString();
     }
 
-    private double getX(double longitude){
-        return 800 * (longitude+180.0) / 360.0;
+    /**
+     * Returns an SVG line component
+     * @return String that contains line component
+     */
+
+    private String line(Place a, Place b, int wrap) {
+        double aLong = a.longitude;
+        aLong += (wrap < 0) ? -360.0 : 0;
+        double bLong = b.longitude;
+        bLong += (wrap > 0) ? 360.0 : 0;
+
+        return "<line x1=\"" + getX(aLong) + "\" y1=\"" + getY(a.latitude)
+                + "\" x2=\"" + getX(bLong) + "\" y2=\"" + getY(b.latitude)
+                + "\" stroke=\"red\" stroke-width=\"3\"/>";
     }
+
+    /**
+     * Returns an SVG circle component
+     * @return String that contains circle component
+     */
+
+    private String point(Place p) {
+        return "\n\n\t\t\t<circle cx=\""
+                + getX(p.longitude)
+                + "\" cy=\""
+                + getY(p.latitude)
+                + "\" r=\"6\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" />";
+    }
+
+    /**
+     * Returns the pixel conversion from location longitude
+     * @return double X coordinate
+     */
+
+    private double getX(double longitude){ return 800 * (longitude+180.0) / 360.0; }
+
+    /**
+     * Returns the pixel conversion from location latitude
+     * @return double Y coordinate
+     */
 
     private double getY(double latitude){
         return 400 * (180.0-(latitude + 90.0)) / 180.0;
     }
+
     /**
      * Returns the distances between consecutive places,
      * including the return to the starting point to make a round trip.
