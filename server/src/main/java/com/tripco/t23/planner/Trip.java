@@ -127,7 +127,7 @@ public class Trip {
         StringBuilder strBuild = readFile("worldmap.svg");
         
         return strBuild.insert(strBuild.lastIndexOf("/>")+2,
-                "\n\n\t\t\t" + path.toString() + "\n").toString();
+                path.toString() + "\n").toString();
     }
 
     /**
