@@ -47,7 +47,7 @@ public class Trip {
                 shortDistances(2);
             }
         }
-        this.map = options.map.equals("svg") ? svg() : kml();
+        //this.map = options.map.equals("svg") ? svg() : kml();
         if(options.map != null){
             if(options.map.equals("svg")){
                 this.map = "svg";
