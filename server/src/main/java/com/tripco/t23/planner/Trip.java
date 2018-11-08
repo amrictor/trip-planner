@@ -1,24 +1,10 @@
 package com.tripco.t23.planner;
-/*
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.tripco.t23.server.HTTP;
-import groovy.ui.SystemOutputInterceptor;
-import org.codehaus.jettison.json.JSONObject;
-import spark.Request;*/
-
-import com.sun.org.apache.bcel.internal.util.ClassLoader;
 
 import java.io.*;
 import java.io.BufferedReader;
-import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.Path;
-import java.util.Scanner;
+
 
 /**
  * The Trip class supports TFFI so it can easily be converted to/from Json by Gson.
@@ -54,7 +40,6 @@ public class Trip {
      * Returns a StringBuilder containing the contents of a passed in file
      * @return StringBuilder that contains file contents
      */
-
     private StringBuilder readFile(String filename) {
         String line;
         StringBuilder strBuild = new StringBuilder();
@@ -75,9 +60,6 @@ public class Trip {
      * Returns a KML containing the legs of the trip.
      * @return String that contains KML
      */
-
-    //GENERATE KML AND RELATED FUNCTIONS
-
     private String kml() {
         StringBuilder strBuild = readFile("mapbase.kml");
 
@@ -122,14 +104,10 @@ public class Trip {
 
     }
 
-
-    //GENERATE SVG AND RELATED FUNCTIONS
-
     /**
      * Returns an SVG containing the background and the legs of the trip.
      * @return String that contains SVG
      */
-
     private String svg() {
         StringBuilder path = new StringBuilder();
 
@@ -156,7 +134,6 @@ public class Trip {
      * Returns an SVG line component
      * @return String that contains line component
      */
-
     private String line(Place a, Place b, int wrap) {
         double aLong = a.longitude;
         aLong += (wrap < 0) ? -360.0 : 0;
@@ -172,7 +149,6 @@ public class Trip {
      * Returns an SVG circle component
      * @return String that contains circle component
      */
-
     private String point(Place p) {
         return "\n\n\t\t\t<circle cx=\""
                 + getX(p.longitude)
@@ -185,14 +161,12 @@ public class Trip {
      * Returns the pixel conversion from location longitude
      * @return double X coordinate
      */
-
     private double getX(double longitude){ return 800 * (longitude+180.0) / 360.0; }
 
     /**
      * Returns the pixel conversion from location latitude
      * @return double Y coordinate
      */
-
     private double getY(double latitude){
         return 400 * (180.0-(latitude + 90.0)) / 180.0;
     }
@@ -201,7 +175,6 @@ public class Trip {
      * Returns the distances between consecutive places,
      * including the return to the starting point to make a round trip.
      */
-
     private void noneDistances() {
 
         ArrayList<Integer> distances = new ArrayList<>();
