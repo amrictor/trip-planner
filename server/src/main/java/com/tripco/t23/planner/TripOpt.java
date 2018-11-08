@@ -60,6 +60,9 @@ public class TripOpt {
         for (int i = 0; i < places.size(); i++) {
             nearestNeighbor(i);
         }
+        for (int i = 0; i < tempLookup.length; i++) {
+            tempPlaces[i] = places.get(tempLookup[i]);
+        }
         places = new ArrayList<>(Arrays.asList(tempPlaces));
         places.remove(places.size() - 1);
     }
@@ -93,9 +96,6 @@ public class TripOpt {
         }
         if (opt == 2) {
             twoOpt();
-            for (int i = 0; i < tempLookup.length; i++) {
-                tempPlaces[i] = places.get(tempLookup[i]);
-            }
         }
     }
 
