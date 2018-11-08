@@ -47,17 +47,17 @@ public class Trip {
                 shortDistances(2);
             }
         }
-        //this.map = options.map.equals("svg") ? svg() : kml();
+        this.map = options.map.equals("svg") ? svg() : kml();
         if(options.map != null){
             if(options.map.equals("svg")){
-                this.map = "svg";
+                this.map = svg();
             }
             if(options.map.equals("kml")){
-                this.map = "kml";
+                this.map = kml();
             }
         }
         else{
-            this.map = "svg";
+            this.map = svg();
         }
         noneDistances();
     }
