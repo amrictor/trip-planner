@@ -48,6 +48,17 @@ public class Trip {
             }
         }
         this.map = options.map.equals("svg") ? svg() : kml();
+        if(options.map != null){
+            if(options.map.equals("svg")){
+                this.map = "svg";
+            }
+            if(options.map.equals("kml")){
+                this.map = "kml";
+            }
+        }
+        else{
+            this.map = "svg";
+        }
         noneDistances();
     }
 
