@@ -170,16 +170,5 @@ public class TripOpt {
         }
     }
 
-    /**
-     * Recalculates the entire route length
-     */
-    private int routeLength() {
-        int temp = 0;
-        for (int i = 0; i < tempLookup.length - 1; i++) {
-            temp += allDistances[tempLookup[i]][tempLookup[i + 1]];
-        }
-        return temp;
-    }
-
 }
 
