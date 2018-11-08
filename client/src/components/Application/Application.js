@@ -102,10 +102,7 @@ class Application extends Component {
     //key can only be {"add", "remove"}, perform accordingly
     updatePlaces(value, key) {
         if (key === "add") {
-            if (typeof this.state.trip.places === 'undefined') {
-                this.state.trip.places = [value];
-            }
-            else {
+
                 const place = JSON.stringify(value);
                 let found = this.state.trip.places.findIndex(function(ele){
                     return JSON.stringify(ele) === place;
@@ -113,7 +110,7 @@ class Application extends Component {
                 if (found === -1)  {
                     this.state.trip.places.push(value);
                 }
-            }
+
         }
         else if (key === "remove") {
             const place = JSON.stringify(value);
