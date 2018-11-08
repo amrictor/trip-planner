@@ -12,12 +12,18 @@ public class Place {
 
   Place() {}
 
-  Place (String id, String name, double latitude, double longitude) { //constructor for testing purposes
+  Place(String id, String name, double latitude, double longitude) { //constructor for testing purposes
     this.id = id;
     this.name = name;
     this.latitude = latitude;
     this.longitude = longitude;
   }
 
+  Place(Place copy) {
+    this.id = copy.id;
+    this.name = copy.name;
+    this.latitude = copy.latitude;
+    this.longitude = copy.longitude;
+  }
 
 }
