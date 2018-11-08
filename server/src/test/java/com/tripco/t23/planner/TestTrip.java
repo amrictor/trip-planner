@@ -40,6 +40,7 @@ public class TestTrip {
     trip.places.add(new Place("cro", "Cairo", 30.0460, 31.2360));
     trip.places.add(new Place("sjds", "San Juan Del Sur", 11.2641, -85.8654));
     trip.places.add(new Place("lndn", "London", 51.508424, -0.1271));
+    trip.places.add(new Place("lmsk", "Lamutskoye", 65.523985, 168.826216));
   }
 
   @Test
@@ -52,7 +53,7 @@ public class TestTrip {
   public void testDistances() {
     trip.plan();
     ArrayList<Integer> expectedDistances = new ArrayList<>();
-    Collections.addAll(expectedDistances, 2346, 2340, 5429, 192, 132, 1995, 6131);
+    Collections.addAll(expectedDistances, 192, 132, 1995, 5458, 1286, 2346, 2340, 5429);
     // Call the equals() method of the first object on the second object.
     assertEquals(expectedDistances, trip.distances);
   }
@@ -71,6 +72,7 @@ public class TestTrip {
     assertEquals(trip.map, readFile("worldmaptest.kml"));
   }
 
+  //reads a file and returns String with file contents
   private String readFile(String filename) {
     String line;
     StringBuilder strBuild = new StringBuilder();
