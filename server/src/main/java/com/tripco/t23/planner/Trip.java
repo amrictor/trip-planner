@@ -116,24 +116,27 @@ public class Trip {
         StringBuilder path = new StringBuilder();
 
         for(int i = 0; i<=places.size(); i++){
-            Place a = new Place(places.get(((i-1) % places.size() + places.size()) % places.size()));
-            Place b = new Place(places.get(i%places.size()));
+            Place first = places.get(((i-1) % places.size() + places.size()) % places.size());
+            Place second = places.get(i % places.size());
 
-            if((a.longitude-b.longitude)>180.0)  //wrap around at right side
+            if((first.longitude-second.longitude)>180.0) { //wrap around at right side
                 path.append("\n\n\t\t\t")
-                        .append(line(a, b, -1))
+                        .append(line(first, second, -1))
                         .append("\n\n\t\t\t")
-                        .append(line(a, b, 1));
-            else if((a.longitude-b.longitude)<-180.0)  //wrap around at left side
+                        .append(line(first, second, 1));
+            }
+            else if((first.longitude-second.longitude)<-180.0) { //wrap around at left side
                 path.append("\n\n\t\t\t")
-                        .append(line(b, a, -1))
+                        .append(line(second, first, -1))
                         .append("\n\n\t\t\t")
-                        .append(line(b, a, 1));
-            else
+                        .append(line(second, first, 1));
+            }
+            else {
                 path.append("\n\n\t\t\t")
-                        .append(line(a, b, 0)); //no wrap
+                        .append(line(first, second, 0)); //no wrap
+            }
 
-            path.append(point(a));
+            path.append(point(first));
         }
 
         StringBuilder strBuild = readFile("worldmap.svg");
@@ -146,14 +149,14 @@ public class Trip {
      * Returns an SVG line component.
      * @return String that contains line component
      */
-    private String line(Place a, Place b, int wrap) {
-        double aLong = a.longitude;
-        aLong += (wrap < 0) ? -360.0 : 0;
-        double bLong = b.longitude;
-        bLong += (wrap > 0) ? 360.0 : 0;
+    private String line(Place placeA, Place placeB, int wrap) {
+        double longA = placeA.longitude;
+        longA += (wrap < 0) ? -360.0 : 0;
+        double longB = placeB.longitude;
+        longB += (wrap > 0) ? 360.0 : 0;
 
-        return "<line x1=\"" + getX(aLong) + "\" y1=\"" + getY(a.latitude)
-                + "\" x2=\"" + getX(bLong) + "\" y2=\"" + getY(b.latitude)
+        return "<line x1=\"" + getX(longA) + "\" y1=\"" + getY(placeA.latitude)
+                + "\" x2=\"" + getX(longB) + "\" y2=\"" + getY(placeB.latitude)
                 + "\" stroke=\"red\" stroke-width=\"3\"/>";
     }
 
@@ -161,11 +164,11 @@ public class Trip {
      * Returns an SVG circle component.
      * @return String that contains circle component
      */
-    private String point(Place p) {
+    private String point(Place place) {
         return "\n\n\t\t\t<circle cx=\""
-                + getX(p.longitude)
+                + getX(place.longitude)
                 + "\" cy=\""
-                + getY(p.latitude)
+                + getY(place.latitude)
                 + "\" r=\"6\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" />";
     }
 
@@ -173,7 +176,9 @@ public class Trip {
      * Returns the pixel conversion from location longitude.
      * @return double X coordinate
      */
-    private double getX(double longitude){ return 800 * (longitude+180.0) / 360.0; }
+    private double getX(double longitude){
+        return 800 * (longitude+180.0) / 360.0;
+    }
 
     /**
      * Returns the pixel conversion from location latitude.
