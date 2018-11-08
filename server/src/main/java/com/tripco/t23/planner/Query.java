@@ -24,35 +24,47 @@ public class Query {
     private static final String user = "cs314-db";
     private static final String pass = "eiK5liet1uej";
 
-    //Count the number of records and retrieve the data
-    private static final String count =  "";
-    private static final String search = "";
-
     /**
      * Sets the connection and queries the database.
      */
     public void find(){
-        String queryhead = "SELECT * FROM airports WHERE ";
-        String counthead = "SELECT count(*) FROM airports WHERE ";
-        String question = "(name LIKE '%" + match + "%'" + "or id LIKE '%" + match
-                 + "%' or municipality LIKE '%" + match + "%' or type LIKE '%" + match + "%') ";
+        String queryhead = "SELECT world_airports.id, world_airports.name, "
+                + "world_airports.latitude, world_airports.longitude FROM continents "
+                + "INNER JOIN country ON continents.id = country.continent "
+                + "INNER JOIN region ON country.id = region.iso_country "
+                + "INNER JOIN world_airports ON region.id = world_airports.iso_region "
+                + "WHERE ";
+        String counthead = "SELECT count(*) FROM continents "
+                + "INNER JOIN country ON continents.id = country.continent "
+                + "INNER JOIN region ON country.id = region.iso_country "
+                + "INNER JOIN world_airports ON region.id = world_airports.iso_region "
+                + "WHERE ";
+
+        String question = "(country.name LIKE '%" + match + "%' "
+                + "OR region.name LIKE '%" + match + "%' "
+                + "OR world_airports.name LIKE '%" + match + "%' "
+                + "OR world_airports.municipality LIKE '%" + match + "%') ";
+
         if (!filters.isEmpty()) {
             for(int j = 0; j < filters.size(); j++) {
                 question += " and (";
                 for (int i = 0; i < filters.get(j).values.size() - 1; i++) {
-                    question += filters.get(j).name + " like " + "'%"
-                            + filters.get(j).values.get(i) + "%' or ";
+                    question += filters.get(j).name + " LIKE " + "'%"
+                            + filters.get(j).values.get(i) + "%' OR ";
                 }
-                question += filters.get(j).name + " like " + "'%"
+                question += filters.get(j).name + " LIKE " + "'%"
                         + filters.get(j).values.get(filters.get(j).values.size()-1) + "%') ";
             }
         }
         if(limit != 0){
-            question  += "limit " + limit;
+            question  += "LIMIT " + limit;
+        }else {
+            question += "LIMIT " + 50;
         }
 
         question += ";";
-
+        //System.out.println(queryhead + question);
+        //System.out.println(counthead + question);
         try{
             //Try to find the class for the driver variable
             Class.forName(myDriver);
@@ -61,8 +73,9 @@ public class Query {
             try(Connection conn = DriverManager.getConnection(myUrl,user,pass);
                 Statement stCount = conn.createStatement();
                 Statement stQuery = conn.createStatement();
-                //This will be implemented later.
+
                 ResultSet rsCount = stCount.executeQuery(counthead + question);
+
                 ResultSet rsQuery = stQuery.executeQuery(queryhead + question)
             ){
                 buildPlaces(rsCount,rsQuery);
@@ -77,16 +90,17 @@ public class Query {
      *Builds the responses from mySQL into places for returning.
      */
     public void buildPlaces(ResultSet count, ResultSet query) {
+
         places = new ArrayList<>();
         try{
             count.next();
-            found = count.getInt(1);
-            System.out.println(found);
+            found = count.getInt("count(*)");
+            //System.out.println(found);
             while(query.next()){
-                String id = query.getString("id");
-                String name = query.getString("name");
-                Double latitude = query.getDouble("latitude");
-                Double longitude = query.getDouble("longitude");
+                String id = query.getString("world_airports.id");
+                String name = query.getString("world_airports.name");
+                Double latitude = query.getDouble("world_airports.latitude");
+                Double longitude = query.getDouble("world_airports.longitude");
                 Place place = new Place(id,name,latitude,longitude);
                 places.add(place);
             }
