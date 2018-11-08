@@ -46,33 +46,6 @@
       </Pair>
     </StyleMap>
     <Folder><name>null</name>	<Placemark>
-		<name>Anchorage</name>
-		<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
-		<Point>
-			<coordinates>
-				-149.9235,61.2178,0
-			</coordinates>
-		</Point>
-	</Placemark>
-	<Placemark>
-		<name>Fort Collins</name>
-		<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
-		<Point>
-			<coordinates>
-				-105.084419,40.585258,0
-			</coordinates>
-		</Point>
-	</Placemark>
-	<Placemark>
-		<name>San Juan Del Sur</name>
-		<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
-		<Point>
-			<coordinates>
-				-85.8654,11.2641,0
-			</coordinates>
-		</Point>
-	</Placemark>
-	<Placemark>
 		<name>London</name>
 		<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
 		<Point>
@@ -109,37 +82,40 @@
 		</Point>
 	</Placemark>
 	<Placemark>
-		<name>Anchorage to Fort Collins</name>
-		<styleUrl>#line-000000-1200-nodesc</styleUrl>
-		<LineString>
-			<tessellate>1</tessellate>
+		<name>Lamutskoye</name>
+		<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+		<Point>
+			<coordinates>
+				168.826216,65.523985,0
+			</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Anchorage</name>
+		<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+		<Point>
 			<coordinates>
 				-149.9235,61.2178,0
-				-105.084419,40.585258,0
 			</coordinates>
-		</LineString>
+		</Point>
 	</Placemark>
 	<Placemark>
-		<name>Fort Collins to San Juan Del Sur</name>
-		<styleUrl>#line-000000-1200-nodesc</styleUrl>
-		<LineString>
-			<tessellate>1</tessellate>
+		<name>Fort Collins</name>
+		<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+		<Point>
 			<coordinates>
 				-105.084419,40.585258,0
-				-85.8654,11.2641,0
 			</coordinates>
-		</LineString>
+		</Point>
 	</Placemark>
 	<Placemark>
-		<name>San Juan Del Sur to London</name>
-		<styleUrl>#line-000000-1200-nodesc</styleUrl>
-		<LineString>
-			<tessellate>1</tessellate>
+		<name>San Juan Del Sur</name>
+		<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+		<Point>
 			<coordinates>
 				-85.8654,11.2641,0
-				-0.1271,51.508424,0
 			</coordinates>
-		</LineString>
+		</Point>
 	</Placemark>
 	<Placemark>
 		<name>London to Mons</name>
@@ -175,13 +151,57 @@
 		</LineString>
 	</Placemark>
 	<Placemark>
-		<name>Cairo to Anchorage</name>
+		<name>Cairo to Lamutskoye</name>
 		<styleUrl>#line-000000-1200-nodesc</styleUrl>
 		<LineString>
 			<tessellate>1</tessellate>
 			<coordinates>
 				31.236,30.046,0
+				168.826216,65.523985,0
+			</coordinates>
+		</LineString>
+	</Placemark>
+	<Placemark>
+		<name>Lamutskoye to Anchorage</name>
+		<styleUrl>#line-000000-1200-nodesc</styleUrl>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				168.826216,65.523985,0
 				-149.9235,61.2178,0
+			</coordinates>
+		</LineString>
+	</Placemark>
+	<Placemark>
+		<name>Anchorage to Fort Collins</name>
+		<styleUrl>#line-000000-1200-nodesc</styleUrl>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				-149.9235,61.2178,0
+				-105.084419,40.585258,0
+			</coordinates>
+		</LineString>
+	</Placemark>
+	<Placemark>
+		<name>Fort Collins to San Juan Del Sur</name>
+		<styleUrl>#line-000000-1200-nodesc</styleUrl>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				-105.084419,40.585258,0
+				-85.8654,11.2641,0
+			</coordinates>
+		</LineString>
+	</Placemark>
+	<Placemark>
+		<name>San Juan Del Sur to London</name>
+		<styleUrl>#line-000000-1200-nodesc</styleUrl>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				-85.8654,11.2641,0
+				-0.1271,51.508424,0
 			</coordinates>
 		</LineString>
 	</Placemark>
