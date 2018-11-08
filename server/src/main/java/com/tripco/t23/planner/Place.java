@@ -19,5 +19,11 @@ public class Place {
     this.longitude = longitude;
   }
 
+  Place (Place p) {
+    this.id = p.id;
+    this.name = p.name;
+    this.latitude = p.latitude;
+    this.longitude = p.longitude;
+  }
 
 }
