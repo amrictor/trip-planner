@@ -37,7 +37,7 @@ public class Trip {
     }
 
     /**
-     * Returns a StringBuilder containing the contents of a passed in file
+     * Returns a StringBuilder containing the contents of a passed in file.
      * @return StringBuilder that contains file contents
      */
     private StringBuilder readFile(String filename) {
@@ -83,7 +83,7 @@ public class Trip {
     }
 
     /**
-     * Returns a KML placemark component
+     * Returns a KML placemark component.
      * @return String that contains placemark component
      */
     private String placemarkBlock(String name, String type, String coordinates){
@@ -91,13 +91,17 @@ public class Trip {
                 + "\t\t<name>"
                 + name
                 + "</name>\n"
+
                 + (type.equals("Point")
                 ? "\t\t<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>\n"
                 : "\t\t<styleUrl>#line-000000-1200-nodesc</styleUrl>\n")
+
                 + "\t\t<" + type + ">\n"
+
                 + (type.equals("LineString")
                 ? "\t\t\t<tessellate>1</tessellate>\n"
                 : "")
+
                 + "\t\t\t<coordinates>\n" + coordinates +"\t\t\t</coordinates>\n"
                 + "\t\t</" + type + ">\n"
                 + "\t</Placemark>\n";
@@ -116,10 +120,18 @@ public class Trip {
             Place b = new Place(places.get(i%places.size()));
 
             if((a.longitude-b.longitude)>180.0)  //wrap around at right side
-                path.append("\n\n\t\t\t").append(line(a, b, -1)).append("\n\n\t\t\t").append(line(a, b, 1));
+                path.append("\n\n\t\t\t")
+                        .append(line(a, b, -1))
+                        .append("\n\n\t\t\t")
+                        .append(line(a, b, 1));
             else if((a.longitude-b.longitude)<-180.0)  //wrap around at left side
-                path.append("\n\n\t\t\t").append(line(b, a, -1)).append("\n\n\t\t\t").append(line(b, a, 1));
-            else path.append("\n\n\t\t\t").append(line(a, b, 0)); //no wrap
+                path.append("\n\n\t\t\t")
+                        .append(line(b, a, -1))
+                        .append("\n\n\t\t\t")
+                        .append(line(b, a, 1));
+            else
+                path.append("\n\n\t\t\t")
+                        .append(line(a, b, 0)); //no wrap
 
             path.append(point(a));
         }
@@ -131,7 +143,7 @@ public class Trip {
     }
 
     /**
-     * Returns an SVG line component
+     * Returns an SVG line component.
      * @return String that contains line component
      */
     private String line(Place a, Place b, int wrap) {
@@ -146,7 +158,7 @@ public class Trip {
     }
 
     /**
-     * Returns an SVG circle component
+     * Returns an SVG circle component.
      * @return String that contains circle component
      */
     private String point(Place p) {
@@ -158,13 +170,13 @@ public class Trip {
     }
 
     /**
-     * Returns the pixel conversion from location longitude
+     * Returns the pixel conversion from location longitude.
      * @return double X coordinate
      */
     private double getX(double longitude){ return 800 * (longitude+180.0) / 360.0; }
 
     /**
-     * Returns the pixel conversion from location latitude
+     * Returns the pixel conversion from location latitude.
      * @return double Y coordinate
      */
     private double getY(double latitude){
