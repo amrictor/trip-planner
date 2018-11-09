@@ -234,22 +234,21 @@ class Plan extends Component {
                                     trip={this.props.trip}
                                 />
                             </Col>
-                          </Row>
-                          <hr/>
-                          <Search
-                              updatePlaces={this.props.updatePlaces}
-                              planRequest={this.planRequest}
-                              addPlace={this.addPlace}
-                              places={this.state.places}
-                              port={this.port}
-                              host={this.host}
-                          />
-                          <br/>
-                          <Itinerary
-                              trip={this.props.trip}
-                              updatePlaces={this.props.updatePlaces}
-                              planRequest={this.planRequest}
-                          />
+                        </Row>
+                        <hr/>
+                        <Search
+                            updatePlaces={this.props.updatePlaces}
+                            planRequest={this.planRequest}
+                            addPlace={this.addPlace}
+                            places={this.state.places}
+                            port={this.port}
+                            host={this.host}/>
+                        <br/>
+                        <Itinerary
+                            trip={this.props.trip}
+                            updatePlaces={this.props.updatePlaces}
+                            planRequest={this.planRequest}
+                        />
                     </CardBody>
                 </Container>
 
