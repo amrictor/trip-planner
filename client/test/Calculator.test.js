@@ -33,7 +33,7 @@ const startProps = {
 
 function testExample() {
     const options = mount((
-        <Options config={startProps.config} options={startProps.options}/>
+        <Calculator config={startProps.config} calculator={startProps.options}/>
     ));
 
     let actual = [];
@@ -56,7 +56,7 @@ test('Check to see if table gets made correctly (Lambda)', () => {
      *  given the example input (3).
     */
     const options = mount((   // (1)
-        <Options config={startProps.config} options={startProps.options}/>
+        <Calculator config={startProps.config} calculator={startProps.options}/>
     ));
 
     let actual = [];
@@ -74,7 +74,7 @@ test('Check to see if units get updated correctly', () => {
      *  given the example input (3).
     */
     const options = mount((   // (1)
-        <Options config={startProps.config} options={startProps.options}/>
+        <Calculator config={startProps.config} calculator={startProps.options}/>
     ));
 
     let actual = [];
