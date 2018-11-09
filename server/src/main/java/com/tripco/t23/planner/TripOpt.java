@@ -87,15 +87,17 @@ public class TripOpt {
             cumulativeDist = cumulativeDist + shortestdist;
         }
         cumulativeDist += allDistances[tempLookup[0]][tempLookup[tempLookup.length - 2]];
+        if (opt == 2) {
+            twoOpt();
+            cumulativeDist = 0;
+            for (int i = 0; i < tempLookup.length-1; i++) {
+                placed[i] = places.get(tempLookup[i]);
+                cumulativeDist += allDistances[tempLookup[i]][tempLookup[i+1]];
+            }
+        }
         if (cumulativeDist < currentShortest) {
             currentShortest = cumulativeDist;
             tempPlaces = placed;
-        }
-        if (opt == 2) {
-            twoOpt();
-            for (int i = 0; i < tempLookup.length; i++) {
-                tempPlaces[i] = places.get(tempLookup[i]);
-            }
         }
     }
 
