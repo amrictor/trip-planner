@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {ButtonGroup, Button, Card, CardBody, CardHeader, CardTitle, Form, FormGroup, Label} from 'reactstrap'
+import {ButtonGroup, Button, Card, CardBody, CardHeader, CardTitle, Container, Form, FormGroup, Label} from 'reactstrap'
 import { Input, InputGroup, InputGroupAddon } from 'reactstrap'
 import {Collapse} from 'reactstrap'
 import {request} from '../../api/api';
@@ -87,13 +87,15 @@ class Calculator extends Component {
 
 
         return (
-            <Card>
+            <Container>
                 <CardBody>
                     <CardTitle>Calculate the distance between two places:</CardTitle>
+                    <hr/>
                     {fromto_field}
 
                 </CardBody>
-            </Card>
+            </Container>
+
         )
     }
 }

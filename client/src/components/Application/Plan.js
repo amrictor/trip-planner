@@ -68,18 +68,18 @@ class Plan extends Component {
     clearFileUploader(){
         const defaultState = {
             type: "trip",
-                version: 4,
-                title: "",
-                options: {
-                    units: "miles",
-                    unitName: "",
-                    unitRadius: 0,
-                    optimization: "none",
-                    map: "svg"
-                },
-                places: [],
-                distances: [],
-                map: null
+            version: 4,
+            title: "",
+            options: {
+                units: "miles",
+                unitName: "",
+                unitRadius: 0,
+                optimization: "none",
+                map: "svg"
+            },
+            places: [],
+            distances: [],
+            map: null
         };
         this.props.updateBasedOnResponse(defaultState);
     }
@@ -117,54 +117,54 @@ class Plan extends Component {
 
         const functions =
             <React.Fragment>
-            <ButtonGroup>
-                <Button
-                    key={'load'}
-                    color= "primary" style={{ marginBottom: '1rem' }}
-                    className='btn-outline-dark unit-button'
-                    onClick={()=> this.toggleLoad()}
-                    active={this.state.isLoad}
-                >
-                    Load
-                </Button>
-                <Button
-                    key={'clear'}
-                    color= "primary" style={{ marginBottom: '1rem' }}
-                    className='btn-outline-dark unit-button'
-                    onClick={()=> this.clearFileUploader()}
-                >
-                    Clear
-                </Button>
-                <Button
-                    key={'plan'}
-                    color= "primary" style={{ marginBottom: '1rem' }}
-                    className='btn-outline-dark unit-button'
-                    onClick={() => this.planRequest()}
-                >
-                    Plan
-                </Button>
-            </ButtonGroup>
+                <ButtonGroup>
+                    <Button
+                        key={'load'}
+                        color= "primary" style={{ marginBottom: '1rem' }}
+                        className='btn-outline-dark unit-button'
+                        onClick={()=> this.toggleLoad()}
+                        active={this.state.isLoad}
+                    >
+                        Load
+                    </Button>
+                    <Button
+                        key={'clear'}
+                        color= "primary" style={{ marginBottom: '1rem' }}
+                        className='btn-outline-dark unit-button'
+                        onClick={()=> this.clearFileUploader()}
+                    >
+                        Clear
+                    </Button>
+                    <Button
+                        key={'plan'}
+                        color= "primary" style={{ marginBottom: '1rem' }}
+                        className='btn-outline-dark unit-button'
+                        onClick={() => this.planRequest()}
+                    >
+                        Plan
+                    </Button>
+                </ButtonGroup>
                 &nbsp;&nbsp;
-            <ButtonGroup>
-                <Button
-                    key={'save_trip'}
-                    color= "primary" style={{ marginBottom: '1rem' }}
-                    className='btn-outline-dark unit-button'
-                    onClick={() => this.saveToFile('json')}
-                >
-                    Export Trip
-                </Button>
-                <Button
-                    key={'save_map'}
-                    color= "primary" style={{ marginBottom: '1rem' }}
-                    className='btn-outline-dark unit-button'
-                    onClick={() => this.saveToFile(this.props.trip.options.map)}
-                >
-                    Export Map
-                </Button>
-            </ButtonGroup>
+                <ButtonGroup>
+                    <Button
+                        key={'save_trip'}
+                        color= "primary" style={{ marginBottom: '1rem' }}
+                        className='btn-outline-dark unit-button'
+                        onClick={() => this.saveToFile('json')}
+                    >
+                        Export Trip
+                    </Button>
+                    <Button
+                        key={'save_map'}
+                        color= "primary" style={{ marginBottom: '1rem' }}
+                        className='btn-outline-dark unit-button'
+                        onClick={() => this.saveToFile(this.props.trip.options.map)}
+                    >
+                        Export Map
+                    </Button>
+                </ButtonGroup>
             </React.Fragment>
-            ;
+        ;
 
         const addBody =
 
@@ -216,42 +216,43 @@ class Plan extends Component {
 
         return (
             <React.Fragment>
-                <Card>
-                    <CardBody id="Plan">
-                        <CardTitle>Plan a trip around Colorado!</CardTitle>
-                        <hr/>
-                        <Container>
-                            <Row>
-                                <Col md="5">
-                                    {functions}
-                                    {fileuploader}
-                                    <CardTitle>Add stops to your trip!</CardTitle>
-                                    {addBody}
-                                    <hr/>
-                                </Col>
 
-                                <Col md="7">
-                                    <Map
-                                        trip={this.props.trip}
-                                    />
-                                </Col>
-                            </Row>
-                            <hr/>
-                            <Search
-                                updatePlaces={this.props.updatePlaces}
-                                planRequest={this.planRequest}
-                                addPlace={this.addPlace}
-                                places={this.state.places}
-                                port={this.port}
-                                host={this.host}/>
-                        </Container>
+                <Container>
+                    <CardBody id="Plan">
+                        <CardTitle>Plan a trip around the world!</CardTitle>
+                        <hr/>
+                        <Row>
+                            <Col md="5">
+                                {functions}
+                                {fileuploader}
+                                <CardTitle>Add stops to your trip!</CardTitle>
+                                {addBody}
+                                <hr/>
+                            </Col>
+
+                            <Col md="7">
+                                <Map
+                                    trip={this.props.trip}
+                                />
+                            </Col>
+                        </Row>
+                        <hr/>
+                        <Search
+                            updatePlaces={this.props.updatePlaces}
+                            planRequest={this.planRequest}
+                            addPlace={this.addPlace}
+                            places={this.state.places}
+                            port={this.port}
+                            host={this.host}/>
                         <Itinerary
                             trip={this.props.trip}
                             updatePlaces={this.props.updatePlaces}
                             planRequest={this.planRequest}
                         />
                     </CardBody>
-                </Card>
+                </Container>
+
+
             </React.Fragment>
         )
     }

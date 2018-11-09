@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {ButtonGroup, Button, Card, CardBody, CardHeader, CardTitle, Form, FormGroup, Label} from 'reactstrap'
+import {ButtonGroup, Button, Card, CardBody, CardHeader, CardTitle, Container, Form, FormGroup, Label} from 'reactstrap'
 import { Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap'
 import {Collapse} from 'reactstrap'
 
@@ -70,13 +70,13 @@ class Options extends Component {
                     />
                     <InputGroupAddon addonType="append">
                         &nbsp;
-                    <Button
-                        key={'options_submit'}
-                        className='btn-outline-dark unit-button'
-                        onClick={() => this.props.updateHostAndPort(host_field.value, port_field.value)}
-                    >
-                        Submit
-                    </Button>
+                        <Button
+                            key={'options_submit'}
+                            className='btn-outline-dark unit-button'
+                            onClick={() => this.props.updateHostAndPort(host_field.value, port_field.value)}
+                        >
+                            Submit
+                        </Button>
                     </InputGroupAddon>
                 </InputGroup>
             </Form>;
@@ -155,33 +155,35 @@ class Options extends Component {
 
         return (
 
-            <Card>
-                <CardBody>
-                    <CardTitle>Options</CardTitle>
+            <React.Fragment>
+                <Container id={"Options"}>
+                    <CardBody>
+                        <CardTitle>Options</CardTitle>
+                        <hr/>
 
-                    <p><b>Select the units you wish to use:</b></p>
+                        <p><b>Select the units you wish to use:</b></p>
 
-                    <ButtonGroup>
-                        {buttons}
-                    </ButtonGroup>
-                    {userdeffield}
-                </CardBody>
-                <CardBody>
-                    <p><b>Select your desired map output:</b></p>
-                    {mapChoices}
-                </CardBody>
+                        <ButtonGroup>
+                            {buttons}
+                        </ButtonGroup>
+                        {userdeffield}
+                    </CardBody>
+                    <CardBody>
+                        <p><b>Select your desired map output:</b></p>
+                        {mapChoices}
+                    </CardBody>
 
-                <CardBody>
-                    <p><b>Select your preferred optimization:</b></p>
-                    {optimiOpt}
-                </CardBody>
+                    <CardBody>
+                        <p><b>Select your preferred optimization:</b></p>
+                        {optimiOpt}
+                    </CardBody>
 
-                <CardBody>
-                    <p><b>Enter your server host and port:</b></p>
-                    {portForm}
-                </CardBody>
-
-            </Card>
+                    <CardBody>
+                        <p><b>Use a different server and/or port:</b></p>
+                        {portForm}
+                    </CardBody>
+                </Container>
+            </React.Fragment>
         )
     }
 }
