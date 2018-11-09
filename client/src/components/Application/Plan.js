@@ -249,7 +249,6 @@ class Plan extends Component {
                               updatePlaces={this.props.updatePlaces}
                               planRequest={this.planRequest}
                           />
-                      </Container>
                   </CardBody>
               </Container>
 
