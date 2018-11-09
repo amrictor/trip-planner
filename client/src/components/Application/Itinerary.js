@@ -70,6 +70,7 @@ class Itinerary extends Component {
                     total += this.props.trip.distances[i];
                 }
                 data.push(
+                    
                     <Row key="Total">
                         <Col sm="12" md={{ size:2, offset: 5 }}>
                             <b>Total: {total}</b>

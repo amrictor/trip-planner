@@ -104,7 +104,7 @@ class Application extends Component {
         this.setState(trip);
     }
 
-    //key can only be {"add", "remove"}, perform accordingly
+    //key can only be {"add", "remove", "reverse", "origin"}, perform accordingly
     updatePlaces(value, key, origin) {
         if (key === "add") {
             if (typeof this.state.trip.places === 'undefined') {
@@ -128,10 +128,12 @@ class Application extends Component {
                     return JSON.stringify(ele) !== place;
                 });
             }
-            this.setState(trip)
+            this.setState(trip);
         }
         else if  (key === "reverse") {
             let trip = this.state.trip;
+            trip["places"] = trip["places"].reverse();
+            this.setState(trip);
         }
         else if  (key === "origin") {
 
