@@ -30,6 +30,7 @@ class Search extends Component {
         this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
         this.showSearchResult = this.showSearchResult.bind(this);
         this.updateCheckbox = this.updateCheckbox.bind(this);
+
     }
     updateSearch() {
         let search = this.state.search;
@@ -51,18 +52,20 @@ class Search extends Component {
         if(this.state.airport){
             filterType.push("airport");
         }
-        if(this.seaplane_base){
-            filterType.push("seaplane base")
+        if(this.state.seaplane_base){
+            filterType.push("seaplane base");
         }
 
-        if (filterType !== null){
+        if (typeof filterType !== 'undefined'){
             this.addFilter("type", filterType);
         }
 
         if(this.state.search.match === "") return;
+
         request(this.state.search, 'search', this.props.port, this.props.host).then(response => {
             this.updateBasedOnResponse(response)
         });
+
         this.setState({ isSearch: true });
     }
     closeSearch() {
@@ -78,10 +81,8 @@ class Search extends Component {
     addFilter(name, values){
         const filter = {'name': name, 'values': values};
         this.updateFilter(filter,"add");
-        console.log(this.state.filters);
     }
-
-    updateFilter(value, key) {
+    updateFilter(value, key){
         if (key === "add") {
             if (typeof this.state.search.filters === 'undefined') {
                 this.state.search.filters = [value];
@@ -95,16 +96,6 @@ class Search extends Component {
                     this.state.search.filters.push(value);
                 }
             }
-        }
-        else if (key === "remove") {
-            const filter = JSON.stringify(value);
-            let search = this.state.search;
-            if (typeof this.state.search.filters !== 'undefined') {
-                search["filters"] = search["filters"].filter(function(ele){
-                    return JSON.stringify(ele) !== filter;
-                });
-            }
-            this.setState(search)
         }
     }
     putData(){
@@ -139,23 +130,26 @@ class Search extends Component {
             maxHeight: 400,
             overflowY: "scroll"
         }
-        if (typeof this.state.search !== "undefined" && this.state.search.places.length > 0) {
-            return (
-                <React.Fragment>
-                    <Container>
-                        <Row>
-                            <Col xs="2" key='id'>ID</Col>
-                            <Col xs="5" key='name'>Name</Col>
-                            <Col xs="2" key='lat'>Lat</Col>
-                            <Col xs="2" key='lon'>Lon</Col>
-                        </Row>
-                        <hr/>
-                    </Container>
-                    <Container style={style}>
-                    {this.putData()}
-                    </Container>
-                </React.Fragment>
-        );
+        if (typeof this.state.search !== "undefined" && typeof this.state.search.places !== "undefined") {
+            if (this.state.search.places.length > 0) {
+                return (
+                    <React.Fragment>
+                        <Container>
+                            <Row>
+                                <Col xs="2" key='id'>ID</Col>
+                                <Col xs="5" key='name'>Name</Col>
+                                <Col xs="2" key='lat'>Lat</Col>
+                                <Col xs="2" key='lon'>Lon</Col>
+                            </Row>
+                            <hr/>
+                        </Container>
+                        <Container style={style}>
+                            {this.putData()}
+                        </Container>
+                    </React.Fragment>
+
+                );
+            }
         }
         return "No results available."
     }
@@ -183,24 +177,6 @@ class Search extends Component {
 
                 <InputGroup>
                     <label>
-                        Balloonport:
-                        <input
-                            name="balloonport"
-                            type="checkbox"
-                            checked={this.state.balloonport}
-                            onChange={this.updateCheckbox}
-                        />
-                    </label>
-                    <label>
-                        Heliport:
-                        <input
-                            name="heliport"
-                            type="checkbox"
-                            checked={this.state.heliport}
-                            onChange={this.updateCheckbox}
-                        />
-                    </label>
-                    <label>
                         Airport:
                         <input
                             name="airport"
@@ -210,6 +186,27 @@ class Search extends Component {
                         />
                     </label>
                     <label>
+                        &nbsp;&nbsp;
+                        Balloonport:
+                        <input
+                            name="balloonport"
+                            type="checkbox"
+                            checked={this.state.balloonport}
+                            onChange={this.updateCheckbox}
+                        />
+                    </label>
+                    <label>
+                        &nbsp;&nbsp;
+                        Heliport:
+                        <input
+                            name="heliport"
+                            type="checkbox"
+                            checked={this.state.heliport}
+                            onChange={this.updateCheckbox}
+                        />
+                    </label>
+                    <label>
+                        &nbsp;&nbsp;
                         Seaplane base:
                         <input
                             name="seaplane_base"
