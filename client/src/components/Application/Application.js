@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import Info from './Info'
 import Options from './Options';
 import Plan from './Plan';
+
 import Calculator from './Calculator';
 import {get_config} from '../../api/api';
 
@@ -49,6 +50,8 @@ class Application extends Component {
             host: window.location.host,
             activeTab: '1'
         };
+        this.reversePlaces = this.reversePlaces.bind(this);
+        this.setFirstPlace = this.setFirstPlace.bind(this);
         this.updateTrip = this.updateTrip.bind(this);
         this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
         this.updateOptions = this.updateOptions.bind(this);
@@ -157,17 +160,33 @@ class Application extends Component {
         }
     }
 
+    reversePlaces() {
+        let trip = this.state.trip;
+        trip.places.reverse();
+        this.setState(trip);
+    }
+
+    setFirstPlace(index) {
+
+        let places = [];
+        for (let i = 0; i < this.state.trip.places.length; i++) {
+            places.push(this.state.trip.places[index]);
+            index = (index + 1) % this.state.trip.places.length;
+        }
+        let trip = this.state.trip;
+        trip.places = places;
+        console.log(trip.places)
+        this.setState(trip);
+    }
+
     render() {
         if (!this.state.config) {
             return <div/>
         }
         return (
             <React.Fragment>
-
                 <Container>
-
                     <Nav tabs>
-
                         <NavItem>
                             <NavLink
                                 className={classnames({ active: this.state.activeTab === '1' })}
@@ -200,7 +219,6 @@ class Application extends Component {
                                 <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-gear-512.png" height="30"></img>
                             </NavLink>
                         </NavItem>
-
                     </Nav>
                 </Container>
                 <TabContent activeTab={this.state.activeTab}>
@@ -211,6 +229,8 @@ class Application extends Component {
                         <Plan
                             updateBasedOnResponse={this.updateBasedOnResponse}
                             updatePlaces={this.updatePlaces}
+                            reversePlaces={this.reversePlaces}
+                            setFirstPlace={this.setFirstPlace}
                             trip={this.state.trip}
                             places={this.state.places}
                             port={this.port}
@@ -233,13 +253,7 @@ class Application extends Component {
                         />
                     </TabPane>
                 </TabContent>
-
             </React.Fragment>
-
-
-
-
-
         )
     }
 }
