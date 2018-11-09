@@ -39,7 +39,7 @@ class Itinerary extends Component {
                         <React.Fragment key={this.props.trip.places[i].id}>
                             <Row>
                                 <Col xs="4" key='stop'>{this.props.trip.places[i].name}</Col>
-                                <Col xs="3" key='leg'>{this.props.trip.distances[i]}</Col>
+                                <Col xs="2" key='leg'>{this.props.trip.distances[i]}</Col>
                                 <Col xs="3" key='cumulative'>{total}</Col>
                                 <Col>
                                     <Button
@@ -50,6 +50,13 @@ class Itinerary extends Component {
                                         &#x2796;
                                     </Button>
 
+                                    <Button
+                                        key={'make_first'}
+                                        className='btn-outline-dark unit-button float-right'
+                                        onClick={() => this.props.setFirstPlace(i)}
+                                    >
+                                        &#x21a5;
+                                    </Button>
                                 </Col>
                             </Row>
                             <hr/>
