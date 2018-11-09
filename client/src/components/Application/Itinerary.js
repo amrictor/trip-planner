@@ -50,8 +50,9 @@ class Itinerary extends Component {
                                 <Col>
                                     <Button
                                         key={'make_origin'}
-                                        className='btn-outline-dark unit-button float-right'
-                                        onClick={() => this.removePlace(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
+                                        className='btn-outline-dark unit-button'
+                                        onClick={() => this.updateOrigin(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
+
                                     >
                                         Make origin
                                     </Button>
@@ -61,7 +62,7 @@ class Itinerary extends Component {
                                     <Button
                                         key={'add_remove'}
                                         className='btn-outline-dark unit-button float-right'
-                                        onClick={() => this.updateOrigin(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
+                                        onClick={() => this.removePlace(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
                                     >
                                         &#x2796;
                                     </Button>
