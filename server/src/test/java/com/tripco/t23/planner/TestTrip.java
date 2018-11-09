@@ -72,6 +72,15 @@ public class TestTrip {
     assertEquals(trip.map, readFile("worldmaptest.kml"));
   }
 
+  //@Test
+  //public void testShorter(){
+  //  trip.options.optimization = "shorter";
+  //  ArrayList<Integer> expectedDistances = new ArrayList<>();
+  //  Collections.addAll(expectedDistances, 192, 5429, 2340, 2346, 1286, 5458, 1995, 132);
+    // Call the equals() method of the first object on the second object.
+  //  assertEquals(expectedDistances, trip.distances);
+  //}
+
   //reads a file and returns String with file contents
   private String readFile(String filename) {
     String line;
