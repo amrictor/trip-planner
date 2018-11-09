@@ -29,7 +29,9 @@ class Itinerary extends Component {
     }
 
     updateOrigin(){
-        #const
+        const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
+        this.props.updatePlaces(place,"origin");
+        this.props.planRequest();
     }
 
     putData(){
@@ -59,7 +61,7 @@ class Itinerary extends Component {
                                     <Button
                                         key={'add_remove'}
                                         className='btn-outline-dark unit-button float-right'
-                                        onClick={() => this.removePlace(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
+                                        onClick={() => this.updateOrigin(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
                                     >
                                         &#x2796;
                                     </Button>
