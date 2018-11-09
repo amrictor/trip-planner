@@ -28,9 +28,9 @@ class Itinerary extends Component {
         else this.props.trip.map=null;
     }
 
-    updateOrigin(){
+    updateOrigin(id, name, lat, long){
         const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
-        this.props.updatePlaces(place,"origin");
+        this.props.updatePlaces(place,"origin", origin);
         this.props.planRequest();
     }
 
