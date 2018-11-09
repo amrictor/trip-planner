@@ -105,7 +105,7 @@ class Application extends Component {
     }
 
     //key can only be {"add", "remove", "reverse", "origin"}, and perform accordingly
-    updatePlaces(value, key, origin) {
+    updatePlaces(value, key) {
         if (key === "add") {
             if (typeof this.state.trip.places === 'undefined') {
                 this.state.trip.places = [value];
@@ -140,8 +140,12 @@ class Application extends Component {
             let found = this.state.trip.places.findIndex(function(ele){
                 return JSON.stringify(ele) === place;
             });
-            if (found === -1)  {
-                this.state.trip.places.push(value);
+            let trip = this.state.trip;
+            trip["places"] = trip["places"].slice(found);
+            this.state.trip.places
+            const arrayLength = this.state.trip.places.length;
+            for (let i = 0; i < arrayLength; i++) {
+                
             }
         }
     }

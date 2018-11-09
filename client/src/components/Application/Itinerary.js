@@ -30,7 +30,7 @@ class Itinerary extends Component {
 
     updateOrigin(id, name, lat, long){
         const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
-        this.props.updatePlaces(place,"origin", origin);
+        this.props.updatePlaces(place,"origin");
         this.props.planRequest();
     }
 
@@ -77,7 +77,7 @@ class Itinerary extends Component {
                         <Button
                             key={'reverse_order'}
                             className='btn-outline-dark unit-button'
-                            onClick={() => this.props.updatePlaces("","reverse","")}
+                            onClick={() => this.props.updatePlaces("","reverse")}
                         >
                             Reverse trip
                         </Button>
