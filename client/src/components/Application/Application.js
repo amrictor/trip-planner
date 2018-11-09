@@ -141,12 +141,13 @@ class Application extends Component {
                 return JSON.stringify(ele) === place;
             });
             let trip = this.state.trip;
-            trip["places"] = trip["places"].slice(found);
+            let new_places = trip["places"].slice(found);
             console.log(this.state.trip);
             console.log(trip["places"]);
             for (let i = 0; i < found; i++) {
-                trip["places"].push(this.state.trip.places[i]);
+                new_places.push(this.state.trip.places[i]);
             }
+            trip["places"] = new_places;
             console.log(trip["places"]);
             this.setState(trip);
         }
