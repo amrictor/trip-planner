@@ -142,13 +142,10 @@ class Application extends Component {
             });
             let trip = this.state.trip;
             let new_places = trip["places"].slice(found);
-            console.log(this.state.trip);
-            console.log(trip["places"]);
             for (let i = 0; i < found; i++) {
                 new_places.push(this.state.trip.places[i]);
             }
             trip["places"] = new_places;
-            console.log(trip["places"]);
             this.setState(trip);
         }
     }
