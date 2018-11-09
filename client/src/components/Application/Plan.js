@@ -163,8 +163,7 @@ class Plan extends Component {
                         Export Map
                     </Button>
                 </ButtonGroup>
-            </React.Fragment>
-        ;
+            </React.Fragment>;
 
         const addBody =
 
@@ -213,6 +212,16 @@ class Plan extends Component {
                 </Button>
             </React.Fragment>;
 
+            const reverse =
+                <Button
+                    key={'options_submit'}
+                    className='btn-outline-dark unit-button'
+                    onClick={()=> this.props.reversePlaces()}
+                    block
+                >
+                    Reverse Trip
+                </Button>;
+
 
         return (
             <React.Fragment>
@@ -243,10 +252,13 @@ class Plan extends Component {
                               places={this.state.places}
                               port={this.port}
                               host={this.host}/>
-                          <br/>
+                            <br/>
+                            {reverse}
+                            <br/>
                           <Itinerary
                               trip={this.props.trip}
                               updatePlaces={this.props.updatePlaces}
+                              setFirstPlace={this.props.setFirstPlace}
                               planRequest={this.planRequest}
                           />
                   </CardBody>
