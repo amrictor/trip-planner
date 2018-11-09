@@ -9,8 +9,7 @@ class Itinerary extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            itin: true,
-            origin: ""
+            itin: true
         }
         this.putData = this.putData.bind(this);
         this.createTable = this.createTable.bind(this);
@@ -72,10 +71,10 @@ class Itinerary extends Component {
                 data.push(
                     <Button
                         key={'reverse_order'}
-                        className='btn-outline-dark unit-button float-right'
+                        className='btn-outline-dark unit-button'
                         onClick={() => this.props.updatePlaces(place,"reverse")}
                     >
-                        &#x2796;
+                        Reverse
                     </Button>
                 );
                 data.push(
