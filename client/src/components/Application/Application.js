@@ -131,7 +131,13 @@ class Application extends Component {
             this.setState(trip)
         }
     }
-    
+    toggleTab(tab) {
+        if (this.state.activeTab !== tab) {
+            this.setState({
+                activeTab: tab
+            });
+        }
+    }
 
     render() {
         if (!this.state.config) {
