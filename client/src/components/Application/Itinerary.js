@@ -77,9 +77,9 @@ class Itinerary extends Component {
                         <Button
                             key={'reverse_order'}
                             className='btn-outline-dark unit-button'
-                            onClick={() => this.props.updatePlaces(place,"reverse")}
+                            onClick={() => this.props.updatePlaces("","reverse","")}
                         >
-                            Reverse
+                            Reverse trip
                         </Button>
                     </Row>
                 );
