@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
-import { Card, CardBody, CardTitle, CardImg } from 'reactstrap'
+import { Card, CardBody, CardImg, CardTitle  } from 'reactstrap'
 import { Col, Container, Row, Table } from 'reactstrap';
 import { Button } from 'reactstrap'
-import { Modal } from 'reactstrap'
+import { Collapse } from 'reactstrap'
 
 class Itinerary extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            modal: false
+            itin: true
         }
         this.putData = this.putData.bind(this);
         this.createTable = this.createTable.bind(this);
@@ -17,7 +17,7 @@ class Itinerary extends Component {
     }
     toggleItin() {
         this.setState({
-            modal: !this.state.modal
+            itin: !this.state.itin
         });
     }
 
@@ -29,7 +29,6 @@ class Itinerary extends Component {
     }
 
     putData(){
-
         let data = [];
         if (typeof this.props.trip.places !== "undefined") {
             let size = this.props.trip.places.length;
@@ -39,13 +38,13 @@ class Itinerary extends Component {
                     data.push(
                         <React.Fragment key={this.props.trip.places[i].id}>
                             <Row>
-                                <Col xs="4" key='origin'>{this.props.trip.places[i].name +" ("+ (i+1) +")"}</Col>
-                                <Col xs="4" key='destination'>{this.props.trip.places[(i + 1) % size].name + " ("+ (((i+1) % size) + 1) + ")"}</Col>
-                                <Col xs="2" key='distance'>{this.props.trip.distances[i]}</Col>
-                                <Col xs="2">
+                                <Col xs="4" key='stop'>{this.props.trip.places[i].name}</Col>
+                                <Col xs="3" key='leg'>{this.props.trip.distances[i]}</Col>
+                                <Col xs="3" key='cumulative'>{total}</Col>
+                                <Col>
                                     <Button
                                         key={'add_submit'}
-                                        className='btn-outline-dark unit-button'
+                                        className='btn-outline-dark unit-button float-right'
                                         onClick={() => this.removePlace(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
                                     >
                                         &#x2796;
@@ -58,15 +57,23 @@ class Itinerary extends Component {
                     );
                     total += this.props.trip.distances[i];
                 }
-                data.push(<React.Fragment key="Total">
-                            <Row>Total Distance: {total}</Row>
-                        </React.Fragment>);
+                data.push(
+                    <Row key="Total">
+                        <Col sm="12" md={{ size:2, offset: 5 }}>
+                            <b>Total: {total}</b>
+                        </Col>
+                    </Row>
+                );
             }
         }
         return data;
     }
 
     createTable(){
+        const style = {
+            maxHeight: 400,
+            overflowY: "scroll"
+        }
         if(typeof this.props.trip.options.units !== "undefined") {
             let units = this.props.trip.options.units;
             /*if (units === "user defined"){
@@ -74,30 +81,50 @@ class Itinerary extends Component {
                 units = this.props.trip.options.unitName;
             }*/
             return (
-            <React.Fragment>
-                <Container>
-                    <Row>
-                        <Col xs="4" key='Origin'>Origin</Col>
-                        <Col xs="4" key='Destination'>Destination</Col>
-                        <Col xs="4" key='Distance'>{"Distance ("+units+")"} </Col>
-                    </Row>
-                    <hr/>
-                    {this.putData()}
-                </Container>
-            </React.Fragment>
+                <React.Fragment>
+                    <Container>
+                        <Row>
+                            <Col xs="4" key='stop'>Stop</Col>
+                            <Col xs="3" key='leg'>{"Distance to Next Stop ("+units+")"}</Col>
+                            <Col xs="3" key='cumulative'>{"Length of Trip ("+units+")"} </Col>
+                        </Row>
+                        <hr/>
+                    </Container>
+
+                    <Container style={style}>
+                        {this.putData()}
+                    </Container>
+                </React.Fragment>
             );
         }
     }
 
 
     render() {
+        let toggle = this.state.itin ? "Hide Itinerary" : "Show Itinerary";
         return (
-            <React.Fragment>
-                <CardBody>
-                    <CardTitle> Itinerary : {this.props.trip.title}</CardTitle>
-                    {this.createTable()}
-                </CardBody>
-            </React.Fragment>
+
+                <React.Fragment>
+                    <CardTitle>
+                        <Row>
+                            <Col xs="5">
+                                Itinerary : {this.props.trip.title}
+                            </Col>
+                            <Col >
+                                <Button
+                                    key='hide_itin'
+                                    className='btn-outline-dark unit-button float-right'
+                                    onClick={() => this.toggleItin()}
+                                >
+                                    {toggle}
+                                </Button>
+                            </Col>
+                        </Row></CardTitle>
+                    <hr/>
+                    <Collapse isOpen={this.state.itin}>
+                        {this.createTable()}
+                    </Collapse>
+                </React.Fragment>
         )
     }
 }
