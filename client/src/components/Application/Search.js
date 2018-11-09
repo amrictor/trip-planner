@@ -4,7 +4,7 @@ import { Card, CardBody, CardTitle, CardSubtitle, CardImg } from 'reactstrap';
 import { Col, Container, Row, Table } from 'reactstrap';
 import { ButtonGroup, Button } from 'reactstrap';
 import {Collapse} from 'reactstrap';
-import {Form} from 'reactstrap';
+import {Form, Label} from 'reactstrap';
 import {Input, InputGroup, InputGroupAddon} from 'reactstrap'
 import { request } from '../../api/api';
 
@@ -35,6 +35,7 @@ class Search extends Component {
         this.setState({'search': value});
     }
     showSearchResult(){
+        if(this.state.search.match === "") return;
         request(this.state.search, 'search', this.props.port, this.props.host).then(response => {
             this.updateBasedOnResponse(response)
         });
@@ -57,13 +58,13 @@ class Search extends Component {
                 <React.Fragment key={this.state.search.places[i].id}>
                 <Row>
                     <Col xs="2" key='id'>{this.state.search.places[i].id}</Col>
-                    <Col xs="4" key='name'>{this.state.search.places[i].name}</Col>
+                    <Col xs="5" key='name'>{this.state.search.places[i].name}</Col>
                     <Col xs="2" key='lat'>{String(Math.round((this.state.search.places[i].latitude+ 0.00001) * 100)/100)}</Col>
                     <Col xs="2" key='lon'>{String(Math.round((this.state.search.places[i].longitude+ 0.00001) * 100)/100)}</Col>
-                    <Col xs="2">
+                    <Col>
                         <Button
                             key={'add_submit'}
-                            className='btn-outline-dark unit-button'
+                            className='btn-outline-dark unit-button float-right'
                             onClick={() => this.addPlace(this.state.search.places[i].id, this.state.search.places[i].name, this.state.search.places[i].latitude, this.state.search.places[i].longitude)}
                         >
                             &#x2795;
@@ -78,32 +79,38 @@ class Search extends Component {
         return data;
     }
     searchResults() {
+        const style = {
+            maxHeight: 400,
+            overflowY: "scroll"
+        }
         if (typeof this.state.search !== "undefined" && this.state.search.places.length > 0) {
-
             return (
                 <React.Fragment>
                     <Container>
                         <Row>
                             <Col xs="2" key='id'>ID</Col>
-                            <Col xs="4" key='name'>Name</Col>
+                            <Col xs="5" key='name'>Name</Col>
                             <Col xs="2" key='lat'>Lat</Col>
                             <Col xs="2" key='lon'>Lon</Col>
                         </Row>
                         <hr/>
+                    </Container>
+                    <Container style={style}>
                     {this.putData()}
                     </Container>
                 </React.Fragment>
         );
-
         }
         return "No results available."
+    }
+    listenForEnter(event) {
+        if (event.keyCode == 13)
+            this.showSearchResult();
     }
 
     render() {
         const searchquery=
         <React.Fragment>
-
-            <Form>
                 <InputGroup>
                     <Input
                         type="text"
@@ -111,6 +118,7 @@ class Search extends Component {
                         id="query_field"
                         placeholder="Search"
                         onChange={()=>this.updateSearch()}
+                        onKeyDown={(event)=>this.listenForEnter(event)}
                     />
                     <InputGroupAddon addonType="append">
                         <Button
@@ -131,8 +139,6 @@ class Search extends Component {
                         </Button>
                     </InputGroupAddon>
                 </InputGroup>
-            </Form>
-
         </React.Fragment>;
 
         return (
@@ -140,6 +146,7 @@ class Search extends Component {
                 <CardTitle>Don't know your stop?</CardTitle>
                 {searchquery}
                 <Collapse isOpen={this.state.isSearch}>
+                    <br/>
                     {this.searchResults()}
                 </Collapse>
             </React.Fragment>
