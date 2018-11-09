@@ -104,7 +104,7 @@ class Application extends Component {
         this.setState(trip);
     }
 
-    //key can only be {"add", "remove", "reverse", "origin"}, perform accordingly
+    //key can only be {"add", "remove", "reverse", "origin"}, and perform accordingly
     updatePlaces(value, key, origin) {
         if (key === "add") {
             if (typeof this.state.trip.places === 'undefined') {
