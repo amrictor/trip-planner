@@ -9,7 +9,8 @@ class Itinerary extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            itin: true
+            itin: true,
+            origin: ""
         }
         this.putData = this.putData.bind(this);
         this.createTable = this.createTable.bind(this);
@@ -43,7 +44,7 @@ class Itinerary extends Component {
                                 <Col xs="3" key='cumulative'>{total}</Col>
                                 <Col>
                                     <Button
-                                        key={'add_remove'}
+                                        key={'make_origin'}
                                         className='btn-outline-dark unit-button float-right'
                                         onClick={() => this.removePlace(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
                                     >
@@ -52,7 +53,7 @@ class Itinerary extends Component {
                                     <Button
                                         key={'add_remove'}
                                         className='btn-outline-dark unit-button float-right'
-                                        onClick={() => this.removePlace(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
+                                        onClick={() => this.updateOrigin(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
                                     >
                                         &#x2796;
                                     </Button>
