@@ -30,7 +30,7 @@ class Itinerary extends Component {
     }
 
     updateOrigin(){
-        const
+        #const
     }
 
     putData(){
@@ -57,7 +57,7 @@ class Itinerary extends Component {
                                     <Button
                                         key={'add_remove'}
                                         className='btn-outline-dark unit-button float-right'
-                                        onClick={() => this.updateOrigin(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
+                                        onClick={() => this.removePlace(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
                                     >
                                         &#x2796;
                                     </Button>
@@ -70,7 +70,15 @@ class Itinerary extends Component {
                     total += this.props.trip.distances[i];
                 }
                 data.push(
-                    
+                    <Button
+                        key={'reverse_order'}
+                        className='btn-outline-dark unit-button float-right'
+                        onClick={() => this.props.updatePlaces(place,"reverse")}
+                    >
+                        &#x2796;
+                    </Button>
+                );
+                data.push(
                     <Row key="Total">
                         <Col sm="12" md={{ size:2, offset: 5 }}>
                             <b>Total: {total}</b>
