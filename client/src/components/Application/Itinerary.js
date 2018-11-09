@@ -29,6 +29,10 @@ class Itinerary extends Component {
         else this.props.trip.map=null;
     }
 
+    updateOrigin(){
+        const
+    }
+
     putData(){
         let data = [];
         if (typeof this.props.trip.places !== "undefined") {

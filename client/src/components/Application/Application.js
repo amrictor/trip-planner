@@ -105,7 +105,7 @@ class Application extends Component {
     }
 
     //key can only be {"add", "remove"}, perform accordingly
-    updatePlaces(value, key) {
+    updatePlaces(value, key, origin) {
         if (key === "add") {
             if (typeof this.state.trip.places === 'undefined') {
                 this.state.trip.places = [value];
@@ -129,6 +129,12 @@ class Application extends Component {
                 });
             }
             this.setState(trip)
+        }
+        else if  (key === "reverse") {
+            let trip = this.state.trip;
+        }
+        else if  (key === "origin") {
+
         }
     }
     toggleTab(tab) {
