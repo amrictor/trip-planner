@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Collapse, Navbar, NavbarBrand, Nav, NavItem, NavLink as ReactNavLink, Button} from 'reactstrap';
+import {CardTitle, Collapse, Navbar, NavbarBrand, Nav, NavItem, NavLink as ReactNavLink, Button} from 'reactstrap';
 import { NavLink } from 'react-router-dom'
 import './css/navbar.css';
 
@@ -55,7 +55,7 @@ class Navigation extends Component {
     let toggler = this.getToggler();
     const navItems = [
       this.renderNavItem("", false, 0, "TripCo", "TripCo" )
-    ]
+    ];
     return(
       <div>
         <Navbar className="nav_side_bar" light>
@@ -71,21 +71,12 @@ class Navigation extends Component {
   }
 
   render() {
-    let sidebar = this.collapsable();
-
-    const navItems = [];
-
     return(
+
       <div className="application-width">
-        {sidebar}
-        <Navbar className="nav_bar">
-            <NavbarBrand className="nav_title" href="/">
-              t23 Team Dave
-            </NavbarBrand>
-            <div>
-              {navItems.reverse()}
-            </div>
-        </Navbar>
+        <br/>
+        <CardTitle><b>T23 Team Dave</b></CardTitle>
+        <hr/>
       </div>
     )
   }
