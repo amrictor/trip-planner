@@ -93,35 +93,35 @@ Epics planned for this sprint.
 
 ## Review
 
-*An introductory paragraph describing the overall results of the sprint.*
+With what the team had planned at the beginning of this sprint, we got a large majority of it done. The team had a generally fluid approach to most tasks at hand and worked well together to get this sprint as realized as possible. Trips were optimized, UI is looking cleaner than ever and everything is great.
 
 #### Completed Epics in Sprint Backlog 
 
 *Describe the solution based on the completed epics and list the epics below.*
 
-* *## epic title: comments*
-* 
+* #229 User: I want to plan trips worldwide.
+* #129 User: I want my trips to be shorter.
+* #230 User: I'd like even shorter trips.
+* #130 User: I want to make and save changes to the trip.
 
 #### Incomplete Epics in Sprint Backlog 
 
 *Describe capabilities not included in the release and list the epics below with an explanation.*
 
-* *## epic title: explanation*
-*
+* #128 TripCo: All code must be tested.
+* #130 User: I want to view my trip in other tools.
+* 
 
 #### What Went Well
 
 *Describe what went well during the sprint in general terms followed by a more detailed list.*
 
-* *something*
-*
+In general everyone was well aware of what their roles were and what was needed to be completed. Tasks were much more in depth and Github was more fully utilized during this sprint. Because of this, we were able to make more substantial improvements to our master and deploy a more robust system. 
 
 #### Problems Encountered and Resolutions
 
 *Describe what problems occurred during the sprint in general terms followed by a more detailed list.*
-
-* *something*
-*
+There was occasional difficulty in communicating between team members but often times we were able to work around these issues. Testing remains an issue as we often prioritize other functionality over our need to reach 50%.
 
 ## Retrospective
 
