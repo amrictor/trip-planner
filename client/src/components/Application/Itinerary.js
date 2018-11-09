@@ -49,6 +49,13 @@ class Itinerary extends Component {
                                     >
                                         &#x2796;
                                     </Button>
+                                    <Button
+                                        key={'add_remove'}
+                                        className='btn-outline-dark unit-button float-right'
+                                        onClick={() => this.removePlace(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
+                                    >
+                                        &#x2796;
+                                    </Button>
 
                                 </Col>
                             </Row>
