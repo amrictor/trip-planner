@@ -37,7 +37,7 @@ function testExample() {
     ));
 
   let actual = [];
-  options.find('Button').map((element) => actual.push(element.prop('value')));
+  options.find('distance_button_miles').map((element) => actual.push(element.prop('value')));
 
   expect(actual).toEqual(startProps.config.units);
 }
