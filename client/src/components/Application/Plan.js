@@ -229,28 +229,29 @@ class Plan extends Component {
                                 {addBody}
                                 <hr/>
                             </Col>
-
                             <Col md="7">
                                 <Map
                                     trip={this.props.trip}
                                 />
                             </Col>
-                        </Row>
-                        <hr/>
-                        <Search
-                            updatePlaces={this.props.updatePlaces}
-                            planRequest={this.planRequest}
-                            addPlace={this.addPlace}
-                            places={this.state.places}
-                            port={this.port}
-                            host={this.host}/>
-                        <Itinerary
-                            trip={this.props.trip}
-                            updatePlaces={this.props.updatePlaces}
-                            planRequest={this.planRequest}
-                        />
-                    </CardBody>
-                </Container>
+                          </Row>
+                          <hr/>
+                          <Search
+                              updatePlaces={this.props.updatePlaces}
+                              planRequest={this.planRequest}
+                              addPlace={this.addPlace}
+                              places={this.state.places}
+                              port={this.port}
+                              host={this.host}/>
+                          <br/>
+                          <Itinerary
+                              trip={this.props.trip}
+                              updatePlaces={this.props.updatePlaces}
+                              planRequest={this.planRequest}
+                          />
+                      </Container>
+                  </CardBody>
+              </Container>
 
 
             </React.Fragment>

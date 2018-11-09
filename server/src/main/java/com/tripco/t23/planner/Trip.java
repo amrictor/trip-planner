@@ -32,7 +32,17 @@ public class Trip {
                 shortDistances(2);
             }
         }
-        this.map = options.map.equals("svg") ? svg() : kml();
+        if(options.map != null){
+            if(options.map.equals("kml")){
+                this.map = kml();
+            }
+            else{
+                this.map = svg();
+            }
+        }
+        else{
+            this.map = svg();
+        }
         noneDistances();
     }
 
