@@ -69,13 +69,15 @@ class Itinerary extends Component {
                     total += this.props.trip.distances[i];
                 }
                 data.push(
-                    <Button
-                        key={'reverse_order'}
-                        className='btn-outline-dark unit-button'
-                        onClick={() => this.props.updatePlaces(place,"reverse")}
-                    >
-                        Reverse
-                    </Button>
+                    <Row key="Reverse">
+                        <Button
+                            key={'reverse_order'}
+                            className='btn-outline-dark unit-button'
+                            onClick={() => this.props.updatePlaces(place,"reverse")}
+                        >
+                            Reverse
+                        </Button>
+                    </Row>
                 );
                 data.push(
                     <Row key="Total">
