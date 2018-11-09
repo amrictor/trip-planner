@@ -28,12 +28,6 @@ class Itinerary extends Component {
         else this.props.trip.map=null;
     }
 
-    updateOrigin(id, name, lat, long){
-        const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
-        this.props.updatePlaces(place,"origin");
-        this.props.planRequest();
-    }
-
     putData(){
         let data = [];
         if (typeof this.props.trip.places !== "undefined") {
@@ -45,26 +39,23 @@ class Itinerary extends Component {
                         <React.Fragment key={this.props.trip.places[i].id}>
                             <Row>
                                 <Col xs="4" key='stop'>{this.props.trip.places[i].name}</Col>
-                                <Col xs="3" key='leg'>{this.props.trip.distances[i]}</Col>
+                                <Col xs="2" key='leg'>{this.props.trip.distances[i]}</Col>
                                 <Col xs="3" key='cumulative'>{total}</Col>
                                 <Col>
                                     <Button
-                                        key={'make_origin'}
-                                        className='btn-outline-dark unit-button'
-                                        onClick={() => this.updateOrigin(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
-
-                                    >
-                                        Make origin
-                                    </Button>
-                                </Col>
-                                <Col>
-
-                                    <Button
-                                        key={'add_remove'}
+                                        key={'add_submit'}
                                         className='btn-outline-dark unit-button float-right'
                                         onClick={() => this.removePlace(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
                                     >
                                         &#x2796;
+                                    </Button>
+
+                                    <Button
+                                        key={'make_first'}
+                                        className='btn-outline-dark unit-button float-right'
+                                        onClick={() => this.props.setFirstPlace(i)}
+                                    >
+                                        &#x21a5;
                                     </Button>
                                 </Col>
                             </Row>
@@ -73,17 +64,6 @@ class Itinerary extends Component {
                     );
                     total += this.props.trip.distances[i];
                 }
-                data.push(
-                    <Row key="Reverse">
-                        <Button
-                            key={'reverse_order'}
-                            className='btn-outline-dark unit-button'
-                            onClick={() => {this.props.updatePlaces("","reverse"); this.props.planRequest();}}
-                        >
-                            Reverse trip
-                        </Button>
-                    </Row>
-                );
                 data.push(
                     <Row key="Total">
                         <Col sm="12" md={{ size:2, offset: 5 }}>
