@@ -19,15 +19,40 @@ public class Query {
 
 
     //Database configuration info
+    //Testing in Travis
+    private String isTravis = System.getenv("TRAVIS");
+    private String isDevelopment = System.getenv("CS314_ENV");
     private static final String myDriver = "com.mysql.jdbc.Driver";
-    private static final String myUrl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
-    private static final String user = "cs314-db";
-    private static final String pass = "eiK5liet1uej";
+    private String myUrl;
+    private String user;
+    private String pass;
 
+
+    /**
+     * Sets up the right database connection
+     */
+    private void setup(){
+        if(isTravis != null && isTravis.equals("true")){
+            myUrl = "jdbc:mysql://127.0.0.1/cs314";
+            user = "travis";
+            pass= null;
+        }
+        else if(isDevelopment != null && isDevelopment.equals("development")){
+            myUrl = "jdbc:mysql://127.0.0.1:56247/cs314";
+            user = "cs314-db";
+            pass = "eiK5liet1uej";
+        }
+        else{
+            myUrl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
+            user = "cs314-db";
+            pass = "eiK5liet1uej";
+        }
+    }
     /**
      * Sets the connection and queries the database.
      */
     public void find(){
+        setup();
         String queryhead = "SELECT world_airports.id, world_airports.name, "
                 + "world_airports.latitude, world_airports.longitude FROM continents "
                 + "INNER JOIN country ON continents.id = country.continent "
