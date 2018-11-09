@@ -43,7 +43,7 @@ class Itinerary extends Component {
                                 <Col xs="3" key='cumulative'>{total}</Col>
                                 <Col>
                                     <Button
-                                        key={'add_submit'}
+                                        key={'add_remove'}
                                         className='btn-outline-dark unit-button float-right'
                                         onClick={() => this.removePlace(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
                                     >
