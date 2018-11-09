@@ -125,20 +125,20 @@ Epics planned for this sprint.
 
 ## Retrospective
 
-*An introductory paragraph for your retrospective.*
+*This sprint, we accomplished more and had a more steady work flow. It felt like the team was communicating and working together more on code.*
 
 #### What we changed this sprint
 
-*Articulate specifically what you will do differently based on the retrospective from the previous sprint before the sprint starts.*
+*This sprint, we made a point of improving our burndown and workflow. Our story points were completed more steadily and team members worked consistently throughout the sprint.*
 
 #### What we did well
 
-*Articulate what went well at the end of the sprint.*
+*We finished our task and deployed with most of our team present.*
 
 #### What we need to work on
 
-*Articulate things you could improve at the end of the sprint.*
+*It's important that in the future we communicate what will get done and when, so that team members are always aware of what is happening and what needs to happen. We also could expand further beyond the areas that each of us are comfortable with and try to experience a broader version of the codebase.*
 
 #### What we will change next sprint 
 
-*Articulate the one thing you will change for the next sprint and how you will accomplish that.*
+*Next sprint, we will shake up the areas each of us work on and try to establish a plan for completing tasks that all members will stick to.*
