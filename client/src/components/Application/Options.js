@@ -131,15 +131,6 @@ class Options extends Component {
                 >
                     Shorter
                 </Button>
-                <Button
-                    key={'shortest'}
-                    className='btn-outline-dark unit-button'
-                    onClick={(event) => this.props.updateOptions('optimization', 'shortest')}
-                    active={this.props.options.optimization === 'shortest'}
-                    disabled
-                >
-                    Shortest
-                </Button>
             </ButtonGroup>;
 
         const mapChoices =
