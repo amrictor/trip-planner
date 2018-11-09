@@ -244,12 +244,13 @@ class Plan extends Component {
                                 places={this.state.places}
                                 port={this.port}
                                 host={this.host}/>
+                            <br/>
+                            <Itinerary
+                                trip={this.props.trip}
+                                updatePlaces={this.props.updatePlaces}
+                                planRequest={this.planRequest}
+                            />
                         </Container>
-                        <Itinerary
-                            trip={this.props.trip}
-                            updatePlaces={this.props.updatePlaces}
-                            planRequest={this.planRequest}
-                        />
                     </CardBody>
                 </Card>
             </React.Fragment>
