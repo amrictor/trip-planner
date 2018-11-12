@@ -79,8 +79,9 @@ test('Check to see if table gets made correctly (Lambda)', () => {
 
   let actual = [];
   options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
+    let poppedsubmitbuttons = actual.slice(0, 3);
 
-  expect(actual).toEqual(startProps.config.units);  // (3)
+  expect(poppedsubmitbuttons).toEqual(startProps.config.units);  // (3)
 });
 
 test('Check to see if units get updated correctly', () => {
