@@ -11,7 +11,7 @@
 
 import './enzyme.config.js'                   // (1)
 import React from 'react'
-import { mount } from 'enzyme'              // (2)
+import { mount, shallow } from 'enzyme'              // (2)
 import Options from '../src/components/Application/Options'
 
 /* Both of these tests are functionally identical although the standard way
@@ -25,8 +25,26 @@ import Options from '../src/components/Application/Options'
  * component on construction.
  */
 const startProps = {
-  'config': { 'units': ['miles', 'kilometers'] },
-  'options': { 'unit': 'miles' }
+  'config': {
+      "type"          : "config",
+      "version"       : 4,
+      "units"         : ["kilometers", "miles", "nautical miles", "user defined"],
+      "optimization"  : [{"label":"none", "description":"The trip is not optimized."},
+          {"label":"short", "description":"Nearest neighbor."},
+          {"label":"shorter", "description":"2-opt."},
+          {"label":"shortest", "description":"3-opt."}
+      ],
+      "attributes"    : ["name", "id", "latitude", "longitude"],
+      "filters"       : [{"name":"type",
+          "values":["balloonport", "heliport", "airport", "seaplane base"]}
+      ],
+      "maps"          : ["svg", "kml"]
+  },
+    "options" : {
+        "units"        : "miles",
+        "optimization" : "none",
+        "map"          : "svg"
+    }
 };
 
 /* Test example using a pre-defined function */
@@ -61,6 +79,25 @@ test('Check to see if table gets made correctly (Lambda)', () => {
 
   let actual = [];
   options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
+    let poppedsubmitbuttons = actual.slice(0, 4);
 
-  //expect(actual).toEqual(startProps.config.units);  // (3)
+  expect(poppedsubmitbuttons).toEqual(startProps.config.units);  // (3)
+});
+
+test('Check to see if units get updated correctly', () => {
+    /*  First, we create a version of our Options component, using the
+     *  startProps object defined above for its props (1). With our new unrendered
+     *  component, we can call ReactWrapper.find() to extract a certain part
+     *  of the component and its children (2). Lastly, we check to see if the
+     *  value of the buttons created by the component is what we expect,
+     *  given the example input (3).
+    */
+    const options = mount((   // (1)
+        <Options config={startProps.config} options={startProps.options}/>
+    ));
+
+    let actual = [];
+    options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
+
+    //expect(actual).toEqual(startProps.config.units);  // (3)
 });
