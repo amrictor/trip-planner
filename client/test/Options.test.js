@@ -28,7 +28,7 @@ const startProps = {
   'config': {
       "type"          : "config",
       "version"       : 4,
-      "units"         : ["kilometers", "miles", "nautical miles", "user defined"]
+      "units"         : ["kilometers", "miles", "nautical miles", "user defined"],
       "optimization"  : [{"label":"none", "description":"The trip is not optimized."},
           {"label":"short", "description":"Nearest neighbor."},
           {"label":"shorter", "description":"2-opt."},
