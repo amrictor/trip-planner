@@ -25,8 +25,26 @@ import Options from '../src/components/Application/Options'
  * component on construction.
  */
 const startProps = {
-  'config': { 'units': ['miles', '"nautical miles', 'kilometers','user defined', undefined, undefined, undefined, undefined] },
-  'options': { 'unit': 'miles' }
+  'config': {
+      "type"          : "config",
+      "version"       : 4,
+      "units"         : ["kilometers", "miles", "nautical miles", "user defined"]
+      "optimization"  : [{"label":"none", "description":"The trip is not optimized."},
+          {"label":"short", "description":"Nearest neighbor."},
+          {"label":"shorter", "description":"2-opt."},
+          {"label":"shortest", "description":"3-opt."}
+      ],
+      "attributes"    : ["name", "id", "latitude", "longitude"],
+      "filters"       : [{"name":"type",
+          "values":["balloonport", "heliport", "airport", "seaplane base"]}
+      ],
+      "maps"          : ["svg", "kml"]
+  },
+    "options" : {
+        "units"        : "miles",
+        "optimization" : "none",
+        "map"          : "svg"
+    }
 };
 
 /* Test example using a pre-defined function */
