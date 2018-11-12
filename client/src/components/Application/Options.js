@@ -71,7 +71,7 @@ class Options extends Component {
                     <InputGroupAddon addonType="append">
                         &nbsp;
                         <Button
-                            key={'options_submit'}
+                            key={'options_submit_hostport'}
                             className='btn-outline-dark unit-button'
                             onClick={() => this.props.updateHostAndPort(host_field.value, port_field.value)}
                         >
@@ -96,7 +96,7 @@ class Options extends Component {
                         placeholder="Earth radius"
                     />
                     <Button
-                        key={'options_submit'}
+                        key={'options_submit_userdefunits'}
                         className='btn-outline-dark unit-button'
                         onClick={() => this.userDefValues(unit_name_field.value, unit_radius_field.value)
                         }
