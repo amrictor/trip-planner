@@ -146,8 +146,13 @@ class Search extends Component {
                         <Container style={style}>
                             {this.putData()}
                         </Container>
+                        <div>
+                            <h6>
+                                <br></br><strong>Number of Search Results Found: </strong>
+                                <font color="green">{this.state.search.found}</font>
+                            </h6>
+                        </div>
                     </React.Fragment>
-
                 );
             }
         }
@@ -161,9 +166,6 @@ class Search extends Component {
         this.setState({
             [name] : value
         });
-
-        //this.showSearchResult();
-
     }
     listenForEnter(event) {
         if (event.keyCode == 13)
