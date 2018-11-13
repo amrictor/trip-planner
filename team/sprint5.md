@@ -46,19 +46,28 @@ extensive tests for the front and backend.
 
 *Include any design diagrams prepared during sprint planning (user interface, component diagram, component/state/hierarchy, etc.) with a short paragraph for each.
 
+Server diagram:
+![Server](https://github.com/csu18fa314/t23/blob/master/Resources/SP5/sp5server.jpeg)
+
 Epics planned for this sprint.
 
-* *## epic title: description*
-*
+* 334 User: I want trip planning to be fast.
+* 332 User: I want the shortest maps possible.
+* 331 User: Make the system easier to use.
+* 330 User: I want an interactive map.
+* 128 TripCo: All code must be tested
+* 228 User: I want to view my trip in other tools.
+* 333 User: I want to know who to thank for this application
+* 227 User: I want to choose what information is displayed in the itinerary and map.
 
 
 ## Metrics
 
 | Statistic | Planned | Completed |
 | --- | ---: | ---: |
-| Epics | *total* | *total* |
-| Tasks |  *total*   | *total* | 
-| Story Points |  *total*  | *total* | 
+| Epics | 8 | *total* |
+| Tasks |  18   | *total* | 
+| Story Points |  35  | *total* | 
 
 *Enter the `# Planned` at the beginning of the sprint.  Include a discussion of planning decisions based on the planned number of story points versus how many were completed in previous sprints.*
 
