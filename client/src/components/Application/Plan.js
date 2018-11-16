@@ -216,7 +216,7 @@ class Plan extends Component {
                 <Button
                     key={'options_submit'}
                     className='btn-outline-dark unit-button'
-                    onClick={()=> this.props.reversePlaces()}
+                    onClick={()=> this.props.updatePlaces("","reverse")}
                     block
                 >
                     Reverse Trip
@@ -258,7 +258,6 @@ class Plan extends Component {
                           <Itinerary
                               trip={this.props.trip}
                               updatePlaces={this.props.updatePlaces}
-                              setFirstPlace={this.props.setFirstPlace}
                               planRequest={this.planRequest}
                           />
                   </CardBody>

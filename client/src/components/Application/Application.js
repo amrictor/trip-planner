@@ -50,8 +50,6 @@ class Application extends Component {
             host: window.location.host,
             activeTab: '1'
         };
-        this.reversePlaces = this.reversePlaces.bind(this);
-        this.setFirstPlace = this.setFirstPlace.bind(this);
         this.updateTrip = this.updateTrip.bind(this);
         this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
         this.updateOptions = this.updateOptions.bind(this);
@@ -217,8 +215,6 @@ class Application extends Component {
                         <Plan
                             updateBasedOnResponse={this.updateBasedOnResponse}
                             updatePlaces={this.updatePlaces}
-                            reversePlaces={this.reversePlaces}
-                            setFirstPlace={this.setFirstPlace}
                             trip={this.state.trip}
                             places={this.state.places}
                             port={this.port}
