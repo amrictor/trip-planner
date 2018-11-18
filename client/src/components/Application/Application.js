@@ -119,6 +119,8 @@ class Application extends Component {
         else if  (key === "origin") {
             this.setFirstPlace(value);
         }
+        if(this.props.trip.places.length>0) this.props.planRequest();
+        else this.props.trip.map=null;
     }
     toggleTab(tab) {
         if (this.state.activeTab !== tab) {
