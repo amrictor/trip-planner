@@ -24,6 +24,8 @@ class Itinerary extends Component {
     removePlace(id, name, lat, long){
         const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
         this.props.updatePlaces(place,"remove");
+        if(this.props.trip.places.length>0) this.props.planRequest();
+        else this.props.trip.map=null;
     }
 
     putData(){
