@@ -65,7 +65,7 @@ test('Check to see if table gets made correctly (Function)', testExample);
 /*--------------------------------------------------------------------------*/
 
 /* Test example using an anonymous function */
-test('Check to see if table gets made correctly (Lambda)', () => {
+test('Check to see if units are chosen correctly onclick', () => {
   /*  First, we create a version of our Options component, using the
    *  startProps object defined above for its props (1). With our new unrendered
    *  component, we can call ReactWrapper.find() to extract a certain part
