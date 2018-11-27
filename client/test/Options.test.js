@@ -99,5 +99,5 @@ test('Check to see if submit update correctly', () => {
     let actual = [];
     options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
 
-    //expect(actual).toEqual(startProps.config.units);  // (3)
+    expect(actual).toEqual(startProps.config.units);  // (3)
 });
