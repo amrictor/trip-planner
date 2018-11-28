@@ -51,7 +51,7 @@ class Options extends Component {
                 className='btn-outline-dark unit-button'
                 active={this.props.options.optimization === opt['label']}
                 value={opt['label']}
-                onClick={(event) => this.props.updateOptions('units', event.target.value)}
+                onClick={(event) => this.props.updateOptions('optimization', event.target.value)}
             >
                 {opt['label'].charAt(0).toUpperCase() + opt['label'].slice(1)}
             </Button>
@@ -99,6 +99,7 @@ class Options extends Component {
                     </InputGroupAddon>
                 </InputGroup>
             </Form>;
+
         const userdeffield =
             <Collapse isOpen={this.state.userDef}>
                 <br/>
@@ -132,8 +133,6 @@ class Options extends Component {
             </Collapse>;
 
         return (
-
-            <React.Fragment>
                 <Container id={"Options"}>
                     <CardBody>
                         <CardTitle>Options</CardTitle>
@@ -155,7 +154,6 @@ class Options extends Component {
                         {portForm}
                     </CardBody>
                 </Container>
-            </React.Fragment>
         )
     }
 }
