@@ -53,7 +53,7 @@ class Itinerary extends Component {
                                     <Button
                                         key={'make_first'}
                                         className='btn-outline-dark unit-button float-right'
-                                        onClick={() => this.props.setFirstPlace(i)}
+                                        onClick={() => this.props.updatePlaces(i,"origin")}
                                     >
                                         &#x21a5;
                                     </Button>
@@ -83,10 +83,6 @@ class Itinerary extends Component {
         }
         if(typeof this.props.trip.options.units !== "undefined") {
             let units = this.props.trip.options.units;
-            /*if (units === "user defined"){
-                console.log(this.props.trip.options.unitName)
-                units = this.props.trip.options.unitName;
-            }*/
             return (
                 <React.Fragment>
                     <Container>
