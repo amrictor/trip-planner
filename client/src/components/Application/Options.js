@@ -11,18 +11,14 @@ import {Collapse} from 'reactstrap'
 class Options extends Component {
     constructor(props) {
         super(props);
-        this.state = {isuserdef: false};
+        this.state = {userDef: false};
+        console.log(this.props.config)
     }
 
-    checkButton(event) {
+    updateUnits(event) {
         const unit = event.target.value;
         this.props.updateOptions('units', event.target.value);
-        if (unit === 'user defined') {
-            this.setState({isuserdef: true});
-        }
-        else {
-            this.setState({isuserdef: false});
-        }
+        this.setState({userDef:(unit === 'user defined')});
     }
 
     userDefValues(name, radius) {
@@ -38,17 +34,40 @@ class Options extends Component {
     }
 
     render() {
-        const buttons = this.props.config.units.map((units) =>
+        const unitButtons = this.props.config.units.map((units) =>
             <Button
                 key={'distance_button_' + units}
                 className='btn-outline-dark unit-button'
                 active={this.props.options.units === units}
                 value={units}
-                onClick={(event) => this.checkButton(event)}
+                onClick={(event) => this.updateUnits(event)}
             >
                 {units.charAt(0).toUpperCase() + units.slice(1)}
             </Button>
         );
+        const optButtons = this.props.config.optimization.map((opt) =>
+            <Button
+                key={opt['label']}
+                className='btn-outline-dark unit-button'
+                active={this.props.options.optimization === opt['label']}
+                value={opt['label']}
+                onClick={(event) => this.props.updateOptions('units', event.target.value)}
+            >
+                {opt['label'].charAt(0).toUpperCase() + opt['label'].slice(1)}
+            </Button>
+        );
+        const mapButtons = this.props.config.maps.map((map) =>
+            <Button
+                key={map}
+                className='btn-outline-dark unit-button'
+                active={this.props.options.map === map}
+                value={map}
+                onClick={(event) => this.props.updateOptions('map', event.target.value)}
+            >
+                {(map==='svg' ? "Static" : "Interactive")}
+            </Button>
+        );
+
         const portForm =
             <Form inline>
                 <InputGroup>
@@ -81,85 +100,36 @@ class Options extends Component {
                 </InputGroup>
             </Form>;
         const userdeffield =
-            <Collapse isOpen={this.state.isuserdef}>
+            <Collapse isOpen={this.state.userDef}>
+                <br/>
                 <Form inline>
-                    <Input
-                        type="text"
-                        name="unitname"
-                        id="unit_name_field"
-                        placeholder="Unit name"
-                    />
-                    <Input
-                        type="number"
-                        name="unitradius"
-                        id="unit_radius_field"
-                        placeholder="Earth radius"
-                    />
-                    <Button
-                        key={'options_submit_userdefunits'}
-                        className='btn-outline-dark unit-button'
-                        onClick={() => this.userDefValues(unit_name_field.value, unit_radius_field.value)
-                        }
-                    >
-                        Submit
-                    </Button>
+                    <InputGroup>
+                        <Input
+                            type="text"
+                            name="unitname"
+                            id="unit_name_field"
+                            placeholder="Unit name"
+                        />
+                        <Input
+                            type="number"
+                            name="unitradius"
+                            id="unit_radius_field"
+                            placeholder="Earth radius"
+                        />
+                        <InputGroupAddon addonType="append">
+                            &nbsp;
+                            <Button
+                                key={'options_submit_userdefunits'}
+                                className='btn-outline-dark unit-button'
+                                onClick={() => this.userDefValues(unit_name_field.value, unit_radius_field.value)
+                                }
+                            >
+                                Submit
+                            </Button>
+                        </InputGroupAddon>
+                    </InputGroup>
                 </Form>
             </Collapse>;
-        const optimiOpt =
-            <ButtonGroup>
-                <Button
-                    key={'none'}
-                    className='btn-outline-dark unit-button'
-                    onClick={(event) => this.props.updateOptions('optimization', 'none')}
-                    active={this.props.options.optimization === 'none'}
-                >
-                    None
-                </Button>
-                <Button
-                    key={'short'}
-                    className='btn-outline-dark unit-button'
-                    onClick={(event) => this.props.updateOptions('optimization', 'short')}
-                    active={this.props.options.optimization === 'short'}
-                >
-                    Short
-                </Button>
-                <Button
-                    key={'shorter'}
-                    className='btn-outline-dark unit-button'
-                    onClick={(event) => this.props.updateOptions('optimization', 'shorter')}
-                    active={this.props.options.optimization === 'shorter'}
-                >
-                    Shorter
-                </Button>
-                <Button
-                    key={'shortest'}
-                    className='btn-outline-dark unit-button'
-                    onClick={(event) => this.props.updateOptions('optimization', 'shortest')}
-                    active={this.props.options.optimization === 'shortest'}
-                >
-                    Shortest
-                </Button>
-            </ButtonGroup>;
-
-        const mapChoices =
-            <ButtonGroup>
-                <Button
-                    key={'svg'}
-                    className='btn-outline-dark unit-button'
-                    onClick={(event) => this.props.updateOptions('map', 'svg')}
-                    active={this.props.options.map === 'svg'}
-                >
-                    Static
-                </Button>
-                <Button
-                    key={'kml'}
-                    className='btn-outline-dark unit-button'
-                    onClick={(event) => this.props.updateOptions('map', 'kml')}
-                    active={this.props.options.map === 'kml'}
-                >
-                    Interactive
-                </Button>
-            </ButtonGroup>;
 
         return (
 
@@ -168,24 +138,18 @@ class Options extends Component {
                     <CardBody>
                         <CardTitle>Options</CardTitle>
                         <hr/>
-
                         <p><b>Select the units you wish to use:</b></p>
-
-                        <ButtonGroup>
-                            {buttons}
-                        </ButtonGroup>
+                        <ButtonGroup>{unitButtons}</ButtonGroup>
                         {userdeffield}
                     </CardBody>
                     <CardBody>
                         <p><b>Select your desired map output:</b></p>
-                        {mapChoices}
+                        <ButtonGroup>{mapButtons}</ButtonGroup>
                     </CardBody>
-
                     <CardBody>
                         <p><b>Select your preferred optimization:</b></p>
-                        {optimiOpt}
+                        <ButtonGroup>{optButtons}</ButtonGroup>
                     </CardBody>
-
                     <CardBody>
                         <p><b>Use a different server and/or port:</b></p>
                         {portForm}
