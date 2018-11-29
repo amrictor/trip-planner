@@ -50,8 +50,6 @@ class Application extends Component {
             host: window.location.host,
             activeTab: '1'
         };
-        this.reversePlaces = this.reversePlaces.bind(this);
-        this.setFirstPlace = this.setFirstPlace.bind(this);
         this.updateTrip = this.updateTrip.bind(this);
         this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
         this.updateOptions = this.updateOptions.bind(this);
@@ -107,31 +105,19 @@ class Application extends Component {
         this.setState(trip);
     }
 
-    //key can only be {"add", "remove"}, perform accordingly
+    //key can only be {"add", "remove", "reverse", "origin"}, and perform accordingly
     updatePlaces(value, key) {
         if (key === "add") {
-            if (typeof this.state.trip.places === 'undefined') {
-                this.state.trip.places = [value];
-            }
-            else {
-                const place = JSON.stringify(value);
-                let found = this.state.trip.places.findIndex(function(ele){
-                    return JSON.stringify(ele) === place;
-                });
-                if (found === -1)  {
-                    this.state.trip.places.push(value);
-                }
-            }
+            this.addPlace(value);
         }
         else if (key === "remove") {
-            const place = JSON.stringify(value);
-            let trip = this.state.trip;
-            if (typeof this.state.trip.places !== 'undefined') {
-                trip["places"] = trip["places"].filter(function(ele){
-                    return JSON.stringify(ele) !== place;
-                });
-            }
-            this.setState(trip)
+            this.removePlace(value);
+        }
+        else if  (key === "reverse") {
+            this.reversePlaces();
+        }
+        else if  (key === "origin") {
+            this.setFirstPlace(value);
         }
     }
     toggleTab(tab) {
@@ -140,6 +126,32 @@ class Application extends Component {
                 activeTab: tab
             });
         }
+    }
+
+    addPlace(value) {
+        if (typeof this.state.trip.places === 'undefined') {
+            this.state.trip.places = [value];
+        }
+        else {
+            const place = JSON.stringify(value);
+            let found = this.state.trip.places.findIndex(function(ele){
+                return JSON.stringify(ele) === place;
+            });
+            if (found === -1)  {
+                this.state.trip.places.push(value);
+            }
+        }
+    }
+
+    removePlace(value){
+        const place = JSON.stringify(value);
+        let trip = this.state.trip;
+        if (typeof this.state.trip.places !== 'undefined') {
+            trip["places"] = trip["places"].filter(function(ele){
+                return JSON.stringify(ele) !== place;
+            });
+        }
+        this.setState(trip);
     }
 
     reversePlaces() {
@@ -157,7 +169,7 @@ class Application extends Component {
         }
         let trip = this.state.trip;
         trip.places = places;
-        console.log(trip.places)
+        console.log(trip.places);
         this.setState(trip);
     }
 
@@ -211,8 +223,6 @@ class Application extends Component {
                         <Plan
                             updateBasedOnResponse={this.updateBasedOnResponse}
                             updatePlaces={this.updatePlaces}
-                            reversePlaces={this.reversePlaces}
-                            setFirstPlace={this.setFirstPlace}
                             trip={this.state.trip}
                             places={this.state.places}
                             port={this.port}
