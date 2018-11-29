@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#npm install --prefix client && \
+npm install --prefix client && \
 npm run bundle --prefix client && \
 mvn package
 
