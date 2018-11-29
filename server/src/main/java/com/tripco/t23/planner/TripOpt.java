@@ -183,22 +183,7 @@ public class TripOpt {
                 for(int j = i+1; j < places.size()-1; j++){
                     for(int k = j+1; k < places.size(); k++){
                         int currentDistance = distance0(i,j,k);
-                        if(distance1(i,j,k) < currentDistance){
-                            exchange1(i,j,k);
-                            improvement = true;
-                            continue;
-                        }
-                        else if(distance2(i,j,k) < currentDistance){
-                            exchange2(i,j,k);
-                            improvement = true;
-                            continue;
-                        }
-                        else if(distance3(i,j,k) < currentDistance){
-                            exchange3(i,j,k);
-                            improvement = true;
-                            continue;
-                        }
-                        else if(distance4(i,j,k) < currentDistance){
+                        if(distance4(i,j,k) < currentDistance){
                             exchange4(i,j,k);
                             improvement = true;
                             continue;
@@ -215,6 +200,21 @@ public class TripOpt {
                         }
                         else if(distance7(i,j,k) < currentDistance){
                             exchange7(i,j,k);
+                            improvement = true;
+                            continue;
+                        }
+                        else if(distance1(i,j,k) < currentDistance){
+                            exchange1(i,j,k);
+                            improvement = true;
+                            continue;
+                        }
+                        else if(distance2(i,j,k) < currentDistance){
+                            exchange2(i,j,k);
+                            improvement = true;
+                            continue;
+                        }
+                        else if(distance3(i,j,k) < currentDistance){
+                            exchange3(i,j,k);
                             improvement = true;
                             continue;
                         }
