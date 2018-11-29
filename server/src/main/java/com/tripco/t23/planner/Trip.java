@@ -31,6 +31,9 @@ public class Trip {
             if(options.optimization.equals("shorter")){
                 shortDistances(2);
             }
+            if(options.optimization.equals("shortest")){
+                shortDistances(3);
+            }
         }
         if(options.map != null){
             if(options.map.equals("kml")){
