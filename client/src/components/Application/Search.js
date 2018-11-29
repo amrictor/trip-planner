@@ -16,20 +16,18 @@ class Search extends Component {
                 version: 4,
                 type: "search",
                 match: "",
-                filters: [],
+                filters: JSON.parse(JSON.stringify(this.props.config.filters.slice())),
                 limit: 15,
                 found: 0,
                 places: []
             },
             isSearch: false,
-            balloonport: true,
-            heliport: true,
-            airport: true,
-            seaplane_base: true,
+            numFilters: this.props.config.filters.reduce((total, filter) =>  total + filter.values.length, 0)
         };
         this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
         this.showSearchResult = this.showSearchResult.bind(this);
         this.updateCheckbox = this.updateCheckbox.bind(this);
+        console.log(this.state.numFilters)
 
     }
     updateSearch() {
@@ -41,25 +39,10 @@ class Search extends Component {
         this.setState({'search': value});
     }
     showSearchResult(){
-        this.state.search.filters = [];
-        let filterType = [];
-        if(this.state.balloonport){
-            filterType.push("balloonport");
+        if(this.state.numFilters < 1) {
+            alert('You cannot conduct a search with no filters!');
+            return;
         }
-        if(this.state.heliport){
-            filterType.push("heliport");
-        }
-        if(this.state.airport){
-            filterType.push("airport");
-        }
-        if(this.state.seaplane_base){
-            filterType.push("seaplane base");
-        }
-
-        if (typeof filterType !== 'undefined'){
-            this.addFilter("type", filterType);
-        }
-
         if(this.state.search.match === "") return;
 
         request(this.state.search, 'search', this.props.port, this.props.host).then(response => {
@@ -69,7 +52,7 @@ class Search extends Component {
         this.setState({ isSearch: true });
     }
     closeSearch() {
-        query_field.value ="";
+        query_field.value = "";
         this.updateSearch();
         this.setState({ isSearch: false });
     }
@@ -77,26 +60,6 @@ class Search extends Component {
         const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
         this.props.updatePlaces(place,"add");
         this.props.planRequest();
-    }
-    addFilter(name, values){
-        const filter = {'name': name, 'values': values};
-        this.updateFilter(filter,"add");
-    }
-    updateFilter(value, key){
-        if (key === "add") {
-            if (typeof this.state.search.filters === 'undefined') {
-                this.state.search.filters = [value];
-            }
-            else {
-                const filter = JSON.stringify(value);
-                let found = this.state.search.filters.findIndex(function(ele){
-                    return JSON.stringify(ele) === filter;
-                });
-                if (found === -1)  {
-                    this.state.search.filters.push(value);
-                }
-            }
-        }
     }
     putData(){
         let data = [];
@@ -125,11 +88,12 @@ class Search extends Component {
         }
         return data;
     }
+
     searchResults() {
         const style = {
             maxHeight: 400,
             overflowY: "scroll"
-        }
+        };
         if (typeof this.state.search !== "undefined" && typeof this.state.search.places !== "undefined") {
             if (this.state.search.places.length > 0) {
                 return (
@@ -148,8 +112,14 @@ class Search extends Component {
                         </Container>
                         <div>
                             <h6>
-                                <br></br><strong>Number of Search Results Found: </strong>
-                                <font color="green">{this.state.search.found}</font>
+                                <br/>
+                                <strong>
+                                    Showing&nbsp;
+                                    <font color="green">{this.state.search.limit}</font>
+                                    &nbsp;of&nbsp;
+                                    <font color="green">{this.state.search.found}</font>
+                                    &nbsp;results found.
+                                </strong>
                             </h6>
                         </div>
                     </React.Fragment>
@@ -158,66 +128,52 @@ class Search extends Component {
         }
         return "No results available."
     }
-    updateCheckbox(event){
-        const target = event.target;
-        const name = target.name;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
+    updateCheckbox(event, filter){
+        let index = this.state.search.filters.indexOf(this.state.search.filters.find(filt => filt.name === filter));
+        let valIndex = this.state.search.filters[index].values.indexOf(event.target.name);
 
-        this.setState({
-            [name] : value
-        });
+        if(valIndex === -1) {
+            this.state.search.filters[index].values.push(event.target.name);
+            this.state.numFilters++;
+        }
+        else {
+            this.state.search.filters[index].values.splice(valIndex, 1);
+            this.state.numFilters--;
+        }
+
+        this.forceUpdate();
     }
+    contains(value, filter){
+        if(typeof this.state.search.filters === 'undefined') this.state.search.filters = [];
+        let obj = this.state.search.filters.find(filt => filt.name === filter);
+        if (typeof obj === 'undefined') return false;
+        return (obj["values"].indexOf(value) !== -1);
+    }
+
     listenForEnter(event) {
-        if (event.keyCode == 13)
+        if (event.keyCode === 13)
             this.showSearchResult();
     }
 
     render() {
+        const filters = this.props.config.filters.map((filter) =>
+            filter.values.map((value) =>
+                <Row className={'float-right'}>
+                    <label key={'checkbox_'+value}>
+                        {value.charAt(0).toUpperCase() + value.slice(1) + " "}
+                        <input
+                            name={value}
+                            type="checkbox"
+                            checked={this.contains(value, filter.name)}
+                            onChange={(event) => this.updateCheckbox(event, filter.name)}
+                        />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </label>
+                </Row>
+                )
+        );
         const searchquery=
         <React.Fragment>
-
-
-                <InputGroup>
-                    <label>
-                        Airport:
-                        <input
-                            name="airport"
-                            type="checkbox"
-                            checked={this.state.airport}
-                            onChange={this.updateCheckbox}
-                        />
-                    </label>
-                    <label>
-                        &nbsp;&nbsp;
-                        Balloonport:
-                        <input
-                            name="balloonport"
-                            type="checkbox"
-                            checked={this.state.balloonport}
-                            onChange={this.updateCheckbox}
-                        />
-                    </label>
-                    <label>
-                        &nbsp;&nbsp;
-                        Heliport:
-                        <input
-                            name="heliport"
-                            type="checkbox"
-                            checked={this.state.heliport}
-                            onChange={this.updateCheckbox}
-                        />
-                    </label>
-                    <label>
-                        &nbsp;&nbsp;
-                        Seaplane base:
-                        <input
-                            name="seaplane_base"
-                            type="checkbox"
-                            checked={this.state.seaplane_base}
-                            onChange={this.updateCheckbox}
-                        />
-                    </label>
-                </InputGroup>
                 <InputGroup>
                     <Input
                         type="text"
@@ -251,6 +207,7 @@ class Search extends Component {
         return (
             <React.Fragment>
                 <CardTitle>Don't know your stop?</CardTitle>
+                {filters}
                 {searchquery}
                 <Collapse isOpen={this.state.isSearch}>
                     <br/>
