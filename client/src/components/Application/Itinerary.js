@@ -9,11 +9,16 @@ class Itinerary extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            itin: true
+            itin: true,
+            Name: false,
+            Id: false,
+            Latitude: false,
+            Longitude: false,
         }
         this.putData = this.putData.bind(this);
         this.createTable = this.createTable.bind(this);
         this.toggleItin = this.toggleItin.bind(this);
+        this.updateCheckbox = this.updateCheckbox.bind(this);
     }
     toggleItin() {
         this.setState({
@@ -101,13 +106,59 @@ class Itinerary extends Component {
             );
         }
     }
-
-
+    updateCheckbox(event){
+        const target = event.target;
+        const name = target.name;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        console.log(value);
+        this.setState({
+            [name] : value
+        });
+    }
     render() {
         let toggle = this.state.itin ? "Hide Itinerary" : "Show Itinerary";
         return (
 
                 <React.Fragment>
+                        <label>
+                            Name:
+                            <input
+                                name="Name"
+                                type="checkbox"
+                                checked={this.state.Name}
+                                onChange={this.updateCheckbox}
+                            />
+                        </label>
+                        <label>
+                            &nbsp;&nbsp;
+                            Id:
+                            <input
+                                name="Id"
+                                type="checkbox"
+                                checked={this.state.Id}
+                                onChange={this.updateCheckbox}
+                            />
+                        </label>
+                        <label>
+                            &nbsp;&nbsp;
+                            Latitude:
+                            <input
+                                name="Latitude"
+                                type="checkbox"
+                                checked={this.state.Latitude}
+                                onChange={this.updateCheckbox}
+                            />
+                        </label>
+                        <label>
+                            &nbsp;&nbsp;
+                            Longitude:
+                            <input
+                                name="Longitude"
+                                type="checkbox"
+                                checked={this.state.Longitude}
+                                onChange={this.updateCheckbox}
+                            />
+                        </label>
                     <CardTitle>
                         <Row>
                             <Col xs="5">

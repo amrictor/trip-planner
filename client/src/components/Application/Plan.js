@@ -246,6 +246,7 @@ class Plan extends Component {
                           </Row>
                           <hr/>
                           <Search
+                              config={this.props.config}
                               updatePlaces={this.props.updatePlaces}
                               planRequest={this.planRequest}
                               addPlace={this.addPlace}
@@ -256,6 +257,7 @@ class Plan extends Component {
                             {reverse}
                             <br/>
                           <Itinerary
+                              config={this.props.config}
                               trip={this.props.trip}
                               updatePlaces={this.props.updatePlaces}
                               planRequest={this.planRequest}
