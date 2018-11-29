@@ -84,7 +84,7 @@ test('Check to see if units are chosen correctly onclick', () => {
   //expect(poppedsubmitbuttons).toEqual(startProps.config.units);  // (3)
 });
 
-test('Check to see if submit update correctly', () => {
+test('Check to see if optimization update correctly', () => {
     /*  First, we create a version of our Options component, using the
      *  startProps object defined above for its props (1). With our new unrendered
      *  component, we can call ReactWrapper.find() to extract a certain part
@@ -99,5 +99,5 @@ test('Check to see if submit update correctly', () => {
     let actual = [];
     options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
 
-    expect(actual).toEqual(startProps.config.units);  // (3)
+    expect(actual).toEqual(startProps.config.optimization);  // (3)
 });
