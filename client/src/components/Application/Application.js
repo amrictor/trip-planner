@@ -75,6 +75,14 @@ class Application extends Component {
         this.port = port;
         host = host ? host : "black-bottle.cs.colostate.edu";
         this.host = host;
+
+        get_config(this.port, this.host).then(
+            config => {
+                this.setState({
+                    config: config
+                })
+            }
+        );
     }
 
     updateDistanceBasedOnResponse(value) {
@@ -186,7 +194,7 @@ class Application extends Component {
                                 className={classnames({ active: this.state.activeTab === '1' })}
                                 onClick={() => { this.toggleTab('1'); }}
                             >
-                                <img src="https://cdn2.iconfinder.com/data/icons/web-mobile-app-basics/100/TiNY2_BASICS_Information-512.png" height="30"></img>
+                                <img src="https://cdn2.iconfinder.com/data/icons/web-mobile-app-basics/100/TiNY2_BASICS_Information-512.png" height="30"/>
                             </NavLink>
                         </NavItem>
                         <NavItem>
@@ -194,7 +202,7 @@ class Application extends Component {
                                 className={classnames({ active: this.state.activeTab === '2' })}
                                 onClick={() => { this.toggleTab('2'); }}
                             >
-                                <img src="https://cdn3.iconfinder.com/data/icons/airport-collection/100/23-512.png" height="30"></img>
+                                <img src="https://cdn3.iconfinder.com/data/icons/airport-collection/100/23-512.png" height="30"/>
                             </NavLink>
                         </NavItem>
                         <NavItem>
@@ -202,7 +210,7 @@ class Application extends Component {
                                 className={classnames({ active: this.state.activeTab === '3' })}
                                 onClick={() => { this.toggleTab('3'); }}
                             >
-                                <img src="https://images.vexels.com/media/users/3/135553/isolated/preview/fe1680d9e81708fd79fc27b791401673-flat-calculator-icon-by-vexels.png" height="30"></img>
+                                <img src="https://images.vexels.com/media/users/3/135553/isolated/preview/fe1680d9e81708fd79fc27b791401673-flat-calculator-icon-by-vexels.png" height="30"/>
                             </NavLink>
                         </NavItem>
                         <NavItem>
@@ -210,7 +218,7 @@ class Application extends Component {
                                 className={classnames({ active: this.state.activeTab === '4' })}
                                 onClick={() => { this.toggleTab('4'); }}
                             >
-                                <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-gear-512.png" height="30"></img>
+                                <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-gear-512.png" height="30"/>
                             </NavLink>
                         </NavItem>
                     </Nav>
@@ -223,6 +231,7 @@ class Application extends Component {
                         <Plan
                             updateBasedOnResponse={this.updateBasedOnResponse}
                             updatePlaces={this.updatePlaces}
+                            config={this.state.config}
                             trip={this.state.trip}
                             places={this.state.places}
                             port={this.port}
