@@ -18,6 +18,7 @@ class Itinerary extends Component {
         this.putData = this.putData.bind(this);
         this.createTable = this.createTable.bind(this);
         this.toggleItin = this.toggleItin.bind(this);
+        this.updateCheckbox = this.updateCheckbox.bind(this);
     }
     toggleItin() {
         this.setState({
@@ -113,7 +114,7 @@ class Itinerary extends Component {
         const target = event.target;
         const name = target.name;
         const value = target.type === 'checkbox' ? target.checked : target.value;
-
+        console.log(value);
         this.setState({
             [name] : value
         });
