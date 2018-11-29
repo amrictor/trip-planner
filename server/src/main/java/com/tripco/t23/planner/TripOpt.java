@@ -26,26 +26,16 @@ public class TripOpt {
         this.opt = opt;
         currentShortest = Integer.MAX_VALUE;
         allDistances = new int[places.size()][places.size()];
-        for (int i = 0; i < places.size(); i++) {
-            for (int j = 0; j < places.size(); j++) {
-                allDistances[i][j] = measure(places.get(i), places.get(j));
-            }
-        }
     }
 
     TripOpt(ArrayList<Place> places, String units, Double unitRadius, int opt) {
         this.places = places;
         this.units = units;
         this.unitRadius = unitRadius;
-        this.tempLookup = new int[places.size()];
+        this.tempLookup = new int[places.size() + 1];
         this.opt = opt;
         currentShortest = Integer.MAX_VALUE;
         allDistances = new int[places.size()][places.size()];
-        for (int i = 0; i < places.size() - 1; i++) {
-            for (int j = 0; j < places.size() - 1; i++) {
-                allDistances[i][j] = measure(places.get(i), places.get(j));
-            }
-        }
     }
 
     //Getters
@@ -57,6 +47,11 @@ public class TripOpt {
      * Sends each town to retrieve it's nearest neighbor.
      */
     public void shortOptimization() {
+        for (int i = 0; i < places.size(); i++) {
+            for (int j = 0; j < places.size(); j++) {
+                allDistances[i][j] = measure(places.get(i), places.get(j));
+            }
+        }
         for (int i = 0; i < places.size(); i++) {
             nearestNeighbor(i);
         }
