@@ -225,9 +225,6 @@ class Application extends Component {
                 </Container>
                 <TabContent activeTab={this.state.activeTab}>
                     <TabPane tabId="1">
-                        <Info/>
-                    </TabPane>
-                    <TabPane tabId="2">
                         <Plan
                             updateBasedOnResponse={this.updateBasedOnResponse}
                             updatePlaces={this.updatePlaces}
@@ -239,20 +236,23 @@ class Application extends Component {
                             host={this.host}
                         />
                     </TabPane>
-                    <TabPane tabId="3">
+                    <TabPane tabId="2">
                         <Calculator
                             updateDistanceBasedOnResponse={this.updateDistanceBasedOnResponse}
                             updateOriginAndDestination={this.updateOriginAndDestination}
                             distance={this.state.distance}
                         />
                     </TabPane>
-                    <TabPane tabId="4">
+                    <TabPane tabId="3">
                         <Options
                             options={this.state.trip.options}
                             config={this.state.config}
                             updateOptions={this.updateOptions}
                             updateHostAndPort={this.updateHostAndPort}
                         />
+                    </TabPane>
+                    <TabPane tabId="4">
+                        <Info/>
                     </TabPane>
                 </TabContent>
             </React.Fragment>
