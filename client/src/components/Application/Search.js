@@ -27,8 +27,6 @@ class Search extends Component {
         this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
         this.showSearchResult = this.showSearchResult.bind(this);
         this.updateCheckbox = this.updateCheckbox.bind(this);
-        console.log(this.state.numFilters)
-
     }
     updateSearch() {
         let search = this.state.search;
