@@ -71,14 +71,23 @@ public class Query {
                 + "OR world_airports.municipality LIKE '%" + match + "%') ";
 
         if (!filters.isEmpty()) {
+            String name = "";
             for(int j = 0; j < filters.size(); j++) {
                 if(!filters.get(j).values.isEmpty()) {
                 question += " and (";
                     for (int i = 0; i < filters.get(j).values.size() - 1; i++) {
-                        question += filters.get(j).name + " LIKE " + "'%"
+                        name = filters.get(i).name;
+                        if(name.equals("country") || name.equals("continents")){
+                            name += ".name";
+                        }
+                        question += name + " LIKE " + "'%"
                                 + filters.get(j).values.get(i) + "%' OR ";
                     }
-                question += filters.get(j).name + " LIKE " + "'%"
+                    name = filters.get(j).name;
+                    if(name.equals("country") || name.equals("continents")){
+                        name += ".name";
+                    }
+                    question += name + " LIKE " + "'%"
                         + filters.get(j).values.get(filters.get(j).values.size()-1) + "%') ";
                 }
             }
