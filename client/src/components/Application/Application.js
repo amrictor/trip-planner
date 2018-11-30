@@ -231,6 +231,7 @@ class Application extends Component {
                         <Plan
                             updateBasedOnResponse={this.updateBasedOnResponse}
                             updatePlaces={this.updatePlaces}
+                            updateTrip={this.updateTrip}
                             config={this.state.config}
                             trip={this.state.trip}
                             places={this.state.places}
