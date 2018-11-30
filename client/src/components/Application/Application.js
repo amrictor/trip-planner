@@ -61,6 +61,7 @@ class Application extends Component {
     }
 
     componentWillMount() {
+
         get_config().then(
             config => {
                 this.setState({
@@ -177,7 +178,6 @@ class Application extends Component {
         }
         let trip = this.state.trip;
         trip.places = places;
-        console.log(trip.places);
         this.setState(trip);
     }
 
