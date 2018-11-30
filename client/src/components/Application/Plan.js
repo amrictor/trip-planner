@@ -261,6 +261,7 @@ class Plan extends Component {
                               trip={this.props.trip}
                               updatePlaces={this.props.updatePlaces}
                               planRequest={this.planRequest}
+                              updateTrip={this.props.updateTrip}
                           />
                   </CardBody>
               </Container>

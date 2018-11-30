@@ -2,7 +2,11 @@ import React, {Component} from 'react'
 import { Card, CardBody, CardImg, CardTitle  } from 'reactstrap'
 import { Col, Container, Row, Table } from 'reactstrap';
 import { Button } from 'reactstrap'
+import { ButtonGroup } from 'reactstrap';
 import { Collapse } from 'reactstrap'
+import { Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
+import {Input, InputGroup, InputGroupAddon} from 'reactstrap'
+import {Form} from 'reactstrap';
 
 class Itinerary extends Component {
 
@@ -201,7 +205,19 @@ class Itinerary extends Component {
                     <CardTitle>
                         <Row>
                             <Col xs="5">
-                                Itinerary : {this.props.trip.title}
+
+                                <Form inline>
+                                    Itinerary :&nbsp;&nbsp;
+                                    <InputGroup>
+                                        <Input
+                                            type="text"
+                                            name="title"
+                                            id="trip_title"
+                                            placeholder="My Trip"
+                                            onChange={() => this.props.updateTrip("title", trip_title.value)}
+                                        />
+                                    </InputGroup>
+                                </Form>
                             </Col>
                             <Col>
                                 <Button
