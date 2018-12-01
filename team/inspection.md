@@ -12,7 +12,7 @@
 | ---- | ---- |
 | Abby Rictor | 1 hour |
 | Khanh Nguyen Le | 1 hour |
-| | |
+| Josette Grinslade | 1 hour |
 
 ### Problems found
 
@@ -24,7 +24,7 @@
 | TripOpt.java:293-306 | three functions can be simplified to one | med | Abby | #380 |
 | TripOpt.java:general | more descriptive variable names to improve maintainability of the code | med | Le | #375 |
 | TripOpt.java:281-291 | consider improving the boolean false part to make code cleaner and less potential problems | low | Le-Abby | #377 |
-|  | | | | |
-|  | | | | |
+| TripOpt.java:103 | Excessive degree of separation - there are temporary variables of temp | med | Josette | #382 |
+| TripOpt.java:186-219 | continue statements not necessary | lo | Josette | #383 |
 |  | | | | |
  
