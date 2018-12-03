@@ -82,6 +82,7 @@ Epics planned for this sprint.
 | 11/16 | 0 | 2 | n/a |
 | 11/26 | 1 | 2 | n/a |
 | 11/28 | 2 | 4 | n/a |
+| 11/30 | 6 | 3 | n/a |
 
 *Add a new row for the scrum session after each lecture. *
 
