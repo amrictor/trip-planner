@@ -27,7 +27,7 @@ export default class Info extends Component {
                     <CardTitle>Meet the devs</CardTitle>
                     <hr/>
                     <ol >
-                        <img src={teamPhoto} height="100"/>
+                        <img src={teamPhoto} height="400"/>
                         Application developers: Khanh Nguyen Le, Josette Grinslade, Abigail Rictor, Sam Westra
                     </ol>
                 </CardBody>
