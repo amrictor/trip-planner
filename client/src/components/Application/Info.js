@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Card, CardHeader, CardBody, CardTitle, Container} from 'reactstrap'
-import teamPhoto from '/public/teamphoto.jpg'
+//import teamPhoto from './public/teamphoto.jpg'
 
-
+var teamPhoto = require('../../public/teamphoto.jpg');
 export default class Info extends Component {
     render() {
         return (
