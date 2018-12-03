@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Card, CardHeader, CardBody, CardTitle, Container} from 'reactstrap'
 //import teamPhoto from './public/teamphoto.jpg'
 
-var teamPhoto = require('../../public/teamphoto.jpg');
+let teamPhoto = require('../../public/teamphoto.jpg');
 export default class Info extends Component {
     render() {
         return (
@@ -28,7 +28,7 @@ export default class Info extends Component {
                     <hr/>
                     <ol >
                         <img src={teamPhoto} height="400"/>
-                        Application developers: Khanh Nguyen Le, Josette Grinslade, Abigail Rictor, Sam Westra
+                        <p>Application developers: Khanh Nguyen Le, Josette Grinslade, Abigail Rictor, Sam Westra</p>
                     </ol>
                 </CardBody>
             </Container>
