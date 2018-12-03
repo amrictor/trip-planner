@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Card, CardHeader, CardBody, CardTitle, Container} from 'reactstrap'
-//import teamPhoto from '/public/teamphoto.png'
-//<img src={teamPhoto}/>
+import teamPhoto from '/public/teamphoto.jpg'
+
 
 export default class Info extends Component {
     render() {
@@ -27,7 +27,7 @@ export default class Info extends Component {
                     <CardTitle>Meet the devs</CardTitle>
                     <hr/>
                     <ol >
-                        <img src="https://i.imgur.com/SzhK6eD.jpg"/>
+                        <img src={teamPhoto}/>
                         Application developers: Khanh Nguyen Le, Josette Grinslade, Abigail Rictor, Sam Westra
                     </ol>
                 </CardBody>
