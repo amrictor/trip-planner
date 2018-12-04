@@ -22,11 +22,13 @@ class Search extends Component {
                 places: []
             },
             isSearch: false,
+            attributes: JSON.parse(JSON.stringify(this.props.config.attributes)),
             numFilters: this.props.config.filters.reduce((total, filter) =>  total + filter.values.length, 0)
         };
         this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
         this.showSearchResult = this.showSearchResult.bind(this);
         this.updateCheckbox = this.updateCheckbox.bind(this);
+        this.updateAttributes = this.updateAttributes.bind(this);
     }
     updateSearch() {
         let search = this.state.search;
@@ -62,13 +64,29 @@ class Search extends Component {
     putData(){
         let data = [];
         for (let i = 0; i < this.state.search.places.length; i++){
+            let rowData = [];
+            for (let j = 0; j < this.state.attributes.length; j++) {
+                let attribute = this.state.attributes[j];
+                let size = !this.state.attributes.includes('name')
+                    ? Math.floor(10/(this.state.attributes.length))
+                    : (attribute==='name')
+                        ? 4
+                        : Math.floor(6/(this.state.attributes.length-1));
+                rowData.push(
+                    <Col md={size} key={this.state.attributes[i]+'_'+i+'_'+j}>
+                        {
+                            (typeof this.state.search.places[i][attribute] === 'number')
+                                ? String(Math.round((this.state.search.places[i][attribute]+ 0.00001) * 100)/100)
+                                : this.state.search.places[i][attribute]
+                        }
+                    </Col>
+                );
+            }
+
             data.push(
                 <React.Fragment key={this.state.search.places[i].id}>
                 <Row>
-                    <Col xs="2" key='id'>{this.state.search.places[i].id}</Col>
-                    <Col xs="5" key='name'>{this.state.search.places[i].name}</Col>
-                    <Col xs="2" key='lat'>{String(Math.round((this.state.search.places[i].latitude+ 0.00001) * 100)/100)}</Col>
-                    <Col xs="2" key='lon'>{String(Math.round((this.state.search.places[i].longitude+ 0.00001) * 100)/100)}</Col>
+                    {rowData}
                     <Col>
                         <Button
                             key={'add_submit'}
@@ -86,6 +104,23 @@ class Search extends Component {
         }
         return data;
     }
+    putHeader() {
+        let data = [];
+        for (let i = 0; i < this.state.attributes.length; i++) {
+            let attribute = this.state.attributes[i];
+            let size = !this.state.attributes.includes('name')
+                ? Math.floor(10/(this.state.attributes.length))
+                : (attribute==='name')
+                    ? 4
+                    : Math.floor(6/(this.state.attributes.length-1));
+            data.push(
+                <Col md={size} key={attribute}>
+                    {(attribute==='id') ? 'ID' : attribute.charAt(0).toUpperCase() + attribute.slice(1)}
+                </Col>
+            );
+        }
+        return data;
+    }
 
     searchResults() {
         const style = {
@@ -98,10 +133,7 @@ class Search extends Component {
                     <React.Fragment>
                         <Container>
                             <Row>
-                                <Col xs="2" key='id'>ID</Col>
-                                <Col xs="5" key='name'>Name</Col>
-                                <Col xs="2" key='lat'>Lat</Col>
-                                <Col xs="2" key='lon'>Lon</Col>
+                                {this.putHeader()}
                             </Row>
                             <hr/>
                         </Container>
@@ -113,7 +145,9 @@ class Search extends Component {
                                 <br/>
                                 <strong>
                                     Showing&nbsp;
-                                    <font color="green">{this.state.search.limit}</font>
+                                    <font color="green">{(this.state.search.limit < this.state.search.found)
+                                        ? this.state.search.limit
+                                        : this.state.search.found}</font>
                                     &nbsp;of&nbsp;
                                     <font color="green">{this.state.search.found}</font>
                                     &nbsp;results found.
@@ -141,6 +175,24 @@ class Search extends Component {
 
         this.forceUpdate();
     }
+
+    updateAttributes(event){
+        let index = this.state.attributes.indexOf(event.target.name);
+
+        if(index === -1) {
+            this.state.attributes.push(event.target.name);
+        }
+        else {
+            this.state.attributes.splice(index, 1);
+        }
+
+        this.state.attributes.sort((a, b) =>
+            this.props.config.attributes.indexOf(a) - this.props.config.attributes.indexOf(b)
+        );
+
+        this.forceUpdate();
+    }
+
     contains(value, filter){
         if(typeof this.state.search.filters === 'undefined') this.state.search.filters = [];
         let obj = this.state.search.filters.find(filt => filt.name === filter);
@@ -171,36 +223,50 @@ class Search extends Component {
                 )
         );
         const searchquery=
-        <React.Fragment>
-                <InputGroup>
-                    <Input
-                        type="text"
-                        name="query"
-                        id="query_field"
-                        placeholder="Search"
-                        onChange={()=>this.updateSearch()}
-                        onKeyDown={(event)=>this.listenForEnter(event)}
-                    />
-                    <InputGroupAddon addonType="append">
-                        <Button
-                            key={'show_search_submit'}
-                            className='btn-outline-dark unit-button'
-                            onClick={()=> this.showSearchResult()}
-                        >
-                            &#x1f50d;
-                        </Button>
-                    </InputGroupAddon>
-                    <InputGroupAddon addonType="append">
-                        <Button
-                            key={'close_search_submit'}
-                            className='btn-outline-dark unit-button'
-                            onClick={()=> this.closeSearch()}
-                        >
-                            &#x274c;
-                        </Button>
-                    </InputGroupAddon>
-                </InputGroup>
-        </React.Fragment>;
+            <React.Fragment>
+                    <InputGroup>
+                        <Input
+                            type="text"
+                            name="query"
+                            id="query_field"
+                            placeholder="Search"
+                            onChange={()=>this.updateSearch()}
+                            onKeyDown={(event)=>this.listenForEnter(event)}
+                        />
+                        <InputGroupAddon addonType="append">
+                            <Button
+                                key={'show_search_submit'}
+                                className='btn-outline-dark unit-button'
+                                onClick={()=> this.showSearchResult()}
+                            >
+                                &#x1f50d;
+                            </Button>
+                        </InputGroupAddon>
+                        <InputGroupAddon addonType="append">
+                            <Button
+                                key={'close_search_submit'}
+                                className='btn-outline-dark unit-button'
+                                onClick={()=> this.closeSearch()}
+                            >
+                                &#x274c;
+                            </Button>
+                        </InputGroupAddon>
+                    </InputGroup>
+            </React.Fragment>;
+
+        const attributes = this.props.config.attributes.slice().reverse().map((attribute) =>
+            <label className={'float-right'}>
+                <input
+                    key={"attribute_"+attribute}
+                    name={attribute}
+                    type="checkbox"
+                    checked={this.state.attributes.includes(attribute)}
+                    onChange={this.updateAttributes}
+                />
+                {(attribute==='id') ? 'ID' : attribute.charAt(0).toUpperCase() + attribute.slice(1)}
+                &nbsp;&nbsp;
+            </label>
+        );
 
         return (
             <React.Fragment>
@@ -209,6 +275,11 @@ class Search extends Component {
                 {searchquery}
                 <Collapse isOpen={this.state.isSearch}>
                     <br/>
+                    <Container>
+                        {attributes}
+                    </Container>
+                    <br/>
+                    <hr/>
                     {this.searchResults()}
                 </Collapse>
             </React.Fragment>
