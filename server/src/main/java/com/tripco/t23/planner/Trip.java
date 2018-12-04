@@ -247,7 +247,7 @@ public class Trip {
             this.places = temp.getPlaces();
         }
         else{
-            TripOpt temp = new TripOpt(places, options.units, opt);
+            TripOpt temp = new TripOpt(places, options.units,null, opt);
             temp.shortOptimization();
             this.places = temp.getPlaces();
         }

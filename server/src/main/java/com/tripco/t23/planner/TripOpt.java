@@ -19,15 +19,6 @@ public class TripOpt {
     private int shortestdist;
 
     //Constructor
-    TripOpt(ArrayList<Place> places, String units, int opt) {
-        this.places = places;
-        this.units = units;
-        this.tempLookup = new int[places.size() + 1];
-        this.opt = opt;
-        currentShortest = Integer.MAX_VALUE;
-        allDistances = new int[places.size()][places.size()];
-    }
-
     TripOpt(ArrayList<Place> places, String units, Double unitRadius, int opt) {
         this.places = places;
         this.units = units;
@@ -48,10 +39,13 @@ public class TripOpt {
      */
     public void shortOptimization() {
         for (int i = 0; i < places.size(); i++) {
-            for (int j = 0; j < places.size(); j++) {
-                allDistances[i][j] = measure(places.get(i), places.get(j));
+            for (int j = i; j < places.size(); j++) {
+                int temp = measure(places.get(i), places.get(j));
+                allDistances[i][j] = temp;
+                allDistances[j][i] = temp;
             }
         }
+        //Checks each starting location
         for (int i = 0; i < places.size(); i++) {
             nearestNeighbor(i);
         }
@@ -165,12 +159,12 @@ public class TripOpt {
     /**
      * Handles the swapping of both the lookup array and the places array
      */
-    private void twoOptReverse(int i1, int k) {
-        while (i1 < k) {
-            int temp2 = tempLookup[i1];
-            tempLookup[i1] = tempLookup[k];
+    private void twoOptReverse(int i, int k) {
+        while (i < k) {
+            int temp2 = tempLookup[i];
+            tempLookup[i] = tempLookup[k];
             tempLookup[k] = temp2;
-            i1++;
+            i++;
             k--;
         }
     }
@@ -179,44 +173,46 @@ public class TripOpt {
         boolean improvement = true;
         while(improvement){
             improvement = false;
-            for(int i = 0; i < places.size()-2; i++){
-                for(int j = i+1; j < places.size()-1; j++){
-                    for(int k = j+1; k < places.size(); k++){
-                        int currentDistance = distance0(i,j,k);
-                        if(distance4(i,j,k) < currentDistance){
-                            exchange4(i,j,k);
+            for(int a = 0; a < places.size()-2; a++){
+                for(int c = a+1; c < places.size()-1; c++){
+                    for(int e = c+1; e < places.size(); e++){
+                        int b = a+1; int d = c+1; int f = e+1;
+                        //Base case
+                        int currentDistance = distanceTest(a,b,c,d,e,f);//
+                        //Case 4
+                        if(distanceTest(a,c,b,e,d,f) < currentDistance){
+                            exchange4to6(b,c,d,e);
                             improvement = true;
-                            continue;
                         }
-                        else if(distance5(i,j,k) < currentDistance){
-                            exchange5(i,j,k);
+                        //Case 5
+                        else if(distanceTest(a,e,d,b,c,f) < currentDistance){
+                            exchange4to6(b,c,b,e);
                             improvement = true;
-                            continue;
                         }
-                        else if(distance6(i,j,k) < currentDistance){
-                            exchange6(i,j,k);
+                        //Case 6
+                        else if(distanceTest(a,d,e,c,b,f) < currentDistance){
+                            exchange4to6(d,e,b,e);
                             improvement = true;
-                            continue;
                         }
-                        else if(distance7(i,j,k) < currentDistance){
-                            exchange7(i,j,k);
+                        //Case 7
+                        else if(distanceTest(a,d,e,b,c,f) < currentDistance){
+                            exchange7(b,c,d,e);
                             improvement = true;
-                            continue;
                         }
-                        else if(distance1(i,j,k) < currentDistance){
-                            exchange1(i,j,k);
+                        //Case 1
+                        else if(distanceTest(a,e,d,c,b,f) < currentDistance){
+                            exchange1to3(b,e);
                             improvement = true;
-                            continue;
                         }
-                        else if(distance2(i,j,k) < currentDistance){
-                            exchange2(i,j,k);
+                        //Case 2
+                        else if(distanceTest(a,c,b,d,e,f) < currentDistance){
+                            exchange1to3(b,c);
                             improvement = true;
-                            continue;
                         }
-                        else if(distance3(i,j,k) < currentDistance){
-                            exchange3(i,j,k);
+                        //Case 3
+                        else if(distanceTest(a,b,c,e,d,f) < currentDistance){
+                            exchange1to3(d,e);
                             improvement = true;
-                            continue;
                         }
                     }
                 }
@@ -225,90 +221,28 @@ public class TripOpt {
     }
 
     /**
-     * Distance functions for the above 3-opt if statements.
+     * Distance function for the above 3-opt if statements.
      */
-    private int distance0(int i, int j, int k){
-        return allDistances[tempLookup[i]][tempLookup[i+1]]+
-                allDistances[tempLookup[j]][tempLookup[j+1]]+
-                allDistances[tempLookup[k]][tempLookup[k+1]];
-    }
-
-    private int distance1(int i, int j, int k){
-        return allDistances[tempLookup[i]][tempLookup[k]]+
-                allDistances[tempLookup[j+1]][tempLookup[j]]+
-                allDistances[tempLookup[i+1]][tempLookup[k+1]];
-    }
-
-    private int distance2(int i, int j, int k){
-        return allDistances[tempLookup[i]][tempLookup[j]]+
-                allDistances[tempLookup[i+1]][tempLookup[j+1]]+
-                allDistances[tempLookup[k]][tempLookup[k+1]];
-    }
-
-    private int distance3(int i, int j, int k){
-        return allDistances[tempLookup[i]][tempLookup[i+1]]+
-                allDistances[tempLookup[j]][tempLookup[k]]+
-                allDistances[tempLookup[j+1]][tempLookup[k+1]];
-    }
-
-    private int distance4(int i, int j, int k){
-        return allDistances[tempLookup[i]][tempLookup[j]]+
-                allDistances[tempLookup[i+1]][tempLookup[k]]+
-                allDistances[tempLookup[j+1]][tempLookup[k+1]];
-    }
-
-    private int distance5(int i, int j, int k){
-        return allDistances[tempLookup[i]][tempLookup[k]]+
-                allDistances[tempLookup[j+1]][tempLookup[i+1]]+
-                allDistances[tempLookup[j]][tempLookup[k+1]];
-    }
-
-    private int distance6(int i, int j, int k){
-        return allDistances[tempLookup[i]][tempLookup[j+1]]+
-                allDistances[tempLookup[k]][tempLookup[j]]+
-                allDistances[tempLookup[i+1]][tempLookup[k+1]];
-    }
-
-    private int distance7(int i, int j, int k){
-        return allDistances[tempLookup[i]][tempLookup[j+1]]+
-                allDistances[tempLookup[k]][tempLookup[i+1]]+
-                allDistances[tempLookup[j]][tempLookup[k+1]];
+    private int distanceTest(int a, int b, int c, int d, int e, int f){
+        return allDistances[tempLookup[a]][tempLookup[b]]+
+                allDistances[tempLookup[c]][tempLookup[d]]+
+                allDistances[tempLookup[e]][tempLookup[f]];
     }
 
     /**
      * Exchange functions for all above distance functions
      */
-    private void exchange1(int i, int j, int k){
-        twoOptReverse(i+1,k);
+    private void exchange1to3(int a, int b){ twoOptReverse(a,b);}
+
+    private void exchange4to6(int a, int b, int c, int d){
+        twoOptReverse(a,b);
+        twoOptReverse(c,d);
     }
 
-    private void exchange2(int i, int j, int k){
-        twoOptReverse(i+1,j);
-    }
-
-    private void exchange3(int i, int j, int k){
-        twoOptReverse(j+1,k);
-    }
-
-    private void exchange4(int i, int j, int k){
-        twoOptReverse(i+1,j);
-        twoOptReverse(j+1,k);
-    }
-
-    private void exchange5(int i, int j, int k){
-        twoOptReverse(i+1,j);
-        twoOptReverse(i+1,k);
-    }
-
-    private void exchange6(int i, int j, int k){
-        twoOptReverse(j+1,k);
-        twoOptReverse(i+1,k);
-    }
-
-    private void exchange7(int i, int j, int k){
-        twoOptReverse(i+1,j);
-        twoOptReverse(j+1,k);
-        twoOptReverse(i+1,k);
+    private void exchange7(int b, int c, int d, int e){
+        twoOptReverse(b,c);
+        twoOptReverse(d,e);
+        twoOptReverse(b,e);
     }
 }
 
