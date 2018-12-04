@@ -68,10 +68,10 @@ class Search extends Component {
             for (let j = 0; j < this.state.attributes.length; j++) {
                 let attribute = this.state.attributes[j];
                 let size = !this.state.attributes.includes('name')
-                    ? Math.floor(10/(this.state.attributes.length))
+                    ? Math.floor(12/(this.state.attributes.length))
                     : (attribute==='name')
                         ? 4
-                        : Math.floor(6/(this.state.attributes.length-1));
+                        : Math.floor(8/(this.state.attributes.length-1));
                 rowData.push(
                     <Col md={size} key={this.state.attributes[i]+'_'+i+'_'+j}>
                         {
@@ -86,8 +86,12 @@ class Search extends Component {
             data.push(
                 <React.Fragment key={this.state.search.places[i].id}>
                 <Row>
-                    {rowData}
-                    <Col>
+                    <Col xs={'10'}>
+                        <Row>
+                            {rowData}
+                        </Row>
+                    </Col>
+                    <Col xs={'2'}>
                         <Button
                             key={'add_submit'}
                             className='btn-outline-dark unit-button float-right'
@@ -109,10 +113,10 @@ class Search extends Component {
         for (let i = 0; i < this.state.attributes.length; i++) {
             let attribute = this.state.attributes[i];
             let size = !this.state.attributes.includes('name')
-                ? Math.floor(10/(this.state.attributes.length))
+                ? Math.floor(12/(this.state.attributes.length))
                 : (attribute==='name')
                     ? 4
-                    : Math.floor(6/(this.state.attributes.length-1));
+                    : Math.floor(8/(this.state.attributes.length-1));
             data.push(
                 <Col md={size} key={attribute}>
                     {(attribute==='id') ? 'ID' : attribute.charAt(0).toUpperCase() + attribute.slice(1)}
@@ -133,7 +137,12 @@ class Search extends Component {
                     <React.Fragment>
                         <Container>
                             <Row>
-                                {this.putHeader()}
+                                <Col xs={'10'}>
+                                    <Row>
+                                        {this.putHeader()}
+                                    </Row>
+                                </Col>
+                                <Col xs={'2'}/>
                             </Row>
                             <hr/>
                         </Container>
