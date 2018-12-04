@@ -210,14 +210,15 @@ class Search extends Component {
             filter.values.map((value) =>
                 <Row className={'float-right'}>
                     <label key={'checkbox_'+value}>
-                        {value.charAt(0).toUpperCase() + value.slice(1) + " "}
+
                         <input
                             name={value}
                             type="checkbox"
                             checked={this.contains(value, filter.name)}
                             onChange={(event) => this.updateCheckbox(event, filter.name)}
                         />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {value.charAt(0).toUpperCase() + value.slice(1) + " "}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </label>
                 </Row>
                 )
