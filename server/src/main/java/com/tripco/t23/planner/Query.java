@@ -23,7 +23,7 @@ public class Query {
 
     private String isTravis = System.getenv("TRAVIS");
     private String isDevelopment = System.getenv("CS314_ENV");
-    private static final String myDriver = "com.mysql.jdbc.Driver"; //why does this not show up in json? because of final?
+    private static final String myDriver = "com.mysql.jdbc.Driver";
     private transient String myUrl;
     private transient String user;
     private transient String pass;
