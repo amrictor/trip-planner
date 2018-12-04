@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {Card, CardHeader, CardBody, CardTitle, Container} from 'reactstrap'
+//import teamPhoto from './public/teamphoto.jpg'
 
+let teamPhoto = require('../../public/teamphoto.jpg');
 export default class Info extends Component {
     render() {
         return (
@@ -21,6 +23,14 @@ export default class Info extends Component {
                     Save the trip map and itinerary for future reference.</li>
                 </ol>
               </CardBody>
+                <CardBody>
+                    <CardTitle>Meet the devs</CardTitle>
+                    <hr/>
+                    <ol >
+                        <img src={teamPhoto} height="400"/>
+                        <p>Application developers: Khanh Nguyen Le, Josette Grinslade, Abigail Rictor, Sam Westra</p>
+                    </ol>
+                </CardBody>
             </Container>
         )
     }
