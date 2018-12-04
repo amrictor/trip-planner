@@ -20,12 +20,14 @@ public class Query {
 
     //Database configuration info
     //Testing in Travis
+
     private String isTravis = System.getenv("TRAVIS");
     private String isDevelopment = System.getenv("CS314_ENV");
-    private static final String myDriver = "com.mysql.jdbc.Driver";
-    private String myUrl;
-    private String user;
-    private String pass;
+    private static final String myDriver = "com.mysql.jdbc.Driver"; //why does this not show up in json? because of final?
+    private transient String myUrl;
+    private transient String user;
+    private transient String pass;
+    // transient makes gson ignore the stuff
 
 
     /**
@@ -70,7 +72,7 @@ public class Query {
                 + "OR world_airports.name LIKE '%" + match + "%' "
                 + "OR world_airports.municipality LIKE '%" + match + "%') ";
 
-        if (!filters.isEmpty()) {
+        if (filters!=null) { // change to undefined
             String name = "";
             for(int j = 0; j < filters.size(); j++) {
                 if(!filters.get(j).values.isEmpty()) {
