@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Container} from 'reactstrap';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Col } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 import Info from './Info'
 import Options from './Options';
@@ -193,46 +193,50 @@ class Application extends Component {
         const aStyle ={color: '#255f35', textDecoration: 'none'};
         return (
             <React.Fragment>
-                <IconContext.Provider value={{ size: '2.7em' }}>
+                <IconContext.Provider value={{ size: '2.4em' }}>
                 <Container>
                     <Nav tabs>
-                        <Col><h4 style={{'position': 'absolute', 'bottom':'0px'}}><b>Team Dave</b></h4></Col>
-                        <NavItem>
-                            <NavLink
-                                className={classnames({ active: this.state.activeTab === '1' })}
-                                onClick={() => { this.toggleTab('1');}}
-                                style={(this.state.activeTab === '1')? aStyle : style}
-                            >
-                                <MdFlightTakeoff/>
-                            </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink
-                                className={classnames({ active: this.state.activeTab === '2' })}
-                                onClick={() => { this.toggleTab('2'); }}
-                                style={(this.state.activeTab === '2')? aStyle : style}
-                            >
-                                <IoIosCalculator/>
-                            </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink
-                                className={classnames({ active: this.state.activeTab === '3' })}
-                                onClick={() => { this.toggleTab('3'); }}
-                                style={(this.state.activeTab === '3')? aStyle : style}
-                            >
-                                <GoGear/>
-                            </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink
-                                className={classnames({ active: this.state.activeTab === '4' })}
-                                onClick={() => { this.toggleTab('4'); }}
-                                style={(this.state.activeTab === '4')? aStyle : style}
-                            >
-                                <MdPeople/>
-                            </NavLink>
-                        </NavItem>
+                        <Col xs ='5'><h4 style={{'position': 'absolute', 'bottom':'0px'}}><b>Team Dave</b></h4></Col>
+                        <Col xs ='7'>
+                            <Row className={'float-right'}>
+                                <NavItem>
+                                    <NavLink
+                                        className={classnames({ active: this.state.activeTab === '1' })}
+                                        onClick={() => { this.toggleTab('1');}}
+                                        style={(this.state.activeTab === '1')? aStyle : style}
+                                    >
+                                        <MdFlightTakeoff/>
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink
+                                        className={classnames({ active: this.state.activeTab === '2' })}
+                                        onClick={() => { this.toggleTab('2'); }}
+                                        style={(this.state.activeTab === '2')? aStyle : style}
+                                    >
+                                        <IoIosCalculator/>
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink
+                                        className={classnames({ active: this.state.activeTab === '3' })}
+                                        onClick={() => { this.toggleTab('3'); }}
+                                        style={(this.state.activeTab === '3')? aStyle : style}
+                                    >
+                                        <GoGear/>
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink
+                                        className={classnames({ active: this.state.activeTab === '4' })}
+                                        onClick={() => { this.toggleTab('4'); }}
+                                        style={(this.state.activeTab === '4')? aStyle : style}
+                                    >
+                                        <MdPeople/>
+                                    </NavLink>
+                                </NavItem>
+                            </Row>
+                        </Col>
                     </Nav>
                 </Container>
             </IconContext.Provider>
