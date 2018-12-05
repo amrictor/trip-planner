@@ -1,12 +1,13 @@
-import React, {Component} from 'react';
-import { Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
-import { Card, CardBody, CardTitle, CardSubtitle, CardImg } from 'reactstrap';
-import { Col, Container, Row, Table } from 'reactstrap';
-import { ButtonGroup, Button } from 'reactstrap';
-import {Collapse} from 'reactstrap';
-import {Form, Label} from 'reactstrap';
-import {Input, InputGroup, InputGroupAddon} from 'reactstrap'
+import React, { Component } from 'react';
+import { CardTitle } from 'reactstrap';
+import { Col, Container, Row } from 'reactstrap';
+import { Button } from 'reactstrap';
+import { Collapse } from 'reactstrap';
+import { Input, InputGroup, InputGroupAddon } from 'reactstrap'
 import { request } from '../../api/api';
+
+import {IconContext} from 'react-icons';
+import { MdSearch, MdClear, MdAdd } from 'react-icons/md'
 
 class Search extends Component {
     constructor(props) {
@@ -97,7 +98,7 @@ class Search extends Component {
                             className='btn-outline-dark unit-button float-right'
                             onClick={() => this.addPlace(this.state.search.places[i].id, this.state.search.places[i].name, this.state.search.places[i].latitude, this.state.search.places[i].longitude)}
                         >
-                            &#x2795;
+                            <MdAdd/>
                         </Button>
                     </Col>
                 </Row>
@@ -243,22 +244,24 @@ class Search extends Component {
                             onChange={()=>this.updateSearch()}
                             onKeyDown={(event)=>this.listenForEnter(event)}
                         />
+                        &nbsp;
                         <InputGroupAddon addonType="append">
                             <Button
                                 key={'show_search_submit'}
                                 className='btn-outline-dark unit-button'
                                 onClick={()=> this.showSearchResult()}
                             >
-                                &#x1f50d;
+                                <MdSearch/>
                             </Button>
                         </InputGroupAddon>
+
                         <InputGroupAddon addonType="append">
                             <Button
                                 key={'close_search_submit'}
                                 className='btn-outline-dark unit-button'
                                 onClick={()=> this.closeSearch()}
                             >
-                                &#x274c;
+                                <MdClear/>
                             </Button>
                         </InputGroupAddon>
                     </InputGroup>
@@ -279,7 +282,7 @@ class Search extends Component {
         );
 
         return (
-            <React.Fragment>
+            <IconContext.Provider value={{ size: '1.5em' }}>
                 <CardTitle>Don't know your stop?</CardTitle>
                 {filters}
                 {searchquery}
@@ -292,7 +295,7 @@ class Search extends Component {
                     <hr/>
                     {this.searchResults()}
                 </Collapse>
-            </React.Fragment>
+            </IconContext.Provider>
         )
     }
 }
