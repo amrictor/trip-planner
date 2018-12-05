@@ -35,6 +35,7 @@ class Options extends Component {
     }
 
     render() {
+        const truefalse = [true, false];
         const unitButtons = this.props.config.units.map((units) =>
             <Button
                 key={'distance_button_' + units}
@@ -68,26 +69,17 @@ class Options extends Component {
                 {(map==='svg' ? "Static" : "Interactive")}
             </Button>
         );
-        const realTimeButtons =
-            <ButtonGroup>
-                <Button
-                    key='RTtrue'
-                    className='btn-outline-dark unit-button'
-                    active={this.props.realTime === true}
-                    onClick={() => this.props.updateRealTime(true)}
-                >
-                    True
-                </Button>
-                <Button
-                    key='RTfalse'
-                    className='btn-outline-dark unit-button'
-                    active={this.props.realTime === false}
-                    onClick={() => this.props.updateRealTime(false)}
-                >
-                    False
-                </Button>
-            </ButtonGroup>
-        ;
+        const realTimeButtons = truefalse.map((rT) =>
+            <Button
+                key={rT}
+                className='btn-outline-dark unit-button'
+                active={this.props.realTime === rT}
+                value={rT}
+                onClick={(event) => this.props.updateRealTime(event.target.value)}
+            >
+                {(rT===true ? "True" : "False")}
+            </Button>
+        );
 
         const portForm =
             <Form inline>

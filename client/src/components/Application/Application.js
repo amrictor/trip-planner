@@ -137,6 +137,7 @@ class Application extends Component {
     }
 
     updateRealTime(value) {
+        value = (value === 'true');
         this.setState({'realTime': value});
     }
     toggleTab(tab) {
