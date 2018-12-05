@@ -140,6 +140,7 @@ class Application extends Component {
         value = (value === 'true');
         this.setState({'realTime': value});
     }
+
     toggleTab(tab) {
         if (this.state.activeTab !== tab) {
             this.setState({
@@ -258,7 +259,7 @@ class Application extends Component {
                             places={this.state.places}
                             port={this.port}
                             host={this.host}
-                            realTime={this.realTime}
+                            realTime = {this.state.realTime}
                         />
                     </TabPane>
                     <TabPane tabId="2">
