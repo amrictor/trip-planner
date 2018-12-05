@@ -69,15 +69,24 @@ class Options extends Component {
             </Button>
         );
         const realTimeButtons =
-            <Button
-                key={hall}{asd}
-                className='btn-outline-dark unit-button'
-                active={this.props.realTime === opt}
-                value={opt}
-                onClick={(opt) => this.props.setState({'realTime': opt.target.value})}
-            >
-                {(opt===true ? "True" : "False")}
-            </Button>
+            <ButtonGroup>
+                <Button
+                    key='RTtrue'
+                    className='btn-outline-dark unit-button'
+                    active={this.props.realTime === true}
+                    onClick={() => this.props.setState({'realTime': true})}
+                >
+                    True
+                </Button>
+                <Button
+                    key='RTfalse'
+                    className='btn-outline-dark unit-button'
+                    active={this.props.realTime === false}
+                    onClick={() => this.props.setState({'realTime': false})}
+                >
+                    False
+                </Button>
+            </ButtonGroup>
         ;
 
         const portForm =
