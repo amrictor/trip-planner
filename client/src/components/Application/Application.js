@@ -63,6 +63,7 @@ class Application extends Component {
         this.updateOriginAndDestination = this.updateOriginAndDestination.bind(this);
         this.updateDistanceBasedOnResponse = this.updateDistanceBasedOnResponse.bind(this);
         this.toggleTab = this.toggleTab.bind(this);
+        this.updateRealTime = this.updateRealTime.bind(this);
     }
 
     componentWillMount() {
@@ -133,6 +134,12 @@ class Application extends Component {
         else if  (key === "origin") {
             this.setFirstPlace(value);
         }
+    }
+
+    updateRealTime(value) {
+
+        this.setState({'realTime': value});
+        console.log(this.realTime);
     }
     toggleTab(tab) {
         if (this.state.activeTab !== tab) {
@@ -268,7 +275,8 @@ class Application extends Component {
                             config={this.state.config}
                             updateOptions={this.updateOptions}
                             updateHostAndPort={this.updateHostAndPort}
-                            realTime={this.realTime}
+                            updateRealTime={this.updateRealTime}
+                            realTime = {this.realTime}
                         />
                     </TabPane>
                     <TabPane tabId="4">

@@ -74,7 +74,7 @@ class Options extends Component {
                     key='RTtrue'
                     className='btn-outline-dark unit-button'
                     active={this.props.realTime === true}
-                    onClick={() => this.props.setState({'realTime': true})}
+                    onClick={() => this.props.updateRealTime(true)}
                 >
                     True
                 </Button>
@@ -82,7 +82,7 @@ class Options extends Component {
                     key='RTfalse'
                     className='btn-outline-dark unit-button'
                     active={this.props.realTime === false}
-                    onClick={() => this.props.setState({'realTime': false})}
+                    onClick={() => this.props.updateRealTime(false)}
                 >
                     False
                 </Button>
