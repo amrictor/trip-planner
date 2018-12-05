@@ -74,7 +74,7 @@ class Navigation extends Component {
     return(
 
       <div className="application-width">
-        <br/>
+        <br/><br/>
       </div>
     )
   }
