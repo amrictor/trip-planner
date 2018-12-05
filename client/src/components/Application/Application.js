@@ -52,7 +52,8 @@ class Application extends Component {
             },
             port: window.location.port,
             host: window.location.host,
-            activeTab: '1'
+            activeTab: '1',
+            realTime: false
         };
         this.updateTrip = this.updateTrip.bind(this);
         this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
@@ -251,6 +252,7 @@ class Application extends Component {
                             places={this.state.places}
                             port={this.port}
                             host={this.host}
+                            realTime={this.realTime}
                         />
                     </TabPane>
                     <TabPane tabId="2">
@@ -266,6 +268,7 @@ class Application extends Component {
                             config={this.state.config}
                             updateOptions={this.updateOptions}
                             updateHostAndPort={this.updateHostAndPort}
+                            realTime={this.realTime}
                         />
                     </TabPane>
                     <TabPane tabId="4">
