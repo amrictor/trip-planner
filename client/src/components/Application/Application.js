@@ -137,9 +137,7 @@ class Application extends Component {
     }
 
     updateRealTime(value) {
-
         this.setState({'realTime': value});
-        console.log(this.realTime);
     }
     toggleTab(tab) {
         if (this.state.activeTab !== tab) {
@@ -276,7 +274,7 @@ class Application extends Component {
                             updateOptions={this.updateOptions}
                             updateHostAndPort={this.updateHostAndPort}
                             updateRealTime={this.updateRealTime}
-                            realTime = {this.realTime}
+                            realTime = {this.state.realTime}
                         />
                     </TabPane>
                     <TabPane tabId="4">
