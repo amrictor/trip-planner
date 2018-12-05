@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
-import { Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
-import { Card, CardBody, CardTitle, CardSubtitle, CardImg } from 'reactstrap';
-import { Col, Container, Row, Table } from 'reactstrap';
+import { CardBody, CardTitle } from 'reactstrap';
+import { Col, Container, Row } from 'reactstrap';
 import { ButtonGroup, Button } from 'reactstrap';
 import { request } from '../../api/api';
 import Itinerary from './Itinerary';
 import Map from './Map';
 import Search from './Search';
-import {Collapse} from 'reactstrap';
-import {Form} from 'reactstrap';
-
-import {Input, InputGroup, InputGroupAddon} from 'reactstrap'
-import {Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Collapse } from 'reactstrap';
+import { Form } from 'reactstrap';
+import { IconContext } from 'react-icons'
+import { MdAdd } from 'react-icons/md'
+import { Input, InputGroup } from 'reactstrap'
 
 class Plan extends Component {
     constructor(props) {
@@ -208,37 +207,26 @@ class Plan extends Component {
                     onClick={()=> this.addPlace(id_field.value, name_field.value, latitude_field.value, longitude_field.value)}
                     block
                 >
-                    &#x2795;
+                    <MdAdd/>
                 </Button>
             </React.Fragment>;
 
-            const reverse =
-                <Button
-                    key={'options_submit'}
-                    className='btn-outline-dark unit-button'
-                    onClick={()=> this.props.updatePlaces("","reverse")}
-                    block
-                >
-                    Reverse Trip
-                </Button>;
-
 
         return (
-            <React.Fragment>
-
+            <IconContext.Provider value={{ size: '1.8em' }}>
                 <Container>
                     <CardBody id="Plan">
                         <CardTitle>Plan a trip around the world!</CardTitle>
                         <hr/>
                         <Row>
-                            <Col md="5">
+                            <Col lg="5">
                                 {functions}
                                 {fileuploader}
                                 <CardTitle>Add stops to your trip!</CardTitle>
                                 {addBody}
                                 <hr/>
                             </Col>
-                            <Col md="7">
+                            <Col lg="7">
                                 <Map
                                     trip={this.props.trip}
                                 />
@@ -254,8 +242,7 @@ class Plan extends Component {
                               port={this.port}
                               host={this.host}/>
                             <br/>
-                            {reverse}
-                            <br/>
+
                           <Itinerary
                               config={this.props.config}
                               trip={this.props.trip}
@@ -265,9 +252,7 @@ class Plan extends Component {
                           />
                   </CardBody>
               </Container>
-
-
-            </React.Fragment>
+            </IconContext.Provider>
         )
     }
 }
