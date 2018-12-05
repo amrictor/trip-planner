@@ -68,15 +68,15 @@ class Options extends Component {
                 {(map==='svg' ? "Static" : "Interactive")}
             </Button>
         );
-        const realTimeButtons = this.props.config.maps.map((map) =>
+        const realTimeButtons = this.props.realTime.map((opt) =>
             <Button
-                key={map}
+                key={opt}
                 className='btn-outline-dark unit-button'
-                active={this.props.options.map === map}
-                value={map}
-                onClick={(event) => this.props.updateOptions('map', event.target.value)}
+                active={this.props.realTime === opt}
+                value={opt}
+                onClick={(opt) => this.props.realTime = opt.target.value}
             >
-                {(map==='svg' ? "Static" : "Interactive")}
+                {(opt===true ? "True" : "False")}
             </Button>
         );
 
