@@ -74,7 +74,7 @@ class Options extends Component {
                 className='btn-outline-dark unit-button'
                 active={this.props.realTime === opt}
                 value={opt}
-                onClick={(opt) => this.props.realTime = opt.target.value}
+                onClick={(opt) => this.props.setState({'realTime': opt.target.value})}
             >
                 {(opt===true ? "True" : "False")}
             </Button>
