@@ -68,9 +68,9 @@ class Options extends Component {
                 {(map==='svg' ? "Static" : "Interactive")}
             </Button>
         );
-        const realTimeButtons = this.props.realTime.map((opt) =>
+        const realTimeButtons =
             <Button
-                key={opt}
+                key={hall}{asd}
                 className='btn-outline-dark unit-button'
                 active={this.props.realTime === opt}
                 value={opt}
@@ -78,7 +78,7 @@ class Options extends Component {
             >
                 {(opt===true ? "True" : "False")}
             </Button>
-        );
+        ;
 
         const portForm =
             <Form inline>
