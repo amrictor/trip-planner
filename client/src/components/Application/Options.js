@@ -21,6 +21,8 @@ class Options extends Component {
     }
 
     userDefValues(name, radius) {
+        name = name ? name : "";
+        radius = radius ? radius : 0;
         this.props.updateOptions('unitName', name);
         this.props.updateOptions('unitRadius', radius);
     }

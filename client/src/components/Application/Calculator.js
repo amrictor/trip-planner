@@ -15,6 +15,7 @@ class Calculator extends Component {
         long_f = long_f ? long_f : 0;
         lat_t = lat_t ? lat_t : 0;
         long_t = long_t ? long_t : 0;
+        if (lat_f === 0 && long_f === 0 && lat_t === 0 && long_t === 0) return;
         this.props.updateOriginAndDestination(lat_f, long_f, lat_t, long_t);
         this.setState({iscalculated: true});
         request(this.props.distance, 'distance', this.props.port, this.props.host).then(response => {
