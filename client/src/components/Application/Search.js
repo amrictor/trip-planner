@@ -60,7 +60,7 @@ class Search extends Component {
     addPlace(id, name, lat, long){
         const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
         this.props.updatePlaces(place,"add");
-        this.props.planRequest();
+        if (this.props.realTime) this.props.planRequest();
     }
     putData(){
         let data = [];
