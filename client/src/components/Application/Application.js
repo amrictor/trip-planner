@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import {Container} from 'reactstrap';
-import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 import Info from './Info'
 import Options from './Options';
 import Plan from './Plan';
+import {IconContext} from 'react-icons';
+import {IoIosCalculator} from 'react-icons/io';
+import {MdPeople, MdFlightTakeoff} from 'react-icons/md';
+import {GoGear} from 'react-icons/go';
 
 import Calculator from './Calculator';
 import {get_config} from '../../api/api';
@@ -185,44 +189,57 @@ class Application extends Component {
         if (!this.state.config) {
             return <div/>
         }
+        const style ={textDecoration: 'none'};
+        const aStyle ={color: '#255f35', textDecoration: 'none'};
         return (
             <React.Fragment>
+                <IconContext.Provider value={{ size: '2.4em' }}>
                 <Container>
                     <Nav tabs>
-                        <NavItem>
-                            <NavLink
-                                className={classnames({ active: this.state.activeTab === '1' })}
-                                onClick={() => { this.toggleTab('1'); }}
-                            >
-                                <img src="https://cdn3.iconfinder.com/data/icons/airport-collection/100/23-512.png" height="30"/>
-                            </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink
-                                className={classnames({ active: this.state.activeTab === '2' })}
-                                onClick={() => { this.toggleTab('2'); }}
-                            >
-                                <img src="https://images.vexels.com/media/users/3/135553/isolated/preview/fe1680d9e81708fd79fc27b791401673-flat-calculator-icon-by-vexels.png" height="30"/>
-                            </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink
-                                className={classnames({ active: this.state.activeTab === '3' })}
-                                onClick={() => { this.toggleTab('3'); }}
-                            >
-                                <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-gear-512.png" height="30"/>
-                            </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink
-                                className={classnames({ active: this.state.activeTab === '4' })}
-                                onClick={() => { this.toggleTab('4'); }}
-                            >
-                                <img src="https://cdn2.iconfinder.com/data/icons/web-mobile-app-basics/100/TiNY2_BASICS_Information-512.png" height="30"/>
-                            </NavLink>
-                        </NavItem>
+                        <Col md ='5'><h4 style={{'position': 'absolute', 'bottom':'0px'}}><b>Team Dave</b></h4></Col>
+                        <Col md ='7'>
+                            <Row className={'float-right'}>
+                                <NavItem>
+                                    <NavLink
+                                        className={classnames({ active: this.state.activeTab === '1' })}
+                                        onClick={() => { this.toggleTab('1');}}
+                                        style={(this.state.activeTab === '1')? aStyle : style}
+                                    >
+                                        <MdFlightTakeoff/>
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink
+                                        className={classnames({ active: this.state.activeTab === '2' })}
+                                        onClick={() => { this.toggleTab('2'); }}
+                                        style={(this.state.activeTab === '2')? aStyle : style}
+                                    >
+                                        <IoIosCalculator/>
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink
+                                        className={classnames({ active: this.state.activeTab === '3' })}
+                                        onClick={() => { this.toggleTab('3'); }}
+                                        style={(this.state.activeTab === '3')? aStyle : style}
+                                    >
+                                        <GoGear/>
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink
+                                        className={classnames({ active: this.state.activeTab === '4' })}
+                                        onClick={() => { this.toggleTab('4'); }}
+                                        style={(this.state.activeTab === '4')? aStyle : style}
+                                    >
+                                        <MdPeople/>
+                                    </NavLink>
+                                </NavItem>
+                            </Row>
+                        </Col>
                     </Nav>
                 </Container>
+            </IconContext.Provider>
                 <TabContent activeTab={this.state.activeTab}>
                     <TabPane tabId="1">
                         <Plan

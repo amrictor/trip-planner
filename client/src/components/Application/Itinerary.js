@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
-import { Card, CardBody, CardImg, CardTitle  } from 'reactstrap'
-import { Col, Container, Row, Table } from 'reactstrap';
+import { CardTitle } from 'reactstrap'
+import { Col, Container, Row } from 'reactstrap';
 import { Button } from 'reactstrap'
 import { ButtonGroup } from 'reactstrap';
-import { Collapse } from 'reactstrap'
-import { Modal, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
-import {Input, InputGroup, InputGroupAddon} from 'reactstrap'
+import { Collapse } from 'reactstrap';
+import {Input, InputGroup } from 'reactstrap'
 import {Form} from 'reactstrap';
+import {IconContext} from 'react-icons';
+import { MdFastRewind, MdDelete, MdExpandLess } from 'react-icons/md'
 
 class Itinerary extends Component {
 
@@ -71,18 +72,19 @@ class Itinerary extends Component {
                                 <Col xs={'2'}>
                                     <ButtonGroup className='float-right'>
                                         <Button
-                                            key={'add_submit_'+i}
-                                            className='btn-outline-dark unit-button '
-                                            onClick={() => this.removePlace(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
-                                        >
-                                            &#x2796;
-                                        </Button>
-                                        <Button
                                             key={'make_first_'+i}
                                             className='btn-outline-dark unit-button float-right'
                                             onClick={() => this.props.updatePlaces(i, "origin")}
                                         >
-                                            &#x21a5;
+                                            <MdExpandLess/>
+                                        </Button>
+
+                                        <Button
+                                            key={'add_submit_'+i}
+                                            className='btn-outline-dark unit-button '
+                                            onClick={() => this.removePlace(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
+                                        >
+                                            <MdDelete/>
                                         </Button>
                                     </ButtonGroup>
                                 </Col>
@@ -90,8 +92,10 @@ class Itinerary extends Component {
                             <Row>
                                 <React.Fragment key={'distances_'+i}>
                                     <Col sm="12" md={{size: 6, offset: 3}}>
-                                        <p>Leg Distance: <font color="#ff4500">{this.props.trip.distances[i]}</font>&nbsp;&nbsp;&nbsp;&nbsp;
-                                        Cumulative Distance: <font color="#ff4500">{this.state.total}</font></p>
+
+                                            Leg Distance: <font color="#ff4500">{this.props.trip.distances[i]}</font>&nbsp;
+                                            Cumulative Distance: <font color="#ff4500">{this.state.total}</font>
+
                                     </Col>
                                 </React.Fragment>
                             </Row>
@@ -99,12 +103,7 @@ class Itinerary extends Component {
                         </React.Fragment>
                     );
                     this.state.total += this.props.trip.distances[i];
-
-
                 }
-                data.push(
-
-                );
             }
             return data;
         }
@@ -196,15 +195,17 @@ class Itinerary extends Component {
                 &nbsp;&nbsp;
             </label>
         );
-        return (
 
-                <React.Fragment>
-                    <CardTitle>
+
+        return (
+            <IconContext.Provider value={{ size: '1.5em' }}>
+
+                <CardTitle>
                         <Row>
-                            <Col xs="5">
+                            <Col xs="6">
 
                                 <Form inline>
-                                    Itinerary :&nbsp;&nbsp;
+                                    Itinerary:&nbsp;&nbsp;
                                     <InputGroup>
                                         <Input
                                             type="text"
@@ -217,13 +218,24 @@ class Itinerary extends Component {
                                 </Form>
                             </Col>
                             <Col>
-                                <Button
-                                    key='hide_itin'
-                                    className='btn-outline-dark unit-button float-right'
-                                    onClick={() => this.toggleItin()}
-                                >
-                                    {toggle}
-                                </Button>
+                                <ButtonGroup className={'float-right'}>
+                                    <Button
+                                        key={'options_submit'}
+                                        className='btn-outline-dark unit-button float-right'
+                                        onClick={()=> this.props.updatePlaces("","reverse")}
+                                    >
+                                        <MdFastRewind/>
+                                    </Button>
+
+                                    <Button
+                                        key='hide_itin'
+                                        className='btn-outline-dark unit-button float-right'
+                                        onClick={() => this.toggleItin()}
+                                    >
+                                        {toggle}
+                                    </Button>
+
+                                </ButtonGroup>
                             </Col>
                         </Row></CardTitle>
 
@@ -233,7 +245,7 @@ class Itinerary extends Component {
                         <hr/>
                         {this.createTable()}
                     </Collapse>
-                </React.Fragment>
+            </IconContext.Provider>
         )
     }
 }

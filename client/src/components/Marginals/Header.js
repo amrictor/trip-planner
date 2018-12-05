@@ -45,7 +45,6 @@ class Header extends Component{
       <div>
         {this.topLevelHeader()}
         <Navigation/>
-        <div className="add-title"/> {/* Background box to header */}
       </div>
     );
   }

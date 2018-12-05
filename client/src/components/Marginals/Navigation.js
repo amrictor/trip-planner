@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {CardTitle, Collapse, Navbar, NavbarBrand, Nav, NavItem, NavLink as ReactNavLink, Button} from 'reactstrap';
+import {Collapse, Navbar, Nav, NavItem, NavLink as ReactNavLink, Button} from 'reactstrap';
 import { NavLink } from 'react-router-dom'
 import './css/navbar.css';
 
@@ -74,9 +74,7 @@ class Navigation extends Component {
     return(
 
       <div className="application-width">
-        <br/>
-        <CardTitle><b>T23 Team Dave</b></CardTitle>
-        <hr/>
+        <br/><br/>
       </div>
     )
   }
