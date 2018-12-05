@@ -61,7 +61,7 @@ class Plan extends Component {
         if(id.length===0 || name.length===0 || lat ===0 || long ===0) return;
         const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
         this.props.updatePlaces(place,"add");
-        if(this.props.realTime === "true") this.planRequest();
+        if(this.props.realTime) this.planRequest();
     }
 
     clearFileUploader(){
@@ -241,7 +241,7 @@ class Plan extends Component {
                               places={this.state.places}
                               port={this.port}
                               host={this.host}
-                              realTime = {this.state.realTime}
+                              realTime = {this.props.realTime}
                           />
                             <br/>
 
@@ -251,7 +251,7 @@ class Plan extends Component {
                               updatePlaces={this.props.updatePlaces}
                               planRequest={this.planRequest}
                               updateTrip={this.props.updateTrip}
-                              realTime = {this.state.realTime}
+                              realTime = {this.props.realTime}
                           />
                   </CardBody>
               </Container>
