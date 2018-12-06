@@ -124,6 +124,7 @@ test('Test function updatePlaces', () => {
     wrapper.instance().updatePlaces(place,'add');
     wrapper.instance().updatePlaces(place,'add');
     wrapper.instance().updatePlaces(place,'remove');
+    wrapper.instance().updatePlaces(place,'remove');
     wrapper.instance().updatePlaces(place,'add');
     wrapper.instance().updatePlaces(place2,'add');
     wrapper.instance().updatePlaces('','reverse');

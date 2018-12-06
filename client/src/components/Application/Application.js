@@ -168,7 +168,7 @@ class Application extends Component {
     removePlace(value){
         const place = JSON.stringify(value);
         let trip = this.state.trip;
-        if (typeof this.state.trip.places !== 'undefined') {
+        if (this.state.trip.places.length !== 0) {
             trip["places"] = trip["places"].filter(function(ele){
                 return JSON.stringify(ele) !== place;
             });
