@@ -108,10 +108,10 @@ test('should call handleKeyDotPress when clicked', function() {
     const component = mount((
         <Options config={startProps.config} options={startProps.options}/>
     ));
-    console.log(component.instance().handleKeyDotPress()); // true
+    console.log(component.instance().handleKeyDotPress({ preventDefault(){}, alert(){}, key: '.' }).toHaveBeenCalled()); // true
     const spy = jest.spyOn(component.instance(), 'handleKeyDotPress');
     component.update();
-    component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '.' });
+    expect(component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '.' })).toHaveBeenCalled();
 
     expect(spy).toHaveBeenCalled();
 });
@@ -124,6 +124,11 @@ test('Test function updateUnits', () => {
 test('Test function userDefValues', () => {
     let o = new Options({});
     o.userDefValues({name: 'alpha', radius: 25});
+
+    const component = mount((
+        <Options config={startProps.config} options={startProps.options}/>
+    ));
+    component.find('#options_submit_userdefunits').simulate('click', { name: 'super miles', radius: 0 });
 });
 
 
