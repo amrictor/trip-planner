@@ -53,6 +53,7 @@ class Options extends Component {
         const optButtons = this.props.config.optimization.map((opt) =>
             <Button
                 key={opt['label']}
+                id='options_submit_opts_field'
                 className='btn-outline-dark unit-button'
                 active={this.props.options.optimization === opt['label']}
                 value={opt['label']}
@@ -64,6 +65,7 @@ class Options extends Component {
         const mapButtons = this.props.config.maps.map((map) =>
             <Button
                 key={map}
+                id='options_submit_maps_field'
                 className='btn-outline-dark unit-button'
                 active={this.props.options.map === map}
                 value={map}

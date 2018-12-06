@@ -131,3 +131,13 @@ test('Test function handleKeyDotPress', () => {
     expect(window.alert).toNotHaveBeenCalled;
 });
 
+test('Test for small line of codes', () => {
+    const updateOptionsMock = jest.fn();
+    const component = mount((
+        <Options config={startProps.config} options={startProps.options} updateOptions={updateOptionsMock}/>
+    ));
+    component.find('#options_submit_opts_field').at(0).simulate('click');
+    component.find('#options_submit_maps_field').at(0).simulate('click');
+});
+
+
