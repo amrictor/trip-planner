@@ -150,7 +150,7 @@ test('Test function toggleTab', () => {
 
 
     let actual = [];
-    expect(wrapperNavLink.prop('to')).equals('/home');
+    expect(wrapper.prop('to')).toEqual('/home');
     //expect(actual).toEqual(startProps.config.units);
 });
 
