@@ -146,10 +146,11 @@ test('Test function toggleTab', () => {
     ));
     wrapper.instance().toggleTab(2);
     wrapper.instance().toggleTab(2);
-    wrapper.find('#options_submit_tab1_field').simulate('click');
-    wrapper.find('#options_submit_tab2_field').at(0).simulate('click');
-    wrapper.find('#options_submit_tab3_field').at(0).simulate('click');
-    wrapper.find('#options_submit_tab4_field').at(0).simulate('click');
+
+
+    let actual = [];
+    wrapper.find('NavLink').map((element) => actual.push(element.prop('value')));  // (2)
+    expect(actual).toEqual(startProps.config.units);
 });
 
 test('Test for small line of codes', () => {
