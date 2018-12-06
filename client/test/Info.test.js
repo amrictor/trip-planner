@@ -12,7 +12,7 @@
 import './enzyme.config.js'                   // (1)
 import React from 'react'
 import { mount, shallow } from 'enzyme'              // (2)
-import Info from '../src/components/Application/Options'
+import Info from '../src/components/Application/Info'
 
 /* Both of these tests are functionally identical although the standard way
  *  of writing tests uses lambda or anonymous functions. These are useful
@@ -30,7 +30,9 @@ test('Check to see if real time debug modes are chosen correctly onclick', () =>
     const wrapper = mount((
         <Info/>
     ));
-    expect(wrapper.find('p').text()).toEqual('Please wait');
+    let actual = [];
+    wrapper.find('li').text().map((element) => actual.push(element.prop('value')));
+    expect(actual).toEqual(["hahaha"]);
 
 });
 
