@@ -12,7 +12,7 @@
 import './enzyme.config.js'                   // (1)
 import React from 'react'
 import { mount, shallow } from 'enzyme'              // (2)
-import Options from '../src/components/Application/Options'
+import Itinerary from '../src/components/Application/Itinerary'
 //import Application from '../src/components/Application/Application'
 
 /* Both of these tests are functionally identical although the standard way
@@ -48,9 +48,23 @@ const startProps = {
     }
 };
 
+test('Test function toggleItin', () => {
+    const wrapper = mount((
+        <Itinerary config={startProps.config} />
+    ));
+    wrapper.instance().toggleItin();
+});
+
+test('Test function removePlace', () => {
+    const wrapper = mount((
+        <Itinerary config={startProps.config} />
+    ));
+    wrapper.instance().removePlace('0391','testPlace',100,200);
+});
+
 test('Check to see if real time debug modes are chosen correctly onclick', () => {
-    const options = mount((
-        <Options config={startProps.config} options={startProps.options}/>
+    const wrapper = mount((
+        <Itinerary config={startProps.config} options={startProps.options}/>
     ));
 
     let actual = [];
@@ -58,73 +72,6 @@ test('Check to see if real time debug modes are chosen correctly onclick', () =>
     let realTime = actual.slice(0, 2);
 
     expect(realTime).toEqual([true,false]);  // (3)
-});
-
-test('Check to see if units are chosen correctly onclick', () => {
-    const options = mount((
-        <Options config={startProps.config} options={startProps.options}/>
-    ));
-
-    let actual = [];
-    options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
-    let realTime = actual.slice(2, 6);
-
-    expect(realTime).toEqual(startProps.config.units);  // (3)
-});
-
-test('Check to see if maps are chosen correctly onclick', () => {
-    const options = mount((
-        <Options config={startProps.config} options={startProps.options}/>
-    ));
-
-    let actual = [];
-    options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
-    let poppedsubmitbuttons = actual.slice(7, 9);
-
-    expect(poppedsubmitbuttons).toEqual(["svg", "kml"]);  // (3)
-});
-
-test('Check to see if optimizations are chosen correctly onclick', () => {
-  const options = mount((
-      <Options config={startProps.config} options={startProps.options}/>
-    ));
-
-  let actual = [];
-  options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
-    let poppedsubmitbuttons = actual.slice(9, 13);
-
-  expect(poppedsubmitbuttons).toEqual(["none", "short", "shorter", "shortest"]);  // (3)
-});
-
-test('Test function updateUnits', () => {
-    const updateUnitsMock = jest.fn();
-    const updateOptionsMock = jest.fn();
-    const component = mount((
-        <Options config={startProps.config} options={startProps.options} updateUnits={updateUnitsMock} updateOptions={updateOptionsMock}/>
-    ));
-    component.find('#options_submit_units_field').at(0).simulate('click');
-});
-
-test('Test function userDefValues', () => {
-    const userDefValuesMock = jest.fn();
-    const updateOptionsMock = jest.fn();
-    const component = mount((
-        <Options config={startProps.config} options={startProps.options} userDefValues={userDefValuesMock} updateOptions={updateOptionsMock}/>
-    ));
-    component.find('#options_submit_userdefunits_field').at(0).simulate('click');
-    component.setState({ name: 'super miles' });
-    component.setState({ radius: 4000 });
-    component.find('#options_submit_userdefunits_field').at(0).simulate('click');
-});
-
-test('Test function handleKeyDotPress', () => {
-    const handleKeyDotPressMock = jest.fn();
-    const component = mount((
-        <Options config={startProps.config} options={startProps.options} handleKeyDotPress={handleKeyDotPressMock}/>
-    ));
-    window.alert = jest.fn();
-    component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '.' });
-    component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '+' });
 });
 
 test('Test for small line of codes', () => {
