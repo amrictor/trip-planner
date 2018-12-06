@@ -133,11 +133,13 @@ test('Test function handleKeyDotPress', () => {
 
 test('Test for small line of codes', () => {
     const updateOptionsMock = jest.fn();
+    const updateHostAndPortMock = jest.fn();
     const component = mount((
-        <Options config={startProps.config} options={startProps.options} updateOptions={updateOptionsMock}/>
+        <Options config={startProps.config} options={startProps.options} updateOptions={updateOptionsMock} updateHostAndPort={updateHostAndPortMock}/>
     ));
     component.find('#options_submit_opts_field').at(0).simulate('click');
     component.find('#options_submit_maps_field').at(0).simulate('click');
+    component.find('#options_submit_rT_field').at(0).simulate('click');
 });
 
 

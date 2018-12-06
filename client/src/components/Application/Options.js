@@ -13,8 +13,10 @@ class Options extends Component {
         super(props);
         this.state = {
             userDef: false,
-            name: "",
-            radius: 0
+            name : "",
+            radius : 0,
+            host : "",
+            port : 0
         };
     }
 
@@ -78,6 +80,7 @@ class Options extends Component {
         const realTimeButtons = truefalse.map((rT) =>
             <Button
                 key={rT}
+                id='options_submit_rT_field'
                 className='btn-outline-dark unit-button'
                 active={this.props.realTime === rT}
                 value={rT}
