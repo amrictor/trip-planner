@@ -106,10 +106,11 @@ test('Test function userDefValues', () => {
         target : { value: 'super miles' }
     };
     const component = mount((
-        <Options config={startProps.config} options={startProps.options} userDefValues={userDefValuesMock} />
+        <Options config={startProps.config} options={startProps.options} userDefValues={userDefValuesMock} onClick={() => this.userDefValues("super miles", 5)}/>
     ));
-    console.log(component.find('#options_submit_userdefunits_field'));
-    component.find('#options_submit_userdefunits_field').at(0).simulate('click');
+    let name = component.find('#unit_name_field').at(0);
+    name = unit_name_field;
+    component.find('#options_submit_userdefunits_field').at(0).simulate('click', { name , radius: 0 });
     expect(userDefValuesMock).toBeCalled;
 });
 
