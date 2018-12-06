@@ -95,6 +95,14 @@ test('Check to see if optimizations are chosen correctly onclick', () => {
   expect(poppedsubmitbuttons).toEqual(["none", "short", "shorter", "shortest"]);  // (3)
 });
 
+test('should call updateUnits when clicked', function() {
+    var closeIcon = TestUtils.findRenderedDOMComponentWithClass(Button, 'distance_button_' );
+
+    TestUtils.Simulate.click(closeIcon);
+
+    expect(updateUnits).toBeCalled();
+});
+
 test('Test function updateUnits', () => {
     let o = new Options({});
     o.updateUnits({key: '.'});
