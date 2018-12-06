@@ -113,7 +113,20 @@ test('Test function updateOptions', () => {
     ));
     wrapper.instance().updateOptions('units','miles');
     console.log(wrapper.state());
-    expect(wrapper.state('options')).toEqual('miles');
+    expect(wrapper.state('options')).toEqual({"map": "svg", "optimization": "none", "unitName": "", "unitRadius": 0, "units": "miles"});
+});
+
+test('Test function updatePlaces', () => {
+    const wrapper = mount((
+        <Application config={startProps.config} trip={startProps.trip}/>
+    ));
+    const place = {'id': 1029, 'name': "testPlace", 'latitude': 100, 'longitude': 200};
+    wrapper.instance().updatePlaces(place,'add');
+    wrapper.instance().updatePlaces(place,'remove');
+    wrapper.instance().updatePlaces('','reverse');
+    wrapper.instance().updatePlaces(place,'origin');
+    console.log(wrapper.state());
+    expect(wrapper.state('options')).toEqual({"map": "svg", "optimization": "none", "unitName": "", "unitRadius": 0, "units": "miles"});
 });
 
 test('Test for small line of codes', () => {
