@@ -102,15 +102,11 @@ test('Test function updateUnits', () => {
 
 test('Test function userDefValues', () => {
     const userDefValuesMock = jest.fn();
-    const unit_name_field  = {
-        target : { value: 'super miles' }
-    };
+    const event  = () => userDefValues("super miles", 4);
     const component = shallow((
-        <Options config={startProps.config} options={startProps.options} userDefValues={userDefValuesMock} onClick={() => userDefValues("super miles", 5)}/>
+        <Options config={startProps.config} options={startProps.options} userDefValues={userDefValuesMock} />
     ));
-    let name = component.find('#unit_name_field').at(0);
-    name = unit_name_field;
-    component.find('#options_submit_userdefunits_field').at(0).simulate('click', "super miles" , 4);
+    component.find('#options_submit_userdefunits_field').at(0).prop('userDefValues')("super miles", 4);
     expect(userDefValuesMock).toBeCalled;
 });
 
