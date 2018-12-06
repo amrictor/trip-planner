@@ -53,8 +53,9 @@ test('Test function updateHostAndPort', () => {
     const wrapper = mount((
         <Application config={startProps.config} updateHostAndPort={updateHostAndPortMock}/>
     ));
-    let o = updateHostAndPort("localhost", 8088);
-    expect(wrapper.state('hostname').equalsTo("localhost"));
+    wrapper.instance().updateHostAndPort("localhost", 8088);
+    wrapper.update();
+    expect(wrapper.state('hostname')).toEqual("localhost");
 });
 
 test('Test function updateOriginAndDestination', () => {
