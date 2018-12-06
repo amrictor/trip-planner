@@ -11,7 +11,6 @@
 
 import './enzyme.config.js'                   // (1)
 import React from 'react'
-import 'jest'
 import { mount, shallow } from 'enzyme'              // (2)
 import Options from '../src/components/Application/Options'
 
@@ -103,21 +102,14 @@ test('Test function updateUnits', () => {
 
 test('Test function userDefValues', () => {
     const userDefValuesMock = jest.fn();
-    const event  = () => userDefValues("super miles", 4);
+    const event  = {
+        target : { value: 'super miles' }
+    };
     const component = shallow((
         <Options config={startProps.config} options={startProps.options} userDefValues={userDefValuesMock} />
     ));
-    component.find('#options_submit_userdefunits_field').at(0).prop('userDefValues')("super miles", 4);
+    component.find('#options_submit_userdefunits_field').at(0).simulate('click', "super miles" , 4);
     expect(userDefValuesMock).toBeCalled;
-});
-
-test('Test function userDefValues', () => {
-    const wrapper = mount(<Options />);
-    const spy = spyOn(wrapper.instance(), 'handleButtonClick');
-    wrapper.update();
-    wrapper.find('button').simulate('click');
-    expect(spy).toHaveBeenCalled();
-    expect(userDefValues).toBeCalled;
 });
 
 test('Test function handleKeyDotPress', () => {
