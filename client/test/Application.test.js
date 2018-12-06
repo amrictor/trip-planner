@@ -147,11 +147,6 @@ test('Test function toggleTab', () => {
     ));
     wrapper.instance().toggleTab(2);
     wrapper.instance().toggleTab(2);
-
-
-    let actual = [];
-    expect(wrapper.find('.float-right').prop('className')).toEqual('/home');
-    //expect(actual).toEqual(startProps.config.units);
 });
 
 test('Test for small line of codes', () => {
