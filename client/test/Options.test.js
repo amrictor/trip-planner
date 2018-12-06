@@ -47,25 +47,7 @@ const startProps = {
     }
 };
 
-/* Test example using a pre-defined function */
-
-function testExample() {
-  const options = mount((
-      <Options config={startProps.config} options={startProps.options}/>
-    ));
-
-  let actual = [];
-  options.find('Button').map((element) => actual.push(element.prop('value')));
-
-  /*expect(actual).toEqual(startProps.config.units);*/
-}
-
-test('Check to see if table gets made correctly (Function)', testExample);
-
-/*--------------------------------------------------------------------------*/
-
-/* Test example using an anonymous function */
-test('Check to see if units are chosen correctly onclick', () => {
+test('Check to see if units, optimization and maps are chosen correctly onclick', () => {
   /*  First, we create a version of our Options component, using the
    *  startProps object defined above for its props (1). With our new unrendered
    *  component, we can call ReactWrapper.find() to extract a certain part
@@ -79,9 +61,9 @@ test('Check to see if units are chosen correctly onclick', () => {
 
   let actual = [];
   options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
-    let poppedsubmitbuttons = actual.slice(0, 4);
+    let poppedsubmitbuttons = actual.slice(2, 6);
 
-  //expect(poppedsubmitbuttons).toEqual(startProps.config.units);  // (3)
+  expect(poppedsubmitbuttons).toEqual(startProps.config.units);  // (3)
 });
 
 test('Check to see if optimization update correctly', () => {
@@ -100,7 +82,7 @@ test('Check to see if optimization update correctly', () => {
     options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
 
 
-    expect(actual).toEqual(startProps.config.optimization);  // (3)
+    expect(actual).toEqual(startProps.config.optimization[]);  // (3)
 
 
 
