@@ -112,7 +112,9 @@ test('Test function userDefValues', () => {
         <Options config={startProps.config} options={startProps.options} userDefValues={userDefValuesMock} updateOptions={updateOptionsMock}/>
     ));
     component.find('#options_submit_userdefunits_field').at(0).simulate('click');
-    expect(userDefValuesMock).toBeCalled;
+    component.setState({ name: 'super miles' });
+    component.setState({ radius: 4000 });
+    component.find('#options_submit_userdefunits_field').at(0).simulate('click');
 });
 
 test('Test function handleKeyDotPress', () => {
@@ -122,17 +124,13 @@ test('Test function handleKeyDotPress', () => {
     ));
     window.alert = jest.fn();
     component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '.' });
-    expect(window.alert).toHaveBeenCalled;
-    expect(handleKeyDotPressMock).toBeCalled;
     component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '+' });
-    expect(window.alert).toNotHaveBeenCalled;
 });
 
 test('Test for small line of codes', () => {
     const updateOptionsMock = jest.fn();
     const updateHostAndPortMock = jest.fn();
     const updateRealTimeMock = jest.fn();
-    const newhost = {target: {name: "host", value: "localhost"}};
     const component = mount((
         <Options config={startProps.config} options={startProps.options} updateOptions={updateOptionsMock} updateHostAndPort={updateHostAndPortMock} updateRealTime={updateRealTimeMock}/>
     ));
@@ -141,7 +139,9 @@ test('Test for small line of codes', () => {
     component.find('#options_submit_rT_field').at(0).simulate('click');
     component.find('#options_submit_hostport_field').at(0).simulate('click');
     component.find('#host_field').at(0).simulate('change');
-
+    component.find('#port_field').at(0).simulate('change');
+    component.find('#unit_name_field').at(0).simulate('change');
+    component.find('#unit_radius_field').at(0).simulate('change');
 });
 
 
