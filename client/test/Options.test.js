@@ -95,5 +95,19 @@ test('Check to see if optimizations are chosen correctly onclick', () => {
   expect(poppedsubmitbuttons).toEqual(["none", "short", "shorter", "shortest"]);  // (3)
 });
 
+test('Test function updateUnits', () => {
+    let o = new Options({});
+    o.updateUnits({key: '.'});
+});
+
+test('Test function userDefValues', () => {
+    let o = new Options({});
+    o.userDefValues({name: 'alpha', radius: 25});
+});
+
+test('Test function handleKeyDotPress', () => {
+    let o = new Options({});
+    o.hangingKeyDotPress({key: '.'});
+});
 
 
