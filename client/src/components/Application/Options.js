@@ -27,6 +27,7 @@ class Options extends Component {
     }
 
     userDefValues() {
+        console.log(this.state.name);
         if (this.state.name === "" && this.state.radius === 0) return;
         this.props.updateOptions('unitName', this.state.name);
         this.props.updateOptions('unitRadius', this.state.radius);
@@ -37,6 +38,24 @@ class Options extends Component {
             event.preventDefault();
             alert('Please enter an integer.');
         }
+    }
+
+    handleChangeHost(event) {
+        this.setState({host: event.target.value});
+    }
+
+
+    handleChangePort(event) {
+        this.setState({port: event.target.value});
+    }
+
+    handleChangeName(event) {
+        this.setState({name: event.target.value});
+    }
+
+
+    handleChangeRadius(event) {
+        this.setState({radius: event.target.value});
     }
 
     render() {
@@ -98,7 +117,7 @@ class Options extends Component {
                         name="host"
                         id="host_field"
                         placeholder="(Optional) black-bottle.cs.colostate.edu"
-                        onChange={() => this.setState({host: host_field.value})}
+                        onChange= {this.handleChangeHost}
                     />
                     <InputGroupAddon addonType="prepend">
                         <InputGroupText>:</InputGroupText>
@@ -109,7 +128,7 @@ class Options extends Component {
                         id="port_field"
                         placeholder="port"
                         onKeyPress={this.handleKeyDotPress}
-                        onChange={() => this.setState({port: port_field.value})}
+                        onChange= {this.handleChangePort}
                     />
                     <InputGroupAddon addonType="append">
                         &nbsp;
@@ -135,14 +154,14 @@ class Options extends Component {
                             name="unitname"
                             id="unit_name_field"
                             placeholder="Unit name"
-                            onChange={() => this.setState({name: unit_name_field.value})}
+                            onChange= {this.handleChangeName}
                         />
                         <Input
                             type="number"
                             name="unitradius"
                             id="unit_radius_field"
                             placeholder="Earth radius"
-                            onChange={() => this.setState({radius: unit_radius_field.value})}
+                            onChange= {this.handleChangeRadius}
                         />
                         <InputGroupAddon addonType="append">
                             &nbsp;
