@@ -13,6 +13,7 @@ import './enzyme.config.js'                   // (1)
 import React from 'react'
 import { mount, shallow } from 'enzyme'              // (2)
 import Options from '../src/components/Application/Options'
+//import Application from '../src/components/Application/Application'
 
 /* Both of these tests are functionally identical although the standard way
  *  of writing tests uses lambda or anonymous functions. These are useful
