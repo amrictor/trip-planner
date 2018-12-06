@@ -79,7 +79,7 @@ class Application extends Component {
 
     updateHostAndPort(host, port) {
         port = port ? port : 0;
-        this.port = port;
+        this.port = parseInt(port, 10);
         host = host ? host : "black-bottle.cs.colostate.edu";
         this.host = host;
 
