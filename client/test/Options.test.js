@@ -103,17 +103,17 @@ test('Test function updateUnits', () => {
 test('Test function userDefValues', () => {
     const userDefValuesMock = jest.fn();
     const component = mount((
-        <Options config={startProps.config} options={startProps.options}/>
+        <Options config={startProps.config} options={startProps.options} userDefValues={userDefValuesMock}/>
     ));
     let name = component.find('#unit_name_field').at(0).simulate('change', { target: { value: 'super miles' } });
     component.find('#options_submit_userdefunits_field').at(0).simulate('click', { name, radius: 0 });
-    //expect
+    expect(userDefValuesMock).toBeCalled;
 });
 
 test('Test function handleKeyDotPress', () => {
     const handleKeyDotPressMock = jest.fn();
     const component = mount((
-        <Options config={startProps.config} options={startProps.options} handleKeyDotPress={handleKeyDotPressMock} value="custom value"/>
+        <Options config={startProps.config} options={startProps.options} handleKeyDotPress={handleKeyDotPressMock}/>
     ));
     window.alert = jest.fn();
     component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '.' });
