@@ -15,31 +15,48 @@ import { mount, shallow } from 'enzyme'              // (2)
 import Itinerary from '../src/components/Application/Itinerary'
 
 const startProps = {
-  'config': {
-      "type"          : "config",
-      "version"       : 4,
-      "units"         : ["kilometers", "miles", "nautical miles", "user defined"],
-      "optimization"  : [{"label":"none", "description":"The trip is not optimized."},
-          {"label":"short", "description":"Nearest neighbor."},
-          {"label":"shorter", "description":"2-opt."},
-          {"label":"shortest", "description":"3-opt."}
-      ],
-      "attributes"    : ["name", "id", "latitude", "longitude"],
-      "filters"       : [{"name":"type",
-          "values":["balloonport", "heliport", "airport", "seaplane base"]}
-      ],
-      "maps"          : ["svg", "kml"]
-  },
+    'config': {
+        "type"          : "config",
+        "version"       : 4,
+        "units"         : ["kilometers", "miles", "nautical miles", "user defined"],
+        "optimization"  : [{"label":"none", "description":"The trip is not optimized."},
+            {"label":"short", "description":"Nearest neighbor."},
+            {"label":"shorter", "description":"2-opt."},
+            {"label":"shortest", "description":"3-opt."}
+        ],
+        "attributes"    : ["name", "id", "latitude", "longitude"],
+        "filters"       : [{"name":"type",
+            "values":["balloonport", "heliport", "airport", "seaplane base"]}
+        ],
+        "maps"          : ["svg", "kml"]
+    },
     "options" : {
         "units"        : "miles",
         "optimization" : "none",
         "map"          : "svg"
+    },
+    'distance': {
+        "type"          : "distance",
+        "version"       : 4,
+        "origin"        : {"latitude":  40.5853, "longitude": -105.0844, "name":"Fort Collins, Colorado, USA"},
+        "destination"   : {"latitude": -33.8688, "longitude":  151.2093, "name":"Sydney, New South Wales, Australia"},
+        "units"         : "miles",
+        "distance"      : 0
+    },
+    'trip': {
+        "version"   : 4,
+        "type"      : "trip",
+        "title"     : "",
+        "options"   : {},
+        "places"    : [],
+        "distances" : [],
+        "map"       : ""
     }
 };
 
 test('Test function toggleItin', () => {
     const wrapper = mount((
-        <Itinerary config={startProps.config} options={startProps.options}/>
+        <Itinerary config={startProps.config} trip={startProps.trip}/>
     ));
     wrapper.instance().toggleItin();
 });
