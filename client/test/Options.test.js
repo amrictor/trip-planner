@@ -119,11 +119,12 @@ test('Test function handleKeyDotPress', () => {
     const component = mount((
         <Options config={startProps.config} options={startProps.options}/>
     ));
-    //const preventDefault = jest.fn();
-    component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, key: '.' });
-    expect(event.preventDefault).toHaveBeenCalled();
-    expect(alert).toHaveBeenCalled();
+    window.alert = jest.fn();
+    component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '.' });
+    expect(window.alert).toHaveBeenCalled;
 
+    component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '+' });
+    expect(window.alert).toNotHaveBeenCalled;
 });
 
 
