@@ -31,8 +31,9 @@ test('Check to see if real time debug modes are chosen correctly onclick', () =>
         <Info/>
     ));
     let actual = [];
-    wrapper.find('li').text().map((element) => actual.push(element.prop('value')));
-    expect(actual).toEqual(["hahaha"]);
+    wrapper.find('li').map((element) => actual.push(element.text()));
+    expect(actual).toEqual(["Choose options for trip planning, information to display about locations, and how the trip map and itinerary should be saved.", "Choose your destinations by loading existing sets of destinations or find more in an extensive database of locations worldwide.", "Plan the trip with the options you selected. Review and revise the trip origin and order. Save the trip map and itinerary for future reference."]
+    );
 
 });
 
