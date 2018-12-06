@@ -112,7 +112,7 @@ class Application extends Component {
     }
 
     updateBasedOnResponse(value) {
-        this.setState({'trip': value});
+        this.setState({trip: value});
     }
 
     updateOptions(option, value) {
