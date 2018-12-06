@@ -95,7 +95,7 @@ class Application extends Component {
     }
 
     updateDistanceBasedOnResponse(value) {
-        this.setState({'distance': value});
+        this.setState({distance: value});
     }
 
     updateOriginAndDestination(lat_f, long_f, lat_t, long_t) {
@@ -140,7 +140,7 @@ class Application extends Component {
 
     updateRealTime(value) {
         value = (value === 'true');
-        this.setState({'realTime': value});
+        this.setState({realTime: value});
     }
 
     toggleTab(tab) {
