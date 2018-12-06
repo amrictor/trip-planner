@@ -103,7 +103,7 @@ test('Test function updateBasedOnResponse', () => {
     const wrapper = mount((
         <Application config={startProps.config} trip={startProps.trip}/>
     ));
-    wrapper.instance().updateBasedOnResponse('{"distances": [], "map": "", "options": {}, "places": [], "title": "", "type": "trip", "version": 4}');
+    wrapper.instance().updateBasedOnResponse({distances: [], map: "", options: {}, places: [], title: "", type: "trip", version: 4});
     expect(wrapper.state('trip')).toEqual(startProps.trip);
 });
 
@@ -113,7 +113,7 @@ test('Test function updateOptions', () => {
     ));
     wrapper.instance().updateOptions('units','miles');
     console.log(wrapper.state());
-    expect(wrapper.state('units')).toEqual('miles');
+    expect(wrapper.state('options')).toEqual('miles');
 });
 
 test('Test for small line of codes', () => {
