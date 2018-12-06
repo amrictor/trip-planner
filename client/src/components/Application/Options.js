@@ -98,6 +98,7 @@ class Options extends Component {
                         name="host"
                         id="host_field"
                         placeholder="(Optional) black-bottle.cs.colostate.edu"
+                        onChange={() => this.setState({host: host_field.value})}
                     />
                     <InputGroupAddon addonType="prepend">
                         <InputGroupText>:</InputGroupText>
@@ -108,13 +109,14 @@ class Options extends Component {
                         id="port_field"
                         placeholder="port"
                         onKeyPress={this.handleKeyDotPress}
+                        onChange={() => this.setState({port: port_field.value})}
                     />
                     <InputGroupAddon addonType="append">
                         &nbsp;
                         <Button
                             key={'options_submit_hostport'}
                             className='btn-outline-dark unit-button'
-                            onClick={() => this.props.updateHostAndPort(host_field.value, port_field.value)}
+                            onClick={() => this.props.updateHostAndPort(this.state.host, this.state.port)}
                         >
                             Submit
                         </Button>
