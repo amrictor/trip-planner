@@ -104,6 +104,18 @@ test('should call updateUnits when clicked', function() {
     expect(options.state("units")).toBe("user defined");
 });
 
+test('should call handleKeyDotPress when clicked', function() {
+    const component = mount((
+        <Options config={startProps.config} options={startProps.options}/>
+    ));
+    console.log(component.instance().handleKeyDotPress()); // true
+    const spy = jest.spyOn(component.instance(), 'handleKeyDotPress');
+    component.update();
+    component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '.' });
+
+    expect(spy).toHaveBeenCalled();
+});
+
 test('Test function updateUnits', () => {
     let o = new Options({});
     o.updateUnits({key: '.'});
