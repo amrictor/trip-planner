@@ -74,7 +74,6 @@ class Itinerary extends Component {
                                         <Button
                                             key={'make_first_'+i}
                                             className='btn-outline-dark unit-button float-right'
-                                            id='submit_makefirst_field'
                                             onClick={() => this.props.updatePlaces(i, "origin")}
                                         >
                                             <MdExpandLess/>
@@ -83,7 +82,6 @@ class Itinerary extends Component {
                                         <Button
                                             key={'add_submit_'+i}
                                             className='btn-outline-dark unit-button '
-                                            id='addsubmit_field'
                                             onClick={() => this.removePlace(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
                                         >
                                             <MdDelete/>
