@@ -96,11 +96,10 @@ test('Check to see if optimizations are chosen correctly onclick', () => {
 });
 
 test('should call updateUnits when clicked', function() {
-    var closeIcon = TestUtils.findRenderedDOMComponentWithClass(Button, 'distance_button_' );
-
-    TestUtils.Simulate.click(closeIcon);
-
-    expect(updateUnits).toBeCalled();
+    const wrapper = shallow(<Options />);
+    expect(wrapper.state("units")).toBe("miles");
+    wrapper.find('distance_button_user defined' ).simulate('click');
+    expect(wrapper.state("units")).toBe("user defined");
 });
 
 test('Test function updateUnits', () => {
