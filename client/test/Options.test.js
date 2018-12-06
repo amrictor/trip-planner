@@ -122,13 +122,13 @@ test('Test function updateUnits', () => {
 });
 
 test('Test function userDefValues', () => {
-    let o = new Options({});
-    o.userDefValues({name: 'alpha', radius: 25});
 
     const component = mount((
         <Options config={startProps.config} options={startProps.options}/>
     ));
-    component.find('#options_submit_userdefunits').simulate('click', { name: 'super miles', radius: 0 });
+    let name = component.find('#unit_name_field').at(0).simulate('change', { target: { value: 'super miles' } });
+    component.find('#options_submit_userdefunits_field').at(0).simulate('click', { name, radius: 0 });
+    //expect
 });
 
 
@@ -144,4 +144,16 @@ test('Test function handleKeyDotPress', () => {
     expect(window.alert).toNotHaveBeenCalled;
 });
 
+test('Test function handleKeyDotPress', () => {
+    const handleKeyDotPressMock = jest.fn();
+    const component = mount((
+        <Options config={startProps.config} options={startProps.options} handleKeyDotPress={handleKeyDotPressMock} value="custom value"/>
+    ));
+    window.alert = jest.fn();
+    component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '.' });
+    //expect(window.alert).toHaveBeenCalled;
+    expect(handleKeyDotPressMock).toBeCalledWith('custom value');
+    //component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '+' });
+    //expect(window.alert).toNotHaveBeenCalled;
+});
 
