@@ -211,7 +211,6 @@ class Application extends Component {
                                         className={classnames({ active: this.state.activeTab === '1' })}
                                         onClick={() => { this.toggleTab('1');}}
                                         style={(this.state.activeTab === '1')? aStyle : style}
-                                        id='options_submit_tab1_field'
                                     >
                                         <MdFlightTakeoff/>
                                     </NavLink>
