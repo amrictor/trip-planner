@@ -115,6 +115,7 @@ class Options extends Component {
                         &nbsp;
                         <Button
                             key={'options_submit_hostport'}
+                            id={'options_submit_hostport_field'}
                             className='btn-outline-dark unit-button'
                             onClick={() => this.props.updateHostAndPort(this.state.host, this.state.port)}
                         >

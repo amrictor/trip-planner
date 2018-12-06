@@ -140,6 +140,7 @@ test('Test for small line of codes', () => {
     component.find('#options_submit_opts_field').at(0).simulate('click');
     component.find('#options_submit_maps_field').at(0).simulate('click');
     component.find('#options_submit_rT_field').at(0).simulate('click');
+    component.find('#options_submit_hostport_field').at(0).simulate('click');
 });
 
 
