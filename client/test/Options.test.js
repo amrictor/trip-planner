@@ -47,43 +47,53 @@ const startProps = {
     }
 };
 
-test('Check to see if units, optimization and maps are chosen correctly onclick', () => {
-  /*  First, we create a version of our Options component, using the
-   *  startProps object defined above for its props (1). With our new unrendered
-   *  component, we can call ReactWrapper.find() to extract a certain part
-   *  of the component and its children (2). Lastly, we check to see if the
-   *  value of the buttons created by the component is what we expect,
-   *  given the example input (3).
-  */
-  const options = mount((   // (1)
-      <Options config={startProps.config} options={startProps.options}/>
-    ));
-
-  let actual = [];
-  options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
-    let poppedsubmitbuttons = actual.slice(2, 6);
-
-  expect(poppedsubmitbuttons).toEqual(startProps.config.units);  // (3)
-});
-
-test('Check to see if optimization update correctly', () => {
-    /*  First, we create a version of our Options component, using the
-     *  startProps object defined above for its props (1). With our new unrendered
-     *  component, we can call ReactWrapper.find() to extract a certain part
-     *  of the component and its children (2). Lastly, we check to see if the
-     *  value of the buttons created by the component is what we expect,
-     *  given the example input (3).
-    */
-    const options = mount((   // (1)
+test('Check to see if real time debug modes are chosen correctly onclick', () => {
+    const options = mount((
         <Options config={startProps.config} options={startProps.options}/>
     ));
 
     let actual = [];
     options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
+    let realTime = actual.slice(0, 2);
 
-
-    expect(actual).toEqual(startProps.config.optimization[]);  // (3)
-
-
-
+    expect(realTime).toEqual([true,false]);  // (3)
 });
+
+test('Check to see if units are chosen correctly onclick', () => {
+    const options = mount((
+        <Options config={startProps.config} options={startProps.options}/>
+    ));
+
+    let actual = [];
+    options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
+    let realTime = actual.slice(2, 6);
+
+    expect(realTime).toEqual(startProps.config.units);  // (3)
+});
+
+test('Check to see if maps are chosen correctly onclick', () => {
+    const options = mount((
+        <Options config={startProps.config} options={startProps.options}/>
+    ));
+
+    let actual = [];
+    options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
+    let poppedsubmitbuttons = actual.slice(7, 9);
+
+    expect(poppedsubmitbuttons).toEqual(["svg", "kml"]);  // (3)
+});
+
+test('Check to see if optimizations are chosen correctly onclick', () => {
+  const options = mount((
+      <Options config={startProps.config} options={startProps.options}/>
+    ));
+
+  let actual = [];
+  options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
+    let poppedsubmitbuttons = actual.slice(9, 13);
+
+  expect(poppedsubmitbuttons).toEqual(["none", "short", "shorter", "shortest"]);  // (3)
+});
+
+
+
