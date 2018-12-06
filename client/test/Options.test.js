@@ -109,7 +109,8 @@ test('Test function userDefValues', () => {
         <Options config={startProps.config} options={startProps.options} userDefValues={userDefValuesMock}/>
     ));
     component.setState({ name: 'super miles' });
-    component.find('#options_submit_userdefunits_field').at(0).simulate('click', "super miles" , 4);
+    component.setState({ radius: 4000 });
+    component.find('#options_submit_userdefunits_field').at(0).simulate('click');
     expect(userDefValuesMock).toBeCalled;
 });
 
