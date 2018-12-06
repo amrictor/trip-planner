@@ -52,6 +52,15 @@ const startProps = {
         "destination"   : {"latitude": -33.8688, "longitude":  151.2093, "name":"Sydney, New South Wales, Australia"},
         "units"         : "miles",
         "distance"      : 0
+    },
+    'trip': {
+        "version"   : 4,
+        "type"      : "trip",
+        "title"     : "",
+        "options"   : {},
+        "places"    : [],
+        "distances" : [],
+        "map"       : ""
     }
 };
 
@@ -91,13 +100,13 @@ test('Test function updateTrip', () => {
 });
 
 test('Test function updateBasedOnResponse', () => {
-    console["error"] = jest.fn();
+    console.log = jest.fn();
     const wrapper = mount((
-        <Application config={startProps.config}/>
+        <Application config={startProps.config} trip={startProps.trip}/>
     ));
-    wrapper.instance().updateBasedOnResponse('{type: "trip",version: 4,title: "My Trip",options: {units: "miles",unitName: "",unitRadius: 0,optimization: "none",map: "svg"}');
     wrapper.instance().updateBasedOnResponse('{}');
-    expect(console.error).toHaveBeenCalledTimes(1);
+    expect(console.log.mock.calls[0][0]).toBe('hello');
+    wrapper.instance().updateBasedOnResponse('{type: "trip",version: 4,title: "My Trip",options: {units: "miles",unitName: "",unitRadius: 0,optimization: "none",map: "svg"}');
 });
 
 test('Test for small line of codes', () => {
