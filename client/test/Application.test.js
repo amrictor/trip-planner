@@ -150,7 +150,7 @@ test('Test function toggleTab', () => {
 
 
     let actual = [];
-    expect(wrapper.prop('to')).toEqual('/home');
+    expect(wrapper.find('.float-right').prop('className')).toEqual('/home');
     //expect(actual).toEqual(startProps.config.units);
 });
 
