@@ -203,11 +203,11 @@ class Application extends Component {
                 <IconContext.Provider value={{ size: '2.4em' }}>
                 <Container>
                     <Nav tabs>
-                        <Col md ='5'><h4 style={{'position': 'absolute', 'bottom':'0px'}}><b>Team Dave</b></h4></Col>
+                        <Col md ='5'><h4 style={{'position': 'absolute', 'bottom':'0px'}}><b>T23 Team Dave</b></h4></Col>
                         <Col md ='7'>
                             <Row className={'float-right'}>
                                 <NavItem>
-                                    <NavLink to="/home"
+                                    <NavLink
                                         className={classnames({ active: this.state.activeTab === '1' })}
                                         onClick={() => { this.toggleTab('1');}}
                                         style={(this.state.activeTab === '1')? aStyle : style}
@@ -220,7 +220,6 @@ class Application extends Component {
                                         className={classnames({ active: this.state.activeTab === '2' })}
                                         onClick={() => { this.toggleTab('2'); }}
                                         style={(this.state.activeTab === '2')? aStyle : style}
-                                        id='options_submit_tab2_field'
                                     >
                                         <IoIosCalculator/>
                                     </NavLink>
@@ -230,7 +229,6 @@ class Application extends Component {
                                         className={classnames({ active: this.state.activeTab === '3' })}
                                         onClick={() => { this.toggleTab('3'); }}
                                         style={(this.state.activeTab === '3')? aStyle : style}
-                                        id='options_submit_tab3_field'
                                     >
                                         <GoGear/>
                                     </NavLink>
@@ -240,7 +238,6 @@ class Application extends Component {
                                         className={classnames({ active: this.state.activeTab === '4' })}
                                         onClick={() => { this.toggleTab('4'); }}
                                         style={(this.state.activeTab === '4')? aStyle : style}
-                                        id='options_submit_tab4_field'
                                     >
                                         <MdPeople/>
                                     </NavLink>
