@@ -145,8 +145,7 @@ test('Test for small line of codes', () => {
     component.find('#options_submit_hostport_field').at(0).simulate('click');
     component.setState({ host: 'localhost' });
     component.setState({ port: 8080 });
-    component.update();
-    component.ref('host').simulate('change',newhost);
+    component.find('#options_submit_hostport_field').at(0).simulate('change',{target: {host: "localhost"}});
 });
 
 
