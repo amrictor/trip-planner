@@ -55,7 +55,7 @@ test('Test function updateHostAndPort', () => {
 
 test('Test function updateOriginAndDestination', () => {
     let o = new Application({});
-    o.updateOriginAndDestination({lat_f: 100, port: 280});
+    o.updateOriginAndDestination({lat_f: 100, long_f: 280, lat_t: 400, long_t: 380});
 });
 
 test('Test for small line of codes', () => {
