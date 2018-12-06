@@ -107,35 +107,29 @@ test('Test function putData', () => {
         <Itinerary config={startProps.config}  trip={newTripWDist} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
     ));
     wrapper3.instance().putData();
+
+    wrapper3.find('#submit_makefirst_field').at(0).simulate('click');
+    wrapper3.find('#addsubmit_field').at(0).simulate('click');
 });
 
-test('Check to see if real time debug modes are chosen correctly onclick', () => {
+test('Test function updateCheckbox', () => {
+    const updatePlacesMock = jest.fn();
+    const planRequestMock = jest.fn();
     const wrapper = mount((
-        <Itinerary config={startProps.config} options={startProps.options}/>
+        <Itinerary config={startProps.config}  trip={newTrip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
     ));
+    wrapper.instance().putData();
 
-    let actual = [];
-    options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
-    let realTime = actual.slice(0, 2);
 
-    expect(realTime).toEqual([true,false]);  // (3)
-});
-
-test('Test for small line of codes', () => {
-    const updateOptionsMock = jest.fn();
-    const updateHostAndPortMock = jest.fn();
-    const updateRealTimeMock = jest.fn();
-    const component = mount((
-        <Options config={startProps.config} options={startProps.options} updateOptions={updateOptionsMock} updateHostAndPort={updateHostAndPortMock} updateRealTime={updateRealTimeMock}/>
+    const wrapper2 = mount((
+        <Itinerary config={startProps.config}  trip={startProps.trip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
     ));
-    component.find('#options_submit_opts_field').at(0).simulate('click');
-    component.find('#options_submit_maps_field').at(0).simulate('click');
-    component.find('#options_submit_rT_field').at(0).simulate('click');
-    component.find('#options_submit_hostport_field').at(0).simulate('click');
-    component.find('#host_field').at(0).simulate('change');
-    component.find('#port_field').at(0).simulate('change');
-    component.find('#unit_name_field').at(0).simulate('change');
-    component.find('#unit_radius_field').at(0).simulate('change');
+    wrapper2.instance().putData();
+    const wrapper3 = mount((
+        <Itinerary config={startProps.config}  trip={newTripWDist} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
+    ));
+    wrapper3.instance().putData();
+
+    wrapper3.find('#submit_makefirst_field').at(0).simulate('click');
+    wrapper3.find('#addsubmit_field').at(0).simulate('click');
 });
-
-
