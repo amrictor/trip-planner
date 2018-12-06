@@ -211,7 +211,7 @@ class Application extends Component {
                                         className={classnames({ active: this.state.activeTab === '1' })}
                                         onClick={() => { this.toggleTab('1');}}
                                         style={(this.state.activeTab === '1')? aStyle : style}
-                                        id={'options_submit_tab1_field'}
+                                        id='options_submit_tab1_field'
                                     >
                                         <MdFlightTakeoff/>
                                     </NavLink>
@@ -221,7 +221,7 @@ class Application extends Component {
                                         className={classnames({ active: this.state.activeTab === '2' })}
                                         onClick={() => { this.toggleTab('2'); }}
                                         style={(this.state.activeTab === '2')? aStyle : style}
-                                        id={'options_submit_tab2_field'}
+                                        id='options_submit_tab2_field'
                                     >
                                         <IoIosCalculator/>
                                     </NavLink>
@@ -231,7 +231,7 @@ class Application extends Component {
                                         className={classnames({ active: this.state.activeTab === '3' })}
                                         onClick={() => { this.toggleTab('3'); }}
                                         style={(this.state.activeTab === '3')? aStyle : style}
-                                        id={'options_submit_tab3_field'}
+                                        id='options_submit_tab3_field'
                                     >
                                         <GoGear/>
                                     </NavLink>
@@ -241,7 +241,7 @@ class Application extends Component {
                                         className={classnames({ active: this.state.activeTab === '4' })}
                                         onClick={() => { this.toggleTab('4'); }}
                                         style={(this.state.activeTab === '4')? aStyle : style}
-                                        id={'options_submit_tab4_field'}
+                                        id='options_submit_tab4_field'
                                     >
                                         <MdPeople/>
                                     </NavLink>
