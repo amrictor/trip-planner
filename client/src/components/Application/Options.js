@@ -14,7 +14,7 @@ class Options extends Component {
         this.state = {
             userDef: false,
             name: "",
-            radius: 0,
+            radius: 0
         };
     }
 
@@ -127,6 +127,7 @@ class Options extends Component {
                             name="unitname"
                             id="unit_name_field"
                             placeholder="Unit name"
+                            onChange={() => this.setState({name: unit_name_field.value})}
                         />
                         <Input
                             type="number"
@@ -140,7 +141,7 @@ class Options extends Component {
                                 key={'options_submit_userdefunits'}
                                 id='options_submit_userdefunits_field'
                                 className='btn-outline-dark unit-button'
-                                onClick={() => this.userDefValues(unit_name_field.value, unit_radius_field.value)}
+                                onClick={() => this.userDefValues(this.state.name, unit_radius_field.value)}
                             >
                                 Submit
                             </Button>
