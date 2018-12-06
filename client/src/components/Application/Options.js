@@ -18,6 +18,10 @@ class Options extends Component {
             host : "",
             port : 0
         };
+        this.handleChangeHost = this.handleChangeHost.bind(this);
+        this.handleChangePort = this.handleChangePort.bind(this);
+        this.handleChangeName = this.handleChangeName.bind(this);
+        this.handleChangeRadius = this.handleChangeRadius.bind(this);
     }
 
     updateUnits(event) {
@@ -27,7 +31,6 @@ class Options extends Component {
     }
 
     userDefValues() {
-        console.log(this.state.name);
         if (this.state.name === "" && this.state.radius === 0) return;
         this.props.updateOptions('unitName', this.state.name);
         this.props.updateOptions('unitRadius', this.state.radius);
@@ -41,7 +44,7 @@ class Options extends Component {
     }
 
     handleChangeHost(event) {
-        this.setState({host: event.target.value});
+        this.setState({'host': event.target.value});
     }
 
 
