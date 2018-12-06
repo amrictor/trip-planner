@@ -49,11 +49,12 @@ const startProps = {
 
 
 test('Test function updateHostAndPort', () => {
+    const updateHostAndPortMock = jest.fn();
     const wrapper = mount((
-        <Application config={startProps.config} />
+        <Application config={startProps.config} updateHostAndPort={updateHostAndPortMock}/>
     ));
-    let o = new Application({});
-    o.updateHostAndPort({host: 'localhost', port: 8080});
+    let o = updateHostAndPort("localhost", 8088);
+    expect(wrapper.state('hostname').equalsTo("localhost"));
 });
 
 test('Test function updateOriginAndDestination', () => {
