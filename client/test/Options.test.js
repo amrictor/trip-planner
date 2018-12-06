@@ -99,9 +99,9 @@ test('should call updateUnits when clicked', function() {
     const options = mount((
         <Options config={startProps.config} options={startProps.options}/>
     ));
-    expect(wrapper.state("units")).toBe("miles");
+    expect(options.props("units")).toBe("miles");
     wrapper.find('Button').simulate('click');
-    expect(wrapper.state("units")).toBe("user defined");
+    expect(options.state("units")).toBe("user defined");
 });
 
 test('Test function updateUnits', () => {
@@ -114,9 +114,16 @@ test('Test function userDefValues', () => {
     o.userDefValues({name: 'alpha', radius: 25});
 });
 
+
 test('Test function handleKeyDotPress', () => {
-    let o = new Options({});
-    o.hangingKeyDotPress({key: '.'});
+    const component = mount((
+        <Options config={startProps.config} options={startProps.options}/>
+    ));
+    const preventDefault = jest.fn();
+    component.find('#port').prop('onKeyPress')({key: '.'});
+    expect(preventDefault).toBeCalled();
+
+
 });
 
 
