@@ -204,7 +204,7 @@ class Application extends Component {
                 <IconContext.Provider value={{ size: '2.4em' }}>
                 <Container>
                     <Nav tabs>
-                        <Col md ='5'><h4 style={{'position': 'absolute', 'bottom':'0px'}}><b>Team Dave</b></h4></Col>
+                        <Col md ='5'><h4 style={{'position': 'absolute', 'bottom':'0px'}}><b>T23 Team Dave</b></h4></Col>
                         <Col md ='7'>
                             <Row className={'float-right'}>
                                 <NavItem>

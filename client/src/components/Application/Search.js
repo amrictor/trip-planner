@@ -5,6 +5,7 @@ import { Button } from 'reactstrap';
 import { Collapse } from 'reactstrap';
 import { Input, InputGroup, InputGroupAddon } from 'reactstrap'
 import { request } from '../../api/api';
+import {Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap'
 
 import {IconContext} from 'react-icons';
 import { MdSearch, MdClear, MdAdd } from 'react-icons/md'
@@ -22,15 +23,26 @@ class Search extends Component {
                 found: 0,
                 places: []
             },
+
             isSearch: false,
             attributes: JSON.parse(JSON.stringify(this.props.config.attributes)),
-            numFilters: this.props.config.filters.reduce((total, filter) =>  total + filter.values.length, 0)
+            numFilters: this.props.config.filters.reduce((total, filter) =>  total + filter.values.length, 0),
+            dropdownOpen: false
+
         };
         this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
         this.showSearchResult = this.showSearchResult.bind(this);
         this.updateCheckbox = this.updateCheckbox.bind(this);
         this.updateAttributes = this.updateAttributes.bind(this);
+        this.toggle = this.toggle.bind(this);
     }
+
+    toggle() {
+        this.setState(prevState => ({
+            dropdownOpen: !prevState.dropdownOpen
+        }));
+    }
+
     updateSearch() {
         let search = this.state.search;
         search['match'] = query_field.value;
@@ -220,7 +232,6 @@ class Search extends Component {
             filter.values.map((value) =>
                 <Row className={'float-right'}>
                     <label key={'checkbox_'+value}>
-
                         <input
                             name={value}
                             type="checkbox"
@@ -280,11 +291,25 @@ class Search extends Component {
                 &nbsp;&nbsp;
             </label>
         );
-
+        const{list} = this.props
+        const{listOpen, headerTitle} = this.state
         return (
             <IconContext.Provider value={{ size: '1.5em' }}>
                 <CardTitle>Don't know your stop?</CardTitle>
                 {filters}
+                <Dropdown isOpen={this.state.dropdownOpen} size="sm" toggle={this.toggle}>
+                    <DropdownToggle caret color="green">
+                        Countries
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        <DropdownItem>Costa Rica</DropdownItem>
+                        <DropdownItem>Japan</DropdownItem>
+                        <DropdownItem>Kenya</DropdownItem>
+                        <DropdownItem>Spain</DropdownItem>
+                        <DropdownItem>United States</DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+                &nbsp;&nbsp;
                 {searchquery}
                 <Collapse isOpen={this.state.isSearch}>
                     <br/>
