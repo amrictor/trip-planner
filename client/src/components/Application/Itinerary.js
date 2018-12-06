@@ -180,6 +180,10 @@ class Itinerary extends Component {
         this.forceUpdate();
     }
 
+    handleChange(){
+        this.props.updateTrip("title", event.target.value);
+    }
+
     render() {
         let toggle = this.state.itin ? "Hide Itinerary" : "Show Itinerary";
         const attributes = this.props.config.attributes.slice().reverse().map((attribute) =>
@@ -212,7 +216,7 @@ class Itinerary extends Component {
                                             name="title"
                                             id="trip_title"
                                             placeholder="My Trip"
-                                            onChange={() => this.props.updateTrip("title", trip_title.value)}
+                                            onChange={this.handleChange}
                                         />
                                     </InputGroup>
                                 </Form>
@@ -221,6 +225,7 @@ class Itinerary extends Component {
                                 <ButtonGroup className={'float-right'}>
                                     <Button
                                         key={'options_submit'}
+                                        id='options_submit_field'
                                         className='btn-outline-dark unit-button float-right'
                                         onClick={()=> this.props.updatePlaces("","reverse")}
                                     >
@@ -229,6 +234,7 @@ class Itinerary extends Component {
 
                                     <Button
                                         key='hide_itin'
+                                        id='options_hide_itin_field'
                                         className='btn-outline-dark unit-button float-right'
                                         onClick={() => this.toggleItin()}
                                     >

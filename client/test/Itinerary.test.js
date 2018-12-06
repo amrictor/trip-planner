@@ -107,9 +107,6 @@ test('Test function putData', () => {
         <Itinerary config={startProps.config}  trip={newTripWDist} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
     ));
     wrapper3.instance().putData();
-
-    wrapper3.find('#submit_makefirst_field').at(0).simulate('click');
-    wrapper3.find('#addsubmit_field').at(0).simulate('click');
 });
 
 test('Test function updateCheckbox', () => {
@@ -123,16 +120,7 @@ test('Test function updateCheckbox', () => {
     wrapper.instance().updateCheckbox(event);
     wrapper.instance().updateCheckbox(event2);
 
-
-    const wrapper2 = mount((
-        <Itinerary config={startProps.config}  trip={startProps.trip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
-    ));
-    wrapper2.instance().putData();
-    const wrapper3 = mount((
-        <Itinerary config={startProps.config}  trip={newTripWDist} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
-    ));
-    wrapper3.instance().putData();
-
-    wrapper3.find('#submit_makefirst_field').at(0).simulate('click');
-    wrapper3.find('#addsubmit_field').at(0).simulate('click');
+    wrapper.find('#trip_title').at(0).simulate('change');
+    wrapper.find('#options_submit_field').at(0).simulate('click');
+    wrapper.find('#options_hide_itin_field').at(0).simulate('click');
 });
