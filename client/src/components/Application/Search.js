@@ -24,27 +24,6 @@ class Search extends Component {
                 places: []
             },
 
-            location: [
-                {
-                    id: 0,
-                    title: "United States",
-                    selected: false,
-                    key: "location"
-                },
-                {
-                    id: 1,
-                    title: "Costa Rica",
-                    selected: false,
-                    key: "location"
-                },
-                {
-                    id: 2,
-                    title: "Japan",
-                    selected: false,
-                    key: "location"
-                }
-            ],
-
             listOpen: false,
             headerTitle: this.props.title,
             isSearch: false,
