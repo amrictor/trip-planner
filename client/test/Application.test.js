@@ -44,6 +44,14 @@ const startProps = {
         "units"        : "miles",
         "optimization" : "none",
         "map"          : "svg"
+    },
+    'distance': {
+        "type"          : "distance",
+        "version"       : 4,
+        "origin"        : {"latitude":  40.5853, "longitude": -105.0844, "name":"Fort Collins, Colorado, USA"},
+        "destination"   : {"latitude": -33.8688, "longitude":  151.2093, "name":"Sydney, New South Wales, Australia"},
+        "units"         : "miles",
+        "distance"      : 0
     }
 };
 
@@ -58,8 +66,19 @@ test('Test function updateHostAndPort', () => {
 });
 
 test('Test function updateOriginAndDestination', () => {
-    //let o = new Application({});
-    //o.updateOriginAndDestination({lat_f: 100, long_f: 280, lat_t: 400, long_t: 380});
+    const wrapper = mount((
+        <Application config={startProps.config} distance={startProps.distance}/>
+    ));
+    wrapper.instance().updateOriginAndDestination(100,200,400,300);
+    expect(wrapper.state('distance')).toEqual(1000);
+});
+
+test('Test function updateDistanceBasedOnResponse', () => {
+    const wrapper = mount((
+        <Application config={startProps.config}/>
+    ));
+    wrapper.instance().updateDistanceBasedOnResponse(1000);
+    expect(wrapper.state()).toEqual(1000);
 });
 
 test('Test for small line of codes', () => {
@@ -67,9 +86,7 @@ test('Test for small line of codes', () => {
         <Application config={startProps.config} />
     ));
     wrapper.instance().updateDistanceBasedOnResponse(1000);
-    console.log(wrapper.state());
     expect(wrapper.state('distance')).toEqual(1000);
-
 });
 
 
