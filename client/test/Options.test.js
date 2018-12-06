@@ -13,6 +13,7 @@ import './enzyme.config.js'                   // (1)
 import React from 'react'
 import { mount, shallow } from 'enzyme'              // (2)
 import Options from '../src/components/Application/Options'
+//import Application from '../src/components/Application/Application'
 
 /* Both of these tests are functionally identical although the standard way
  *  of writing tests uses lambda or anonymous functions. These are useful
@@ -47,57 +48,100 @@ const startProps = {
     }
 };
 
-/* Test example using a pre-defined function */
-
-function testExample() {
-  const options = mount((
-      <Options config={startProps.config} options={startProps.options}/>
-    ));
-
-  let actual = [];
-  options.find('Button').map((element) => actual.push(element.prop('value')));
-
-  /*expect(actual).toEqual(startProps.config.units);*/
-}
-
-test('Check to see if table gets made correctly (Function)', testExample);
-
-/*--------------------------------------------------------------------------*/
-
-/* Test example using an anonymous function */
-test('Check to see if table gets made correctly (Lambda)', () => {
-  /*  First, we create a version of our Options component, using the
-   *  startProps object defined above for its props (1). With our new unrendered
-   *  component, we can call ReactWrapper.find() to extract a certain part
-   *  of the component and its children (2). Lastly, we check to see if the
-   *  value of the buttons created by the component is what we expect,
-   *  given the example input (3).
-  */
-  const options = mount((   // (1)
-      <Options config={startProps.config} options={startProps.options}/>
-    ));
-
-  let actual = [];
-  options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
-    let poppedsubmitbuttons = actual.slice(0, 4);
-
-  //expect(poppedsubmitbuttons).toEqual(startProps.config.units);  // (3)
-});
-
-test('Check to see if units get updated correctly', () => {
-    /*  First, we create a version of our Options component, using the
-     *  startProps object defined above for its props (1). With our new unrendered
-     *  component, we can call ReactWrapper.find() to extract a certain part
-     *  of the component and its children (2). Lastly, we check to see if the
-     *  value of the buttons created by the component is what we expect,
-     *  given the example input (3).
-    */
-    const options = mount((   // (1)
+test('Check to see if real time debug modes are chosen correctly onclick', () => {
+    const options = mount((
         <Options config={startProps.config} options={startProps.options}/>
     ));
 
     let actual = [];
     options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
+    let realTime = actual.slice(0, 2);
 
-    //expect(actual).toEqual(startProps.config.units);  // (3)
+    expect(realTime).toEqual([true,false]);  // (3)
 });
+
+test('Check to see if units are chosen correctly onclick', () => {
+    const options = mount((
+        <Options config={startProps.config} options={startProps.options}/>
+    ));
+
+    let actual = [];
+    options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
+    let realTime = actual.slice(2, 6);
+
+    expect(realTime).toEqual(startProps.config.units);  // (3)
+});
+
+test('Check to see if maps are chosen correctly onclick', () => {
+    const options = mount((
+        <Options config={startProps.config} options={startProps.options}/>
+    ));
+
+    let actual = [];
+    options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
+    let poppedsubmitbuttons = actual.slice(7, 9);
+
+    expect(poppedsubmitbuttons).toEqual(["svg", "kml"]);  // (3)
+});
+
+test('Check to see if optimizations are chosen correctly onclick', () => {
+  const options = mount((
+      <Options config={startProps.config} options={startProps.options}/>
+    ));
+
+  let actual = [];
+  options.find('Button').map((element) => actual.push(element.prop('value')));  // (2)
+    let poppedsubmitbuttons = actual.slice(9, 13);
+
+  expect(poppedsubmitbuttons).toEqual(["none", "short", "shorter", "shortest"]);  // (3)
+});
+
+test('Test function updateUnits', () => {
+    const updateUnitsMock = jest.fn();
+    const updateOptionsMock = jest.fn();
+    const component = mount((
+        <Options config={startProps.config} options={startProps.options} updateUnits={updateUnitsMock} updateOptions={updateOptionsMock}/>
+    ));
+    component.find('#options_submit_units_field').at(0).simulate('click');
+});
+
+test('Test function userDefValues', () => {
+    const userDefValuesMock = jest.fn();
+    const updateOptionsMock = jest.fn();
+    const component = mount((
+        <Options config={startProps.config} options={startProps.options} userDefValues={userDefValuesMock} updateOptions={updateOptionsMock}/>
+    ));
+    component.find('#options_submit_userdefunits_field').at(0).simulate('click');
+    component.setState({ name: 'super miles' });
+    component.setState({ radius: 4000 });
+    component.find('#options_submit_userdefunits_field').at(0).simulate('click');
+});
+
+test('Test function handleKeyDotPress', () => {
+    const handleKeyDotPressMock = jest.fn();
+    const component = mount((
+        <Options config={startProps.config} options={startProps.options} handleKeyDotPress={handleKeyDotPressMock}/>
+    ));
+    window.alert = jest.fn();
+    component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '.' });
+    component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '+' });
+});
+
+test('Test for small line of codes', () => {
+    const updateOptionsMock = jest.fn();
+    const updateHostAndPortMock = jest.fn();
+    const updateRealTimeMock = jest.fn();
+    const component = mount((
+        <Options config={startProps.config} options={startProps.options} updateOptions={updateOptionsMock} updateHostAndPort={updateHostAndPortMock} updateRealTime={updateRealTimeMock}/>
+    ));
+    component.find('#options_submit_opts_field').at(0).simulate('click');
+    component.find('#options_submit_maps_field').at(0).simulate('click');
+    component.find('#options_submit_rT_field').at(0).simulate('click');
+    component.find('#options_submit_hostport_field').at(0).simulate('click');
+    component.find('#host_field').at(0).simulate('change');
+    component.find('#port_field').at(0).simulate('change');
+    component.find('#unit_name_field').at(0).simulate('change');
+    component.find('#unit_radius_field').at(0).simulate('change');
+});
+
+

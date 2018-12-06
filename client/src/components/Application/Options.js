@@ -11,7 +11,17 @@ import {Collapse} from 'reactstrap'
 class Options extends Component {
     constructor(props) {
         super(props);
-        this.state = {userDef: false};
+        this.state = {
+            userDef: false,
+            name : "",
+            radius : 0,
+            host : "",
+            port : 0
+        };
+        this.handleChangeHost = this.handleChangeHost.bind(this);
+        this.handleChangePort = this.handleChangePort.bind(this);
+        this.handleChangeName = this.handleChangeName.bind(this);
+        this.handleChangeRadius = this.handleChangeRadius.bind(this);
     }
 
     updateUnits(event) {
@@ -20,11 +30,10 @@ class Options extends Component {
         this.setState({userDef:(unit === 'user defined')});
     }
 
-    userDefValues(name, radius) {
-        name = name ? name : "";
-        radius = radius ? radius : 0;
-        this.props.updateOptions('unitName', name);
-        this.props.updateOptions('unitRadius', radius);
+    userDefValues() {
+        if (this.state.name === "" && this.state.radius === 0) return;
+        this.props.updateOptions('unitName', this.state.name);
+        this.props.updateOptions('unitRadius', this.state.radius);
     }
 
     handleKeyDotPress(event) {
@@ -34,10 +43,29 @@ class Options extends Component {
         }
     }
 
+    handleChangeHost(event) {
+        this.setState({'host': event.target.value});
+    }
+
+
+    handleChangePort(event) {
+        this.setState({port: event.target.value});
+    }
+
+    handleChangeName(event) {
+        this.setState({name: event.target.value});
+    }
+
+
+    handleChangeRadius(event) {
+        this.setState({radius: event.target.value});
+    }
+
     render() {
         const unitButtons = this.props.config.units.map((units) =>
             <Button
                 key={'distance_button_' + units}
+                id='options_submit_units_field'
                 className='btn-outline-dark unit-button'
                 active={this.props.options.units === units}
                 value={units}
@@ -49,6 +77,7 @@ class Options extends Component {
         const optButtons = this.props.config.optimization.map((opt) =>
             <Button
                 key={opt['label']}
+                id='options_submit_opts_field'
                 className='btn-outline-dark unit-button'
                 active={this.props.options.optimization === opt['label']}
                 value={opt['label']}
@@ -60,6 +89,7 @@ class Options extends Component {
         const mapButtons = this.props.config.maps.map((map) =>
             <Button
                 key={map}
+                id='options_submit_maps_field'
                 className='btn-outline-dark unit-button'
                 active={this.props.options.map === map}
                 value={map}
@@ -72,6 +102,7 @@ class Options extends Component {
         const realTimeButtons = truefalse.map((rT) =>
             <Button
                 key={rT}
+                id='options_submit_rT_field'
                 className='btn-outline-dark unit-button'
                 active={this.props.realTime === rT}
                 value={rT}
@@ -89,6 +120,7 @@ class Options extends Component {
                         name="host"
                         id="host_field"
                         placeholder="(Optional) black-bottle.cs.colostate.edu"
+                        onChange= {this.handleChangeHost}
                     />
                     <InputGroupAddon addonType="prepend">
                         <InputGroupText>:</InputGroupText>
@@ -99,13 +131,15 @@ class Options extends Component {
                         id="port_field"
                         placeholder="port"
                         onKeyPress={this.handleKeyDotPress}
+                        onChange= {this.handleChangePort}
                     />
                     <InputGroupAddon addonType="append">
                         &nbsp;
                         <Button
                             key={'options_submit_hostport'}
+                            id={'options_submit_hostport_field'}
                             className='btn-outline-dark unit-button'
-                            onClick={() => this.props.updateHostAndPort(host_field.value, port_field.value)}
+                            onClick={() => this.props.updateHostAndPort(this.state.host, this.state.port)}
                         >
                             Submit
                         </Button>
@@ -123,20 +157,22 @@ class Options extends Component {
                             name="unitname"
                             id="unit_name_field"
                             placeholder="Unit name"
+                            onChange= {this.handleChangeName}
                         />
                         <Input
                             type="number"
                             name="unitradius"
                             id="unit_radius_field"
                             placeholder="Earth radius"
+                            onChange= {this.handleChangeRadius}
                         />
                         <InputGroupAddon addonType="append">
                             &nbsp;
                             <Button
                                 key={'options_submit_userdefunits'}
+                                id='options_submit_userdefunits_field'
                                 className='btn-outline-dark unit-button'
-                                onClick={() => this.userDefValues(unit_name_field.value, unit_radius_field.value)
-                                }
+                                onClick={() => this.userDefValues()}
                             >
                                 Submit
                             </Button>
