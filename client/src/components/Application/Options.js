@@ -68,6 +68,18 @@ class Options extends Component {
                 {(map==='svg' ? "Static" : "Interactive")}
             </Button>
         );
+        const truefalse = [true, false];
+        const realTimeButtons = truefalse.map((rT) =>
+            <Button
+                key={rT}
+                className='btn-outline-dark unit-button'
+                active={this.props.realTime === rT}
+                value={rT}
+                onClick={(event) => this.props.updateRealTime(event.target.value)}
+            >
+                {(rT===true ? "True" : "False")}
+            </Button>
+        );
 
         const portForm =
             <Form inline>
@@ -138,6 +150,12 @@ class Options extends Component {
                     <CardBody>
                         <CardTitle>Options</CardTitle>
                         <hr/>
+                    </CardBody>
+                    <CardBody>
+                        <p><b>Real time trip editing:</b></p>
+                        <ButtonGroup>{realTimeButtons}</ButtonGroup>
+                    </CardBody>
+                    <CardBody>
                         <p><b>Select the units you wish to use:</b></p>
                         <ButtonGroup>{unitButtons}</ButtonGroup>
                         {userdeffield}
