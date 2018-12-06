@@ -63,6 +63,15 @@ const newTrip ={
     "distances" : [],
     "map"       : ""}
 
+const newTripWDist ={
+    "version"   : 4,
+    "type"      : "trip",
+    "title"     : "",
+    "options"   : {},
+    "places"    : [{'id': 1029, 'name': "testPlace", 'latitude': 100, 'longitude': 200},{'id': 1049, 'name': "testPlace2", 'latitude': 130, 'longitude': 250}],
+    "distances" : [1093,2841],
+    "map"       : ""}
+
 test('Test function toggleItin', () => {
     const wrapper = mount((
         <Itinerary config={startProps.config} trip={startProps.trip}/>
@@ -87,13 +96,17 @@ test('Test function putData', () => {
     const updatePlacesMock = jest.fn();
     const planRequestMock = jest.fn();
     const wrapper = mount((
-        <Itinerary config={startProps.config}  trip={newTrip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} realTime={true}/>
+        <Itinerary config={startProps.config}  trip={newTrip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
     ));
-    wrapper.instance().removePlace(1029,'testPlace',100,200);
+    wrapper.instance().putData();
     const wrapper2 = mount((
         <Itinerary config={startProps.config}  trip={startProps.trip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
     ));
-    wrapper2.instance().removePlace(1029,'testPlace',100,200);
+    wrapper2.instance().putData();
+    const wrapper3 = mount((
+        <Itinerary config={startProps.config}  trip={newTripWDist.trip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
+    ));
+    wrapper3.instance().putData();
 });
 
 test('Check to see if real time debug modes are chosen correctly onclick', () => {
