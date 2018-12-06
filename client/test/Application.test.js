@@ -70,8 +70,8 @@ test('Test function updateOriginAndDestination', () => {
         <Application config={startProps.config} distance={startProps.distance}/>
     ));
     wrapper.instance().updateOriginAndDestination(100,200,400,300);
-    expect(wrapper.state('origin')).toEqual(1000);
-    expect(wrapper.state('destination')).toEqual(1000);
+    expect(wrapper.state('origin')).toEqual({"latitude": 100, "longtitude": 200});
+    expect(wrapper.state('destination')).toEqual({"latitude": 400, "longtitude": 300});
 });
 
 test('Test function updateDistanceBasedOnResponse', () => {
@@ -82,12 +82,16 @@ test('Test function updateDistanceBasedOnResponse', () => {
     expect(wrapper.state('distance')).toEqual(1000);
 });
 
-test('Test for small line of codes', () => {
+test('Test function updateTrip', () => {
     const wrapper = mount((
-        <Application config={startProps.config} />
+        <Application config={startProps.config}/>
     ));
-    wrapper.instance().updateDistanceBasedOnResponse(1000);
-    expect(wrapper.state('distance')).toEqual(1000);
+    wrapper.instance().updateTrip('units','miles');
+    expect(wrapper.state('units')).toEqual('miles');
+});
+
+test('Test for small line of codes', () => {
+
 });
 
 
