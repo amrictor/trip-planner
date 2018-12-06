@@ -41,6 +41,7 @@ class Options extends Component {
         const unitButtons = this.props.config.units.map((units) =>
             <Button
                 key={'distance_button_' + units}
+                id='options_submit_units_field'
                 className='btn-outline-dark unit-button'
                 active={this.props.options.units === units}
                 value={units}
