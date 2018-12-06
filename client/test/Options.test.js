@@ -98,7 +98,7 @@ test('Check to see if optimizations are chosen correctly onclick', () => {
 test('should call updateUnits when clicked', function() {
     const wrapper = shallow(<Options />);
     expect(wrapper.state("units")).toBe("miles");
-    wrapper.find('distance_button_user defined' ).simulate('click');
+    wrapper.find('Button').simulate('click');
     expect(wrapper.state("units")).toBe("user defined");
 });
 
