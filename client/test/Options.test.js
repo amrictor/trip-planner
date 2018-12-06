@@ -96,7 +96,9 @@ test('Check to see if optimizations are chosen correctly onclick', () => {
 });
 
 test('should call updateUnits when clicked', function() {
-    const wrapper = shallow(<Options />);
+    const options = mount((
+        <Options config={startProps.config} options={startProps.options}/>
+    ));
     expect(wrapper.state("units")).toBe("miles");
     wrapper.find('Button').simulate('click');
     expect(wrapper.state("units")).toBe("user defined");
