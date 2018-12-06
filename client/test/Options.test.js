@@ -95,53 +95,19 @@ test('Check to see if optimizations are chosen correctly onclick', () => {
   expect(poppedsubmitbuttons).toEqual(["none", "short", "shorter", "shortest"]);  // (3)
 });
 
-test('should call updateUnits when clicked', function() {
-    const options = mount((
-        <Options config={startProps.config} options={startProps.options}/>
-    ));
-    expect(options.props("units")).toBe("miles");
-    wrapper.find('Button').simulate('click');
-    expect(options.state("units")).toBe("user defined");
-});
-
-test('should call handleKeyDotPress when clicked', function() {
-    const component = mount((
-        <Options config={startProps.config} options={startProps.options}/>
-    ));
-    console.log(component.instance().handleKeyDotPress({ preventDefault(){}, alert(){}, key: '.' }).toHaveBeenCalled()); // true
-    const spy = jest.spyOn(component.instance(), 'handleKeyDotPress');
-    component.update();
-    expect(component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '.' })).toHaveBeenCalled();
-
-    expect(spy).toHaveBeenCalled();
-});
-
 test('Test function updateUnits', () => {
     let o = new Options({});
     o.updateUnits({key: '.'});
 });
 
 test('Test function userDefValues', () => {
-
+    const userDefValuesMock = jest.fn();
     const component = mount((
         <Options config={startProps.config} options={startProps.options}/>
     ));
     let name = component.find('#unit_name_field').at(0).simulate('change', { target: { value: 'super miles' } });
     component.find('#options_submit_userdefunits_field').at(0).simulate('click', { name, radius: 0 });
     //expect
-});
-
-
-test('Test function handleKeyDotPress', () => {
-    const component = mount((
-        <Options config={startProps.config} options={startProps.options}/>
-    ));
-    window.alert = jest.fn();
-    component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '.' });
-    expect(window.alert).toHaveBeenCalled;
-
-    component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '+' });
-    expect(window.alert).toNotHaveBeenCalled;
 });
 
 test('Test function handleKeyDotPress', () => {
@@ -151,9 +117,9 @@ test('Test function handleKeyDotPress', () => {
     ));
     window.alert = jest.fn();
     component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '.' });
-    //expect(window.alert).toHaveBeenCalled;
-    expect(handleKeyDotPressMock).toBeCalledWith('custom value');
-    //component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '+' });
-    //expect(window.alert).toNotHaveBeenCalled;
+    expect(window.alert).toHaveBeenCalled;
+    expect(handleKeyDotPressMock).toBeCalled;
+    component.find('#port_field').at(0).simulate('keyPress', { preventDefault(){}, alert(){}, key: '+' });
+    expect(window.alert).toNotHaveBeenCalled;
 });
 
