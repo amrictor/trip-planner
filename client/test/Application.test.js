@@ -70,7 +70,8 @@ test('Test function updateOriginAndDestination', () => {
         <Application config={startProps.config} distance={startProps.distance}/>
     ));
     wrapper.instance().updateOriginAndDestination(100,200,400,300);
-    expect(wrapper.state('distance')).toEqual(1000);
+    expect(wrapper.state('origin')).toEqual(1000);
+    expect(wrapper.state('destination')).toEqual(1000);
 });
 
 test('Test function updateDistanceBasedOnResponse', () => {
@@ -78,7 +79,7 @@ test('Test function updateDistanceBasedOnResponse', () => {
         <Application config={startProps.config}/>
     ));
     wrapper.instance().updateDistanceBasedOnResponse(1000);
-    expect(wrapper.state()).toEqual(1000);
+    expect(wrapper.state('distance')).toEqual(1000);
 });
 
 test('Test for small line of codes', () => {
