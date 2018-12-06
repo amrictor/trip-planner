@@ -24,8 +24,6 @@ class Search extends Component {
                 places: []
             },
 
-            listOpen: false,
-            headerTitle: this.props.title,
             isSearch: false,
             attributes: JSON.parse(JSON.stringify(this.props.config.attributes)),
             numFilters: this.props.config.filters.reduce((total, filter) =>  total + filter.values.length, 0),
@@ -227,10 +225,6 @@ class Search extends Component {
     listenForEnter(event) {
         if (event.keyCode === 13)
             this.showSearchResult();
-    }
-
-    printSelection(event){
-        console.log(event);
     }
 
     render() {
