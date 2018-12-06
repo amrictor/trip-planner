@@ -25,6 +25,7 @@ class Options extends Component {
         radius = radius ? radius : 0;
         this.props.updateOptions('unitName', name);
         this.props.updateOptions('unitRadius', radius);
+        console.log(this.props);
     }
 
     handleKeyDotPress(event) {
@@ -136,7 +137,7 @@ class Options extends Component {
                                 key={'options_submit_userdefunits'}
                                 id='options_submit_userdefunits_field'
                                 className='btn-outline-dark unit-button'
-                                onClick={() => this.userDefValues(unit_name_field.value, unit_radius_field.value)}
+                                onClick={this.userDefValues(unit_name_field.value, unit_radius_field.value)}
                             >
                                 Submit
                             </Button>
