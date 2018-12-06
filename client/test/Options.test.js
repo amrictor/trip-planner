@@ -97,18 +97,19 @@ test('Check to see if optimizations are chosen correctly onclick', () => {
 });
 
 test('Test function updateUnits', () => {
-    let o = new Options({});
-    o.updateUnits({key: '.'});
+    const handleKeyDotPressMock = jest.fn();
 });
 
 test('Test function userDefValues', () => {
     const userDefValuesMock = jest.fn();
+    const updateOptionsMock = jest.fn();
     const event  = {
         target : { value: 'super miles' }
     };
     const component = mount((
-        <Options config={startProps.config} options={startProps.options} userDefValues={userDefValuesMock}/>
+        <Options config={startProps.config} options={startProps.options} userDefValues={userDefValuesMock} updateOptions={updateOptionsMock}/>
     ));
+    component.find('#options_submit_userdefunits_field').at(0).simulate('click');
     component.setState({ name: 'super miles' });
     component.setState({ radius: 4000 });
     component.find('#options_submit_userdefunits_field').at(0).simulate('click');
