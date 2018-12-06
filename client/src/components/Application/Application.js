@@ -151,7 +151,7 @@ class Application extends Component {
     }
 
     addPlace(value) {
-        if (typeof this.state.trip.places === 'undefined') {
+        if (this.state.trip.places.length === 0) {
             this.state.trip.places = [value];
         }
         else {

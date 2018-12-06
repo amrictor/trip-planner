@@ -121,7 +121,7 @@ test('Test function updatePlaces', () => {
     ));
     const place = {'id': 1029, 'name': "testPlace", 'latitude': 100, 'longitude': 200};
     const place2 = {'id': 1049, 'name': "testPlace2", 'latitude': 130, 'longitude': 250};
-    console.log(wrapper.state('trip'));
+    wrapper.instance().updatePlaces(place,'add');
     wrapper.instance().updatePlaces(place,'add');
     wrapper.instance().updatePlaces(place,'remove');
     wrapper.instance().updatePlaces(place,'add');
