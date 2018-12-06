@@ -90,6 +90,14 @@ test('Test function updateTrip', () => {
     expect(wrapper.state('units')).toEqual('miles');
 });
 
+test('Test function updateBasedOnResponse', () => {
+    const wrapper = mount((
+        <Application config={startProps.config}/>
+    ));
+    wrapper.instance().updateBasedOnResponse('{}');
+    wrapper.instance().updateBasedOnResponse('{type: "trip",version: 4,title: "My Trip",options: {units: "miles",unitName: "",unitRadius: 0,optimization: "none",map: "svg"}');
+});
+
 test('Test for small line of codes', () => {
 
 });
