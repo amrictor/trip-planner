@@ -48,7 +48,7 @@ const startProps = {
         "type"      : "trip",
         "title"     : "",
         "options"   : {},
-        "places"    : [{'id': 1029, 'name': "testPlace", 'latitude': 100, 'longitude': 200},{'id': 1049, 'name': "testPlace2", 'latitude': 130, 'longitude': 250}],
+        "places"    : [],
         "distances" : [],
         "map"       : ""
     }
@@ -64,11 +64,35 @@ test('Test function toggleItin', () => {
 test('Test function removePlace', () => {
     const updatePlacesMock = jest.fn();
     const planRequestMock = jest.fn();
+    const newTrip ={
+        "version"   : 4,
+        "type"      : "trip",
+        "title"     : "",
+        "options"   : {},
+    "places"    : [{'id': 1029, 'name': "testPlace", 'latitude': 100, 'longitude': 200},{'id': 1049, 'name': "testPlace2", 'latitude': 130, 'longitude': 250}],
+        "distances" : [],
+        "map"       : ""}
+    const wrapper = mount((
+        <Itinerary config={startProps.config}  trip={newTrip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} realTime={true}/>
+    ));
+    wrapper.instance().removePlace(1029,'testPlace',100,200);
+    const wrapper2 = mount((
+        <Itinerary config={startProps.config}  trip={startProps.trip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
+    ));
+    wrapper2.instance().removePlace(1029,'testPlace',100,200);
+});
+
+test('Test function putData', () => {
+    const updatePlacesMock = jest.fn();
+    const planRequestMock = jest.fn();
     const wrapper = mount((
         <Itinerary config={startProps.config}  trip={startProps.trip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} realTime={true}/>
     ));
     wrapper.instance().removePlace(1029,'testPlace',100,200);
-    wrapper.instance().removePlace(1049,'testPlace2',130,250);
+    const wrapper2 = mount((
+        <Itinerary config={startProps.config}  trip={startProps.trip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
+    ));
+    wrapper2.instance().removePlace(1029,'testPlace',100,200);
 });
 
 test('Check to see if real time debug modes are chosen correctly onclick', () => {

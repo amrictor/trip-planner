@@ -39,9 +39,9 @@ class Itinerary extends Component {
     putData() {
         this.state.total=0;
         let data = [];
-        if (typeof this.props.trip.places !== "undefined") {
-            let size = this.props.trip.places.length;
-            if (typeof this.props.trip.distances !== "undefined") {
+        let size = this.props.trip.places.length;
+        if (size !== 0) {
+            if (this.props.trip.distances.length !== 0) {
                 for (let i = 0; i < size; i++) {
                     let rowData = [];
                     for (let j = 0; j < this.state.attributes.length; j++) {
