@@ -132,8 +132,31 @@ test('Test function updatePlaces', () => {
     wrapper.instance().updatePlaces(place,'');
 });
 
-test('Test for small line of codes', () => {
+test('Test function updateRealTime', () => {
+    const wrapper = mount((
+        <Application config={startProps.config} />
+    ));
+    wrapper.instance().updateRealTime('true');
+    wrapper.instance().updateRealTime('false');
+});
 
+test('Test function toggleTab', () => {
+    const wrapper = mount((
+        <Application config={startProps.config} />
+    ));
+    wrapper.instance().toggleTab(2);
+    wrapper.instance().toggleTab(2);
+    wrapper.find('#options_submit_tab1_field').at(0).simulate('click');
+    wrapper.find('#options_submit_tab2_field').at(0).simulate('click');
+    wrapper.find('#options_submit_tab3_field').at(0).simulate('click');
+    wrapper.find('#options_submit_tab4_field').at(0).simulate('click');
+});
+
+test('Test for small line of codes', () => {
+    const wrapper = mount((
+        <Application config={startProps.config} trip={startProps.trip}/>
+    ));
+    wrapper.setState({ config: startProps.config });
 });
 
 
