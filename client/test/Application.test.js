@@ -91,11 +91,13 @@ test('Test function updateTrip', () => {
 });
 
 test('Test function updateBasedOnResponse', () => {
+    console["error"] = jest.fn();
     const wrapper = mount((
         <Application config={startProps.config}/>
     ));
-    wrapper.instance().updateBasedOnResponse('{}');
     wrapper.instance().updateBasedOnResponse('{type: "trip",version: 4,title: "My Trip",options: {units: "miles",unitName: "",unitRadius: 0,optimization: "none",map: "svg"}');
+    wrapper.instance().updateBasedOnResponse('{}');
+    expect(console.error).toHaveBeenCalledTimes(1);
 });
 
 test('Test for small line of codes', () => {
