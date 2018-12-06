@@ -113,12 +113,13 @@ test('Test function putData', () => {
 });
 
 test('Test function updateCheckbox', () => {
+    const event = {target: {name: "testPlace"}};
     const updatePlacesMock = jest.fn();
     const planRequestMock = jest.fn();
     const wrapper = mount((
         <Itinerary config={startProps.config}  trip={newTrip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
     ));
-    wrapper.instance().putData();
+    wrapper.instance().updateCheckbox();
 
 
     const wrapper2 = mount((
