@@ -104,9 +104,12 @@ test('Test function putData', () => {
     ));
     wrapper2.instance().putData();
     const wrapper3 = mount((
-        <Itinerary config={startProps.config}  trip={newTripWDist.trip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
+        <Itinerary config={startProps.config}  trip={newTripWDist} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
     ));
     wrapper3.instance().putData();
+
+    component.find('#submit_makefirst_field').at(0).simulate('click');
+    component.find('#addsubmit_field').at(0).simulate('click');
 });
 
 test('Check to see if real time debug modes are chosen correctly onclick', () => {
