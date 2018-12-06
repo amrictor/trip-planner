@@ -135,6 +135,7 @@ test('Test for small line of codes', () => {
     const updateOptionsMock = jest.fn();
     const updateHostAndPortMock = jest.fn();
     const updateRealTimeMock = jest.fn();
+    const newhost = {target: {name: "host", value: "localhost"}};
     const component = mount((
         <Options config={startProps.config} options={startProps.options} updateOptions={updateOptionsMock} updateHostAndPort={updateHostAndPortMock} updateRealTime={updateRealTimeMock}/>
     ));
@@ -144,7 +145,8 @@ test('Test for small line of codes', () => {
     component.find('#options_submit_hostport_field').at(0).simulate('click');
     component.setState({ host: 'localhost' });
     component.setState({ port: 8080 });
-    component.find('#options_submit_hostport_field').at(0).simulate('click');
+    component.update();
+    component.ref('host').simulate('change',newhost);
 });
 
 
