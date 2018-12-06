@@ -50,13 +50,13 @@ const startProps = {
 
 test('Test function updateHostAndPort', () => {
     const updateHostAndPortMock = jest.fn();
-    const wrapper = mount((
+    let wrapper = mount((
         <Application config={startProps.config} updateHostAndPort={updateHostAndPortMock}/>
     ));
-    wrapper.instance().updateHostAndPort("localhost", "8088");
+    wrapper.instance().updateHostAndPort({host: "localhost2", port: "8088"});
+    wrapper = wrapper.update();
     console.log(wrapper.state());
-    wrapper.update();
-    expect(wrapper.state('host')).toEqual("localhost");
+    expect(wrapper.state('host')).toEqual("localhost2");
     //expect(wrapper.state('port')).toEqual(8088);
 });
 

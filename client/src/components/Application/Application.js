@@ -79,9 +79,11 @@ class Application extends Component {
 
     updateHostAndPort(host, port) {
         port = port ? port : 0;
-        this.port = parseInt(port, 10);
+        //this.port = parseInt(port, 10);
+        this.setState({port: parseInt(port, 10)});
         host = host ? host : "black-bottle.cs.colostate.edu";
-        this.host = host;
+        //this.host = host;
+        this.setState({host: host});
 
         get_config(this.port, this.host).then(
             config => {
