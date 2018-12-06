@@ -49,6 +49,9 @@ const startProps = {
 
 
 test('Test function updateHostAndPort', () => {
+    const wrapper = mount((
+        <Application config={startProps.config} />
+    ));
     let o = new Application({});
     o.updateHostAndPort({host: 'localhost', port: 8080});
 });
