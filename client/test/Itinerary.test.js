@@ -12,8 +12,41 @@
 import './enzyme.config.js'                   // (1)
 import React from 'react'
 import { mount, shallow } from 'enzyme'              // (2)
-import Options from '../src/components/Marginals/Footer'
+import Options from '../src/components/Application/Options'
+//import Application from '../src/components/Application/Application'
 
+/* Both of these tests are functionally identical although the standard way
+ *  of writing tests uses lambda or anonymous functions. These are useful
+ *  for defining functions that will only be in your code once but may be
+ *  called multiple times by whatever they are passed to.
+*/
+
+/* A test response for our client to use;
+ * this object represents the props that would be passed to the Options
+ * component on construction.
+ */
+const startProps = {
+  'config': {
+      "type"          : "config",
+      "version"       : 4,
+      "units"         : ["kilometers", "miles", "nautical miles", "user defined"],
+      "optimization"  : [{"label":"none", "description":"The trip is not optimized."},
+          {"label":"short", "description":"Nearest neighbor."},
+          {"label":"shorter", "description":"2-opt."},
+          {"label":"shortest", "description":"3-opt."}
+      ],
+      "attributes"    : ["name", "id", "latitude", "longitude"],
+      "filters"       : [{"name":"type",
+          "values":["balloonport", "heliport", "airport", "seaplane base"]}
+      ],
+      "maps"          : ["svg", "kml"]
+  },
+    "options" : {
+        "units"        : "miles",
+        "optimization" : "none",
+        "map"          : "svg"
+    }
+};
 
 test('Check to see if real time debug modes are chosen correctly onclick', () => {
     const options = mount((
