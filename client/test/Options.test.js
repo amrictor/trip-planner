@@ -120,9 +120,9 @@ test('Test function handleKeyDotPress', () => {
         <Options config={startProps.config} options={startProps.options}/>
     ));
     const preventDefault = jest.fn();
-    component.find('#port').prop('onKeyPress')({key: '.'});
-    expect(preventDefault).toBeCalled();
-
+    component.find('#port_field').at(0).simulate('keyPress', {key: '.'});
+    expect(preventDefault).toHaveBeenCalled();
+    expect(alert).toHaveBeenCalled();
 
 });
 
