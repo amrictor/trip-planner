@@ -13,18 +13,7 @@ import './enzyme.config.js'                   // (1)
 import React from 'react'
 import { mount, shallow } from 'enzyme'              // (2)
 import Itinerary from '../src/components/Application/Itinerary'
-//import Application from '../src/components/Application/Application'
 
-/* Both of these tests are functionally identical although the standard way
- *  of writing tests uses lambda or anonymous functions. These are useful
- *  for defining functions that will only be in your code once but may be
- *  called multiple times by whatever they are passed to.
-*/
-
-/* A test response for our client to use;
- * this object represents the props that would be passed to the Options
- * component on construction.
- */
 const startProps = {
   'config': {
       "type"          : "config",
@@ -50,7 +39,7 @@ const startProps = {
 
 test('Test function toggleItin', () => {
     const wrapper = mount((
-        <Itinerary config={startProps.config} />
+        <Itinerary config={startProps.config} options={startProps.options}/>
     ));
     wrapper.instance().toggleItin();
 });
