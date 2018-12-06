@@ -54,6 +54,15 @@ const startProps = {
     }
 };
 
+const newTrip ={
+    "version"   : 4,
+    "type"      : "trip",
+    "title"     : "",
+    "options"   : {},
+    "places"    : [{'id': 1029, 'name': "testPlace", 'latitude': 100, 'longitude': 200},{'id': 1049, 'name': "testPlace2", 'latitude': 130, 'longitude': 250}],
+    "distances" : [],
+    "map"       : ""}
+
 test('Test function toggleItin', () => {
     const wrapper = mount((
         <Itinerary config={startProps.config} trip={startProps.trip}/>
@@ -64,14 +73,6 @@ test('Test function toggleItin', () => {
 test('Test function removePlace', () => {
     const updatePlacesMock = jest.fn();
     const planRequestMock = jest.fn();
-    const newTrip ={
-        "version"   : 4,
-        "type"      : "trip",
-        "title"     : "",
-        "options"   : {},
-    "places"    : [{'id': 1029, 'name': "testPlace", 'latitude': 100, 'longitude': 200},{'id': 1049, 'name': "testPlace2", 'latitude': 130, 'longitude': 250}],
-        "distances" : [],
-        "map"       : ""}
     const wrapper = mount((
         <Itinerary config={startProps.config}  trip={newTrip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} realTime={true}/>
     ));
@@ -86,7 +87,7 @@ test('Test function putData', () => {
     const updatePlacesMock = jest.fn();
     const planRequestMock = jest.fn();
     const wrapper = mount((
-        <Itinerary config={startProps.config}  trip={startProps.trip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} realTime={true}/>
+        <Itinerary config={startProps.config}  trip={newTrip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} realTime={true}/>
     ));
     wrapper.instance().removePlace(1029,'testPlace',100,200);
     const wrapper2 = mount((
