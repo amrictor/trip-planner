@@ -13,6 +13,7 @@ import './enzyme.config.js'                   // (1)
 import React from 'react'
 import { mount, shallow } from 'enzyme'              // (2)
 import Application from '../src/components/Application/Application'
+import { NavLink } from 'react-router-dom'
 
 /* Both of these tests are functionally identical although the standard way
  *  of writing tests uses lambda or anonymous functions. These are useful
@@ -149,8 +150,8 @@ test('Test function toggleTab', () => {
 
 
     let actual = [];
-    wrapper.find('NavLink').map((element) => actual.push(element.prop('value')));  // (2)
-    expect(actual).toEqual(startProps.config.units);
+    expect(wrapperNavLink.prop('to')).equals('/home');
+    //expect(actual).toEqual(startProps.config.units);
 });
 
 test('Test for small line of codes', () => {

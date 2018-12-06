@@ -207,7 +207,7 @@ class Application extends Component {
                         <Col md ='7'>
                             <Row className={'float-right'}>
                                 <NavItem>
-                                    <NavLink
+                                    <NavLink to="/home"
                                         className={classnames({ active: this.state.activeTab === '1' })}
                                         onClick={() => { this.toggleTab('1');}}
                                         style={(this.state.activeTab === '1')? aStyle : style}
