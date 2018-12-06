@@ -108,7 +108,7 @@ test('Test function userDefValues', () => {
     const component = shallow((
         <Options config={startProps.config} options={startProps.options} userDefValues={userDefValuesMock} />
     ));
-    component.find('#options_submit_userdefunits_field').at(0).simulate('click', "super miles" , 4);
+    component.find('#options_submit_userdefunits_field').at(0).props().onPress();
     expect(userDefValuesMock).toBeCalled;
 });
 

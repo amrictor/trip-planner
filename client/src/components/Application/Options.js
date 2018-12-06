@@ -11,7 +11,11 @@ import {Collapse} from 'reactstrap'
 class Options extends Component {
     constructor(props) {
         super(props);
-        this.state = {userDef: false};
+        this.state = {
+            userDef: false,
+            name: "",
+            radius: 0,
+        };
     }
 
     updateUnits(event) {
