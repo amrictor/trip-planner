@@ -24,11 +24,10 @@ class Options extends Component {
         this.setState({userDef:(unit === 'user defined')});
     }
 
-    userDefValues(name, radius) {
-        name = name ? name : "";
-        radius = radius ? radius : 0;
-        this.props.updateOptions('unitName', name);
-        this.props.updateOptions('unitRadius', radius);
+    userDefValues() {
+        if (this.state.name === "" && this.state.radius === 0) return;
+        this.props.updateOptions('unitName', this.state.name);
+        this.props.updateOptions('unitRadius', this.state.radius);
     }
 
     handleKeyDotPress(event) {
@@ -134,6 +133,7 @@ class Options extends Component {
                             name="unitradius"
                             id="unit_radius_field"
                             placeholder="Earth radius"
+                            onChange={() => this.setState({radius: unit_radius_field.value})}
                         />
                         <InputGroupAddon addonType="append">
                             &nbsp;
@@ -141,7 +141,7 @@ class Options extends Component {
                                 key={'options_submit_userdefunits'}
                                 id='options_submit_userdefunits_field'
                                 className='btn-outline-dark unit-button'
-                                onClick={() => this.userDefValues(this.state.name, unit_radius_field.value)}
+                                onClick={() => this.userDefValues()}
                             >
                                 Submit
                             </Button>
