@@ -120,7 +120,8 @@ test('Test function updateCheckbox', () => {
     wrapper.instance().updateCheckbox(event);
     wrapper.instance().updateCheckbox(event2);
 
-    wrapper.find('#trip_title').at(0).simulate('change');
+    const event3 = {target: {value: "nextPlace"}};
+    wrapper.find('#trip_title').at(0).simulate('change', event3);
     wrapper.find('#options_submit_field').at(0).simulate('click');
     wrapper.find('#options_hide_itin_field').at(0).simulate('click');
 });

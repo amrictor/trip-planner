@@ -180,7 +180,7 @@ class Itinerary extends Component {
         this.forceUpdate();
     }
 
-    handleChange(){
+    handleChange(event){
         this.props.updateTrip("title", event.target.value);
     }
 
