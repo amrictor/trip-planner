@@ -112,9 +112,6 @@ test('Test function userDefValues', () => {
         <Options config={startProps.config} options={startProps.options} userDefValues={userDefValuesMock} updateOptions={updateOptionsMock}/>
     ));
     component.find('#options_submit_userdefunits_field').at(0).simulate('click');
-    component.setState({ name: 'super miles' });
-    component.setState({ radius: 4000 });
-    component.find('#options_submit_userdefunits_field').at(0).simulate('click');
     expect(userDefValuesMock).toBeCalled;
 });
 
@@ -143,9 +140,8 @@ test('Test for small line of codes', () => {
     component.find('#options_submit_maps_field').at(0).simulate('click');
     component.find('#options_submit_rT_field').at(0).simulate('click');
     component.find('#options_submit_hostport_field').at(0).simulate('click');
-    component.setState({ host: 'localhost' });
-    component.setState({ port: 8080 });
-    component.find('#options_submit_hostport_field').at(0).simulate('change',{target: {host: "localhost"}});
+    component.find('#host_field').at(0).simulate('change');
+
 });
 
 
