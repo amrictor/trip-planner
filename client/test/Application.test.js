@@ -107,6 +107,14 @@ test('Test function updateBasedOnResponse', () => {
     expect(wrapper.state('trip')).toEqual(startProps.trip);
 });
 
+test('Test function updateOptions', () => {
+    const wrapper = mount((
+        <Application config={startProps.config} trip={startProps.trip}/>
+    ));
+    wrapper.instance().updateOptions('units','miles');
+    expect(wrapper.state('units')).toEqual('miles');
+});
+
 test('Test for small line of codes', () => {
 
 });
