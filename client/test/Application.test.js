@@ -100,12 +100,12 @@ test('Test function updateTrip', () => {
 });
 
 test('Test function updateBasedOnResponse', () => {
-    console.log = jest.fn();
     const wrapper = mount((
         <Application config={startProps.config} trip={startProps.trip}/>
     ));
+    const emptyTripObject =
     wrapper.instance().updateBasedOnResponse('{}');
-    expect(console.log.mock.calls[0][0]).toBe('hello');
+    expect(wrapper.state('trip')).toEqual(startProps.trip);
     wrapper.instance().updateBasedOnResponse('{type: "trip",version: 4,title: "My Trip",options: {units: "miles",unitName: "",unitRadius: 0,optimization: "none",map: "svg"}');
 });
 
