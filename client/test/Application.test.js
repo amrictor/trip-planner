@@ -63,6 +63,12 @@ test('Test function updateOriginAndDestination', () => {
 });
 
 test('Test for small line of codes', () => {
+    const wrapper = mount((
+        <Application config={startProps.config} />
+    ));
+    wrapper.instance().updateDistanceBasedOnResponse(1000);
+    console.log(wrapper.state());
+    expect(wrapper.state('distance')).toEqual(1000);
 
 });
 
