@@ -68,7 +68,7 @@ test('Test function showSearchResult', () => {
         'version': 4,
         'type': "search",
         'match': "hahaha",
-        'filters': [],
+        'filters': ["sad","ohoh"],
         'limit': 15,
         'found': 0,
         'places': []};
