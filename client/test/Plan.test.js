@@ -88,13 +88,18 @@ test('Test function planRequest', () => {
     wrapper2.instance().planRequest();
 });
 
-test('Test function showSearchResult', () => {
+test('Test function addPlace', () => {
     const updateBasedOnResponseMock = jest.fn();
     const wrapper = mount((
         <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updateBasedOnResponse={updateBasedOnResponseMock}/>
     ));
 
-    wrapper.instance().showSearchResult();
+    wrapper.instance().addPlace();
+
+    component.find('#id_field').at(0).simulate('change');
+    component.find('#name_field').at(0).simulate('change');
+    component.find('#latitude_field').at(0).simulate('change');
+    component.find('#longitude_field').at(0).simulate('change');
 
 });
 

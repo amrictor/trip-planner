@@ -44,7 +44,7 @@
     "testURL": "http://localhost/",
     "coverageDirectory": "coverage",
     "moduleNameMapper": {
-      "\\.(png|svg|gif|jpg|jpeg)$": "<rootDir>/test/require_stub.js",
+      "\\.(png|svg|gif|jpg|jpeg|svg)$": "<rootDir>/test/require_stub.js",
       "\\.(css|less)$": "<rootDir>/test/styleMock.js"
     }
   }
