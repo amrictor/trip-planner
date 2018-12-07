@@ -51,24 +51,33 @@ const startProps = {
         "places"    : [],
         "distances" : [],
         "map"       : ""
+    },
+    'search': {
+        'version': 4,
+        'type': "search",
+        'match': "",
+        'filters': JSON.parse(JSON.stringify(this.props.config.filters.slice())),
+        'limit': 15,
+        'found': 0,
+        'places': []
     }
 };
 
 test('Test function planRequest', () => {
-    const newTrip ={
-        "version"   : 4,
-        "type"      : "trip",
-        "title"     : "",
-        "options"   : {},
-        "places"    : [{'id': 1029, 'name': "testPlace", 'latitude': 100, 'longitude': 200},{'id': 1049, 'name': "testPlace2", 'latitude': 130, 'longitude': 250}],
-        "distances" : [],
-        "map"       : ""};
+    const newSearch ={
+        'version': 4,
+        'type': "search",
+        'match': "",
+        'filters': JSON.parse(JSON.stringify(this.props.config.filters.slice())),
+        'limit': 15,
+        'found': 0,
+        'places': []};
     const updateBasedOnResponseMock = jest.fn();
     const wrapper = mount((
-        <Search config={startProps.config} options={startProps.options} trip={startProps.trip} updateBasedOnResponse={updateBasedOnResponseMock}/>
+        <Search config={startProps.config} search={startProps.search} trip={startProps.trip} updateBasedOnResponse={updateBasedOnResponseMock}/>
     ));
 
-    wrapper.instance().planRequest();
+    wrapper.instance().planRequest(newSearch);
     const wrapper2 = mount((
         <Plan config={startProps.config} options={startProps.options} trip={newTrip} updateBasedOnResponse={updateBasedOnResponseMock}/>
     ));
@@ -76,7 +85,7 @@ test('Test function planRequest', () => {
     wrapper2.instance().planRequest();
 });
 
-test('Test function planRequest', () => {
+test('Test function updateBasedOnResponse', () => {
     const newTrip ={
         "version"   : 4,
         "type"      : "trip",
@@ -90,7 +99,7 @@ test('Test function planRequest', () => {
         <Search config={startProps.config} options={startProps.options} trip={startProps.trip} updateBasedOnResponse={updateBasedOnResponseMock}/>
     ));
 
-    wrapper.instance().planRequest();
+    wrapper.instance().updateBasedOnResponse(startProps.search);
     const wrapper2 = mount((
         <Plan config={startProps.config} options={startProps.options} trip={newTrip} updateBasedOnResponse={updateBasedOnResponseMock}/>
     ));
