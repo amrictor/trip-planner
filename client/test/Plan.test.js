@@ -55,23 +55,25 @@ const startProps = {
 };
 
 test('Test function getFile', () => {
-    const updateOriginAndDestinationMock = jest.fn();
+    const event = {target: {files: [{type: "trip",
+        version: 4,
+        title: "",
+        options: {
+            units: "miles",
+            unitName: "",
+            unitRadius: 0,
+            optimization: "none",
+            map: "svg"
+        },
+        places: [],
+        distances: [],
+        map: null}]}};
     const wrapper = mount((
-        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updateOriginAndDestination={updateOriginAndDestinationMock}/>
+        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} />
     ));
 
-    wrapper.instance().getFile();
-    wrapper.find('Button').simulate('click');
-    wrapper.setState({ latf: 100 });
-    wrapper.setState({ longf: 200 });
-    wrapper.setState({ latt: 400 });
-    wrapper.setState({ longt: 300 });
-    wrapper.find('Button').simulate('click');
+    wrapper.instance().getFile(event);
 
-    wrapper.find('#latitude_f_field').at(0).simulate('change');
-    wrapper.find('#longitude_f_field').at(0).simulate('change');
-    wrapper.find('#latitude_t_field').at(0).simulate('change');
-    wrapper.find('#longitude_t_field').at(0).simulate('change');
 });
 
 test('Test function calc', () => {
