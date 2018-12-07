@@ -61,19 +61,11 @@ test('Test function getFile', () => {
         <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updateBasedOnResponse={updateBasedOnResponseMock}/>
     ));
     const component          = componentWrapper.get(0);
-    const fileContents       = 'file contents';
+    const fileContents       = '{"type":"trip","title":"Shoppingloop","options":{"units":"userdefined","unitName":"","unitRadius":3958.7613,"optimization":"none"},"places":[{"id":"dnvr","name":"Denver","latitude":39.7392,"longitude":-104.9903},{"id":"bldr","name":"Boulder","latitude":40.01499,"longitude":-105.27055},{"id":"foco","name":"FortCollins","latitude":40.585258,"longitude":-105.084419}],"distances":[],"map":"kml"}';
     const file               = new Blob([fileContents], {type : 'text/plain'});
-    const readAsText         = jest.fn();
-    const addEventListener   = jest.fn((_, evtHandler) => { evtHandler(); });
-    const dummyFileReader    = {addEventListener, readAsText, result: fileContents};
-    window.FileReader        = jest.fn(() => dummyFileReader);
-    //spyOn(component, 'updateBasedOnResponse').and.callThrough();
+
 
     componentWrapper.find('#example').simulate('change', {target: {files: [file]}});
-    expect(FileReader        ).toHaveBeenCalled    (                             );
-    expect(addEventListener  ).toHaveBeenCalled;
-    expect(JSON.parse ).toHaveBeenCalled;
-    expect(readAsText).toHaveBeenCalledWith(file );
 
 });
 
