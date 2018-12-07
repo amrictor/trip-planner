@@ -95,15 +95,18 @@ For our final and fifth sprint our team complete several epics and tasks assigne
 
 *Describe the solution based on the completed epics and list the epics below.*
 
-* *## epic title: comments*
-* 
+* #227 User: I want to choose what information is displayed in the itinerary and map.
+* #332 User: I want the shortest trips possible.
+* #331 User: Make the system easier to use.
+* #330 User: I want an interactive map.
 
 #### Incomplete Epics in Sprint Backlog 
 
 *Describe capabilities not included in the release and list the epics below with an explanation.*
 
-* *## epic title: explanation*
-*
+* #334 User: I want trip planning to be fast.
+* #128 Tripco: All code must be tested.
+* #228 User: I want to view my trip in other tools.
 
 #### What Went Well
 
@@ -111,17 +114,11 @@ For our final and fifth sprint our team complete several epics and tasks assigne
 
 Our team succesfully create a functional and intuitive website for our users. We were succesful implement 3-opt and creating an interface that was easy to use, especially our search, intinerary and tabs. We also were able to implement more testing for client and server side. This was a great improvement from last sprint, our code coverage went up. 
 
-* *something*
-*
-
 #### Problems Encountered and Resolutions
 
 *Describe what problems occurred during the sprint in general terms followed by a more detailed list.*
 
-This sprint went relatively smoothly, but it being the last sprint there was a lot that need to be done. We spent a lot of time refactoring the code and making sure we tie up loose ends.
-
-* *something*
-*
+This sprint went relatively smoothly, but it being the last sprint there was a lot that need to be done. We spent a lot of time refactoring the code and making sure we tie up loose ends. 
 
 ## Retrospective
 
