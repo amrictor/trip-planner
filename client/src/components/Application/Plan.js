@@ -25,6 +25,7 @@ class Plan extends Component {
 
     getFile(event){
         let reader = new FileReader();
+        console.log(event);
         reader.onload = function(event) {
             let fileContent = event.target.result;
             let contents = JSON.parse(fileContent);
