@@ -21,10 +21,6 @@ class Plan extends Component {
             isLoad: false,
             isSearch: false
         };
-        this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
-    }
-    updateBasedOnResponse(value) {
-        this.setState({'search': value});
     }
 
     getFile(event){
@@ -48,7 +44,7 @@ class Plan extends Component {
 
     showSearchResult(){
         request(this.state.search, 'search', this.props.port, this.props.host).then(response => {
-            this.updateBasedOnResponse(response)
+            this.props.updateBasedOnResponse(response)
         });
         this.toggleSearch();
     }
