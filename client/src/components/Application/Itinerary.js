@@ -46,66 +46,69 @@ class Itinerary extends Component {
         let data = [];
         let size = this.props.trip.places.length;
         if (size !== 0) {
-            if (this.props.trip.distances.length !== 0) {
-                for (let i = 0; i < size; i++) {
-                    let rowData = [];
-                    for (let j = 0; j < this.state.attributes.length; j++) {
-                        let attribute = this.state.attributes[j];
-                        let size = !this.state.attributes.includes('name')
-                            ? Math.floor(12/(this.state.attributes.length))
-                            : (attribute==='name')
-                                ? 4
-                                : Math.floor(6/(this.state.attributes.length-1));
-                        rowData.push(
-                            <Col md={size} key={this.state.attributes[i]+'_'+i+'_'+j}>
-                                {
-                                    (typeof this.props.trip.places[i][attribute] === 'number')
-                                    ? String(Math.round((this.props.trip.places[i][attribute]+ 0.00001) * 100)/100)
-                                    : this.props.trip.places[i][attribute]
-                                }
-                            </Col>
-                        );
-                    }
-                    data.push(
-                        <React.Fragment key={this.props.trip.places[i].id}>
-                            <Row>
-                                <Col xs={'10'}>
-                                    <Row>
-                                        {rowData}
-                                    </Row>
+            if (typeof this.props.trip.distances !== 'undefined') {
+                if (this.props.trip.distances.length !== 0) {
+                    for (let i = 0; i < size; i++) {
+                        let rowData = [];
+                        for (let j = 0; j < this.state.attributes.length; j++) {
+                            let attribute = this.state.attributes[j];
+                            let size = !this.state.attributes.includes('name')
+                                ? Math.floor(12 / (this.state.attributes.length))
+                                : (attribute === 'name')
+                                    ? 4
+                                    : Math.floor(6 / (this.state.attributes.length - 1));
+                            rowData.push(
+                                <Col md={size} key={this.state.attributes[i] + '_' + i + '_' + j}>
+                                    {
+                                        (typeof this.props.trip.places[i][attribute] === 'number')
+                                            ? String(Math.round((this.props.trip.places[i][attribute] + 0.00001) * 100) / 100)
+                                            : this.props.trip.places[i][attribute]
+                                    }
                                 </Col>
-                                <Col xs={'2'}>
-                                    <ButtonGroup className='float-right'>
-                                        <Button
-                                            key={'make_first_'+i}
-                                            className='btn-outline-dark unit-button float-right'
-                                            onClick={() => this.props.updatePlaces(i, "origin")}
-                                        >
-                                            <MdExpandLess/>
-                                        </Button>
-
-                                        <Button
-                                            key={'add_submit_'+i}
-                                            className='btn-outline-dark unit-button '
-                                            onClick={() => this.removePlace(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
-                                        >
-                                            <MdDelete/>
-                                        </Button>
-                                    </ButtonGroup>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <React.Fragment key={'distances_'+i}>
-                                    <Col sm="12" md={{size: 6, offset: 3}}>
-                                            Leg Distance: <font color="#ff4500">{this.props.trip.distances[i]}</font>&nbsp;
-                                            Cumulative Distance: <font color="#ff4500">{this.state.total}</font>
+                            );
+                        }
+                        data.push(
+                            <React.Fragment key={this.props.trip.places[i].id}>
+                                <Row>
+                                    <Col xs={'10'}>
+                                        <Row>
+                                            {rowData}
+                                        </Row>
                                     </Col>
-                                </React.Fragment>
-                            </Row>
-                            <hr/>
-                        </React.Fragment>
-                    );
-                    this.state.total += this.props.trip.distances[i];
+                                    <Col xs={'2'}>
+                                        <ButtonGroup className='float-right'>
+                                            <Button
+                                                key={'make_first_' + i}
+                                                className='btn-outline-dark unit-button float-right'
+                                                onClick={() => this.props.updatePlaces(i, "origin")}
+                                            >
+                                                <MdExpandLess/>
+                                            </Button>
+
+                                            <Button
+                                                key={'add_submit_' + i}
+                                                className='btn-outline-dark unit-button '
+                                                onClick={() => this.removePlace(this.props.trip.places[i].id, this.props.trip.places[i].name, this.props.trip.places[i].latitude, this.props.trip.places[i].longitude)}
+                                            >
+                                                <MdDelete/>
+                                            </Button>
+                                        </ButtonGroup>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <React.Fragment key={'distances_' + i}>
+                                        <Col sm="12" md={{size: 6, offset: 3}}>
+                                            Leg Distance: <font
+                                            color="#ff4500">{this.props.trip.distances[i]}</font>&nbsp;
+                                            Cumulative Distance: <font color="#ff4500">{this.state.total}</font>
+                                        </Col>
+                                    </React.Fragment>
+                                </Row>
+                                <hr/>
+                            </React.Fragment>
+                        );
+                        this.state.total += this.props.trip.distances[i];
+                    }
                 }
             }
             return data;
