@@ -16,7 +16,7 @@ public class Distance {
     private Double unitRadius;
 
     //Result variable.
-    private int distance;
+    private long distance;
 
     //Constructors
     Distance(Place p1, Place p2, String unit,Double radius){
@@ -53,7 +53,7 @@ public class Distance {
         return unitRadius;
     }
 
-    public int getDistance() {
+    public long getDistance() {
         return distance;
     }
 
@@ -104,19 +104,19 @@ public class Distance {
                 * Math.cos(lat2) * Math.cos(difLog);
         double temp = Math.atan2(Math.sqrt(numerator1 + numerator2),denominator);
         if (units.equals("miles")){
-            distance = (int) Math.round(temp * 3959);
+            distance = (long) Math.round(temp * 3959);
         }
         else if(units.equals("kilometers")) 
         {
-            distance = (int) Math.round(temp * 6371);
+            distance = (long) Math.round(temp * 6371);
         }
         else if(units.equals("nautical miles"))
         {
-            distance = (int) Math.round(temp * 3440);
+            distance = (long) Math.round(temp * 3440);
         }
         else // User defined
         {
-            distance = (int) Math.round(temp * unitRadius);
+            distance = (long) Math.round(temp * unitRadius);
         }
     }
 }

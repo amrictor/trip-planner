@@ -32,7 +32,7 @@ public class TestDistance {
     public void testMiles(){
         miles.calculate();
         int expected = 24;
-        int result = miles.getDistance();
+        long result = miles.getDistance();
         assertEquals(expected,result);
     }
 
@@ -40,7 +40,7 @@ public class TestDistance {
     public void testNautical(){
         nautical.calculate();
         int expected = 21;
-        int result = nautical.getDistance();
+        long result = nautical.getDistance();
         assertEquals(expected,result);
     }
 
@@ -48,7 +48,7 @@ public class TestDistance {
     public void testKilometers(){
         kilometers.calculate();
         int expected = 39;
-        int result = kilometers.getDistance();
+        long result = kilometers.getDistance();
         assertEquals(expected,result);
     }
 
@@ -56,7 +56,7 @@ public class TestDistance {
     public void testDefined(){
         defined.calculate();
         int expected = 75;
-        int result = defined.getDistance();
+        long result = defined.getDistance();
         assertEquals(expected,result);
     }
 }

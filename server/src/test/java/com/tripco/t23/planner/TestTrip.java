@@ -52,8 +52,8 @@ public class TestTrip {
   @Test
   public void testDistances() {
     trip.plan();
-    ArrayList<Integer> expectedDistances = new ArrayList<>();
-    Collections.addAll(expectedDistances, 192, 132, 1995, 5458, 1286, 2346, 2340, 5429);
+    ArrayList<Long> expectedDistances = new ArrayList<>();
+    Collections.addAll(expectedDistances, 192L, 132L, 1995L, 5458L, 1286L, 2346L, 2340L, 5429L);
     // Call the equals() method of the first object on the second object.
     assertEquals(expectedDistances, trip.distances);
   }
@@ -72,14 +72,24 @@ public class TestTrip {
     assertEquals(trip.map, readFile("worldmaptest.kml"));
   }
 
-  //@Test
-  //public void testShorter(){
-  //  trip.options.optimization = "shorter";
-  //  ArrayList<Integer> expectedDistances = new ArrayList<>();
-  //  Collections.addAll(expectedDistances, 192, 5429, 2340, 2346, 1286, 5458, 1995, 132);
+  @Test
+  public void testShorter(){
+    trip.plan();
+    trip.options.optimization = "shorter";
+    ArrayList<Long> expectedDistances = new ArrayList<>();
+    Collections.addAll(expectedDistances, 192L, 132L, 1995L, 5458L, 1286L, 2346L, 2340L, 5429L);
     // Call the equals() method of the first object on the second object.
-  //  assertEquals(expectedDistances, trip.distances);
-  //}
+    assertEquals(expectedDistances, trip.distances);
+  }
+
+  @Test
+  public void testShortest() {
+    trip.plan();
+    ArrayList<Long> expectedDistances = new ArrayList<>();
+    Collections.addAll(expectedDistances, 192L, 132L, 1995L, 5458L, 1286L, 2346L, 2340L, 5429L);
+    // Call the equals() method of the first object on the second object.
+    assertEquals(expectedDistances, trip.distances);
+  }
 
   //reads a file and returns String with file contents
   private String readFile(String filename) {
