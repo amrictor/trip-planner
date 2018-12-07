@@ -44,7 +44,7 @@ class Application extends Component {
                     unitName: "",
                     unitRadius: 0,
                     optimization: "none",
-                    map: "svg"
+                    map: "kml"
                 },
                 places: [],
                 distances: [],
