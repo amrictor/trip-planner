@@ -79,9 +79,9 @@ class Application extends Component {
 
     updateHostAndPort(host, port) {
         port = port ? port : 0;
-        this.port = port;
+        this.setState({port: parseInt(port, 10)});
         host = host ? host : "black-bottle.cs.colostate.edu";
-        this.host = host;
+        this.setState({host: host});
 
         get_config(this.port, this.host).then(
             config => {
@@ -93,7 +93,7 @@ class Application extends Component {
     }
 
     updateDistanceBasedOnResponse(value) {
-        this.setState({'distance': value});
+        this.setState({distance: value});
     }
 
     updateOriginAndDestination(lat_f, long_f, lat_t, long_t) {
@@ -110,8 +110,7 @@ class Application extends Component {
     }
 
     updateBasedOnResponse(value) {
-        if(JSON.stringify(value)!=='{}') this.setState({'trip': value});
-        else console.log("Error on server")
+        this.setState({trip: value});
     }
 
     updateOptions(option, value) {
@@ -138,7 +137,7 @@ class Application extends Component {
 
     updateRealTime(value) {
         value = (value === 'true');
-        this.setState({'realTime': value});
+        this.setState({realTime: value});
     }
 
     toggleTab(tab) {
@@ -150,7 +149,7 @@ class Application extends Component {
     }
 
     addPlace(value) {
-        if (typeof this.state.trip.places === 'undefined') {
+        if (this.state.trip.places.length === 0) {
             this.state.trip.places = [value];
         }
         else {
@@ -167,7 +166,7 @@ class Application extends Component {
     removePlace(value){
         const place = JSON.stringify(value);
         let trip = this.state.trip;
-        if (typeof this.state.trip.places !== 'undefined') {
+        if (this.state.trip.places.length !== 0) {
             trip["places"] = trip["places"].filter(function(ele){
                 return JSON.stringify(ele) !== place;
             });
