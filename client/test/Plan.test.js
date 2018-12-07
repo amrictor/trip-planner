@@ -56,28 +56,24 @@ const startProps = {
 
 test('Test function getFile', () => {
 
-
-
+    const updateBasedOnResponseMock = jest.fn();
     const componentWrapper   = mount((
-        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} />
+        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updateBasedOnResponse={updateBasedOnResponseMock}/>
     ));
     const component          = componentWrapper.get(0);
-    // should the line above use `componentWrapper.instance()` instead?
     const fileContents       = 'file contents';
-    const expectedFinalState = {fileContents: fileContents};
     const file               = new Blob([fileContents], {type : 'text/plain'});
     const readAsText         = jest.fn();
     const addEventListener   = jest.fn((_, evtHandler) => { evtHandler(); });
     const dummyFileReader    = {addEventListener, readAsText, result: fileContents};
     window.FileReader        = jest.fn(() => dummyFileReader);
-    spyOn(component, 'setState').and.callThrough();
+    //spyOn(component, 'updateBasedOnResponse').and.callThrough();
 
-    componentWrapper.find('input').simulate('change', {target: {files: [file]}});
+    componentWrapper.find('#example').simulate('change', {target: {files: [file]}});
     expect(FileReader        ).toHaveBeenCalled    (                             );
-    expect(addEventListener  ).toHaveBeenCalledWith('load', jasmine.any(Function));
-    expect(readAsText        ).toHaveBeenCalledWith(file                         );
-    expect(component.setState).toHaveBeenCalledWith(expectedFinalState           );
-    expect(component.state   ).toEqual             (expectedFinalState           );
+    expect(addEventListener  ).toHaveBeenCalled;
+    expect(JSON.parse ).toHaveBeenCalled;
+    expect(readAsText).toHaveBeenCalledWith(file );
 
 });
 
