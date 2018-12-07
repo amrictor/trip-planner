@@ -88,10 +88,20 @@ test('Test function planRequest', () => {
     wrapper2.instance().planRequest();
 });
 
+test('Test function showSearchResult', () => {
+    const updateBasedOnResponseMock = jest.fn();
+    const wrapper = mount((
+        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updateBasedOnResponse={updateBasedOnResponseMock}/>
+    ));
+
+    wrapper.instance().showSearchResult();
+
+});
+
 test('Test function calc', () => {
     const updateBasedOnResponseMock = jest.fn();
     const wrapper = mount((
-        <Plan config={startProps.config} distance={startProps.distance} updateBasedOnResponse={updateBasedOnResponseMock}/>
+        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updateBasedOnResponse={updateBasedOnResponseMock}/>
     ));
 
     wrapper.instance().calc();
