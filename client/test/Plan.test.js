@@ -55,24 +55,72 @@ const startProps = {
 };
 
 test('Test function getFile', () => {
-    const event = {target: {files: [{type: "trip",
-        version: 4,
-        title: "",
-        options: {
-            units: "miles",
-            unitName: "",
-            unitRadius: 0,
-            optimization: "none",
-            map: "svg"
-        },
-        places: [],
-        distances: [],
-        map: null}]}};
-    const wrapper = mount((
-        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} />
+
+    const updateBasedOnResponseMock = jest.fn();
+    const componentWrapper   = mount((
+        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updateBasedOnResponse={updateBasedOnResponseMock}/>
     ));
-
-    //wrapper.instance().getFile(event);
-
+    const component          = componentWrapper.get(0);
+    const fileContents       = '{"type":"trip","title":"Shoppingloop","options":{"units":"userdefined","unitName":"","unitRadius":3958.7613,"optimization":"none"},"places":[{"id":"dnvr","name":"Denver","latitude":39.7392,"longitude":-104.9903},{"id":"bldr","name":"Boulder","latitude":40.01499,"longitude":-105.27055},{"id":"foco","name":"FortCollins","latitude":40.585258,"longitude":-105.084419}],"distances":[],"map":"kml"}';
+    const file               = new Blob([fileContents], {type : 'text/plain'});
+    componentWrapper.find('#example').simulate('change', {target: {files: [file]}});
 });
 
+test('Test function planRequest', () => {
+    const newTrip ={
+        "version"   : 4,
+        "type"      : "trip",
+        "title"     : "",
+        "options"   : {},
+        "places"    : [{'id': 1029, 'name': "testPlace", 'latitude': 100, 'longitude': 200},{'id': 1049, 'name': "testPlace2", 'latitude': 130, 'longitude': 250}],
+        "distances" : [],
+        "map"       : ""};
+    const updateBasedOnResponseMock = jest.fn();
+    const wrapper = mount((
+        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updateBasedOnResponse={updateBasedOnResponseMock}/>
+    ));
+
+    wrapper.instance().planRequest();
+    const wrapper2 = mount((
+        <Plan config={startProps.config} options={startProps.options} trip={newTrip} updateBasedOnResponse={updateBasedOnResponseMock}/>
+    ));
+
+    wrapper2.instance().planRequest();
+});
+
+test('Test function addPlace', () => {
+    const updatePlacesMock = jest.fn();
+    const updateBasedOnResponseMock = jest.fn();
+    const wrapper = mount((
+        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updatePlaces ={updatePlacesMock} realTime={true} updateBasedOnResponse={updateBasedOnResponseMock}/>
+    ));
+
+    wrapper.instance().addPlace();
+    wrapper.setState({ name: 'super miles' });
+    wrapper.instance().addPlace();
+
+    wrapper.find('#id_field').at(0).simulate('change');
+    wrapper.find('#name_field').at(0).simulate('change');
+    wrapper.find('#latitude_field').at(0).simulate('change');
+    wrapper.find('#longitude_field').at(0).simulate('change');
+    const wrapper2 = mount((
+        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updatePlaces ={updatePlacesMock} realTime={false}/>
+    ));
+    wrapper2.setState({ name: 'super miles2' });
+    wrapper2.instance().addPlace();
+
+    wrapper.instance().clearFileUploader();
+    wrapper.instance().toggleLoad();
+
+    let actual = [];
+    wrapper.find('Button').map((element) => element.simulate('click'));
+});
+
+test('Test function saveToFile', () => {
+    const updateBasedOnResponseMock = jest.fn();
+    const wrapper = mount((
+        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updateBasedOnResponse={updateBasedOnResponseMock}/>
+    ));
+
+    //wrapper.instance().saveToFile();
+});

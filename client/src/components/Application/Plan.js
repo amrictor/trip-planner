@@ -18,9 +18,34 @@ class Plan extends Component {
         this.getFile = this.getFile.bind(this);
         this.planRequest = this.planRequest.bind(this);
         this.state = {
-            isLoad: false
+            isLoad: false,
+            ID: "",
+            name : "",
+            lat : 0,
+            long : 0
         };
+        this.handleChangeID = this.handleChangeID.bind(this);
+        this.handleChangeLong = this.handleChangeLong.bind(this);
+        this.handleChangeName = this.handleChangeName.bind(this);
+        this.handleChangeLat = this.handleChangeLat.bind(this);
     }
+
+    handleChangeID(event) {
+        this.setState({ID: event.target.value});
+    }
+
+    handleChangeName(event) {
+        this.setState({name: event.target.value});
+    }
+
+    handleChangeLat(event) {
+        this.setState({lat: event.target.value});
+    }
+
+    handleChangeLong(event) {
+        this.setState({long: event.target.value});
+    }
+
 
     getFile(event){
         let reader = new FileReader();
@@ -33,20 +58,16 @@ class Plan extends Component {
     }
 
     planRequest(){
-        if (typeof this.props.trip !== "undefined") {
+        if (this.props.trip.places.length !== 0) {
             request(this.props.trip, 'plan', this.props.port, this.props.host).then(response => this.props.updateBasedOnResponse(response));
             this.setState({
                 showComponent: true,
             });
         }
     }
-    addPlace(id, name, lat, long){
-        id = id ? id : "";
-        name = name ? name : "";
-        lat = lat ? lat : 0;
-        long = long ? long : 0;
-        if(id.length===0 && name.length===0 && lat ===0 && long ===0) return;
-        const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
+    addPlace(){
+        if(this.state.ID.length===0 && this.state.name.length===0 && this.state.lat ===0 && this.state.long ===0) return;
+        const place = {'id': this.state.ID, 'name': this.state.name, 'latitude': this.state.lat, 'longitude': this.state.long};
         this.props.updatePlaces(place,"add");
         if(this.props.realTime) this.planRequest();
     }
@@ -162,12 +183,14 @@ class Plan extends Component {
                             name="id"
                             id="id_field"
                             placeholder="ID"
+                            onChange= {this.handleChangeID}
                         />
                         <Input
                             type="text"
                             name="name"
                             id="name_field"
                             placeholder="Name"
+                            onChange= {this.handleChangeName}
                         />
                     </InputGroup>
                 </Form>
@@ -179,6 +202,7 @@ class Plan extends Component {
                             id="latitude_field"
                             placeholder="Latitude"
                             step="0.00000001"
+                            onChange= {this.handleChangeLat}
                         />
                         <Input
                             type="number"
@@ -186,13 +210,14 @@ class Plan extends Component {
                             id="longitude_field"
                             placeholder="Longitude"
                             step="0.00000001"
+                            onChange= {this.handleChangeLong}
                         />
                     </InputGroup>
                 </Form>
                 <Button
                     key={'options_submit'}
                     className='btn-outline-dark unit-button'
-                    onClick={()=> this.addPlace(id_field.value, name_field.value, parseFloat(latitude_field.value), parseFloat(longitude_field.value))}
+                    onClick={()=> this.addPlace()}
                     block
                 >
                     <MdAdd/>

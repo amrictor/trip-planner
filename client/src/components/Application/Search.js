@@ -24,7 +24,7 @@ class Search extends Component {
                 found: 0,
                 places: []
             },
-
+            query_f : "",
             isSearch: false,
             attributes: JSON.parse(JSON.stringify(this.props.config.attributes)),
             numFilters: this.props.config.filters.reduce((total, filter) =>  total + filter.values.length, 0),
@@ -47,6 +47,7 @@ class Search extends Component {
             if(i===index) copy[i]=!this.state.dropdownOpen[i];
             else copy[i]=false;
         }
+
         this.setState(prevState => ({
             dropdownOpen: copy
         }));
@@ -54,7 +55,7 @@ class Search extends Component {
 
     updateSearch() {
         let search = this.state.search;
-        search['match'] = query_field.value;
+        this.setState({query_f: search['match']});
         this.setState(search)
     }
     updateBasedOnResponse(value) {
@@ -74,7 +75,7 @@ class Search extends Component {
         this.setState({ isSearch: true });
     }
     closeSearch() {
-        query_field.value = "";
+        this.state.query_f = "";
         this.updateSearch();
         this.setState({ isSearch: false });
     }
@@ -264,6 +265,46 @@ class Search extends Component {
                     &nbsp;
                 </React.Fragment>
 
+        );
+
+
+        <Dropdown isOpen={this.state.dropdownOpen} size="sm" toggle={this.toggle}>
+                    <DropdownToggle caret color="info">
+                        Countries
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        <DropdownItem onClick={() => this.updateFilterCountry("All")}>All</DropdownItem>
+                        <DropdownItem onClick={() => this.updateFilterCountry("Costa Rica")}>Costa Rica</DropdownItem>
+                        <DropdownItem onClick={() => this.updateFilterCountry("Japan")}>Japan</DropdownItem>
+                        <DropdownItem onClick={() => this.updateFilterCountry("Kenya")}>Kenya</DropdownItem>
+                        <DropdownItem onClick={() => this.updateFilterCountry("New Zealand")}>New Zealand </DropdownItem>
+                        <DropdownItem onClick={() => this.updateFilterCountry("Spain")}>Spain</DropdownItem>
+                        <DropdownItem onClick={() => this.updateFilterCountry("United States")}>United States</DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+         */
+
+        const filters = this.props.config.filters.map((filter) =>
+                <Col>
+                    <UncontrolledDropdown isOpen={this.state.dropdownOpen[this.props.config.filters.indexOf(filter)]} size="sm" >
+                        <DropdownToggle caret color="info" toggle={false} onClick={() => this.toggle(this.props.config.filters.indexOf(filter))}>
+                            {filter.name}
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            {filter.values.map((value) =>
+                                <DropdownItem
+                                    key={filter.name+'_'+value}
+                                    name={value}
+                                    toggle={false}
+                                    onClick={(event) => this.updateCheckbox(event, filter.name)}
+                                    active={this.contains(value, filter.name)}
+                                >
+                                    {value.charAt(0).toUpperCase() + value.slice(1) + " "}
+                                </DropdownItem>
+                            )}
+                        </DropdownMenu>
+                    </UncontrolledDropdown>
+                </Col>
 
 
         );
@@ -320,6 +361,7 @@ class Search extends Component {
                 <CardTitle>Don't know your stop?</CardTitle>
                 <Row className={'float-right'}>{filters}</Row>
                 <br/><br/>
+
                 {searchquery}
                 <Collapse isOpen={this.state.isSearch}>
                     <br/>

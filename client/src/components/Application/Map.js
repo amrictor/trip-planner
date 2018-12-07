@@ -106,6 +106,7 @@ class Map extends Component {
     }
 
     render() {
+        //don't change to ===
         let source = (this.props.trip.map == null)
                 ? mapsvg
                 : "data:image/svg+xml;utf8," + this.props.trip.map;
@@ -130,7 +131,7 @@ class Map extends Component {
                     this.forceUpdate()
                 }}
             />;
-        var isMobile = {
+        const isMobile = {
             Android: function() {
                 return navigator.userAgent.match(/Android/i);
             },

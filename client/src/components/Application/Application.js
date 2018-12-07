@@ -186,7 +186,7 @@ class Application extends Component {
         let distances = [];
         for (let i = 0; i < this.state.trip.places.length; i++) {
             places.push(this.state.trip.places[index]);
-            distances.push(this.state.trip.distances[index])
+            distances.push(this.state.trip.distances[index]);
             index = (index + 1) % this.state.trip.places.length;
         }
         let trip = this.state.trip;
