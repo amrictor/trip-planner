@@ -35,7 +35,7 @@ class Plan extends Component {
     }
 
     planRequest(){
-        if (typeof this.props.trip !== "undefined") {
+        if (this.props.trip.places.length !== 0) {
             request(this.props.trip, 'plan', this.props.port, this.props.host).then(response => this.props.updateBasedOnResponse(response));
             this.setState({
                 showComponent: true,

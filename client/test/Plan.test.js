@@ -63,16 +63,35 @@ test('Test function getFile', () => {
     const component          = componentWrapper.get(0);
     const fileContents       = '{"type":"trip","title":"Shoppingloop","options":{"units":"userdefined","unitName":"","unitRadius":3958.7613,"optimization":"none"},"places":[{"id":"dnvr","name":"Denver","latitude":39.7392,"longitude":-104.9903},{"id":"bldr","name":"Boulder","latitude":40.01499,"longitude":-105.27055},{"id":"foco","name":"FortCollins","latitude":40.585258,"longitude":-105.084419}],"distances":[],"map":"kml"}';
     const file               = new Blob([fileContents], {type : 'text/plain'});
-
-
     componentWrapper.find('#example').simulate('change', {target: {files: [file]}});
+});
 
+test('Test function planRequest', () => {
+    const newTrip ={
+        "version"   : 4,
+        "type"      : "trip",
+        "title"     : "",
+        "options"   : {},
+        "places"    : [{'id': 1029, 'name': "testPlace", 'latitude': 100, 'longitude': 200},{'id': 1049, 'name': "testPlace2", 'latitude': 130, 'longitude': 250}],
+        "distances" : [],
+        "map"       : ""};
+    const updateBasedOnResponseMock = jest.fn();
+    const wrapper = mount((
+        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updateBasedOnResponse={updateBasedOnResponseMock}/>
+    ));
+
+    wrapper.instance().planRequest();
+    const wrapper2 = mount((
+        <Plan config={startProps.config} options={startProps.options} trip={newTrip} updateBasedOnResponse={updateBasedOnResponseMock}/>
+    ));
+
+    wrapper2.instance().planRequest();
 });
 
 test('Test function calc', () => {
-    const updateOriginAndDestinationMock = jest.fn();
+    const updateBasedOnResponseMock = jest.fn();
     const wrapper = mount((
-        <Plan config={startProps.config} distance={startProps.distance} updateOriginAndDestination={updateOriginAndDestinationMock}/>
+        <Plan config={startProps.config} distance={startProps.distance} updateBasedOnResponse={updateBasedOnResponseMock}/>
     ));
 
     wrapper.instance().calc();
@@ -88,4 +107,3 @@ test('Test function calc', () => {
     wrapper.find('#latitude_t_field').at(0).simulate('change');
     wrapper.find('#longitude_t_field').at(0).simulate('change');
 });
-
