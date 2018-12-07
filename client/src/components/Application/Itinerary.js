@@ -22,6 +22,7 @@ class Itinerary extends Component {
         this.createTable = this.createTable.bind(this);
         this.toggleItin = this.toggleItin.bind(this);
         this.updateCheckbox = this.updateCheckbox.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
     toggleItin() {
         this.setState({
@@ -34,6 +35,10 @@ class Itinerary extends Component {
         this.props.updatePlaces(place,"remove");
         if( (this.props.trip.places.length>0) && (this.props.realTime) ) this.props.planRequest();
         else this.props.trip.map=null;
+    }
+
+    handleChange(event){
+        this.props.updateTrip("title", event.target.value);
     }
 
     putData() {
@@ -178,10 +183,6 @@ class Itinerary extends Component {
         );
 
         this.forceUpdate();
-    }
-
-    handleChange(event){
-        this.props.updateTrip("title", event.target.value);
     }
 
     render() {
