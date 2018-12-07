@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+let mapsvg = require('../../public/worldmap.svg');
 import { Map as LMap, TileLayer, Polyline, Marker, Popup } from 'react-leaflet';
 
 
@@ -106,7 +107,7 @@ class Map extends Component {
 
     render() {
         let source = (this.props.trip.map == null)
-                ? "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/World_map_with_nations.svg/1600px-World_map_with_nations.svg.png"
+                ? mapsvg
                 : "data:image/svg+xml;utf8," + this.props.trip.map;
         const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px' }} onClick={this.openMap}>&times;</button>;
         let map =
@@ -116,7 +117,6 @@ class Map extends Component {
                 src={source}
                 alt={"Visual Itinerary Not Available"}
                 style={{
-                    'minWidth' : '800px',
                     'margin':'0px',
                     'whiteSpace':'nowrap',
                     'float': 'none'
@@ -130,13 +130,33 @@ class Map extends Component {
                     this.forceUpdate()
                 }}
             />;
-
+        var isMobile = {
+            Android: function() {
+                return navigator.userAgent.match(/Android/i);
+            },
+            BlackBerry: function() {
+                return navigator.userAgent.match(/BlackBerry/i);
+            },
+            iOS: function() {
+                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            },
+            Opera: function() {
+                return navigator.userAgent.match(/Opera Mini/i);
+            },
+            Windows: function() {
+                return navigator.userAgent.match(/IEMobile/i);
+            },
+            any: function() {
+                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+            }
+        };
         return (
+
             <React.Fragment>
-                <Modal isOpen={this.state.mapClick} toggle={this.openMap} external={externalCloseBtn} size='lg' centered={true} style={{'minWidth' : '400px'}}>
+                <Modal isOpen={this.state.mapClick} toggle={this.openMap} size='lg' centered={true}>
                     <Container
-                        style={{'minWidth': '400px', 'maxHeight': '400px', 'overflow' : 'hidden'}}
-                        onMouseMove={(e) => {
+                        style={{'overflow' : 'hidden'}}
+                        onMouseMove={(e) => { if(!isMobile.any())
                             this.setState(
                                 {
                                     mouseX: 100 * (e.pageX  / window.innerWidth),
