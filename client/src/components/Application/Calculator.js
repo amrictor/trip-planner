@@ -39,8 +39,8 @@ class Calculator extends Component {
     }
 
     calc() {
-        if (latf === 0 && longf === 0 && latt === 0 && longt === 0) return;
-        this.props.updateOriginAndDestination(latf, longf, latt, longt);
+        if (this.state.latf === 0 && this.state.longf === 0 && this.state.latt === 0 && this.state.longt === 0) return;
+        this.props.updateOriginAndDestination(this.state.latf, this.state.longf, this.state.latt, this.state.longt);
         this.setState({iscalculated: true});
         request(this.props.distance, 'distance', this.props.port, this.props.host).then(response => {
             this.props.updateDistanceBasedOnResponse(response)
@@ -98,7 +98,7 @@ class Calculator extends Component {
                             <Button
                                 key={'options_submit'}
                                 className='btn-outline-dark unit-button'
-                                onClick={() => this.calc(latitude_f_field.value, longitude_f_field.value, latitude_t_field.value, longitude_t_field.value)
+                                onClick={() => this.calc()
                                 }
                             >
                                 Calculate
