@@ -37,8 +37,8 @@ class Search extends Component {
         this.updateCheckbox = this.updateCheckbox.bind(this);
         this.updateAttributes = this.updateAttributes.bind(this);
         this.toggle = this.toggle.bind(this);
-        this.updateFilterCountry = this.updateFilterCountry.bind(this);
-        console.log(this.state.dropdownOpen);
+        //this.updateFilterCountry = this.updateFilterCountry.bind(this);
+        //console.log(this.state.dropdownOpen);
     }
 
     toggle(index) {
@@ -236,7 +236,7 @@ class Search extends Component {
             this.showSearchResult();
     }
 
-    updateFilterCountry(country){
+    /*updateFilterCountry(country){
         //console.log(country);
         let fltrs = this.state.search.filters;
         if(country === 'All'){
@@ -266,7 +266,7 @@ class Search extends Component {
         search['filters'] = fltrs;
         this.setState(search)
         console.log(this.state.search.filters);
-    }
+    }*/
 
 
     render() {

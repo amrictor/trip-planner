@@ -27,7 +27,7 @@ public class Config {
           Arrays.asList(
                   new Filter("type", new ArrayList<>(
                     Arrays.asList("balloonport", "heliport", "airport", "seaplane base"))),
-                  new Filter("countries", new ArrayList<>(
+                  new Filter("country", new ArrayList<>(
                           Arrays.asList("Costa Rica", "Japan", "Kenya",
                                   "New Zealand", "Spain", "United States"))),
                   new Filter("continents", new ArrayList<>(
