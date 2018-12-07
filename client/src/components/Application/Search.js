@@ -230,6 +230,7 @@ class Search extends Component {
     render() {
         const filters = this.props.config.filters.map((filter) =>
             filter.values.map((value) =>
+
                 <Row className={'float-right'} key={'row_'+value}>
                     <label key={'checkbox_'+filter.name+'_'+value}>
                         <input

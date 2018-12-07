@@ -22,6 +22,7 @@ class Itinerary extends Component {
         this.createTable = this.createTable.bind(this);
         this.toggleItin = this.toggleItin.bind(this);
         this.updateCheckbox = this.updateCheckbox.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
     toggleItin() {
         this.setState({
@@ -36,12 +37,16 @@ class Itinerary extends Component {
         else this.props.trip.map=null;
     }
 
+    handleChange(event){
+        this.props.updateTrip("title", event.target.value);
+    }
+
     putData() {
         this.state.total=0;
         let data = [];
-        if (typeof this.props.trip.places !== "undefined") {
-            let size = this.props.trip.places.length;
-            if (typeof this.props.trip.distances !== "undefined") {
+        let size = this.props.trip.places.length;
+        if (size !== 0) {
+            if (this.props.trip.distances.length !== 0) {
                 for (let i = 0; i < size; i++) {
                     let rowData = [];
                     for (let j = 0; j < this.state.attributes.length; j++) {
@@ -210,7 +215,7 @@ class Itinerary extends Component {
                                             name="title"
                                             id="trip_title"
                                             placeholder="My Trip"
-                                            onChange={() => this.props.updateTrip("title", trip_title.value)}
+                                            onChange={this.handleChange}
                                         />
                                     </InputGroup>
                                 </Form>
@@ -219,6 +224,7 @@ class Itinerary extends Component {
                                 <ButtonGroup className={'float-right'}>
                                     <Button
                                         key={'options_submit'}
+                                        id='options_submit_field'
                                         className='btn-outline-dark unit-button float-right'
                                         onClick={()=> this.props.updatePlaces("","reverse")}
                                     >
@@ -227,6 +233,7 @@ class Itinerary extends Component {
 
                                     <Button
                                         key='hide_itin'
+                                        id='options_hide_itin_field'
                                         className='btn-outline-dark unit-button float-right'
                                         onClick={() => this.toggleItin()}
                                     >

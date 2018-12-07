@@ -20,10 +20,6 @@ class Plan extends Component {
         this.state = {
             isLoad: false
         };
-        this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
-    }
-    updateBasedOnResponse(value) {
-        this.setState({'search': value});
     }
 
     getFile(event){
@@ -44,7 +40,6 @@ class Plan extends Component {
             });
         }
     }
-
     addPlace(id, name, lat, long){
         id = id ? id : "";
         name = name ? name : "";

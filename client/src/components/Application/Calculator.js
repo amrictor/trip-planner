@@ -7,16 +7,40 @@ import {request} from '../../api/api';
 class Calculator extends Component {
     constructor(props) {
         super(props);
-        this.state = {iscalculated: false};
+        this.state = {
+            iscalculated: false,
+            latf : 0,
+            longf : 0,
+            latt : 0,
+            longt : 0
+        };
+        this.handleChangelatf = this.handleChangelatf.bind(this);
+        this.handleChangelongf = this.handleChangelongf.bind(this);
+        this.handleChangelatt = this.handleChangelatt.bind(this);
+        this.handleChangelongt = this.handleChangelongt.bind(this);
     }
 
-    calc(lat_f, long_f, lat_t, long_t) {
-        lat_f = lat_f ? lat_f : 0;
-        long_f = long_f ? long_f : 0;
-        lat_t = lat_t ? lat_t : 0;
-        long_t = long_t ? long_t : 0;
-        if (lat_f === 0 && long_f === 0 && lat_t === 0 && long_t === 0) return;
-        this.props.updateOriginAndDestination(lat_f, long_f, lat_t, long_t);
+    handleChangelatf(event) {
+        this.setState({latf: event.target.value});
+    }
+
+
+    handleChangelongf(event) {
+        this.setState({longf: event.target.value});
+    }
+
+    handleChangelatt(event) {
+        this.setState({name: event.target.value});
+    }
+
+
+    handleChangelongt(event) {
+        this.setState({radius: event.target.value});
+    }
+
+    calc() {
+        if (this.state.latf === 0 && this.state.longf === 0 && this.state.latt === 0 && this.state.longt === 0) return;
+        this.props.updateOriginAndDestination(this.state.latf, this.state.longf, this.state.latt, this.state.longt);
         this.setState({iscalculated: true});
         request(this.props.distance, 'distance', this.props.port, this.props.host).then(response => {
             this.props.updateDistanceBasedOnResponse(response)
@@ -37,6 +61,7 @@ class Calculator extends Component {
                             id="latitude_f_field"
                             placeholder="Latitude"
                             step="0.00000001"
+                            onChange= {this.handleChangelatf}
                         />
                         <Input
                             type="number"
@@ -44,6 +69,7 @@ class Calculator extends Component {
                             id="longitude_f_field"
                             placeholder="Longitude"
                             step="0.00000001"
+                            onChange= {this.handleChangelongf}
                         />
                     </InputGroup>
                 </Form>
@@ -57,6 +83,7 @@ class Calculator extends Component {
                             id="latitude_t_field"
                             placeholder="Latitude"
                             step="0.00000001"
+                            onChange= {this.handleChangelatt}
                         />
                         <Input
                             type="number"
@@ -64,13 +91,14 @@ class Calculator extends Component {
                             id="longitude_t_field"
                             placeholder="Longitude"
                             step="0.00000001"
+                            onChange= {this.handleChangelongt}
                         />
                         &nbsp;
                         <InputGroupAddon addonType="append">
                             <Button
                                 key={'options_submit'}
                                 className='btn-outline-dark unit-button'
-                                onClick={() => this.calc(latitude_f_field.value, longitude_f_field.value, latitude_t_field.value, longitude_t_field.value)
+                                onClick={() => this.calc()
                                 }
                             >
                                 Calculate
