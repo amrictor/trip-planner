@@ -54,57 +54,13 @@ const startProps = {
     }
 };
 
-test('Test function toggleItin', () => {
+test('Test function calc', () => {
+    const updateOriginAndDestinationMock = jest.fn();
     const wrapper = mount((
-        <Calculator config={startProps.config} trip={startProps.trip}/>
+        <Calculator config={startProps.config} distance={startProps.distance} updateOriginAndDestination={updateOriginAndDestinationMock}/>
     ));
-    wrapper.instance().toggleItin();
-});
+    wrapper.instance().calc(0,0,0,0);
+    wrapper.instance().calc(100,200,400,300);
 
-test('Test function removePlace', () => {
-    const updatePlacesMock = jest.fn();
-    const planRequestMock = jest.fn();
-    const wrapper = mount((
-        <Itinerary config={startProps.config}  trip={newTrip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} realTime={true}/>
-    ));
-    wrapper.instance().removePlace(1029,'testPlace',100,200);
-    const wrapper2 = mount((
-        <Itinerary config={startProps.config}  trip={startProps.trip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
-    ));
-    wrapper2.instance().removePlace(1029,'testPlace',100,200);
-});
-
-test('Test function putData', () => {
-    const updatePlacesMock = jest.fn();
-    const planRequestMock = jest.fn();
-    const wrapper = mount((
-        <Itinerary config={startProps.config}  trip={newTrip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
-    ));
-    wrapper.instance().putData();
-    const wrapper2 = mount((
-        <Itinerary config={startProps.config}  trip={startProps.trip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
-    ));
-    wrapper2.instance().putData();
-    const wrapper3 = mount((
-        <Itinerary config={startProps.config}  trip={newTripWDist} updatePlaces={updatePlacesMock} planRequest={planRequestMock} />
-    ));
-    wrapper3.instance().putData();
-});
-
-test('Test function updateCheckbox', () => {
-    const event = {target: {name: "testPlace"}};
-    const event2 = {target: {name: "testPlace"}};
-    const updatePlacesMock = jest.fn();
-    const planRequestMock = jest.fn();
-    const updateTripMock = jest.fn();
-    const wrapper = mount((
-        <Itinerary config={startProps.config}  trip={newTrip} updatePlaces={updatePlacesMock} planRequest={planRequestMock} updateTrip={updateTripMock}/>
-    ));
-    wrapper.instance().updateCheckbox(event);
-    wrapper.instance().updateCheckbox(event2);
-
-    const event3 = {target: {value: "nextPlace"}};
-    wrapper.find('#trip_title').at(0).simulate('change', event3);
-    wrapper.find('#options_submit_field').at(0).simulate('click');
-    wrapper.find('#options_hide_itin_field').at(0).simulate('click');
+    wrapper.find('Button').simulate('click');
 });

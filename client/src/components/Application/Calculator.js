@@ -7,7 +7,31 @@ import {request} from '../../api/api';
 class Calculator extends Component {
     constructor(props) {
         super(props);
-        this.state = {iscalculated: false};
+        this.state = {
+            iscalculated: false
+        };
+        this.handleChangeHost = this.handleChangeHost.bind(this);
+        this.handleChangePort = this.handleChangePort.bind(this);
+        this.handleChangeName = this.handleChangeName.bind(this);
+        this.handleChangeRadius = this.handleChangeRadius.bind(this);
+    }
+
+    handleChangeHost(event) {
+        this.setState({'host': event.target.value});
+    }
+
+
+    handleChangePort(event) {
+        this.setState({port: event.target.value});
+    }
+
+    handleChangeName(event) {
+        this.setState({name: event.target.value});
+    }
+
+
+    handleChangeRadius(event) {
+        this.setState({radius: event.target.value});
     }
 
     calc(lat_f, long_f, lat_t, long_t) {
