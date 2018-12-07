@@ -43,7 +43,11 @@ class Search extends Component {
 
     toggle(index) {
         let copy = this.state.dropdownOpen;
-        copy[index] = !this.state.dropdownOpen[index];
+        for(let i=0; i<this.state.dropdownOpen.length; i++){
+            if(i===index) copy[i]=!this.state.dropdownOpen[i];
+            else copy[i]=false;
+        }
+
         this.setState(prevState => ({
             dropdownOpen: copy
         }));
@@ -236,56 +240,31 @@ class Search extends Component {
             this.showSearchResult();
     }
 
-    /*updateFilterCountry(country){
-        //console.log(country);
-        let fltrs = this.state.search.filters;
-        if(country === 'All'){
-            // may sure that there are no filters for countries
-            for(let i = 0; i < fltrs.length; i++){
-                if (fltrs[i][0] === "Countries"){
-                    //fltrs.remove(i);
-                    console.log("Remove!!");
-                }
-            }
-
-        }
-        else{
-            let found = false;
-            for(let i = 0; i < fltrs.length; i++){
-               if (fltrs[i] === "Countries"){
-                   found = true;
-                   let ctrlen = fltrs[i][1].length;
-                   fltrs[i].push(country);
-               }
-            }
-            if(found){
-
-            }
-        }
-        let search = this.state.search;
-        search['filters'] = fltrs;
-        this.setState(search)
-        console.log(this.state.search.filters);
-    }*/
-
 
     render() {
-        /*const filters = this.props.config.filters.map((filter) =>
-            filter.values.map((value) =>
+        const filters = this.props.config.filters.map((filter) =>
+                <React.Fragment>
+                    <UncontrolledDropdown isOpen={this.state.dropdownOpen[this.props.config.filters.indexOf(filter)]} size="sm" >
+                        <DropdownToggle caret className='btn-outline-dark unit-button'  toggle={false} onClick={() => this.toggle(this.props.config.filters.indexOf(filter))}>
+                            {filter.name.charAt(0).toUpperCase() + filter.name.slice(1)}
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            {filter.values.map((value) =>
+                                <DropdownItem
+                                    key={filter.name+'_'+value}
+                                    name={value}
+                                    toggle={false}
+                                    onClick={(event) => this.updateCheckbox(event, filter.name)}
+                                    active={this.contains(value, filter.name)}
+                                >
+                                    {value.charAt(0).toUpperCase() + value.slice(1) + " "}
+                                </DropdownItem>
+                            )}
+                        </DropdownMenu>
+                    </UncontrolledDropdown>
+                    &nbsp;
+                </React.Fragment>
 
-                <Row className={'float-right'} key={'row_'+value}>
-                    <label key={'checkbox_'+filter.name+'_'+value}>
-                        <input
-                            name={value}
-                            type="checkbox"
-                            checked={this.contains(value, filter.name)}
-                            onChange={(event) => this.updateCheckbox(event, filter.name)}
-                        />
-                        {value.charAt(0).toUpperCase() + value.slice(1) + " "}
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </label>
-                </Row>
-                )
         );
 
 
@@ -380,8 +359,9 @@ class Search extends Component {
         return (
             <IconContext.Provider value={{ size: '1.5em' }}>
                 <CardTitle>Don't know your stop?</CardTitle>
-                <Row>{filters}</Row>
-                &nbsp;
+                <Row className={'float-right'}>{filters}</Row>
+                <br/><br/>
+
                 {searchquery}
                 <Collapse isOpen={this.state.isSearch}>
                     <br/>
