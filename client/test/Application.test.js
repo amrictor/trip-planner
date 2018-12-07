@@ -11,9 +11,8 @@
 
 import './enzyme.config.js'                   // (1)
 import React from 'react'
-import { mount, shallow } from 'enzyme'              // (2)
+import { mount } from 'enzyme'              // (2)
 import Application from '../src/components/Application/Application'
-import { NavLink } from 'react-router-dom'
 
 /* Both of these tests are functionally identical although the standard way
  *  of writing tests uses lambda or anonymous functions. These are useful
@@ -113,7 +112,7 @@ test('Test function updateOptions', () => {
         <Application config={startProps.config} options={startProps.options}/>
     ));
     wrapper.instance().updateOptions('units','miles');
-    expect(wrapper.state('options')).toEqual({"map": "svg", "optimization": "none", "unitName": "", "unitRadius": 0, "units": "miles"});
+    expect(wrapper.state('options')).toEqual({"map": "kml", "optimization": "none", "unitName": "", "unitRadius": 0, "units": "miles"});
 });
 
 test('Test function updatePlaces', () => {
