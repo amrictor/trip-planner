@@ -106,7 +106,8 @@ class Map extends Component {
     }
 
     render() {
-        let source = (this.props.trip.map === null)
+        //don't change to ===
+        let source = (this.props.trip.map == null)
                 ? mapsvg
                 : "data:image/svg+xml;utf8," + this.props.trip.map;
         const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px' }} onClick={this.openMap}>&times;</button>;

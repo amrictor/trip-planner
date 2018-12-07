@@ -11,7 +11,7 @@
 
 import './enzyme.config.js'                   // (1)
 import React from 'react'
-import { mount, shallow } from 'enzyme'              // (2)
+import { mount } from 'enzyme'              // (2)
 import Application from '../src/components/Application/Application'
 
 /* Both of these tests are functionally identical although the standard way
