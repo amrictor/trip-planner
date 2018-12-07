@@ -30,7 +30,7 @@ class Map extends Component {
         let position = [15, -15];
         return (
             (this.props.trip.options.map === 'kml')
-                ? <LMap ref="map" center={position} zoom={1} style={{height: 300, maxWidth: 800}} minZoom={1} maxBounds={bounds}>
+                ? <LMap ref="map" center={position} zoom={1} style={{height: 300, maxWidth: 800}} minZoom={1} maxBounds={bounds} onClick={(e)=>e.target.invalidateSize()}>
                     <TileLayer
                         attribution='&amp;copy <a href=https://wikimediafoundation.org/wiki/Maps_Terms_of_Use;>Wikimedia Maps</a>'
                         url='https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png'
