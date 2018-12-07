@@ -95,11 +95,13 @@ test('Test function addPlace', () => {
     ));
 
     wrapper.instance().addPlace();
+    wrapper.setState({ name: 'super miles' });
+    wrapper.instance().addPlace();
 
-    component.find('#id_field').at(0).simulate('change');
-    component.find('#name_field').at(0).simulate('change');
-    component.find('#latitude_field').at(0).simulate('change');
-    component.find('#longitude_field').at(0).simulate('change');
+    wrapper.find('#id_field').at(0).simulate('change');
+    wrapper.find('#name_field').at(0).simulate('change');
+    wrapper.find('#latitude_field').at(0).simulate('change');
+    wrapper.find('#longitude_field').at(0).simulate('change');
 
 });
 

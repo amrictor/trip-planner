@@ -68,7 +68,7 @@ class Plan extends Component {
 
     addPlace(){
         if(this.state.id.length===0 && this.state.name.length===0 && this.state.lat ===0 && this.state.long ===0) return;
-        const place = {'id': this.state.id, 'name': this.state.name, 'latitude': this.state.lat, 'longitude': this.state.long};
+        const place = {'id': this.state.ID, 'name': this.state.name, 'latitude': this.state.lat, 'longitude': this.state.long};
         this.props.updatePlaces(place,"add");
         if(this.props.realTime) this.planRequest();
     }
@@ -218,7 +218,7 @@ class Plan extends Component {
                 <Button
                     key={'options_submit'}
                     className='btn-outline-dark unit-button'
-                    onClick={()=> this.addPlace(id_field.value, name_field.value, parseFloat(latitude_field.value), parseFloat(longitude_field.value))}
+                    onClick={()=> this.addPlace()}
                     block
                 >
                     <MdAdd/>
