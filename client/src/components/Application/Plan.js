@@ -18,8 +18,7 @@ class Plan extends Component {
         this.getFile = this.getFile.bind(this);
         this.planRequest = this.planRequest.bind(this);
         this.state = {
-            isLoad: false,
-            isSearch: false
+            isLoad: false
         };
         this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
     }
@@ -46,19 +45,12 @@ class Plan extends Component {
         }
     }
 
-    showSearchResult(){
-        request(this.state.search, 'search', this.props.port, this.props.host).then(response => {
-            this.updateBasedOnResponse(response)
-        });
-        this.toggleSearch();
-    }
-
     addPlace(id, name, lat, long){
         id = id ? id : "";
         name = name ? name : "";
         lat = lat ? lat : 0;
         long = long ? long : 0;
-        if(id.length===0 || name.length===0 || lat ===0 || long ===0) return;
+        if(id.length===0 && name.length===0 && lat ===0 && long ===0) return;
         const place = {'id': id, 'name': name, 'latitude': lat, 'longitude': long};
         this.props.updatePlaces(place,"add");
         if(this.props.realTime) this.planRequest();
@@ -68,13 +60,13 @@ class Plan extends Component {
         const defaultState = {
             type: "trip",
             version: 4,
-            title: "",
+            title: "My Trip",
             options: {
                 units: "miles",
                 unitName: "",
                 unitRadius: 0,
                 optimization: "none",
-                map: "svg"
+                map: "kml"
             },
             places: [],
             distances: [],
@@ -101,6 +93,7 @@ class Plan extends Component {
             document.body.removeChild(a);
         }
     }
+
     toggleLoad() {
         this.setState({ isLoad: !this.state.isLoad });
     }
@@ -204,7 +197,7 @@ class Plan extends Component {
                 <Button
                     key={'options_submit'}
                     className='btn-outline-dark unit-button'
-                    onClick={()=> this.addPlace(id_field.value, name_field.value, latitude_field.value, longitude_field.value)}
+                    onClick={()=> this.addPlace(id_field.value, name_field.value, parseFloat(latitude_field.value), parseFloat(longitude_field.value))}
                     block
                 >
                     <MdAdd/>
