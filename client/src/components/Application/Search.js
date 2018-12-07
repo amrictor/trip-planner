@@ -24,7 +24,7 @@ class Search extends Component {
                 found: 0,
                 places: []
             },
-
+            query_f : "",
             isSearch: false,
             attributes: JSON.parse(JSON.stringify(this.props.config.attributes)),
             numFilters: this.props.config.filters.reduce((total, filter) =>  total + filter.values.length, 0),
@@ -43,7 +43,7 @@ class Search extends Component {
 
     toggle(index) {
         let copy = this.state.dropdownOpen;
-        copy[index] = !this.state.dropdownOpen[index]
+        copy[index] = !this.state.dropdownOpen[index];
         this.setState(prevState => ({
             dropdownOpen: copy
         }));
@@ -51,7 +51,7 @@ class Search extends Component {
 
     updateSearch() {
         let search = this.state.search;
-        search['match'] = query_field.value;
+        this.setState({query_f: search['match']});
         this.setState(search)
     }
     updateBasedOnResponse(value) {
@@ -71,7 +71,7 @@ class Search extends Component {
         this.setState({ isSearch: true });
     }
     closeSearch() {
-        query_field.value = "";
+        this.state.query_f = "";
         this.updateSearch();
         this.setState({ isSearch: false });
     }

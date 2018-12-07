@@ -111,24 +111,16 @@ test('Test function addPlace', () => {
 
     wrapper.instance().clearFileUploader();
     wrapper.instance().toggleLoad();
+
+    let actual = [];
+    wrapper.find('Button').map((element) => element.simulate('click'));
 });
 
-test('Test function calc', () => {
+test('Test function saveToFile', () => {
     const updateBasedOnResponseMock = jest.fn();
     const wrapper = mount((
         <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updateBasedOnResponse={updateBasedOnResponseMock}/>
     ));
 
-    wrapper.instance().calc();
-    wrapper.find('Button').simulate('click');
-    wrapper.setState({ latf: 100 });
-    wrapper.setState({ longf: 200 });
-    wrapper.setState({ latt: 400 });
-    wrapper.setState({ longt: 300 });
-    wrapper.find('Button').simulate('click');
-
-    wrapper.find('#latitude_f_field').at(0).simulate('change');
-    wrapper.find('#longitude_f_field').at(0).simulate('change');
-    wrapper.find('#latitude_t_field').at(0).simulate('change');
-    wrapper.find('#longitude_t_field').at(0).simulate('change');
+    //wrapper.instance().saveToFile();
 });
