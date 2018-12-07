@@ -67,7 +67,7 @@ test('Test function showSearchResult', () => {
     const newSearch ={
         'version': 4,
         'type': "search",
-        'match': "",
+        'match': "hahaha",
         'filters': [],
         'limit': 15,
         'found': 0,
@@ -79,15 +79,14 @@ test('Test function showSearchResult', () => {
     wrapper.instance().showSearchResult();
 
     const wrapper2 = mount((
-        <Plan config={startProps.config} options={startProps.options} trip={newTrip} updateBasedOnResponse={updateBasedOnResponseMock}/>
+        <Search config={startProps.config} search={startProps.search} trip={startProps.trip} updateBasedOnResponse={updateBasedOnResponseMock}/>
     ));
     wrapper2.setState({ numFilters: 0 });
     wrapper2.instance().showSearchResult();
 
     const wrapper3 = mount((
-        <Plan config={startProps.config} options={startProps.options} trip={newTrip} updateBasedOnResponse={updateBasedOnResponseMock}/>
+        <Search config={startProps.config} search={newSearch} trip={startProps.trip} updateBasedOnResponse={updateBasedOnResponseMock}/>
     ));
-    wrapper3.setState({ match: "" });
     wrapper3.instance().showSearchResult();
 });
 
