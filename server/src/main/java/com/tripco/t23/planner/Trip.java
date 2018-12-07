@@ -17,7 +17,7 @@ public class Trip {
     public String title;
     public Option options;
     public ArrayList<Place> places;
-    public ArrayList<Integer> distances;
+    public ArrayList<Long> distances;
     public String map;
 
     /** The top level method that does planning.
@@ -207,10 +207,10 @@ public class Trip {
      */
     private void noneDistances() {
 
-        ArrayList<Integer> distances = new ArrayList<>();
+        ArrayList<Long> distances = new ArrayList<>();
 
         for (int i = 0; i < places.size(); i++){
-            int distCalc = -1; // set default val so we know when no work
+            long distCalc = -1; // set default val so we know when no work
             Place p1; // start place
             Place p2; // end place
             if (i == places.size() - 1){ // last new place so wrap around and go back to origin

@@ -14,9 +14,9 @@ public class TripOpt {
     private int opt;
     private Place[] tempPlaces;
     private int[] tempLookup;
-    private int[][] allDistances;
-    private int currentShortest;
-    private int shortestdist;
+    private long[][] allDistances;
+    private long currentShortest;
+    private long shortestdist;
 
     //Constructor
     TripOpt(ArrayList<Place> places, String units, Double unitRadius, int opt) {
@@ -26,7 +26,7 @@ public class TripOpt {
         this.tempLookup = new int[places.size() + 1];
         this.opt = opt;
         currentShortest = Integer.MAX_VALUE;
-        allDistances = new int[places.size()][places.size()];
+        allDistances = new long[places.size()][places.size()];
     }
 
     //Getters
@@ -40,7 +40,7 @@ public class TripOpt {
     public void shortOptimization() {
         for (int i = 0; i < places.size(); i++) {
             for (int j = i; j < places.size(); j++) {
-                int temp = measure(places.get(i), places.get(j));
+                long temp = measure(places.get(i), places.get(j));
                 allDistances[i][j] = temp;
                 allDistances[j][i] = temp;
             }
@@ -59,7 +59,7 @@ public class TripOpt {
     private void nearestNeighbor(int base) {
         Place[] placed = new Place[places.size() + 1];
         boolean[] used = new boolean[places.size() + 1];
-        int cumulativeDist = 0;
+        long cumulativeDist = 0;
 
         placed[0] = places.get(base);
         placed[places.size()] = places.get(base);
@@ -102,9 +102,9 @@ public class TripOpt {
      * Finds the next city in the set for the current base town.
      */
     private int getNextCity(int base, boolean[] used) {
-        shortestdist = Integer.MAX_VALUE;
+        shortestdist = Long.MAX_VALUE;
         int result = -1;
-        int temp;
+        long temp;
         for (int i = 0; i < places.size(); i++) {
             if (used[i]) {
                 continue;
@@ -121,7 +121,7 @@ public class TripOpt {
     /**
      * Actually measures the distances.
      */
-    private int measure(Place p1, Place p2) {
+    private long measure(Place p1, Place p2) {
         Distance temp;
         if (units.equals("user defined")) {
             temp = new Distance(p1, p2, units, unitRadius);
@@ -142,7 +142,7 @@ public class TripOpt {
             int n = tempLookup.length - 1;
             for (int i = 0; i <= n - 3; i++) {
                 for (int k = i + 2; k <= n - 1; k++) {
-                    int delta = -allDistances[tempLookup[i]][tempLookup[i + 1]] -
+                    long delta = -allDistances[tempLookup[i]][tempLookup[i + 1]] -
                             allDistances[tempLookup[k]][tempLookup[k + 1]] +
                             allDistances[tempLookup[i]][tempLookup[k]] +
                             allDistances[tempLookup[i + 1]][tempLookup[k + 1]];
@@ -178,7 +178,7 @@ public class TripOpt {
                     for(int e = c+1; e < places.size(); e++){
                         int b = a+1; int d = c+1; int f = e+1;
                         //Base case
-                        int currentDistance = distanceTest(a,b,c,d,e,f);//
+                        long currentDistance = distanceTest(a,b,c,d,e,f);//
                         //Case 4
                         if(distanceTest(a,c,b,e,d,f) < currentDistance){
                             exchange4to6(b,c,d,e);
@@ -223,7 +223,7 @@ public class TripOpt {
     /**
      * Distance function for the above 3-opt if statements.
      */
-    private int distanceTest(int a, int b, int c, int d, int e, int f){
+    private long distanceTest(int a, int b, int c, int d, int e, int f){
         return allDistances[tempLookup[a]][tempLookup[b]]+
                 allDistances[tempLookup[c]][tempLookup[d]]+
                 allDistances[tempLookup[e]][tempLookup[f]];
