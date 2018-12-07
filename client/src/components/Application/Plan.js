@@ -67,7 +67,7 @@ class Plan extends Component {
     }
 
     addPlace(){
-        if(this.state.id.length===0 && this.state.name.length===0 && this.state.lat ===0 && this.state.long ===0) return;
+        if(this.state.ID.length===0 && this.state.name.length===0 && this.state.lat ===0 && this.state.long ===0) return;
         const place = {'id': this.state.ID, 'name': this.state.name, 'latitude': this.state.lat, 'longitude': this.state.long};
         this.props.updatePlaces(place,"add");
         if(this.props.realTime) this.planRequest();
