@@ -5,7 +5,7 @@ import { Button } from 'reactstrap';
 import { Collapse } from 'reactstrap';
 import { Input, InputGroup, InputGroupAddon } from 'reactstrap'
 import { request } from '../../api/api';
-import {Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
+import {UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import {ButtonToolbar, DropdownButton, MenuItem} from 'reactstrap';
 
 import {IconContext} from 'react-icons';
@@ -190,6 +190,8 @@ class Search extends Component {
         return "No results available."
     }
     updateCheckbox(event, filter){
+        console.log(event.target.name)
+        console.log(this.state.search.filters)
         let index = this.state.search.filters.indexOf(this.state.search.filters.find(filt => filt.name === filter));
         let valIndex = this.state.search.filters[index].values.indexOf(event.target.name);
 
@@ -305,21 +307,24 @@ class Search extends Component {
 
         const filters = this.props.config.filters.map((filter) =>
                 <Col>
-                    <Dropdown isOpen={this.state.dropdownOpen[this.props.config.filters.indexOf(filter)]} size="sm" >
-                        <DropdownToggle caret color="info" onClick={() => this.toggle(this.props.config.filters.indexOf(filter))}>
+                    <UncontrolledDropdown isOpen={this.state.dropdownOpen[this.props.config.filters.indexOf(filter)]} size="sm" >
+                        <DropdownToggle caret color="info" toggle={false} onClick={() => this.toggle(this.props.config.filters.indexOf(filter))}>
                             {filter.name}
                         </DropdownToggle>
                         <DropdownMenu>
                             {filter.values.map((value) =>
                                 <DropdownItem
+                                    key={filter.name+'_'+value}
+                                    name={value}
+                                    toggle={false}
                                     onClick={(event) => this.updateCheckbox(event, filter.name)}
-                                    active={() => this.contains(value, filter.name)}
+                                    active={this.contains(value, filter.name)}
                                 >
                                     {value.charAt(0).toUpperCase() + value.slice(1) + " "}
                                 </DropdownItem>
                             )}
                         </DropdownMenu>
-                    </Dropdown>
+                    </UncontrolledDropdown>
                 </Col>
 
 
