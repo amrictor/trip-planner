@@ -162,7 +162,7 @@ class Search extends Component {
                         <Container style={style}>
                             {this.putData()}
                         </Container>
-                        <div>
+                        <div key = 'total'>
                             <h6>
                                 <br/>
                                 <strong>
@@ -230,8 +230,9 @@ class Search extends Component {
     render() {
         const filters = this.props.config.filters.map((filter) =>
             filter.values.map((value) =>
-                <Row className={'float-right'}>
-                    <label key={'checkbox_'+value}>
+
+                <Row className={'float-right'} key={'row_'+value}>
+                    <label key={'checkbox_'+filter.name+'_'+value}>
                         <input
                             name={value}
                             type="checkbox"
@@ -279,7 +280,7 @@ class Search extends Component {
             </React.Fragment>;
 
         const attributes = this.props.config.attributes.slice().reverse().map((attribute) =>
-            <label className={'float-right'}>
+            <label className={'float-right'} key={'search_' + attribute}>
                 <input
                     key={"attribute_"+attribute}
                     name={attribute}
@@ -291,8 +292,8 @@ class Search extends Component {
                 &nbsp;&nbsp;
             </label>
         );
-        const{list} = this.props
-        const{listOpen, headerTitle} = this.state
+        const{list} = this.props;
+        const{listOpen, headerTitle} = this.state;
         return (
             <IconContext.Provider value={{ size: '1.5em' }}>
                 <CardTitle>Don't know your stop?</CardTitle>

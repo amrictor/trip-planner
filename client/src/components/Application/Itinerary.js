@@ -97,10 +97,8 @@ class Itinerary extends Component {
                             <Row>
                                 <React.Fragment key={'distances_'+i}>
                                     <Col sm="12" md={{size: 6, offset: 3}}>
-
                                             Leg Distance: <font color="#ff4500">{this.props.trip.distances[i]}</font>&nbsp;
                                             Cumulative Distance: <font color="#ff4500">{this.state.total}</font>
-
                                     </Col>
                                 </React.Fragment>
                             </Row>
@@ -188,7 +186,7 @@ class Itinerary extends Component {
     render() {
         let toggle = this.state.itin ? "Hide Itinerary" : "Show Itinerary";
         const attributes = this.props.config.attributes.slice().reverse().map((attribute) =>
-            <label className={'float-right'}>
+            <label className={'float-right'} key={'itinerary_' +attribute}>
                 <input
                     key={"attribute_"+attribute}
                     name={attribute}

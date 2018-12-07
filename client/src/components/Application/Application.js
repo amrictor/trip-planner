@@ -44,7 +44,7 @@ class Application extends Component {
                     unitName: "",
                     unitRadius: 0,
                     optimization: "none",
-                    map: "svg"
+                    map: "kml"
                 },
                 places: [],
                 distances: [],
@@ -177,18 +177,21 @@ class Application extends Component {
     reversePlaces() {
         let trip = this.state.trip;
         trip.places.reverse();
+        trip.distances.reverse();
         this.setState(trip);
     }
 
     setFirstPlace(index) {
-
         let places = [];
+        let distances = [];
         for (let i = 0; i < this.state.trip.places.length; i++) {
             places.push(this.state.trip.places[index]);
+            distances.push(this.state.trip.distances[index]);
             index = (index + 1) % this.state.trip.places.length;
         }
         let trip = this.state.trip;
         trip.places = places;
+        trip.distances = distances;
         this.setState(trip);
     }
 
