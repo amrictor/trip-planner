@@ -56,19 +56,19 @@ const startProps = {
         'version': 4,
         'type': "search",
         'match': "",
-        'filters': JSON.parse(JSON.stringify(this.props.config.filters.slice())),
+        'filters': [],
         'limit': 15,
         'found': 0,
         'places': []
     }
 };
 
-test('Test function planRequest', () => {
+test('Test function showSearchResult', () => {
     const newSearch ={
         'version': 4,
         'type': "search",
         'match': "",
-        'filters': JSON.parse(JSON.stringify(this.props.config.filters.slice())),
+        'filters': [],
         'limit': 15,
         'found': 0,
         'places': []};
@@ -76,13 +76,19 @@ test('Test function planRequest', () => {
     const wrapper = mount((
         <Search config={startProps.config} search={startProps.search} trip={startProps.trip} updateBasedOnResponse={updateBasedOnResponseMock}/>
     ));
+    wrapper.instance().showSearchResult();
 
-    wrapper.instance().planRequest(newSearch);
     const wrapper2 = mount((
         <Plan config={startProps.config} options={startProps.options} trip={newTrip} updateBasedOnResponse={updateBasedOnResponseMock}/>
     ));
+    wrapper2.setState({ numFilters: 0 });
+    wrapper2.instance().showSearchResult();
 
-    wrapper2.instance().planRequest();
+    const wrapper3 = mount((
+        <Plan config={startProps.config} options={startProps.options} trip={newTrip} updateBasedOnResponse={updateBasedOnResponseMock}/>
+    ));
+    wrapper3.setState({ match: "" });
+    wrapper3.instance().showSearchResult();
 });
 
 test('Test function updateBasedOnResponse', () => {
