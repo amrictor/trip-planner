@@ -54,24 +54,13 @@ const startProps = {
     }
 };
 
-test('Test function updateBasedOnResponse', () => {
-    const updateOriginAndDestinationMock = jest.fn();
+test('Test function getFile', () => {
     const wrapper = mount((
-        <Plan config={startProps.config} distance={startProps.distance} updateOriginAndDestination={updateOriginAndDestinationMock}/>
+        <Plan config={startProps.config} options={startProps.options} />
     ));
 
-    wrapper.instance().getFile();
-    wrapper.find('Button').simulate('click');
-    wrapper.setState({ latf: 100 });
-    wrapper.setState({ longf: 200 });
-    wrapper.setState({ latt: 400 });
-    wrapper.setState({ longt: 300 });
-    wrapper.find('Button').simulate('click');
 
-    wrapper.find('#latitude_f_field').at(0).simulate('change');
-    wrapper.find('#longitude_f_field').at(0).simulate('change');
-    wrapper.find('#latitude_t_field').at(0).simulate('change');
-    wrapper.find('#longitude_t_field').at(0).simulate('change');
+
 });
 
 test('Test function calc', () => {
