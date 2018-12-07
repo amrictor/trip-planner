@@ -89,9 +89,9 @@ test('Test function planRequest', () => {
 });
 
 test('Test function addPlace', () => {
-    const updateBasedOnResponseMock = jest.fn();
+    const updatePlacesMock = jest.fn();
     const wrapper = mount((
-        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updateBasedOnResponse={updateBasedOnResponseMock}/>
+        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updatePlaces ={updatePlacesMock} realTime={true}/>
     ));
 
     wrapper.instance().addPlace();
@@ -102,7 +102,10 @@ test('Test function addPlace', () => {
     wrapper.find('#name_field').at(0).simulate('change');
     wrapper.find('#latitude_field').at(0).simulate('change');
     wrapper.find('#longitude_field').at(0).simulate('change');
-
+    const wrapper = mount((
+        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updatePlaces ={updatePlacesMock} />
+    ));
+    wrapper.instance().addPlace();
 });
 
 test('Test function calc', () => {
