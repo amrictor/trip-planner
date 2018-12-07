@@ -12,7 +12,7 @@
 import './enzyme.config.js'                   // (1)
 import React from 'react'
 import { mount, shallow } from 'enzyme'              // (2)
-import Itinerary from '../src/components/Application/Itinerary'
+import Map from '../src/components/Application/Map'
 
 const startProps = {
     'config': {
@@ -53,24 +53,6 @@ const startProps = {
         "map"       : ""
     }
 };
-
-const newTrip ={
-    "version"   : 4,
-    "type"      : "trip",
-    "title"     : "",
-    "options"   : {},
-    "places"    : [{'id': 1029, 'name': "testPlace", 'latitude': 100, 'longitude': 200},{'id': 1049, 'name': "testPlace2", 'latitude': 130, 'longitude': 250}],
-    "distances" : [],
-    "map"       : ""}
-
-const newTripWDist ={
-    "version"   : 4,
-    "type"      : "trip",
-    "title"     : "",
-    "options"   : {},
-    "places"    : [{'id': 1029, 'name': "testPlace", 'latitude': 100, 'longitude': 200},{'id': 1049, 'name': "testPlace2", 'latitude': 130, 'longitude': 250}],
-    "distances" : [1093,2841],
-    "map"       : ""}
 
 test('Test function toggleItin', () => {
     const wrapper = mount((
