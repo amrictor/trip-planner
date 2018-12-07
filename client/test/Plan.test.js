@@ -90,8 +90,9 @@ test('Test function planRequest', () => {
 
 test('Test function addPlace', () => {
     const updatePlacesMock = jest.fn();
+    const updateBasedOnResponseMock = jest.fn();
     const wrapper = mount((
-        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updatePlaces ={updatePlacesMock} realTime={true}/>
+        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updatePlaces ={updatePlacesMock} realTime={true} updateBasedOnResponse={updateBasedOnResponseMock}/>
     ));
 
     wrapper.instance().addPlace();
@@ -102,10 +103,14 @@ test('Test function addPlace', () => {
     wrapper.find('#name_field').at(0).simulate('change');
     wrapper.find('#latitude_field').at(0).simulate('change');
     wrapper.find('#longitude_field').at(0).simulate('change');
-    const wrapper = mount((
-        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updatePlaces ={updatePlacesMock} />
+    const wrapper2 = mount((
+        <Plan config={startProps.config} options={startProps.options} trip={startProps.trip} updatePlaces ={updatePlacesMock} realTime={false}/>
     ));
-    wrapper.instance().addPlace();
+    wrapper2.setState({ name: 'super miles2' });
+    wrapper2.instance().addPlace();
+
+    wrapper.instance().clearFileUploader();
+    wrapper.instance().toggleLoad();
 });
 
 test('Test function calc', () => {
