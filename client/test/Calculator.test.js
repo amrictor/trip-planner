@@ -12,7 +12,7 @@
 import './enzyme.config.js'                   // (1)
 import React from 'react'
 import { mount, shallow } from 'enzyme'              // (2)
-import Map from '../src/components/Application/Map'
+import Calculator from '../src/components/Application/Calculator'
 
 const startProps = {
     'config': {
@@ -56,7 +56,7 @@ const startProps = {
 
 test('Test function toggleItin', () => {
     const wrapper = mount((
-        <Itinerary config={startProps.config} trip={startProps.trip}/>
+        <Calculator config={startProps.config} trip={startProps.trip}/>
     ));
     wrapper.instance().toggleItin();
 });
