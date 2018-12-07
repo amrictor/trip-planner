@@ -59,8 +59,12 @@ test('Test function calc', () => {
     const wrapper = mount((
         <Calculator config={startProps.config} distance={startProps.distance} updateOriginAndDestination={updateOriginAndDestinationMock}/>
     ));
-    wrapper.instance().calc(0,0,0,0);
-    wrapper.instance().calc(100,200,400,300);
 
+    wrapper.instance().calc();
+    wrapper.find('Button').simulate('click');
+    wrapper.setState({ latf: 100 });
+    wrapper.setState({ longf: 200 });
+    wrapper.setState({ latt: 400 });
+    wrapper.setState({ longt: 300 });
     wrapper.find('Button').simulate('click');
 });
