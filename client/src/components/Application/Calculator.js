@@ -8,39 +8,39 @@ class Calculator extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            iscalculated: false
+            iscalculated: false,
+            latf : 0,
+            longf : 0,
+            latt : 0,
+            longt : 0
         };
-        this.handleChangeHost = this.handleChangeHost.bind(this);
-        this.handleChangePort = this.handleChangePort.bind(this);
-        this.handleChangeName = this.handleChangeName.bind(this);
-        this.handleChangeRadius = this.handleChangeRadius.bind(this);
+        this.handleChangelatf = this.handleChangelatf.bind(this);
+        this.handleChangelongf = this.handleChangelongf.bind(this);
+        this.handleChangelatt = this.handleChangelatt.bind(this);
+        this.handleChangelongt = this.handleChangelongt.bind(this);
     }
 
-    handleChangeHost(event) {
-        this.setState({'host': event.target.value});
+    handleChangelatf(event) {
+        this.setState({latf: event.target.value});
     }
 
 
-    handleChangePort(event) {
-        this.setState({port: event.target.value});
+    handleChangelongf(event) {
+        this.setState({longf: event.target.value});
     }
 
-    handleChangeName(event) {
+    handleChangelatt(event) {
         this.setState({name: event.target.value});
     }
 
 
-    handleChangeRadius(event) {
+    handleChangelongt(event) {
         this.setState({radius: event.target.value});
     }
 
-    calc(lat_f, long_f, lat_t, long_t) {
-        lat_f = lat_f ? lat_f : 0;
-        long_f = long_f ? long_f : 0;
-        lat_t = lat_t ? lat_t : 0;
-        long_t = long_t ? long_t : 0;
-        if (lat_f === 0 && long_f === 0 && lat_t === 0 && long_t === 0) return;
-        this.props.updateOriginAndDestination(lat_f, long_f, lat_t, long_t);
+    calc() {
+        if (latf === 0 && longf === 0 && latt === 0 && longt === 0) return;
+        this.props.updateOriginAndDestination(latf, longf, latt, longt);
         this.setState({iscalculated: true});
         request(this.props.distance, 'distance', this.props.port, this.props.host).then(response => {
             this.props.updateDistanceBasedOnResponse(response)
@@ -61,6 +61,7 @@ class Calculator extends Component {
                             id="latitude_f_field"
                             placeholder="Latitude"
                             step="0.00000001"
+                            onChange= {this.handleChangelatf}
                         />
                         <Input
                             type="number"
@@ -68,6 +69,7 @@ class Calculator extends Component {
                             id="longitude_f_field"
                             placeholder="Longitude"
                             step="0.00000001"
+                            onChange= {this.handleChangelongf}
                         />
                     </InputGroup>
                 </Form>
@@ -81,6 +83,7 @@ class Calculator extends Component {
                             id="latitude_t_field"
                             placeholder="Latitude"
                             step="0.00000001"
+                            onChange= {this.handleChangelatt}
                         />
                         <Input
                             type="number"
@@ -88,6 +91,7 @@ class Calculator extends Component {
                             id="longitude_t_field"
                             placeholder="Longitude"
                             step="0.00000001"
+                            onChange= {this.handleChangelongt}
                         />
                         &nbsp;
                         <InputGroupAddon addonType="append">
