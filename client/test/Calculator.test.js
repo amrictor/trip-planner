@@ -67,4 +67,9 @@ test('Test function calc', () => {
     wrapper.setState({ latt: 400 });
     wrapper.setState({ longt: 300 });
     wrapper.find('Button').simulate('click');
+
+    wrapper.find('#latitude_f_field').at(0).simulate('change');
+    wrapper.find('#longitude_f_field').at(0).simulate('change');
+    wrapper.find('#latitude_t_field').at(0).simulate('change');
+    wrapper.find('#longitude_t_field').at(0).simulate('change');
 });
