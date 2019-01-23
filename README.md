@@ -1,6 +1,7 @@
 # t23 - Team Dave
-Here's a picture of us!:
-![Team Photo](https://github.com/csu18fa314/t23/blob/master/Resources/imgs/IMG_0365.jpg)
+
+# Project Information
+A web application developed with a team in an agile environment for world-wide trip planning with the ability to query a database for destinations and create a visual representation of the user's itinerary.
 
 # Member Information
 your name | CSU eName | GitHub username | email address | nickname/moniker
